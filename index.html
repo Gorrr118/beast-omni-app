@@ -34,7 +34,7 @@
             <div class="video-label" id="l-creation">ULTIMATE GENERATION 2.0</div>
         </div>
 
-        <button class="btn-main-action" id="l-create-btn" onclick="tg.showAlert('Initializing Neural Core...')">ЗАПУСТИТЬ ТЕРМИНАЛ</button>
+        <button class="btn-main-action" id="l-create-btn" onclick="window.location.href='terminal.html'">ЗАПУСТИТЬ ТЕРМИНАЛ</button>
 
         <div class="info-block" style="margin-top:60px;">
             <div class="info-text">
@@ -75,45 +75,14 @@
         </div>
     </div>
 
-    <div id="refs-screen" style="display:none; position:fixed; inset:0; background:#000; z-index:1500; overflow-y:auto; padding: 0 20px 120px;">
-        <div style="padding-top: 60px; text-align: center; margin-bottom: 20px;">
-            <h2 id="ref-title" style="font-family: Montserrat; font-weight: 900; font-size: 28px; letter-spacing: 1px; color: #fff; margin: 0;">РЕФЕРАЛЬНАЯ СИСТЕМА</h2>
-            <div style="width: 50px; height: 2px; background: var(--accent-blue); margin: 15px auto;"></div>
-        </div>
-        <div class="info-text" style="text-align: center; margin-bottom: 30px;">
-            <span id="ref-desc" style="font-size: 14px; line-height: 1.6; color: var(--text-dim);"></span>
-        </div>
-        <div style="width: 100%; height: 180px; border-radius: 24px; overflow: hidden; margin-bottom: 30px; border: 1px solid var(--border-soft);">
-            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1000" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
-        </div>
-        <div class="beast-card" style="margin-bottom: 30px;">
-            <span style="color: var(--text-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Доступно для обмена</span>
-            <div style="font-family: Montserrat; font-weight: 900; font-size: 48px; margin: 5px 0; color: #fff;">0.00 <span style="color: var(--accent-blue); font-size: 18px;">STARS</span></div>
-        </div>
-        <button class="btn-main-action" onclick="sharePartnerLink()">
-            <span id="ref-btn-text">ПРИГЛАСИТЬ ДРУГА</span>
-        </button>
-        <div class="back-btn" style="text-align:center; margin-top:40px;" onclick="closeRefs()">← ВЕРНУТЬСЯ В ТЕРМИНАЛ</div>
-    </div>
-
     <div class="tab-bar">
-        <a href="#" class="nav-item active" id="tab-home" onclick="closeRefs()">ГЛАВНАЯ</a>
-        <a href="#" class="nav-item" id="tab-stats" onclick="tg.showAlert('Stats coming soon')">СТАТЫ</a>
-        <a href="#" class="nav-item" id="tab-refs" onclick="openRefs()">РЕФЫ</a>
-        <a href="#" class="nav-item" id="tab-plans" onclick="closeRefs(); window.scrollTo({top: document.getElementById('l-title-plans').offsetTop - 100, behavior: 'smooth'})">ТАРИФЫ</a>
-        <a href="#" class="nav-item" id="tab-gift" onclick="openGiftModal()">БОНУС</a>
+        <a href="index.html" class="nav-item active">ГЛАВНАЯ</a>
+        <a href="terminal.html" class="nav-item">ТЕРМИНАЛ</a>
+        <a href="referals.html" class="nav-item">РЕФЫ</a>
+        <a href="shop.html" class="nav-item">ТАРИФЫ</a>
+        <a href="bonus.html" class="nav-item">БОНУС</a>
     </div>
 
-    <div id="gift-modal">
-        <h2 id="l-lucky">BEAST LUCK</h2>
-        <div class="wheel-container">
-            <div class="wheel-pointer"></div>
-            <canvas id="wheel-canvas" width="600" height="600"></canvas>
-        </div>
-        <button class="btn-main-action" style="max-width: 280px;" onclick="runWheel()" id="l-spin">КРУТИТЬ КОЛЕСО</button>
-        <div class="back-btn" onclick="closeGiftModal()" id="l-back">← НАЗАД</div>
-    </div>
-
-    <script src="app.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
