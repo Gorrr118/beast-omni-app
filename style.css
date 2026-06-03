@@ -428,3 +428,43 @@ body {
     font-size: 42px;
     filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
 }
+/* КАРТОЧКА БЕЗОПАСНОСТИ */
+.security-card {
+    background: linear-gradient(135deg, #151518 0%, #0F172A 100%);
+    border: var(--border-card);
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.security-item {
+    background: #1E293B;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    transition: transform 0.2s ease;
+}
+
+.security-item:hover {
+    transform: scale(1.02);
+    border-color: var(--color-purple);
+}
+
+.security-item h4 {
+    color: #38BDF8;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.security-item p {
+    color: var(--text-gray);
+    font-size: 13px;
+    line-height: 1.5;
+}
