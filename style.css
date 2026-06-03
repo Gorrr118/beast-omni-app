@@ -177,6 +177,16 @@ body {
     margin-bottom: 10px;
 }
 
+/* Крутые описания возможностей пакетов */
+.tariff-desc {
+    font-size: 13px;
+    color: #94A3B8;
+    line-height: 1.4;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    min-height: 36px; /* Фиксирует высоту, чтобы сетка не плыла */
+}
+
 /* Цены и кастомные свечения */
 .tariff-price { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
 .tariff-price span { font-size: 14px; color: var(--text-gray); font-weight: 400; }
@@ -383,3 +393,42 @@ body {
 .nav-icon { font-size: 20px; }
 .nav-text { font-size: 11px; font-weight: 600; }
 .nav-item.active { color: var(--color-purple); }
+
+/* СТИЛИЗАЦИЯ ПРИПОДНЯТОЙ НЕОНОВОЙ КНОПКИ «СТУДИЯ» */
+.nav-center-item {
+    position: relative;
+    top: -12px; /* Приподнимает кнопку над основным навбаром */
+    transform: scale(1.05);
+}
+
+.nav-center-btn {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid #0B0B0C;
+}
+
+.nav-center-item:hover .nav-center-btn {
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 0 0 25px rgba(244, 114, 182, 0.8);
+}
+
+.center-icon {
+    font-size: 22px;
+    color: #FFFFFF;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.center-text {
+    margin-top: 2px !important;
+    font-weight: 700 !important;
+    background: linear-gradient(90deg, #A855F7, #F472B6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
