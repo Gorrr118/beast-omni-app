@@ -5,6 +5,7 @@ const translations = {
         heroDesc: "An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs.",
         tariffsTitle: "Available Tariffs",
         t1Name: "SHORTS BASE",
+        t1Desc: "Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life!",
         t1Features: [
             "Ideal solution for TikTok, Shorts & Reels creators",
             "1 active interactive widget on account",
@@ -13,6 +14,7 @@ const translations = {
         ],
         t1Btn: "Activate",
         t2Name: "MEDIUM PRO",
+        t2Desc: "The choice of active streamers. Complete audience immersion without watermarks and with neon fonts!",
         t2Features: [
             "Up to 10 simultaneously running widgets",
             "Complete removal of Beast Omni watermark",
@@ -22,6 +24,7 @@ const translations = {
         ],
         t2Btn: "Buy PRO",
         t3Name: "ADVANCED OMNI",
+        t3Desc: "Hardcore creator level. Premium game and anime characters that make your stream unforgettable!",
         t3Features: [
             "Extended functionality and integration",
             "Up to 25 simultaneously running widgets",
@@ -31,6 +34,7 @@ const translations = {
         ],
         t3Btn: "Upgrade Plan",
         t4Name: "ULTIMATE KING",
+        t4Desc: "Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here!",
         t4Features: [
             "Absolute unlimited widget creation",
             "Full access to ALL characters & secret fonts",
@@ -55,6 +59,7 @@ const translations = {
         supportBtn: "💬 Contact Support",
         navHome: "Home",
         navRef: "Referral",
+        navCreate: "Studio",
         navWidget: "Widgets",
         navShop: "Shop"
     },
@@ -64,6 +69,7 @@ const translations = {
         heroDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs.",
         tariffsTitle: "Доступные Тарифы",
         t1Name: "SHORTS BASE",
+        t1Desc: "Идеальный старт для авторов вертикального контента. Оживи свои TikTok, Shorts и Reels!",
         t1Features: [
             "Идеал для авторов TikTok, Shorts и Reels",
             "1 активный интерактивный виджет на аккаунте",
@@ -72,6 +78,7 @@ const translations = {
         ],
         t1Btn: "Активировать",
         t2Name: "MEDIUM PRO",
+        t2Desc: "Выбор активных стримеров. Полное погружение зрителей, без водяных знаков и со светящимися шрифтами!",
         t2Features: [
             "До 10 одновременно работающих виджетов",
             "Полное удаление водяного знака Beast Omni",
@@ -81,6 +88,7 @@ const translations = {
         ],
         t2Btn: "Купить PRO",
         t3Name: "ADVANCED OMNI",
+        t3Desc: "Уровень хардкор-креатора. Премиум-персонажи из игр и аниме, которые сделают твой стрим незабываемым!",
         t3Features: [
             "Расширенный функционал и повышенные лимиты",
             "До 25 одновременно работающих виджетов",
@@ -90,6 +98,7 @@ const translations = {
         ],
         t3Btn: "Расширить тариф",
         t4Name: "ULTIMATE KING",
+        t4Desc: "Абсолютная власть над эфиром. Безлимит на виджеты, эксклюзивная озвучка и VIP-статус. Ты здесь король!",
         t4Features: [
             "Абсолютный безлимит на создание виджетов",
             "Полный доступ ко ВСЕМ персонажам и секретным шрифтам",
@@ -114,6 +123,7 @@ const translations = {
         supportBtn: "💬 Написать в поддержку",
         navHome: "Главная",
         navRef: "Рефералка",
+        navCreate: "Студия",
         navWidget: "Виджеты",
         navShop: "Магазин"
     },
@@ -123,6 +133,7 @@ const translations = {
         heroDesc: "Ինտերակտիվ վիջեթների նորարարական էկոհամակարգ սթրիմերների և հեղինակների համար: Դարձրեք ձեր ուղիղ եթերը լիարժեք շոու՝ հնարավորություն ունենալով օգտագործել կերպարներ, յուրահատուկ տառատեսակներ և բացառիկ ձայնային էֆեկտներ իրական ժամանակում OBS / Streamlabs-ի միջոցով:",
         tariffsTitle: "Հասանելի Սակագներ",
         t1Name: "SHORTS BASE",
+        t1Desc: "Իդեալական մեկնարկ ուղղահայաց բովանդակություն ստեղծողների համար: Աշխուժացրեք ձեր TikTok-ը, Shorts-ը և Reels-ը:",
         t1Features: [
             "Իդեալական լուծում TikTok, Shorts և Reels ստեղծողների համար",
             "1 ակտիվ ինտերակտիվ վիջեթ հաշվում",
@@ -131,6 +142,7 @@ const translations = {
         ],
         t1Btn: "Ակտիվացնել",
         t2Name: "MEDIUM PRO",
+        t2Desc: "Ակտիվ սթրիմերների ընտրությունը: Հանդիսատեսի լիակատար ընկղմում առանց ջրային նշանների և նեոնային տառատեսակներով:",
         t2Features: [
             "Մինչև 10 միաժամանակ աշխատող վիջեթներ",
             "Beast Omni ջրային նշանի ամբողջական հեռացում",
@@ -140,6 +152,7 @@ const translations = {
         ],
         t2Btn: "Գնել PRO",
         t3Name: "ADVANCED OMNI",
+        t3Desc: "Հարդքոր ստեղծողների մակարդակ: Պրեմիում խաղային և անիմե կերպարներ, որոնք ձեր սթրիմը կդարձնեն անմոռանալի:",
         t3Features: [
             "Ընդլայնված ֆունկցիոնալություն և բարձրացված լիմիտներ",
             "Մինչև 25 միաժամանակ աշխատող վիջեթներ",
@@ -149,6 +162,7 @@ const translations = {
         ],
         t3Btn: "Ընդլայնել",
         t4Name: "ULTIMATE KING",
+        t4Desc: "Բացարձակ իշխանություն սթրիմի վրա: Անսահմանափակ վիջեթներ, բացառիկ ձայնային էֆեկտներ և VIP կարգավիճակ: Դուք այստեղ թագավորն եք:",
         t4Features: [
             "Բացարձակ անսահմանափակ վիջեթների ստեղծում",
             "Ամբողջական հասանելիություն ԲՈԼՈՐ կերպարներին և գաղտնի տառատեսակներին",
@@ -173,6 +187,7 @@ const translations = {
         supportBtn: "💬 Գրել աջակցմանը",
         navHome: "Գլխավոր",
         navRef: "Ռեֆերալ",
+        navCreate: "Ստուդիա",
         navWidget: "Վիջեթներ",
         navShop: "Խանութ"
     }
@@ -188,9 +203,13 @@ function changeLanguage(lang) {
         "hero-desc": data.heroDesc,
         "tariffs-title": data.tariffsTitle,
         "t1-name": data.t1Name,
+        "t1-desc": data.t1Desc,
         "t2-name": data.t2Name,
+        "t2-desc": data.t2Desc,
         "t3-name": data.t3Name,
+        "t3-desc": data.t3Desc,
         "t4-name": data.t4Name,
+        "t4-desc": data.t4Desc,
         "t1-btn": data.t1Btn,
         "t2-btn": data.t2Btn,
         "t3-btn": data.t3Btn,
@@ -204,13 +223,17 @@ function changeLanguage(lang) {
         "support-desc": data.supportDesc,
         "nav-home": data.navHome,
         "nav-ref": data.navRef,
+        "nav-create": data.navCreate,
         "nav-widget": data.navWidget,
         "nav-shop": data.navShop
     };
 
+    // Безопасный цикл обновлений
     for (const [id, text] of Object.entries(textMappings)) {
         const el = document.getElementById(id);
-        if (el) el.innerText = text;
+        if (el) {
+            el.innerText = text;
+        }
     }
 
     updateList("t1-features", data.t1Features);
@@ -265,4 +288,3 @@ document.addEventListener("DOMContentLoaded", () => {
     if(dropdown) dropdown.value = "en";
     changeLanguage("en");
 });
-     
