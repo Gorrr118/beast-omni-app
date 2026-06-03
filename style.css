@@ -1,4 +1,6 @@
-/* ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ */
+/* ==========================================================================
+   1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И СБРОС СТИЛЕЙ
+   ========================================================================== */
 :root {
     --bg-main: #0B0B0C;
     --bg-card: #151518;
@@ -10,7 +12,6 @@
     --border-card: 1px solid #232329;
 }
 
-/* СБРОС СТИЛЕЙ */
 * {
     margin: 0;
     padding: 0;
@@ -21,12 +22,14 @@ body {
     background-color: var(--bg-main);
     color: var(--text-white);
     font-family: 'Inter', sans-serif;
-    padding-top: 70px; /* Чтобы контент не залезал под верхний хедер */
-    padding-bottom: 90px; /* Чтобы контент не залезал под нижний навбар */
+    padding-top: 70px;  /* Отступ под верхний хедер */
+    padding-bottom: 90px; /* Отступ под нижний навбар */
     overflow-x: hidden;
 }
 
-/* ВЕРХНИЙ ГЛОБАЛЬНЫЙ ХЕДЕР */
+/* ==========================================================================
+   2. ВЕРХНИЙ ХЕДЕР И СЕЛЕКТОР ЯЗЫКА
+   ========================================================================== */
 .global-header {
     position: fixed;
     top: 0;
@@ -57,7 +60,6 @@ body {
     font-weight: 600;
 }
 
-/* ВЫБОР ЯЗЫКА */
 .lang-selector select {
     background-color: #1E1E24;
     color: var(--text-white);
@@ -75,25 +77,28 @@ body {
     box-shadow: var(--purple-glow);
 }
 
-/* КОНТЕЙНЕР КОНТЕНТА */
+/* ==========================================================================
+   3. ОСНОВНОЙ КОНТЕНТ И ГЕРОЙ-БЛОК
+   ========================================================================== */
 .main-container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 15px;
 }
 
-/* ГЕРОЙ-БЛОК */
 .hero-section {
     text-align: center;
     padding: 30px 10px;
 }
 
 .neon-text {
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 800;
     letter-spacing: 2px;
-    color: var(--text-white);
-    text-shadow: var(--purple-glow);
+    background: linear-gradient(90deg, #A855F7 0%, #F472B6 50%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
     margin-bottom: 15px;
 }
 
@@ -105,7 +110,6 @@ body {
     margin: 0 auto;
 }
 
-/* БЛОКИ И СЕКЦИИ */
 .section-block {
     margin-top: 35px;
 }
@@ -118,11 +122,13 @@ body {
     border-left: 4px solid var(--color-purple);
 }
 
-/* СЕТКА ТАРИФОВ */
+/* ==========================================================================
+   4. СЕТКА И КАРТОЧКИ ТАРИФОВ
+   ========================================================================== */
 .tariffs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
 }
 
 .tariff-card {
@@ -142,16 +148,13 @@ body {
     border-color: #3F3F46;
 }
 
-.tariff-card.pro {
-    border-color: var(--color-purple);
-    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
-}
+/* Специфические бордеры тарифов */
+.tariff-card.base { border-color: #0284C7; }
+.tariff-card.pro { border-color: var(--color-purple); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); }
+.tariff-card.advanced { border-color: #EA580C; }
+.tariff-card.king { border-color: #EAB308; }
 
-.tariff-card.king {
-    border-color: #EAB308;
-}
-
-/* БЭЙДЖИ ТАРИФОВ */
+/* Кастомные бэйджи */
 .tariff-badge {
     position: absolute;
     top: 15px;
@@ -162,15 +165,11 @@ body {
     font-size: 11px;
     font-weight: 700;
 }
-
-.tariff-badge.hot {
-    background: var(--color-purple);
-}
-
-.tariff-badge.gold {
-    background: #EAB308;
-    color: #000;
-}
+.tariff-badge.green { background: #0369A1; color: #FFF; }
+.tariff-badge.purple { background: #7C3AED; color: #FFF; }
+.tariff-badge.orange { background: #C2410C; color: #FFF; }
+.tariff-badge.hot { background: var(--color-purple); }
+.tariff-badge.gold { background: #EAB308; color: #000; }
 
 .tariff-name {
     font-size: 20px;
@@ -178,46 +177,50 @@ body {
     margin-bottom: 10px;
 }
 
-.tariff-price {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 20px;
-}
+/* Цены и кастомные свечения */
+.tariff-price { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
+.tariff-price span { font-size: 14px; color: var(--text-gray); font-weight: 400; }
 
-.tariff-price span {
-    font-size: 14px;
-    color: var(--text-gray);
-    font-weight: 400;
-}
+.price-blue { color: #38BDF8; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+.price-purple { color: #E879F9; text-shadow: 0 0 15px rgba(232, 121, 249, 0.4); }
+.price-orange { color: #FB923C; text-shadow: 0 0 15px rgba(251, 146, 60, 0.4); }
+.price-gold { color: #FACC15; text-shadow: 0 0 20px rgba(250, 204, 21, 0.5); }
 
+/* Градиентный текст для названий планов */
+.gradient-text-blue { background: linear-gradient(135deg, #38BDF8 0%, #0369A1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.gradient-text-purple { background: linear-gradient(135deg, #F472B6 0%, #A855F7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.gradient-text-orange { background: linear-gradient(135deg, #FDBA74 0%, #EA580C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.gradient-text-gold { background: linear-gradient(135deg, #FDE047 0%, #CA8A04 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 10px rgba(253, 224, 71, 0.2); }
+
+/* Списки преимуществ */
 .tariff-features {
     list-style: none;
-    margin-bottom: 25px;
+    padding: 0;
+    margin: 20px 0 25px 0;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    text-align: left;
 }
 
 .tariff-features li {
-    font-size: 14px;
-    color: var(--text-gray);
+    font-size: 13px;
+    color: #94A3B8;
+    line-height: 1.5;
     position: relative;
-    padding-left: 20px;
+    padding-left: 22px;
 }
 
-.tariff-features li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--color-purple);
-    font-weight: bold;
-}
+/* Цветные галочки */
+.tariff-features li::before { content: "✓"; position: absolute; left: 0; font-weight: 800; }
+.tariff-card.base .tariff-features li::before { color: #38BDF8; }
+.tariff-card.pro .tariff-features li::before { color: #E879F9; }
+.tariff-card.advanced .tariff-features li::before { color: #FB923C; }
+.tariff-card.king .tariff-features li::before { content: "✦"; color: #FACC15; }
 
-.tariff-card.king .tariff-features li::before {
-    color: #EAB308;
-}
-
-/* КНОПКИ ДЕЙСТВИЯ */
+/* ==========================================================================
+   5. КНОПКИ ДЕЙСТВИЯ
+   ========================================================================== */
 .btn-action {
     width: 100%;
     padding: 12px;
@@ -230,32 +233,23 @@ body {
     transition: all 0.3s ease;
 }
 
-.btn-action:hover {
-    background: #27272A;
-}
+.btn-action:hover { background: #27272A; }
 
-.active-btn {
-    background: var(--color-purple);
-    border: none;
-}
+.btn-blue { background: #0284C7; border: none; }
+.btn-blue:hover { box-shadow: 0 0 15px rgba(2, 132, 199, 0.6); background: #0369A1; }
 
-.active-btn:hover {
-    background: #9333EA;
-    box-shadow: var(--purple-glow);
-}
+.active-btn { background: var(--color-purple); border: none; }
+.active-btn:hover { background: #9333EA; box-shadow: var(--purple-glow); }
 
-.king-btn {
-    background: #EAB308;
-    color: #000;
-    border: none;
-}
+.btn-orange { background: #EA580C; border: none; }
+.btn-orange:hover { box-shadow: 0 0 15px rgba(234, 88, 12, 0.6); background: #C2410C; }
 
-.king-btn:hover {
-    background: #CA8A04;
-    box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
-}
+.king-btn { background: #EAB308; color: #000; border: none; }
+.king-btn:hover { background: #CA8A04; box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); }
 
-/* ИНФОРМАЦИОННЫЕ КАРТОЧКИ (МАГАЗИН И ОПЛАТА) */
+/* ==========================================================================
+   6. ИНФОРМАЦИОННЫЕ БЛОКИ И БЕЗОПАСНОСТЬ
+   ========================================================================== */
 .info-card, .payment-card {
     background-color: var(--bg-card);
     border: var(--border-card);
@@ -290,7 +284,53 @@ body {
     border-color: #166534;
 }
 
-/* ТЕХПОДДЕРЖКА */
+/* Блок безопасности */
+.security-card {
+    background: linear-gradient(135deg, #151518 0%, #0F172A 100%);
+    border: var(--border-card);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.security-item {
+    background: #1E293B;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    text-align: left;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.security-item:hover {
+    transform: scale(1.02);
+    border-color: #A855F7;
+}
+
+.security-item h4 {
+    color: #38BDF8;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.security-item p {
+    color: var(--text-gray);
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ==========================================================================
+   7. ПОДВАЛ И НАВБАР
+   ========================================================================== */
 .support-footer {
     margin-top: 40px;
     background: linear-gradient(135deg, #151518 0%, #241435 100%);
@@ -300,17 +340,8 @@ body {
     text-align: center;
 }
 
-.support-content h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.support-content p {
-    color: var(--text-gray);
-    font-size: 14px;
-    margin-bottom: 20px;
-}
+.support-content h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.support-content p { color: var(--text-gray); font-size: 14px; margin-bottom: 20px; }
 
 .btn-support {
     display: inline-block;
@@ -323,12 +354,8 @@ body {
     transition: all 0.3s ease;
 }
 
-.btn-support:hover {
-    box-shadow: var(--purple-glow);
-    transform: scale(1.02);
-}
+.btn-support:hover { box-shadow: var(--purple-glow); transform: scale(1.02); }
 
-/* НИЖНИЙ НАВИГАЦИОННЫЙ БАР */
 .bottom-navbar {
     position: fixed;
     bottom: 0;
@@ -353,119 +380,6 @@ body {
     transition: color 0.2s ease;
 }
 
-.nav-icon {
-    font-size: 20px;
-}
-
-.nav-text {
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.nav-item.active {
-    color: var(--color-purple);
-}
-/* ОБНОВЛЕННАЯ СЕТКА ПОД 4 КАРТОЧКИ */
-.tariffs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-}
-
-/* ГРАДИЕНТНЫЙ ТЕКСТ (ЭФФЕКТ ШЫК) */
-.gradient-text-blue {
-    background: linear-gradient(135deg, #38BDF8 0%, #0369A1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-}
-.gradient-text-purple {
-    background: linear-gradient(135deg, #F472B6 0%, #A855F7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-}
-.gradient-text-orange {
-    background: linear-gradient(135deg, #FDBA74 0%, #EA580C 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-}
-.gradient-text-gold {
-    background: linear-gradient(135deg, #FDE047 0%, #CA8A04 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-    text-shadow: 0 0 10px rgba(253, 224, 71, 0.2);
-}
-
-/* СВЕЧЕНИЕ ЦЕН */
-.tariff-price { font-size: 36px; font-weight: 800; }
-.price-blue { color: #38BDF8; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
-.price-purple { color: #E879F9; text-shadow: 0 0 15px rgba(232, 121, 249, 0.4); }
-.price-orange { color: #FB923C; text-shadow: 0 0 15px rgba(251, 146, 60, 0.4); }
-.price-gold { color: #FACC15; text-shadow: 0 0 20px rgba(250, 204, 21, 0.5); }
-
-/* РАЗНОЦВЕТНЫЕ КНОПКИ И ГРАНИЦЫ */
-.tariff-card.base { border-color: #0284C7; }
-.btn-blue { background: #0284C7; border: none; }
-.btn-blue:hover { box-shadow: 0 0 15px rgba(2, 132, 199, 0.6); background: #0369A1; }
-
-.tariff-card.advanced { border-color: #EA580C; }
-.btn-orange { background: #EA580C; border: none; }
-.btn-orange:hover { box-shadow: 0 0 15px rgba(234, 88, 12, 0.6); background: #C2410C; }
-
-/* КАСТОМНЫЕ БЭЙДЖИ */
-.tariff-badge.green { background: #0369A1; color: #FFF; }
-.tariff-badge.purple { background: #7C3AED; color: #FFF; }
-.tariff-badge.orange { background: #C2410C; color: #FFF; }
-
-/* КРАСОЧНЫЙ НЕОНОВЫЙ ХЕДЕР САЙТА */
-.neon-text {
-    background: linear-gradient(90deg, #A855F7 0%, #F472B6 50%, #38BDF8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 42px;
-    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
-}
-/* КАРТОЧКА БЕЗОПАСНОСТИ */
-.security-card {
-    background: linear-gradient(135deg, #151518 0%, #0F172A 100%);
-    border: var(--border-card);
-    border-radius: 16px;
-    padding: 25px;
-}
-
-.security-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.security-item {
-    background: #1E293B;
-    padding: 18px;
-    border-radius: 12px;
-    border: 1px solid #334155;
-    transition: transform 0.2s ease;
-}
-
-.security-item:hover {
-    transform: scale(1.02);
-    border-color: var(--color-purple);
-}
-
-.security-item h4 {
-    color: #38BDF8;
-    margin-bottom: 8px;
-    font-size: 15px;
-    font-weight: 700;
-}
-
-.security-item p {
-    color: var(--text-gray);
-    font-size: 13px;
-    line-height: 1.5;
-}
-    
+.nav-icon { font-size: 20px; }
+.nav-text { font-size: 11px; font-weight: 600; }
+.nav-item.active { color: var(--color-purple); }
