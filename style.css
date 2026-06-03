@@ -365,4 +365,66 @@ body {
 .nav-item.active {
     color: var(--color-purple);
 }
-   
+/* ОБНОВЛЕННАЯ СЕТКА ПОД 4 КАРТОЧКИ */
+.tariffs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+/* ГРАДИЕНТНЫЙ ТЕКСТ (ЭФФЕКТ ШЫК) */
+.gradient-text-blue {
+    background: linear-gradient(135deg, #38BDF8 0%, #0369A1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+.gradient-text-purple {
+    background: linear-gradient(135deg, #F472B6 0%, #A855F7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+.gradient-text-orange {
+    background: linear-gradient(135deg, #FDBA74 0%, #EA580C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+.gradient-text-gold {
+    background: linear-gradient(135deg, #FDE047 0%, #CA8A04 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(253, 224, 71, 0.2);
+}
+
+/* СВЕЧЕНИЕ ЦЕН */
+.tariff-price { font-size: 36px; font-weight: 800; }
+.price-blue { color: #38BDF8; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+.price-purple { color: #E879F9; text-shadow: 0 0 15px rgba(232, 121, 249, 0.4); }
+.price-orange { color: #FB923C; text-shadow: 0 0 15px rgba(251, 146, 60, 0.4); }
+.price-gold { color: #FACC15; text-shadow: 0 0 20px rgba(250, 204, 21, 0.5); }
+
+/* РАЗНОЦВЕТНЫЕ КНОПКИ И ГРАНИЦЫ */
+.tariff-card.base { border-color: #0284C7; }
+.btn-blue { background: #0284C7; border: none; }
+.btn-blue:hover { box-shadow: 0 0 15px rgba(2, 132, 199, 0.6); background: #0369A1; }
+
+.tariff-card.advanced { border-color: #EA580C; }
+.btn-orange { background: #EA580C; border: none; }
+.btn-orange:hover { box-shadow: 0 0 15px rgba(234, 88, 12, 0.6); background: #C2410C; }
+
+/* КАСТОМНЫЕ БЭЙДЖИ */
+.tariff-badge.green { background: #0369A1; color: #FFF; }
+.tariff-badge.purple { background: #7C3AED; color: #FFF; }
+.tariff-badge.orange { background: #C2410C; color: #FFF; }
+
+/* КРАСОЧНЫЙ НЕОНОВЫЙ ХЕДЕР САЙТА */
+.neon-text {
+    background: linear-gradient(90deg, #A855F7 0%, #F472B6 50%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 42px;
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
+}
