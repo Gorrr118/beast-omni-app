@@ -65,7 +65,7 @@ const translations = {
         tariffsTitle: "Доступные Тарифы",
         t1Name: "SHORTS BASE",
         t1Features: [
-            "Идеальное решение для создателей TikTok, Shorts и Reels",
+            "Идеал для авторов TikTok, Shorts и Reels",
             "1 активный интерактивный виджет на аккаунте",
             "Доступ к стандартным системным шрифтам",
             "Лимит: 500 просмотров в месяц"
@@ -182,7 +182,6 @@ function changeLanguage(lang) {
     const data = translations[lang];
     if (!data) return;
 
-    // Безопасное обновление текстовых ID (если элемента нет, скрипт не упадет)
     const textMappings = {
         "user-greeting": data.greeting,
         "hero-title": data.heroTitle,
@@ -214,17 +213,14 @@ function changeLanguage(lang) {
         if (el) el.innerText = text;
     }
 
-    // Обновление списков фич для тарифов
     updateList("t1-features", data.t1Features);
     updateList("t2-features", data.t2Features);
     updateList("t3-features", data.t3Features);
     updateList("t4-features", data.t4Features);
 
-    // Обновление текста на кнопке саппорта через селектор класса
     const supportLink = document.querySelector(".btn-support");
     if (supportLink) supportLink.innerText = data.supportBtn;
 
-    // Генерация карточек безопасности
     updateSecurityGrid(data.securityFeatures);
 }
 
@@ -232,11 +228,13 @@ function updateList(elementId, itemsArray) {
     const ul = document.getElementById(elementId);
     if (!ul) return;
     ul.innerHTML = "";
-    itemsArray.forEach(item => {
-        const li = document.createElement("li");
-        li.innerText = item;
-        ul.appendChild(li);
-    });
+    if (itemsArray && Array.isArray(itemsArray)) {
+        itemsArray.forEach(item => {
+            const li = document.createElement("li");
+            li.innerText = item;
+            ul.appendChild(li);
+        });
+    }
 }
 
 function updateSecurityGrid(featuresArray) {
@@ -244,29 +242,27 @@ function updateSecurityGrid(featuresArray) {
     if (!container) return;
     container.innerHTML = "";
     
-    featuresArray.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "security-item";
-        
-        const h4 = document.createElement("h4");
-        h4.innerText = item.title;
-        
-        const p = document.createElement("p");
-        p.innerText = item.desc;
-        
-        card.appendChild(h4);
-        card.appendChild(p);
-        container.appendChild(card);
-    });
+    if (featuresArray && Array.isArray(featuresArray)) {
+        featuresArray.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "security-item";
+            
+            const h4 = document.createElement("h4");
+            h4.innerText = item.title;
+            
+            const p = document.createElement("p");
+            p.innerText = item.desc;
+            
+            card.appendChild(h4);
+            card.appendChild(p);
+            container.appendChild(card);
+        });
+    }
 }
 
-// Первоначальный запуск локализации на Английский язык при загрузке
 document.addEventListener("DOMContentLoaded", () => {
-    // Устанавливаем значение дропдауна в 'en'
     const dropdown = document.getElementById("lang-dropdown");
     if(dropdown) dropdown.value = "en";
-    
-    // Запускаем перевод
     changeLanguage("en");
 });
-    
+     
