@@ -1,108 +1,126 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beast Omni - Главная</title>
+    <title>Beast Omni</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="splash-screen">
-        <div class="logo-wrapper">
-            <img src="img/logo-white.png" alt="Beast Omni Logo" class="logo-pulse">
-            <p class="tagline">Automatic Choice. Beast Omni.</p>
+    <header class="global-header">
+        <div class="user-box">
+            <span class="user-icon">👤</span>
+            <span class="username" id="user-greeting">Hello, filatow</span>
         </div>
-        <div class="progress-bar-container">
-            <div class="progress-bar"></div>
+        <div class="lang-selector">
+            <select id="lang-dropdown" onchange="changeLanguage(this.value)">
+                <option value="en" selected>EN</option>
+                <option value="ru">RU</option>
+                <option value="am">AM</option>
+            </select>
         </div>
-    </div>
+    </header>
 
-    <nav class="bottom-navbar">
-        <a href="#" class="nav-item active">
-            <img src="img/icon-home-purple.svg" alt="Home">
-            <span>Главная</span>
-        </a>
-        <a href="referral.html" class="nav-item">
-            <img src="img/icon-referral.svg" alt="Referral">
-            <span>Рефералка</span>
-        </a>
-        <a href="widgets.html" class="nav-item">
-            <img src="img/icon-widget.svg" alt="Widgets">
-            <span>Виджеты</span>
-        </a>
-        <a href="shop.html" class="nav-item">
-            <img src="img/icon-shop.svg" alt="Shop">
-            <span>Магазин</span>
-        </a>
-    </nav>
-
-    <main class="content-wrapper home-page main-hidden">
+    <main class="main-container">
         
-        <header class="home-header">
-            <div class="user-info">
-                <h1>Привет, filatow!</h1>
-                <p>Добро пожаловать в командный центр.</p>
-            </div>
-            <div class="balance-card">
-                <span>Баланс:</span>
-                <span class="amount">$12.50</span>
-            </div>
-        </header>
-
-        <section class="card tariff-card">
-            <div class="tariff-info">
-                <h2>PRO BEAST</h2>
-                <ul>
-                    <li>10 Виджетов</li>
-                    <li>Премиум шрифты</li>
-                    <li>Без водяного знака</li>
-                </ul>
-            </div>
-            <button class="btn btn-purple">Продлить тарифов</button>
+        <section class="hero-section">
+            <h1 class="neon-text" id="hero-title">BEAST OMNI</h1>
+            <p class="hero-desc" id="hero-desc">Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs.</p>
         </section>
 
-        <section class="home-widgets-section">
-            <div class="section-header">
-                <h2>Твои виджеты</h2>
-                <a href="widgets.html" class="link-all">Все (7)</a>
-            </div>
-            
-            <div class="widget-list">
-                <div class="widget-item">
-                    <div class="widget-preview">
-                        <img src="img/char-preview-wednesday.png" alt="Preview Wednesday">
-                    </div>
-                    <div class="widget-details">
-                        <h3>Wednesday Stream</h3>
-                        <p>Шрифт: Cyber Neon</p>
-                    </div>
-                    <div class="widget-actions">
-                        <button class="btn-icon btn-copy-link"></button>
-                        <button class="btn-icon btn-edit"></button>
-                    </div>
+        <section class="section-block">
+            <h2 class="section-title" id="tariffs-title">Доступные Тарифы</h2>
+            <div class="tariffs-grid">
+                
+                <div class="tariff-card">
+                    <div class="tariff-badge">FREE</div>
+                    <h3 class="tariff-name">START</h3>
+                    <p class="tariff-price">$0</p>
+                    <ul class="tariff-features" id="t1-features">
+                        <li>Базовый доступ к конструктору</li>
+                        <li>1 активный виджет на аккаунте</li>
+                        <li>Стандартные системные шрифты</li>
+                        <li>Лимит: 100 просмотров в месяц</li>
+                    </ul>
+                    <button class="btn-action" id="t1-btn">Активировать</button>
                 </div>
-            </div>
 
-            <button class="btn btn-add-widget btn-pulse">+ Создать видже</button>
+                <div class="tariff-card pro">
+                    <div class="tariff-badge hot">POPULAR</div>
+                    <h3 class="tariff-name">PRO BEAST</h3>
+                    <p class="tariff-price">$9.99<span>/mo</span></p>
+                    <ul class="tariff-features" id="t2-features">
+                        <li>До 10 одновременно работающих виджетов</li>
+                        <li>Удаление водяного знака Beast Omni</li>
+                        <li>Доступ к базовой коллекции персонажей</li>
+                        <li>5 премиум-шрифтов на выбор</li>
+                        <li>Лимит: 10 000 просмотров в месяц</li>
+                    </ul>
+                    <button class="btn-action active-btn" id="t2-btn">Купить PRO</button>
+                </div>
+
+                <div class="tariff-card king">
+                    <div class="tariff-badge gold">PREMIUM</div>
+                    <h3 class="tariff-name">OMNI KING</h3>
+                    <p class="tariff-price">$24.99<span>/mo</span></p>
+                    <ul class="tariff-features" id="t3-features">
+                        <li>Абсолютный безлимит на создание виджетов</li>
+                        <li>Полный доступ ко ВСЕМ персонажам и шрифтам</li>
+                        <li>Эксклюзивные голосовые паки бесплатно</li>
+                        <li>Повышенный FPS для плавной анимации</li>
+                        <li>Приоритетная VIP-поддержка 24/7</li>
+                    </ul>
+                    <button class="btn-action king-btn" id="t3-btn">Стать KING</button>
+                </div>
+
+            </div>
         </section>
 
-        <section class="home-shop-section">
-            <div class="section-header">
-                <h2>Магазин: Новинки</h2>
-            </div>
-            <div class="shop-previews">
-                <div class="shop-item-prew">
-                    <img src="img/char-preview-witcher.png" alt="Geralt">
-                    <span>$4.99</span>
-                </div>
-                </div>
-            <button class="btn btn-purple-outline">Перейти в магазин</button>
+        <section class="section-block info-card">
+            <h2 class="section-title" id="shop-info-title">Внутриигровой Магазин</h2>
+            <p class="block-text" id="shop-info-desc">Кастомизируйте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые будут реагировать на действия зрителей. Уникальные неоновые и готические шрифты выделят ваши уведомления, а живые голоса персонажей, звучащие прямо внизу экрана, заставят аудиторию донатить чаще.</p>
         </section>
+
+        <section class="section-block payment-card">
+            <h2 class="section-title" id="payment-title">Удобная и быстрая оплата</h2>
+            <p class="block-text" id="payment-desc">Мы ценим ваш комфорт, поэтому интегрировали самые современные и безопасные методы моментальной оплаты. Пополняйте баланс и активируйте тарифы с помощью **Telegram Stars** прямо внутри мессенджера или используйте **Telegram Wallet (Крипта)** для быстрых транзакций по всему миру.</p>
+            <div class="payment-icons">
+                <span class="pay-badge">⭐ Telegram Stars</span>
+                <span class="pay-badge crypto">💎 TG Wallet / Crypto</span>
+            </div>
+        </section>
+
+        <footer class="support-footer">
+            <div class="support-content">
+                <h3 id="support-title">Возникли вопросы?</h3>
+                <p id="support-desc">Наша команда поддержки готова помочь вам с настройкой OBS или решением проблем в любое время суток.</p>
+                <a href="https://t.me/BeastOmniSupport" target="_blank" class="btn-support">💬 Написать в поддержку</a>
+            </div>
+        </footer>
 
     </main>
 
-    <script src="js/splash.js"></script>
-    <script src="js/main.js"></script>
+    <nav class="bottom-navbar">
+        <a href="#" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text" id="nav-home">Главная</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">👥</span>
+            <span class="nav-text" id="nav-ref">Рефералка</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-text" id="nav-widget">Виджеты</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">🛍️</span>
+            <span class="nav-text" id="nav-shop">Магазин</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
 </body>
 </html>
