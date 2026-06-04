@@ -2,60 +2,60 @@ const translations = {
     en: {
         greeting: "Hello, filatow",
         heroTitle: "BEAST OMNI",
-        heroDesc: "An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs.",
+        heroDesc: "An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.",
         tariffsTitle: "Available Tariffs",
         t1Name: "SHORTS BASE",
-        t1Desc: "Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life!",
+        t1Desc: "Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life with specialized interactive mechanics designed specifically for fast-paced content, helping you stand out in smart algorithms, capture viewer attention from the first second, and boost your organic metric growth effortlessly!",
         t1Features: [
-            "Ideal solution for TikTok, Shorts & Reels creators",
-            "1 active interactive widget on account",
-            "Access to standard system fonts",
-            "Limit: 500 views per month"
+            "Ideal solution for TikTok, Shorts & Reels creators looking for steady explosive growth",
+            "1 active interactive widget running simultaneously on your account without any delays",
+            "Full access to standard system fonts and basic text layouts for clean styling",
+            "Strict limit: 500 processing views per month, tailored for starting projects and testing core features"
         ],
         t1Btn: "Activate",
         t2Name: "MEDIUM PRO",
-        t2Desc: "The choice of active streamers. Complete audience immersion without watermarks and with neon fonts!",
+        t2Desc: "The choice of active streamers. Complete audience immersion without watermarks and with neon fonts! This tier offers deeper customization tools, allowing you to establish a strong visual bond with your chat, launch multi-layered interactive alerts, and elevate your production value to professional streaming standards.",
         t2Features: [
-            "Up to 10 simultaneously running widgets",
-            "Complete removal of Beast Omni watermark",
-            "Access to the starter collection of characters",
-            "5 premium glowing fonts of your choice",
-            "Limit: 15,000 views per month"
+            "Up to 10 simultaneously running widgets to handle sub goals, chat alerts, and active alerts at once",
+            "Complete removal of Beast Omni watermark from all overlays to keep your stream brand 100% clean",
+            "Unrestricted access to the starter collection of characters, complete with smooth animations",
+            "5 premium glowing neon fonts of your choice to perfectly match your channel's unique aesthetic",
+            "Extended limit: 15,000 processed views per month, ideal for channels with active, growing communities"
         ],
         t2Btn: "Buy PRO",
         t3Name: "ADVANCED OMNI",
-        t3Desc: "Hardcore creator level. Premium game and anime characters that make your stream unforgettable!",
+        t3Desc: "Hardcore creator level. Premium game and anime characters that make your stream unforgettable! Unlock state-of-the-art interactive systems, complex triggering conditions, and elite-tier design features that completely redefine how your live chat influences your stream overlay in real-time broadcasts.",
         t3Features: [
-            "Extended functionality and integration",
-            "Up to 25 simultaneously running widgets",
-            "Access to premium game and anime characters",
-            "10 exclusive cyber-fonts to choose from",
-            "Limit: 50,000 views per month"
+            "Extended functionality, higher API priority, and massively increased volume limits for power users",
+            "Up to 25 simultaneously running widgets, allowing you to craft a completely unique custom interface",
+            "Access to premium game and anime characters with special event triggers and reactive gestures",
+            "10 exclusive cyber-fonts to choose from, guaranteeing high-tech look for alerts and overlays",
+            "High limit: 50,000 views per month, engineered for established streamers with heavy daily chat interactions"
         ],
         t3Btn: "Upgrade Plan",
         t4Name: "ULTIMATE KING",
-        t4Desc: "Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here!",
+        t4Desc: "Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here! This is the ultimate corporate-grade solution for elite content creators and streaming organizations who require maximum performance, unique assets, and absolute creative freedom without boundaries.",
         t4Features: [
-            "Absolute unlimited widget creation",
-            "Full access to ALL characters & secret fonts",
-            "Exclusive animated voice packs for free",
-            "Max FPS for hyper-smooth animations",
-            "Priority VIP support 24/7"
+            "Absolute unlimited widget creation and parallel operations with maximum server response speeds",
+            "Full unhindered access to ALL premium characters, special variants, and hidden legendary fonts",
+            "Exclusive animated voice packs included completely for free to shock and entertain your audience",
+            "Max FPS mode for hyper-smooth web animations and fluid widget rendering directly inside OBS Studio",
+            "Priority VIP support 24/7 with a dedicated personal account manager to solve any technical issues instantly"
         ],
         t4Btn: "Become KING",
         shopTitle: "In-App Store",
-        shopDesc: "Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often.",
+        shopDesc: "Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.",
         paymentTitle: "Convenient and Fast Payments",
-        paymentDesc: "We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide.",
+        paymentDesc: "We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.",
         securityTitle: "Enterprise-Grade Security",
         securityFeatures: [
-            { title: "🔒 AES-256 Encryption", desc: "All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side. No third party can access your keys." },
-            { title: "🛡️ Telegram Sandbox", desc: "Authorization is strictly managed through official Telegram WebApp cryptohash verification. Your personal data is fully safe." },
-            { title: "💎 Secure Payments", desc: "We never store card or bank details. All transactions go through Telegram Stars or secured non-custodial crypto networks." },
-            { title: "⚡ Zero Vulnerability", desc: "Widget source code is completely sandboxed inside the OBS Browser Source. No performance drops, no background tracking, no malware." }
+            { title: "🔒 AES-256 Encryption", desc: "All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side using the military-grade AES-256 protocol. This prevents data leaks and ensures that no malicious third party can ever gain access to your stream keys, sensitive internal configurations, or private user credentials under any circumstances." },
+            { title: "🛡️ Telegram Sandbox", desc: "Authorization is strictly managed through official Telegram WebApp cryptohash verification structures. Your personal data is fully safe because our system operates in a complete sandbox environment, preventing unauthorized sessions, token spoofing, or credential sniffing, making login attempts 100% ironclad and authenticated." },
+            { title: "💎 Secure Payments", desc: "We never store credit card numbers, banking details, or sensitive financial logs on our databases. All incoming transactions go through the official Telegram Stars engine or heavily secured non-custodial crypto networks, providing a decentralized, audited, and completely secure processing pipe for absolute peace of mind." },
+            { title: "⚡ Zero Vulnerability", desc: "Widget source code is completely sandboxed inside the OBS Browser Source architecture. This strict isolation ensures zero performance drops, zero background telemetry tracking, and total protection against malicious cross-site scripting or malware injection, keeping your local gaming computer running at peak FPS capacity." }
         ],
         supportTitle: "Have any questions?",
-        supportDesc: "Our support team is ready to help you with OBS setup or troubleshooting at any time of the day.",
+        supportDesc: "Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.",
         supportBtn: "💬 Contact Support",
         navHome: "Home",
         navRef: "Referral",
@@ -66,60 +66,60 @@ const translations = {
     ru: {
         greeting: "Привет, filatow",
         heroTitle: "BEAST OMNI",
-        heroDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs.",
+        heroDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs. Расширяйте границы своего вещания, увеличивайте удержание аудитории в несколько раз и масштабируйте личный бренд с помощью передовых технологий автоматизации, которые работают плавно, бесшовно и без высокой нагрузки на процессор вашей игровой станции.",
         tariffsTitle: "Доступные Тарифы",
         t1Name: "SHORTS BASE",
-        t1Desc: "Идеальный старт для авторов вертикального контента. Оживи свои TikTok, Shorts и Reels!",
+        t1Desc: "Идеальный старт для авторов вертикального контента. Оживите свои TikTok, Shorts и Reels с помощью специализированных интерактивных механик, разработанных специально для динамичного контента! Это поможет вам выделяться в умных алгоритмах, захватывать внимание зрителя с первой секунды и без особых усилий форсировать органический рост метрик вашего канала.",
         t1Features: [
-            "Идеал для авторов TikTok, Shorts и Reels",
-            "1 активный интерактивный виджет на аккаунте",
-            "Доступ к стандартным системным шрифтам",
-            "Лимит: 500 просмотров в месяц"
+            "Идеальное решение для авторов TikTok, Shorts и Reels, стремящихся к стабильному взрывному росту",
+            "1 активный интерактивный виджет, работающий одновременно на вашем аккаунте без каких-либо задержек",
+            "Полный доступ к стандартным системным шрифтам и базовым текстовым макетам для лаконичного стиля",
+            "Строгий лимит: 500 просмотров в месяц, оптимизированный для стартовых проектов и тестирования основных функций"
         ],
         t1Btn: "Активировать",
         t2Name: "MEDIUM PRO",
-        t2Desc: "Выбор активных стримеров. Полное погружение зрителей, без водяных знаков и со светящимися шрифтами!",
+        t2Desc: "Выбор активных стримеров. Полное погружение зрителей, без водяных знаков и со светящимися шрифтами! Этот уровень предлагает более глубокие инструменты кастомизации, позволяя вам установить прочную визуальную связь с чатом, запускать многослойные интерактивные оповещения и поднять общее качество продакшена до профессиональных стандартов стриминга.",
         t2Features: [
-            "До 10 одновременно работающих виджетов",
-            "Полное удаление водяного знака Beast Omni",
-            "Доступ к стартовой коллекции персонажей",
-            "5 премиальных светящихся шрифтов на выбор",
-            "Лимит: 15 000 просмотров в месяц"
+            "До 10 одновременно работающих виджетов для вывода целей подписок, чат-оповещений и активных алертов",
+            "Полное удаление водяного знака Beast Omni со всех оверлеев, чтобы бренд вашего стрима оставался на 100% чистым",
+            "Неограниченный доступ к стартовой коллекции уникальных интерактивных персонажей с плавной анимацией движений",
+            "5 премиальных светящихся неоновых шрифтов на ваш выбор, чтобы идеально соответствовать эстетике канала",
+            "Расширенный лимит: 15 000 просмотров в месяц, идеально подходящий для каналов с активными и растущими сообществами"
         ],
         t2Btn: "Купить PRO",
         t3Name: "ADVANCED OMNI",
-        t3Desc: "Уровень хардкор-креатора. Премиум-персонажи из игр и аниме, которые сделают твой стрим незабываемым!",
+        t3Desc: "Уровень хардкор-креатора. Премиум-персонажи из игр и аниме, которые сделают твой стрим незабываемым! Разблокируйте ультрасовременные интерактивные системы, сложные условия триггеров и элементы дизайна элитного уровня, которые полностью перевернут представление о том, как живой чат влияет на ваш стрим-оверлей в реальном времени.",
         t3Features: [
-            "Расширенный функционал и повышенные лимиты",
-            "До 25 одновременно работающих виджетов",
-            "Доступ к премиум-персонажам игр и сериалов",
-            "10 эксклюзивных кибер-шрифтов на выбор",
-            "Лимит: 50 000 просмотров в месяц"
+            "Расширенный функционал, повышенный приоритет API и значительно увеличенные лимиты для продвинутых юзеров",
+            "До 25 одновременно работающих виджетов, позволяющих собрать полностью уникальный кастомный интерфейс",
+            "Доступ к премиум-персонажам игр и аниме со специальными триггерами событий и реактивными жестами",
+            "10 эксклюзивных кибер-шрифтов на выбор, гарантирующих высокотехнологичный вид оверлеев и уведомлений",
+            "Высокий лимит: 50 000 просмотров в месяц, разработанный для крупных стримеров с плотным ежедневным потоком чата"
         ],
         t3Btn: "Расширить тариф",
         t4Name: "ULTIMATE KING",
-        t4Desc: "Абсолютная власть над эфиром. Безлимит на виджеты, эксклюзивная озвучка и VIP-статус. Ты здесь король!",
+        t4Desc: "Абсолютная власть над эфиром. Безлимит на виджеты, эксклюзивная озвучка и VIP-статус. Ты здесь король! Это ультимативное решение корпоративного уровня для элитных контент-мейкеров и стримерских организаций, которым необходима максимальная производительность, уникальные ассеты и абсолютная творческая свобода без рамок.",
         t4Features: [
-            "Абсолютный безлимит на создание виджетов",
-            "Полный доступ ко ВСЕМ персонажам и секретным шрифтам",
-            "Эксклюзивные анимированные голосовые паки бесплатно",
-            "Максимальный FPS для гипер-плавной анимации",
-            "Приоритетная VIP-поддержка 24/7"
+            "Абсолютный безлимит на создание виджетов и параллельную работу на максимальных скоростях отклика сервера",
+            "Полный беспрепятственный доступ ко ВСЕМ премиальным персонажам, их спецверсиям и секретным легендарным шрифтам",
+            "Эксклюзивные анимированные голосовые паки включены совершенно бесплатно для шока и развлечения вашей аудитории",
+            "Режим Max FPS для гиперплавной веб-анимации и плавной отрисовки виджетов прямо внутри OBS Studio",
+            "Приоритетная VIP-поддержка 24/7 с выделенным персональным менеджером для мгновенного решения любых тех. вопросов"
         ],
         t4Btn: "Стать KING",
         shopTitle: "Внутриигровой Магазин",
-        shopDesc: "Кастомизируйте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые будут реагировать на действия зрителей. Уникальные неоновые и готические шрифты выделят ваши уведомления, а живые голоса персонажей, звучащие прямо внизу экрана, заставят аудиторию донатить чаще.",
+        shopDesc: "Кастомизируйте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые будут реагировать на действия зрителей. Уникальные неоновые и готические шрифты выделят ваши уведомления, а живые голоса персонажей, звучащие прямо внизу экрана, заставят аудиторию донатить чаще. Расширяйте свою личную коллекцию ассетов, открывайте сезонные дропы контента и приобретайте редкие эстетические бандлы, которые превратят ваш стримерский оверлей в эксклюзивное произведение интерактивного искусства, гарантируя высокое удержание комьюнити на протяжении долгих марафонов.",
         paymentTitle: "Удобная и быстрая оплата",
-        paymentDesc: "Мы ценим ваш комфорт, поэтому интегрировали самые современные и безопасные методы моментальной оплаты. Пополняйте баланс и активируйте тарифы с помощью Telegram Stars прямо внутри мессенджера или используйте Telegram Wallet (Крипта) для быстрых транзакций по всему миру.",
-        securityTitle: "Безопасность и Надежность",
+        paymentDesc: "Мы ценим ваш комфорт, поэтому интегрировали самые современные и безопасные методы моментальной оплаты. Пополняйте баланс и активируйте тарифы с помощью Telegram Stars прямо внутри приложения или используйте Telegram Wallet (Крипта) для быстрых транзакций по всему миру. Наслаждайтесь безупречной автоматизацией биллинга, мгновенным обновлением баланса и полной прозрачностью каждой финансовой операции без скрытых комиссий за конвертацию, что позволит вам эффективно управлять бюджетом из любой точки планеты.",
+        securityTitle: "Безопасность корпоративного уровня",
         securityFeatures: [
-            { title: "🔒 Шифрование AES-256", desc: "Все интеграционные токены (OBS, Streamlabs, Twitch) шифруются на стороне сервера. Никто, кроме вашего виджета, не имеет к ним доступа." },
-            { title: "🛡️ Защита через Telegram", desc: "Авторизация происходит через официальный протокол Telegram WebApp с валидацией криптографического хеша. Ваши данные защищены." },
-            { title: "💎 Безопасные транзакции", desc: "Мы не собираем и не храним платежные данные. Оплата через Telegram Stars и проверенные криптокошельки исключает утечки." },
-            { title: "⚡ Изоляция кода (Sandbox)", desc: "Код виджетов полностью изолирован внутри OBS Browser Source. Никаких скрытых трекеров, майнеров или уязвимостей для ПК." }
+            { title: "🔒 Шифрование AES-256", desc: "Все системные токены и интеграции со стримами (OBS, Streamlabs, Twitch) шифруются на стороне сервера с использованием военно-промышленного протокола AES-256. Это полностью предотвращает утечки данных и гарантирует, что ни одна злонамеренная третья сторона ни при каких обстоятельствах не сможет получить доступ к вашим стрим-ключам или приватным конфигурациям." },
+            { title: "🛡️ Песочница Telegram", desc: "Авторизация строго контролируется официальными структурами проверки криптографического хеша Telegram WebApp. Ваши личные данные находятся в полной безопасности, поскольку наша система работает в изолированной среде 'песочницы', полностью исключая несанкционированные сессии, подмену токенов или перехват данных." },
+            { title: "💎 Безопасные платежи", desc: "Мы никогда не храним номера кредитных карт, банковские реквизиты или конфиденциальные финансовые логи в наших базах данных. Все входящие транзакции проходят через официальный движок Telegram Stars или защищенные некастодиальные криптосети, обеспечивая децентрализованный и проверенный аудит." },
+            { title: "⚡ Нулевая уязвимость", desc: "Исходный код виджетов полностью изолирован внутри архитектуры OBS Browser Source. Эта строгая изоляция гарантирует отсутствие падения производительности вашего ПК, отсутствие фонового сбора телеметрии и абсолютную защиту от вредоносных межсайтовых скриптов или инъекций, сохраняя максимальный FPS." }
         ],
         supportTitle: "Возникли вопросы?",
-        supportDesc: "Наша команда поддержки готова помочь вам с настройкой OBS или решением проблем в любое время суток.",
+        supportDesc: "Наша команда поддержки готова помочь вам с настройкой OBS или решением любых технических проблем в любое время суток. Столкнулись ли вы со странным багом отрисовки, нужна ли помощь в привязке аккаунта вещания или требуется руководство по интеграции кастомных шрифтов — наши элитные технические эксперты находятся в сети 24/7/365, чтобы ваш стрим работал идеально.",
         supportBtn: "💬 Написать в поддержку",
         navHome: "Главная",
         navRef: "Рефералка",
@@ -130,60 +130,60 @@ const translations = {
     am: {
         greeting: "Ողջույն, filatow",
         heroTitle: "BEAST OMNI",
-        heroDesc: "Ինտերակտիվ վիջեթների նորարարական էկոհամակարգ սթրիմերների և հեղինակների համար: Դարձրեք ձեր ուղիղ եթերը լիարժեք շոու՝ հնարավորություն ունենալով օգտագործել կերպարներ, յուրահատուկ տառատեսակներ և բացառիկ ձայնային էֆեկտներ իրական ժամանակում OBS / Streamlabs-ի միջոցով:",
+        heroDesc: "Ինտերակտիվ վիջեթների նորարարական էկոհամակարգ սթրիմերների և հեղինակների համար: Դարձրեք ձեր ուղիղ եթերը լիարժեք շոու՝ հնարավորություն ունենալով օգտագործել կերպարներ, յուրահատուկ տառատեսակներ և բացառիկ ձայնային էֆեկտներ իրական ժամանակում OBS / Streamlabs-ի միջոցով: Ընդլայնեք ձեր հեռարձակման սահմանները, բազմապատկեք լսարանի պահպանումը և զարգացրեք ձեր անհատական բրենդը ավտոմատացման առաջատար տեխնոլոգիաների շնորհիվ, որոնք աշխատում են անխափան և առանց ձեր խաղային համակարգչի պրոցեսորի ավելորդ ծանրաբեռնվածության:",
         tariffsTitle: "Հասանելի Սակագներ",
         t1Name: "SHORTS BASE",
-        t1Desc: "Իդեալական մեկնարկ ուղղահայաց բովանդակություն ստեղծողների համար: Աշխուժացրեք ձեր TikTok-ը, Shorts-ը և Reels-ը:",
+        t1Desc: "Իդեալական մեկնարկ ուղղահայաց բովանդակություն ստեղծողների համար: Աշխուժացրեք ձեր TikTok-ը, Shorts-ը և Reels-ը մասնագիտացված ինտերակտիվ մեխանիկայի միջոցով, որոնք նախագծված են հատուկ դինամիկ բովանդակության համար, ինչը կօգնի ձեզ առանձնանալ խելացի ալգորիթմներում, գրավել դիտողի ուշադրությունը առաջին իսկ վայրկյանից և հեշտությամբ խթանել օրգանական աճը:",
         t1Features: [
-            "Իդեալական լուծում TikTok, Shorts և Reels ստեղծողների համար",
-            "1 ակտիվ ինտերակտիվ վիջեթ հաշվում",
-            "Հասանելիություն ստանդարտ համակարգային տառատեսակներին",
-            "Լիմիտ՝ 500 դիտում ամսական"
+            "Իդեալական լուծում TikTok, Shorts և Reels ստեղծողների համար, ովքեր ձգտում են կայուն պայթյունավտանգ աճի",
+            "1 ակտիվ ինտերակտիվ վիջեթ, որն աշխատում է միաժամանակ ձեր հաշվում՝ առանց որևէ ուշացումների",
+            "Ամբողջական հասանելիություն ստանդարտ համակարգային տառատեսակներին և հիմնական տեքստային ձևաչափերին",
+            "Խիստ լիմիտ՝ 500 դիտում ամսական, հարմարեցված մեկնարկային նախագծերի և հիմնական ֆունկցիաների թեստավորման համար"
         ],
         t1Btn: "Ակտիվացնել",
         t2Name: "MEDIUM PRO",
-        t2Desc: "Ակտիվ սթրիմերների ընտրությունը: Հանդիսատեսի լիակատար ընկղմում առանց ջրային նշանների և նեոնային տառատեսակներով:",
+        t2Desc: "Ակտիվ սթրիմերների ընտրությունը: Հանդիսատեսի լիակատար ընկղմում առանց ջրային նշանների և նեոնային տառատեսակներով: Այս մակարդակն առաջարկում է անհատականացման ավելի խորը գործիքներ, ինչը թույլ է տալիս հաստատել ամուր տեսողական կապ չատի հետ, գործարկել բազմաշերտ ինտերակտիվ ծանուցումներ և բարձրացնել հեռարձակման որակը մինչև պրոֆեսիոնալ մակարդակ:",
         t2Features: [
-            "Մինչև 10 միաժամանակ աշխատող վիջեթներ",
-            "Beast Omni ջրային նշանի ամբողջական հեռացում",
-            "Հասանելիություն կերպարների մեկնարկային հավաքածուին",
-            "5 պրեմիում լուսավորվող տառատեսակ ընտրությամբ",
-            "Լիմիտ՝ 15 000 դիտում ամսական"
+            "Մինչև 10 միաժամանակ աշխատող վիջեթներ՝ բաժանորդագրությունների նպատակները և ակտիվ ծանուցումները միաժամանակ ցուցադրելու համար",
+            "Beast Omni ջրային նշանի ամբողջական հեռացում բոլոր օվերլեյներից՝ ձեր սթրիմի բրենդը 100% մաքուր պահելու համար",
+            "Անսահմանափակ հասանելիություն կերպարների մեկնարկային հավաքածուին՝ շարժումների սահուն անիմացիայով",
+            "5 պրեմիում լուսավորվող նեոնային տառատեսակ ընտրությամբ, որոնք կատարելապես կհամապատասխանեն ձեր ալիքի ոճին",
+            "Ընդլայնված լիմիտ՝ 15 000 դիտում ամսական, իդեալական է ակտիվ և աճող համայնքներ ունեցող ալիքների համար"
         ],
         t2Btn: "Գնել PRO",
         t3Name: "ADVANCED OMNI",
-        t3Desc: "Հարդքոր ստեղծողների մակարդակ: Պրեմիում խաղային և անիմե կերպարներ, որոնք ձեր սթրիմը կդարձնեն անմոռանալի:",
+        t3Desc: "Հարդքոր ստեղծողների մակարդակ: Պրեմիում խաղային և անիմե կերպարներ, որոնք ձեր սթրիմը կդարձնեն անմոռանալի: Բացահայտեք գերժամանակակից ինտերակտիվ համակարգեր, բարդ տրիգերներ և էլիտար դիզայնի տարրեր, որոնք ամբողջությամբ կփոխեն պատկերացումը այն մասին, թե ինչպես է կենդանի չատը ազդում ձեր էկրանի պատկերի վրա իրական ժամանակում:",
         t3Features: [
-            "Ընդլայնված ֆունկցիոնալություն և բարձրացված լիմիտներ",
-            "Մինչև 25 միաժամանակ աշխատող վիջեթներ",
-            "Հասանելիություն խաղերի և սերիալների պրեմիում կերպարներին",
-            "10 էքսկլյուզիվ կիբեր-տառատեսակ ընտրությամբ",
-            "Լիմիտ՝ 50 000 դիտում ամսական"
+            "Ընդլայնված ֆունկցիոնալություն, API-ի բարձր առաջնահերթություն և զգալիորեն մեծացված լիմիտներ առաջադեմ օգտատերերի համար",
+            "Մինչև 25 միաժամանակ աշխատող վիջեթներ, որոնք թույլ են տալիս հավաքել ամբողջովին եզակի ինտերֆեյս",
+            "Հասանելիություն խաղերի և անիմեների պրեմիում կերպարներին՝ հատուկ տրիգերներով և ռեակտիվ ժեստերով",
+            "10 էքսկլյուզիվ կիբեր-տառատեսակ ընտրությամբ, որոնք երաշխավորում են հեռարձակման բարձր տեխնոլոգիական տեսքը",
+            "Բարձր լիմիտ՝ 50 000 դիտում ամսական, նախատեսված է ամենօրյա ակտիվ չատ ունեցող խոշոր սթրիմերների համար"
         ],
         t3Btn: "Ընդլայնել",
         t4Name: "ULTIMATE KING",
-        t4Desc: "Բացարձակ իշխանություն սթրիմի վրա: Անսահմանափակ վիջեթներ, բացառիկ ձայնային էֆեկտներ և VIP կարգավիճակ: Դուք այստեղ թագավորն եք:",
+        t4Desc: "Բացարձակ իշխանություն սթրիմի վրա: Անսահմանափակ վիջեթներ, բացառիկ ձայնային էֆեկտներ և VIP կարգավիճակ: Դուք այստեղ թագավորն եք: Սա կորպորատիվ մակարդակի ուլտիմատիվ լուծում է էլիտար բովանդակություն ստեղծողների և սթրիմինգային կազմակերպությունների համար, որոնց անհրաժեշտ է առավելագույն արտադրողականություն և բացարձակ ստեղծագործական ազատություն:",
         t4Features: [
-            "Բացարձակ անսահմանափակ վիջեթների ստեղծում",
-            "Ամբողջական հասանելիություն ԲՈԼՈՐ կերպարներին և գաղտնի տառատեսակներին",
-            "Էքսկլյուզիվ անիմացիոն ձայնային փաթեթներ անվճար",
-            "Մաքսիմալ FPS սահուն անիմացիայի համար",
-            "Առաջնահերթ VIP աջակցություն 24/7"
+            "Բացարձակ անսահմանափակ վիջեթների ստեղծում և զուգահեռ աշխատանք սերվերի արձագանքման առավելագույն արագությամբ",
+            "Ամբողջական և անխոչընդոտ հասանելիություն ԲՈԼՈՐ պրեմիում կերպարներին, հատուկ տարբերակներին և գաղտնի տառատեսակներին",
+            "Էքսկլյուզիվ անիմացիոն ձայնային փաթեթներ ներառված են լիովին անվճար՝ ձեր լսարանին զարմացնելու համար",
+            "Max FPS ռեժիմ՝ գերսահուն վեբ-անիմացիայի և վիջեթների անխափան արտացոլման համար անմիջապես OBS Studio-ում",
+            "Առաջնահերթ VIP աջակցություն 24/7 անձնական մենեջերի հետ՝ ցանկացած տեխնիկական խնդիր ակնթարթորեն լուծելու համար"
         ],
         t4Btn: "Դառնալ KING",
         shopTitle: "Խանութ",
-        shopDesc: "Կարգավորեք ձեր սթրիմերը մինչև ամենափոքր դետալները: Մեր խանութում դուք կգտնեք լեգենդար կերպարներ ձեր սիրելի խաղերից, անիմեներից և սերիալներից, որոնք կարձագանքեն հանդիսատեսի գործողություններին: Յուրահատուկ նեոնային և գոթական տառատեսակները կառանձնացնեն ձեր ծանուցումները:",
+        shopDesc: "Կարգավորեք ձեր սթրիմերը մինչև ամենափոքր դետալները: Մեր խանութում դուք կգտնեք լեգենդար կերպարներ ձեր սիրելի խաղերից, անիմեներից և սերիալներից, որոնք կարձագանքեն հանդիսատեսի գործողություններին: Յուրահատուկ նեոնային և գոթական տառատեսակները կառանձնացնեն ձեր ծանուցումները, իսկ էկրանի ներքևում հնչող կերպարների կենդանի ձայները կխրախուսեն լսարանին ավելի հաճախ դոնատներ անել: Ընդլայնեք ձեր անհատական հավաքածուն, բացեք սեզոնային թարմացումները և ձեռք բերեք հազվագյուտ էսթետիկ փաթեթներ, որոնք կվերածեն ձեր օվերլեյը ինտերակտիվ արվեստի բացառիկ նմուշի:",
         paymentTitle: "Հարմարավետ և արագ վճարումներ",
-        paymentDesc: "Մենք գնահատում ենք ձեր հարմարավետությունը, այդ իսկ պատճառով ինտեգրել ենք վճարման ամենաժամանակակից մեթոդները: Ակտիվացրեք սակագները Telegram Stars-ի միջոցով հենց մեսենջերում կամ օգտագործեք Telegram Wallet (Crypto):",
-        securityTitle: "Անվտանգություն և Հուսալիություն",
+        paymentDesc: "Մենք գնահատում ենք ձեր հարմարավետությունը, այդ իսկ պատճառով ինտեգրել ենք վճարման ամենաժամանակակից և անվտանգ մեթոդները: Ակտիվացրեք սակագները Telegram Stars-ի միջոցով հենց հավելվածում կամ օգտագործեք Telegram Wallet (Crypto) ամբողջ աշխարհում արագ գործարքների համար: Վայելեք վճարումների կատարյալ ավտոմատացումը, հաշվեկշռի ակնթարթորեն թարմացումը և յուրաքանչյուր ֆինանսական գործառնության լիակատար թափանցիկությունը առանց թաքնված միջնորդավճարների, ինչը թույլ կտա ձեզ արդյունավետ կառավարել բյուջեն մոլորակի ցանկացած կետից:",
+        securityTitle: "Կորպորատիվ մակարդակի անվտանգություն",
         securityFeatures: [
-            { title: "🔒 AES-256 Ծածկագրում", desc: "Բոլոր ինտեգրման թոքենները (OBS, Streamlabs) ծածկագրվում են սերվերի կողմից: Ոչ ոք, բացի ձեր վիջեթից, հասանելիություն չունի:" },
-            { title: "🛡️ Telegram Պաշտպանություն", desc: "Մուտքը կատարվում է պաշտոնական Telegram WebApp արձանագրությամբ՝ կրիպտոգրաֆիկ հեշի վավերացմամբ:" },
-            { title: "💎 Անվտանգ գործարքներ", desc: "Մենք չենք պահպանում վճարային տվյալներ: Telegram Stars-ի և կրիպտո դրամապանակների միջոցով վճարումները բացառում են ռիսկերը:" },
-            { title: "⚡ Վիջեթների մեկուսացում", desc: "Վիջեթների կոդը լիովին մեկուսացված է OBS բրաուզերում: Չկան թաքնված մայնեռներ կամ վիրուսներ ձեր ԱՀ-ի համար:" }
+            { title: "🔒 AES-256 Ծածկագրում", desc: "Բոլոր համակարգային թոքենները և սթրիմերի ինտեգրումները (OBS, Streamlabs, Twitch) ծածկագրվում են սերվերի կողմից՝ օգտագործելով ռազմական մակարդակի AES-256 արձանագրությունը: Սա բացառում է տվյալների արտահոսքը և երաշխավորում է, որ ոչ մի չարամիտ երրորդ կողմ չի կարող հասանելիություն ստանալ ձեր սթրիմ-բանալիներին կամ անձնական տվյալներին:" },
+            { title: "🛡️ Telegram Պաշտպանություն", desc: "Մուտքը խստորեն վերահսկվում է պաշտոնական Telegram WebApp կրիպտոգրաֆիկ հեշի վավերացման կառուցվածքներով: Ձեր անձնական տվյալները լիովին անվտանգ են, քանի որ մեր համակարգն աշխատում է մեկուսացված 'sandbox' միջավայրում՝ կանխելով չարտոնված սեսիաները կամ թոքենների փոխարինումը:" },
+            { title: "💎 Անվտանգ գործարքներ", desc: "Մենք երբեք չենք պահպանում վարկային քարտերի համարները, բանկային տվյալները կամ գաղտնի ֆինանսական տեղեկությունները մեր տվյալների բազաներում: Բոլոր գործարքներն անցնում են պաշտոնական Telegram Stars մեխանիզմով կամ պաշտպանված ապակենտրոնացված կրիպտոցանցերով՝ ապահովելով լիակատար անդորր:" },
+            { title: "⚡ Վիջեթների մեկուսացում", desc: "Վիջեթների ելակետային կոդը լիովին մեկուսացված է OBS Browser Source ճարտարապետության ներսում: Այս խիստ մեկուսացումը երաշխավորում է ձեր ԱՀ-ի արտադրողականության պահպանումը, հետին պլանում գաղտնի տվյալների հավաքագրման բացակայությունը և բացարձակ պաշտպանությունը վիրուսներից՝ պահպանելով առավելագույն FPS:" }
         ],
         supportTitle: "Ունե՞ք հարցեր",
-        supportDesc: "Մեր աջակցման թիմը պատրաստ է օգնել ձեզ OBS-ի կարգավորման հարցում օրվա ցանկացած ժամի:",
+        supportDesc: "Մեր աջակցման թիմը պատրաստ է օգնել ձեզ OBS-ի կարգավորման կամ ցանկացած տեխնիկական խնդրի լուծման հարցում օրվա ցանկացած ժամի: Անկախ նրանից, թե դուք բախվել եք անիմացիայի սխալի, թե օգնության կարիք ունեք հաշիվը կապելու հարցում, մեր տեխնիկական փորձագետները առցանց են 24/7/365՝ ձեր հեռարձակումն անխափան պահելու համար:",
         supportBtn: "💬 Գրել աջակցմանը",
         navHome: "Գլխավոր",
         navRef: "Ռեֆերալ",
@@ -228,7 +228,7 @@ function changeLanguage(lang) {
         "nav-shop": data.navShop
     };
 
-    // Безопасный цикл обновлений
+    // Безопасный цикл обновлений обычного текста
     for (const [id, text] of Object.entries(textMappings)) {
         const el = document.getElementById(id);
         if (el) {
@@ -236,55 +236,69 @@ function changeLanguage(lang) {
         }
     }
 
+    // Обновляем списки преимуществ БЕЗ разрушения верстки
     updateList("t1-features", data.t1Features);
     updateList("t2-features", data.t2Features);
     updateList("t3-features", data.t3Features);
     updateList("t4-features", data.t4Features);
 
+    // Обновляем кнопку саппорта (если есть отдельный класс)
     const supportLink = document.querySelector(".btn-support");
     if (supportLink) supportLink.innerText = data.supportBtn;
 
+    // Обновляем сетку безопасности БЕЗ удаления самих карточек
     updateSecurityGrid(data.securityFeatures);
 }
 
 function updateList(elementId, itemsArray) {
     const ul = document.getElementById(elementId);
-    if (!ul) return;
-    ul.innerHTML = "";
-    if (itemsArray && Array.isArray(itemsArray)) {
-        itemsArray.forEach(item => {
-            const li = document.createElement("li");
-            li.innerText = item;
-            ul.appendChild(li);
-        });
-    }
+    if (!ul || !itemsArray || !Array.isArray(itemsArray)) return;
+    
+    // Берем все существующие элементы <li> внутри текущего списка
+    const listItems = ul.getElementsByTagName("li");
+    
+    itemsArray.forEach((item, index) => {
+        if (listItems[index]) {
+            // Если в li есть дочерние элементы (например, красивый тег <span> или <svg> иконка),
+            // мы меняем только текстовую ноду, чтобы не снести иконку.
+            const textNode = Array.from(listItems[index].childNodes).find(node => node.nodeType === Node.TEXT_NODE);
+            if (textNode) {
+                textNode.textContent = ` ${item}`;
+            } else {
+                // Если иконки нет, просто аккуратно вставляем текст
+                listItems[index].innerText = item;
+            }
+        }
+    });
 }
 
 function updateSecurityGrid(featuresArray) {
     const container = document.getElementById("security-features-container");
-    if (!container) return;
-    container.innerHTML = "";
+    if (!container || !featuresArray || !Array.isArray(featuresArray)) return;
     
-    if (featuresArray && Array.isArray(featuresArray)) {
-        featuresArray.forEach(item => {
-            const card = document.createElement("div");
-            card.className = "security-item";
+    // Ищем уже готовые карточки внутри контейнера, которые были сверстаны в HTML
+    const cards = container.getElementsByClassName("security-item");
+    
+    featuresArray.forEach((item, index) => {
+        if (cards[index]) {
+            const h4 = cards[index].getElementsByTagName("h4")[0];
+            const p = cards[index].getElementsByTagName("p")[0];
             
-            const h4 = document.createElement("h4");
-            h4.innerText = item.title;
-            
-            const p = document.createElement("p");
-            p.innerText = item.desc;
-            
-            card.appendChild(h4);
-            card.appendChild(p);
-            container.appendChild(card);
-        });
-    }
+            if (h4) h4.innerText = item.title;
+            if (p) p.innerText = item.desc;
+        }
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.getElementById("lang-dropdown");
-    if(dropdown) dropdown.value = "en";
+    if (dropdown) {
+        dropdown.value = "en";
+        // Слушаем изменение языка на дропдауне
+        dropdown.addEventListener("change", (e) => {
+            changeLanguage(e.target.value);
+        });
+    }
     changeLanguage("en");
 });
+      
