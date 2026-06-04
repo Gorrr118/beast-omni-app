@@ -197,6 +197,9 @@ function changeLanguage(lang) {
     const data = translations[lang];
     if (!data) return;
 
+    // Автоматически меняем атрибут lang у тега <html> для браузера
+    document.documentElement.lang = lang;
+
     const textMappings = {
         "user-greeting": data.greeting,
         "hero-title": data.heroTitle,
@@ -228,14 +231,14 @@ function changeLanguage(lang) {
         "nav-shop": data.navShop
     };
 
-    // Безопасный цикл обновлений обычного текста
-    for (const [id, text] of Object.entries(textMappings)) {
-        const el = document.getElementById(id);
-        if (el) {
-            el.innerText = text;
+    // Дальше у тебя скорее всего идет перебор textMappings и обновление через innerText/textContent
+    for (const [id, value] of Object.entries(textMappings)) {
+        const element = document.getElementById(id);
+        if (element && value) {
+            element.textContent = value;
         }
     }
-
+}
     // Обновляем списки преимуществ БЕЗ разрушения верстки
     updateList("t1-features", data.t1Features);
     updateList("t2-features", data.t2Features);
@@ -301,4 +304,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     changeLanguage("en");
 });
-      
