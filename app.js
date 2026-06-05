@@ -71,7 +71,7 @@ const translations = {
         t1Name: "SHORTS BASE",
         t1Desc: "Идеальный старт для авторов vertical контента. Оживите свои TikTok, Shorts и Reels с помощью специализированных интерактивных механик, разработанных специально для динамичного контента! Это поможет вам выделяться в умных алгоритмах, захватывать внимание зрителя с первой секунды и без особых усилий форсировать органический рост метрик вашего канала.",
         t1Features: [
-            "Идеал для авторов TikTok, Shorts и Reels, стремящихся к стабильному взрывному росту",
+            "Идеальное решение для авторов TikTok, Shorts и Reels, стремящихся к стабильному взрывному росту",
             "1 активный интерактивный виджет, работающий одновременно на вашем аккаунте без каких-либо задержек",
             "Полный доступ к стандартным системным шрифтам и базовым текстовым макетам для лаконичного стиля",
             "Строгий лимит: 500 просмотров в месяц, оптимизированный для стартовых проектов и тестирования основных функций"
@@ -84,7 +84,7 @@ const translations = {
             "Полное удаление водяного знака Beast Omni со всех оверлеев, чтобы бренд вашего стрима оставался на 100% чистым",
             "Неограниченный доступ к стартовой коллекции уникальных интерактивных персонажей с плавной анимацией движений",
             "5 премиальных светящихся неоновых шрифтов на ваш выбор, чтобы идеально соответствовать эстетике канала",
-            "Расширенный лимит: 15 000 просмотров в месяц, идеально подходят для каналов с активными и растущими сообществами"
+            "Расширенный лимит: 15 000 просмотров в месяц, идеально подходящий для каналов с активными и растущими сообществами"
         ],
         t2Btn: "Купить PRO",
         t3Name: "ADVANCED OMNI",
@@ -92,8 +92,8 @@ const translations = {
         t3Features: [
             "Расширенный функционал, повышенный приоритет API и значительно увеличенные лимиты для продвинутых юзеров",
             "До 25 одновременно работающих виджетов, позволяющих собрать полностью уникальный кастомный интерфейс",
-            "Доступ к премиум-персонажам игр и аниме со специальными триггерами событий и reactive жестами",
-            "10洍ксклюзивных кибер-шрифтов на выбор, гарантирующих высокотехнологичный вид оверлеев и уведомлений",
+            "Доступ к премиум-персонажам игр и аниме со специальными триггерами событий и реактивными жестами",
+            "10 эксклюзивных кибер-шрифтов на выбор, гарантирующих высокотехнологичный вид оверлеев и уведомлений",
             "Высокий лимит: 50 000 просмотров в месяц, разработанный для крупных стримеров с плотным ежедневным потоком чата"
         ],
         t3Btn: "Расширить тариф",
@@ -115,7 +115,7 @@ const translations = {
         securityFeatures: [
             { title: "🔒 Шифрование AES-256", desc: "Все системные токены и интеграции со стримами (OBS, Streamlabs, Twitch) шифруются на стороне сервера с использованием военно-промышленного протокола AES-256. Это полностью предотвращает утечки данных и гарантирует, что ни одна злонамеренная третья сторона ни при каких обстоятельствах не сможет получить доступ к вашим стрим-ключам или приватным конфигурациям." },
             { title: "🛡️ Песочница Telegram", desc: "Авторизация строго контролируется официальными структурами проверки криптографического хеша Telegram WebApp. Ваши личные данные находятся в полной безопасности, поскольку наша система работает в изолированной среде 'песочницы', полностью исключая несанкционированные сессии, подмену токенов или перехват данных." },
-            { title: "💎 Безопасные платежи", desc: "Мы никогда не хранят номера кредитных карт, банковские реквизиты или конфиденциальные финансовые логи в наших базах данных. Все входящие транзакции проходят через официальный движок Telegram Stars или защищенные некастодиальные криптосети, обеспечивая децентрализованный и проверенный аудит." },
+            { title: "💎 Безопасные платежи", desc: "Мы никогда не храним номера кредитных карт, банковские реквизиты или конфиденциальные финансовые логи в наших базах данных. Все входящие транзакции проходят через официальный движок Telegram Stars или защищенные некастодиальные криптосети, обеспечивая децентрализованный и проверенный аудит." },
             { title: "⚡ Нулевая уязвимость", desc: "Исходный код виджетов полностью изолирован внутри архитектуры OBS Browser Source. Эта строгая изоляция гарантирует отсутствие падения производительности вашего ПК, отсутствие фонового сбора телеметрии и абсолютную защиту от вредоносных межсайтовых скриптов или инъекций, сохраняя максимальный FPS." }
         ],
         supportTitle: "Возникли вопросы?",
@@ -126,104 +126,157 @@ const translations = {
         navCreate: "Студия",
         navWidget: "Виджеты",
         navShop: "Магазин"
+    },
+    am: {
+        greeting: "Ողջույն, filatow",
+        heroTitle: "BEAST OMNI",
+        heroDesc: "Ինտերակտիվ վիջեթների նորարարական էկոհամակարգ սթրիմերների և հեղինակների համար: Դարձրեք ձեր ուղիղ եթերը լիարժեք շոու՝ հնարավորություն ունենալով օգտագործել կերպարներ, յուրահատուկ տառատեսակներ և բացառիկ ձայնային էֆեկտներ իրական ժամանակում OBS / Streamlabs-ի միջոցով: Ընդլայնեք ձեր հեռարձակման սահմանները, բազմապատկեք լսարանի պահպանումը և զարգացրեք ձեր անհատական բրենդը ավտոմատացման առաջատար տեխնոլոգիաների շնորհիվ, որոնք աշխատում են անխափան և առանց ձեր խաղային համակարգչի պրոցեսորի ավելորդ ծանրաբեռնվածության:",
+        tariffsTitle: "Հասանելի Սակագներ",
+        t1Name: "SHORTS BASE",
+        t1Desc: "Իդեալական մեկնարկ ուղղահայաց բովանդակություն ստեղծողների համար: Աշխուժացրեք ձեր TikTok-ը, Shorts-ը և Reels-ը մասնագիտացված ինտերակտիվ մեխանիկայի միջոցով, որոնք նախագծված են հատուկ դինամիկ բովանդակության համար, ինչը կօգնի ձեզ առանձնանալ խելացի ալգորիթմներում, գրավել դիտողի ուշադրությունը առաջին իսկ վայրկյանից և հեշտությամբ խթանել օրգանական աճը:",
+        t1Features: [
+            "Իդեալական լուծում TikTok, Shorts և Reels ստեղծողների համար, ովքեր ձգտում են կայուն պայթյունավտանգ աճի",
+            "1 ակտիվ ինտերակտիվ վիջեթ, որն աշխատում է միաժամանակ ձեր հաշվում՝ առանց որևէ ուշացումների",
+            "Ամբողջական հասանելիություն ստանդարտ համակարգային տառատեսակներին և հիմնական տեքստային ձևաչափերին",
+            "Խիստ լիմիտ՝ 500 դիտում ամսական, հարմարեցված մեկնարկային նախագծերի և հիմնական ֆունկցիաների թեստավորման համար"
+        ],
+        t1Btn: "Ակտիվացնել",
+        t2Name: "MEDIUM PRO",
+        t2Desc: "Ակտիվ սթրիմերների ընտրությունը: Հանդիսատեսի լիակատար ընկղմում առանց ջրային նշանների և նեոնային տառատեսակներով: Այս մակարդակն առաջարկում է անհատականացման ավելի խորը գործիքներ, ինչը թույլ է տալիս հաստատել ամուր տեսողական կապ չատի հետ, գործարկել բազմաշերտ ինտերակտիվ ծանուցումներ և բարձրացնել հեռարձակման որակը մինչև պրոֆեսիոնալ մակարդակ:",
+        t2Features: [
+            "Մինչև 10 միաժամանակ աշխատող վիջեթներ՝ բաժանորդագրությունների նպատակները և ակտիվ ծանուցումները միաժամանակ ցուցադրելու համար",
+            "Beast Omni ջրային նշանի ամբողջական հեռացում բոլոր օվերլեյներից՝ ձեր սթրիմի բրենդը 100% մաքուր պահելու համար",
+            "Անսահմանափակ հասանելիություն կերպարների մեկնարկային հավաքածուին՝ շարժումների սահուն անիմացիայով",
+        ],
+        t2Btn: "Գնել PRO",
+        t3Name: "ADVANCED OMNI",
+        t3Desc: "Հարդկոր ստեղծողի մակարդակ: Պրեմիում կերպարներ խաղերից և անիմեներից, որոնք ձեր սթրիմը կդարձնեն անմոռանալի: Բացահայտեք ժամանակակից ինտերակտիվ համակարգեր և դիզայներական էլիտար լուծումներ, որոնք ամբողջությամբ կփոխեն իրական ժամանակում չատի ազդեցությունը ձեր սթրիմի վրա:",
+        t3Features: [
+            "Ընդլայնված ֆունկցիոնալություն, API-ի բարձր առաջնահերթություն և մեծացված լիմիտներ հզոր օգտատերերի համար",
+            "Մինչև 25 միաժամանակ աշխատող վիջեթներ, որոնք թույլ են տալիս ստեղծել լիովին եզակի ինտերֆեյս",
+            "Հասանելիություն պրեմիում կերպարներին՝ հատուկ իրադարձությունների տրիգերներով և ռեակտիվ ժեստերով"
+        ],
+        t3Btn: "Թարմացնել",
+        t4Name: "ULTIMATE KING",
+        t4Desc: "Բացարձակ իշխանություն սթրիմի վրա: Անսահմանափակ վիջեթներ, էքսկլյուզիվ ձայնային էֆեկտներ և VIP կարգավիճակ: Դուք այստեղ թագավորն եք: Սա լավագույն լուծումն է էլիտար բովանդակություն ստեղծողների համար, ովքեր պահանջում են առավելագույն արտադրողականություն և ստեղծագործական ազատություն:",
+        t4Features: [
+            "Բացարձակ անսահմանափակ վիջեթների ստեղծում և զուգահեռ աշխատանք սերվերի առավելագույն արագությամբ",
+            "Ամբողջական հասանելիություն բոլոր պրեմիում կերպարներին և գաղտնի լեգենդար տառատեսակներին",
+            "VIP աջակցություն 24/7 անձնական մենեջերի հետ ցանկացած տեխնիկական խնդիր ակնթարթորեն լուծելու համար"
+        ],
+        t4Btn: "Դառնալ KING",
+        shopTitle: "Խանութ",
+        shopDesc: "Անհատականացրեք ձեր սթրիմները մինչև ամենափոքր մանրուքները: Մեր խանութում դուք կգտնեք լեգենդար կերպարներ ձեր սիրելի խաղերից ու անիմեներից, որոնք արձագանքում են դիտողների գործողություններին: Ընդլայնեք ձեր հավաքածուն և ձեռք բերեք հազվագյուտ էսթետիկ փաթեթներ, որոնք ձեր սթրիմը կվերածեն իսկական արվեստի:",
+        paymentTitle: "Հարմարավետ և արագ վճարումներ",
+        paymentDesc: "Մենք գնահատում ենք ձեր հարմարավետությունը, այդ իսկ պատճառով ինտեգրել ենք ժամանակակից և անվտանգ վճարման եղանակներ: Ակտիվացրեք սակագները Telegram Stars-ի միջոցով անմիջապես հավելվածում կամ օգտագործեք Telegram Wallet (Crypto) ամբողջ աշխարհում արագ գործարքների համար:",
+        securityTitle: "Կորպորատիվ մակարդակի անվտանգություն",
+        securityFeatures: [
+            { title: "🔒 AES-256 ծածկագրում", desc: "Բոլոր համակարգային տոկենները и սթրիմների ինտեգրումները (OBS, Streamlabs) ծածկագրված են սերվերի կողմից՝ օգտագործելով ռազմական մակարդակի AES-256 արձանագրությունը:" },
+            { title: "🛡️ Telegram Sandbox", desc: "Լիազորումը խստորեն կառավարվում է պաշտոնական Telegram WebApp կրիպտոհեշի միջոցով: Ձեր տվյալները լիովին անվտանգ են:" }
+        ],
+        supportTitle: "Ունե՞ք հարցեր",
+        supportDesc: "Մեր աջակցման թիմը պատրաստ է օգնել ձեզ OBS-ի կարգավորումների հարցում օրվա ցանկացած ժամի: Մեր տեխնիկական փորձագետները կապի մեջ են 24/7/365:",
+        supportBtn: "💬 Կապ հաստատել",
+        navHome: "Գլխավոր",
+        navRef: "Ռեֆերալ",
+        navCreate: "Ստուդիա",
+        navWidget: "Վիջեթներ",
+        navShop: "Խանութ"
     }
 };
 
+// БЕЗОПАСНАЯ ФУНКЦИЯ ПЕРЕВОДА (НЕ ПАДАЕТ ПРИ ОШИБКАХ)
 function changeLanguage(lang) {
+    if (!translations[lang]) return;
     const data = translations[lang];
-    if (!data) return;
 
-    const textMappings = {
-        "user-greeting": data.greeting,
-        "hero-title": data.heroTitle,
-        "hero-desc": data.heroDesc,
-        "tariffs-title": data.tariffsTitle,
-        "t1-name": data.t1Name,
-        "t1-desc": data.t1Desc,
-        "t2-name": data.t2Name,
-        "t2-desc": data.t2Desc,
-        "t3-name": data.t3Name,
-        "t3-desc": data.t3Desc,
-        "t4-name": data.t4Name,
-        "t4-desc": data.t4Desc,
-        "t1-btn": data.t1Btn,
-        "t2-btn": data.t2Btn,
-        "t3-btn": data.t3Btn,
-        "t4-btn": data.t4Btn,
-        "shop-info-title": data.shopTitle,
-        "shop-info-desc": data.shopDesc,
-        "payment-title": data.paymentTitle,
-        "payment-desc": data.paymentDesc,
-        "security-title": data.securityTitle,
-        "support-title": data.supportTitle,
-        "support-desc": data.supportDesc,
-        "nav-home": data.navHome,
-        "nav-ref": data.navRef,
-        "nav-create": data.navCreate,
-        "nav-widget": data.navWidget,
-        "nav-shop": data.navShop
+    // Функция-помощник для безопасной вставки обычного текста
+    const setTxt = (id, text) => {
+        const el = document.getElementById(id);
+        if (el && text) el.textContent = text;
     };
 
-    for (const [id, text] of Object.entries(textMappings)) {
-        const el = document.getElementById(id);
-        if (el) {
-            el.innerText = text;
-        }
-    }
+    setTxt("user-greeting", data.greeting);
+    setTxt("hero-title", data.heroTitle);
+    setTxt("hero-desc", data.heroDesc);
+    setTxt("tariffs-title", data.tariffsTitle);
+    
+    setTxt("t1-name", data.t1Name);
+    setTxt("t1-desc", data.t1Desc);
+    setTxt("t1-btn", data.t1Btn);
 
+    setTxt("t2-name", data.t2Name);
+    setTxt("t2-desc", data.t2Desc);
+    setTxt("t2-btn", data.t2Btn);
+
+    setTxt("t3-name", data.t3Name);
+    setTxt("t3-desc", data.t3Desc);
+    setTxt("t3-btn", data.t3Btn);
+
+    setTxt("t4-name", data.t4Name);
+    setTxt("t4-desc", data.t4Desc);
+    setTxt("t4-btn", data.t4Btn);
+
+    setTxt("shop-info-title", data.shopTitle);
+    setTxt("shop-info-desc", data.shopDesc);
+    
+    setTxt("payment-title", data.paymentTitle);
+    setTxt("payment-desc", data.paymentDesc);
+    
+    setTxt("security-title", data.securityTitle);
+    setTxt("support-title", data.supportTitle);
+    setTxt("support-desc", data.supportDesc);
+    
+    // Кнопка саппорта
+    const supportBtnEl = document.querySelector(".btn-support");
+    if (supportBtnEl && data.supportBtn) supportBtnEl.textContent = data.supportBtn;
+
+    // Нижний бар
+    setTxt("nav-home", data.navHome);
+    setTxt("nav-ref", data.navRef);
+    setTxt("nav-create", data.navCreate);
+    setTxt("nav-widget", data.navWidget);
+    setTxt("nav-shop", data.navShop);
+
+    // Безопасный перевод списков
     updateList("t1-features", data.t1Features);
     updateList("t2-features", data.t2Features);
     updateList("t3-features", data.t3Features);
     updateList("t4-features", data.t4Features);
 
-    const supportLink = document.querySelector(".btn-support");
-    if (supportLink) supportLink.innerText = data.supportBtn;
-
-    updateSecurityGrid(data.securityFeatures);
+    // Безопасный перевод блоков безопасности
+    updateSecurityBlocks(data.securityFeatures);
 }
 
-function updateList(elementId, itemsArray) {
-    const ul = document.getElementById(elementId);
-    if (!ul || !itemsArray || !Array.isArray(itemsArray)) return;
+function updateList(elementId, featuresArray) {
+    const listElement = document.getElementById(elementId);
+    if (!listElement || !featuresArray) return;
     
-    const listItems = ul.getElementsByTagName("li");
-    
-    itemsArray.forEach((item, index) => {
-        if (listItems[index]) {
-            const textNode = Array.from(listItems[index].childNodes).find(node => node.nodeType === Node.TEXT_NODE);
-            if (textNode) {
-                textNode.textContent = ` ${item}`;
-            } else {
-                listItems[index].innerText = item;
-            }
-        }
+    listElement.innerHTML = ""; 
+    featuresArray.forEach(text => {
+        const li = document.createElement("li");
+        li.textContent = text;
+        listElement.appendChild(li);
     });
 }
 
-function updateSecurityGrid(featuresArray) {
+function updateSecurityBlocks(securityArray) {
     const container = document.getElementById("security-features-container");
-    if (!container || !featuresArray || !Array.isArray(featuresArray)) return;
-    
-    const cards = container.getElementsByClassName("security-item");
-    
-    featuresArray.forEach((item, index) => {
-        if (cards[index]) {
-            const h4 = cards[index].getElementsByTagName("h4")[0];
-            const p = cards[index].getElementsByTagName("p")[0];
-            
-            if (h4) h4.innerText = item.title;
-            if (p) p.innerText = item.desc;
-        }
+    if (!container || !securityArray) return;
+
+    container.innerHTML = ""; 
+    securityArray.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "security-item";
+        
+        const h4 = document.createElement("h4");
+        h4.textContent = item.title;
+        
+        const p = document.createElement("p");
+        p.textContent = item.desc;
+        
+        div.appendChild(h4);
+        div.appendChild(p);
+        container.appendChild(div);
     });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const dropdown = document.getElementById("lang-dropdown");
-    if (dropdown) {
-        dropdown.value = "en";
-        dropdown.addEventListener("change", (e) => {
-            changeLanguage(e.target.value);
-        });
-    }
-    changeLanguage("en");
-});
