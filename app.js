@@ -88,7 +88,7 @@ const translations = {
         ],
         t2Btn: "Купить PRO",
         t3Name: "ADVANCED OMNI",
-        t3Desc: "Уровень хардкор-креатора. Премиум-персонажи из игр и аниме, которые сделают твой стрим незабываемым! Разблокируйте ультрасовременные интерактивные системы, сложные условия триггеров и элементы дизайна элитного уровня, которые полностью перевернут представление о том, как живой чат влияет на ваш стрим-оверлей в реальном времени.",
+        t3Desc: "Уровень хардкор-креатора. Премииум-персонажи из игр и аниме, которые сделают твой стрим незабываемым! Разблокируйте ультрасовременные интерактивные системы, сложные условия триггеров и элементы дизайна элитного уровня, которые полностью перевернут представление о том, как живой чат влияет на ваш стрим-оверлей в реальном времени.",
         t3Features: [
             "Расширенный функционал, повышенный приоритет API и значительно увеличенные лимиты для продвинутых юзеров",
             "До 25 одновременно работающих виджетов, позволяющих собрать полностью уникальный кастомный интерфейс",
@@ -147,44 +147,36 @@ const translations = {
             "Մինչև 10 միաժամանակ աշխատող վիջեթներ՝ բաժանորդագրությունների նպատակները և ակտիվ ծանուցումները միաժամանակ ցուցադրելու համար",
             "Beast Omni ջրային նշանի ամբողջական հեռացում բոլոր օվերլեյներից՝ ձեր սթրիմի բրենդը 100% մաքուր պահելու համար",
             "Անսահմանափակ հասանելիություն կերպարների մեկնարկային հավաքածուին՝ շարժումների սահուն անիմացիայով",
-            "5 պրեմիում լուսավորվող նեոնային տառատեսակ ընտրությամբ, որոնք կատարելապես կհամապատասխանեն ձեր ալիքի ոճին",
-            "Ընդլայնված լիմիտ՝ 15 000 դիտում ամսական, իդեալական է ակտիվ և աճող համայնքներ ունեցող ալիքների համար"
         ],
         t2Btn: "Գնել PRO",
         t3Name: "ADVANCED OMNI",
-        t3Desc: "Հարդքոր ստեղծողների մակարդակ: Պրեմիում խաղային և անիմե կերպարներ, որոնք ձեր սթրիմը կդարձնեն անմոռանալի: Բացահայտեք գերժամանակակից ինտերակտիվ համակարգեր, բարդ տրիգերներ և էլիտար դիզայնի տարրեր, որոնք ամբողջությամբ կփոխեն պատկերացումը այն մասին, թե ինչպես է կենդանի չատը ազդում ձեր էկրանի պատկերի վրա իրական ժամանակում:",
+        t3Desc: "Հարդկոր ստեղծողի մակարդակ: Պրեմիում կերպարներ խաղերից և անիմեներից, որոնք ձեր սթրիմը կդարձնեն անմոռանալի: Բացահայտեք ժամանակակից ինտերակտիվ համակարգեր և դիզայներական էլիտար լուծումներ, որոնք ամբողջությամբ կփոխեն իրական ժամանակում չատի ազդեցությունը ձեր սթրիմի վրա:",
         t3Features: [
-            "Ընդլայնված ֆունկցիոնալություն, API-ի բարձր առաջնահերթություն և զգալիորեն մեծացված լիմիտներ առաջադեմ օգտատերերի համար",
-            "Մինչև 25 միաժամանակ աշխատող վիջեթներ, որոնք թույլ են տալիս հավաքել ամբողջովին եզակի ինտերֆեյս",
-            "Հասանելիություն խաղերի և անիմեների պրեմիում կերպարներին՝ հատուկ տրիգերներով և ռեակտիվ ժեստերով",
-            "10 էքսկլյուզիվ կիբեր-տառատեսակ ընտրությամբ, որոնք երաշխավորում են հեռարձակման բարձր տեխնոլոգիական տեսքը",
-            "Բարձր լիմիտ՝ 50 000 դիտում ամսական, նախատեսված է ամենօրյա ակտիվ չատ ունեցող խոշոր սթրիմերների համար"
+            "Ընդլայնված ֆունկցիոնալություն, API-ի բարձր առաջնահերթություն և մեծացված լիմիտներ հզոր օգտատերերի համար",
+            "Մինչև 25 միաժամանակ աշխատող վիջեթներ, որոնք թույլ են տալիս ստեղծել լիովին եզակի ինտերֆեյս",
+            "Հասանելիություն պրեմիում կերպարներին՝ հատուկ իրադարձությունների տրիգերներով և ռեակտիվ ժեստերով"
         ],
-        t3Btn: "Ընդլայնել",
+        t3Btn: "Թարմացնել",
         t4Name: "ULTIMATE KING",
-        t4Desc: "Բացարձակ իշխանություն սթրիմի վրա: Անսահմանափակ վիջեթներ, բացառիկ ձայնային էֆեկտներ և VIP կարգավիճակ: Դուք այստեղ թագավորն եք: Սա կորպորատիվ մակարդակի ուլտիմատիվ լուծում է էլիտար բովանդակություն ստեղծողների և սթրիմինգային կազմակերպությունների համար, որոնց անհրաժեշտ է առավելագույն արտադրողականություն և բացարձակ ստեղծագործական ազատություն:",
+        t4Desc: "Բացարձակ իշխանություն սթրիմի վրա: Անսահմանափակ վիջեթներ, էքսկլյուզիվ ձայնային էֆեկտներ և VIP կարգավիճակ: Դուք այստեղ թագավորն եք: Սա լավագույն լուծումն է էլիտար բովանդակություն ստեղծողների համար, ովքեր պահանջում են առավելագույն արտադրողականություն և ստեղծագործական ազատություն:",
         t4Features: [
-            "Բացարձակ անսահմանափակ վիջեթների ստեղծում և զուգահեռ աշխատանք սերվերի արձագանքման առավելագույն արագությամբ",
-            "Ամբողջական և անխոչընդոտ հասանելիություն ԲՈԼՈՐ պրեմիում կերպարներին, հատուկ տարբերակներին և գաղտնի տառատեսակներին",
-            "Էքսկլյուզիվ անիմացիոն ձայնային փաթեթներ ներառված են լիովին անվճար՝ ձեր լսարանին զարմացնելու համար",
-            "Max FPS ռեժիմ՝ գերսահուն վեբ-անիմացիայի և վիջեթների անխափան արտացոլման համար անմիջապես OBS Studio-ում",
-            "Առաջնահերթ VIP աջակցություն 24/7 անձնական մենեջերի հետ՝ ցանկացած տեխնիկական խնդիր ակնթարթորեն լուծելու համար"
+            "Բացարձակ անսահմանափակ վիջեթների ստեղծում և զուգահեռ աշխատանք սերվերի առավելագույն արագությամբ",
+            "Ամբողջական հասանելիություն բոլոր պրեմիում կերպարներին և գաղտնի լեգենդար տառատեսակներին",
+            "VIP աջակցություն 24/7 անձնական մենեջերի հետ ցանկացած տեխնիկական խնդիր ակնթարթորեն լուծելու համար"
         ],
         t4Btn: "Դառնալ KING",
         shopTitle: "Խանութ",
-        shopDesc: "Կարգավորեք ձեր սթրիմերը մինչև ամենափոքր դետալները: Մեր խանութում դուք կգտնեք լեգենդար կերպարներ ձեր սիրելի խաղերից, անիմեներից և սերիալներից, որոնք կարձագանքեն հանդիսատեսի գործողություններին: Յուրահատուկ նեոնային և գոթական տառատեսակները կառանձնացնեն ձեր ծանուցումները, իսկ էկրանի ներքևում հնչող կերպարների կենդանի ձայները կխրախուսեն լսարանին ավելի հաճախ դոնատներ անել: Ընդլայնեք ձեր անհատական հավաքածուն, բացեք սեզոնային թարմացումները և ձեռք բերեք հազվագյուտ էսթետիկ փաթեթներ, որոնք կվերածեն ձեր օվերլեյը ինտերակտիվ արվեստի բացառիկ նմուշի:",
+        shopDesc: "Անհատականացրեք ձեր սթրիմները մինչև ամենափոքր մանրուքները: Մեր խանութում դուք կգտնեք լեգենդար կերպարներ ձեր սիրելի խաղերից ու անիմեներից, որոնք արձագանքում են դիտողների գործողություններին: Ընդլայնեք ձեր հավաքածուն և ձեռք բերեք հազվագյուտ էսթետիկ փաթեթներ, որոնք ձեր սթրիմը կվերածեն իսկական արվեստի:",
         paymentTitle: "Հարմարավետ և արագ վճարումներ",
-        paymentDesc: "Մենք գնահատում ենք ձեր հարմարավետությունը, այդ իսկ պատճառով ինտեգրել ենք վճարման ամենաժամանակակից և անվտանգ մեթոդները: Ակտիվացրեք սակագները Telegram Stars-ի միջոցով հենց հավելվածում կամ օգտագործեք Telegram Wallet (Crypto) ամբողջ աշխարհում արագ գործարքների համար: Վայելեք վճարումների կատարյալ ավտոմատացումը, հաշվեկշռի ակնթարթորեն թարմացումը և յուրաքանչյուր ֆինանսական գործառնության լիակատար թափանցիկությունը առանց թաքնված միջնորդավճարների, ինչը թույլ կտա ձեզ արդյունավետ կառավարել բյուջեն մոլորակի ցանկացած կետից:",
+        paymentDesc: "Մենք գնահատում ենք ձեր հարմարավետությունը, այդ իսկ պատճառով ինտեգրել ենք ժամանակակից և անվտանգ վճարման եղանակներ: Ակտիվացրեք սակագները Telegram Stars-ի միջոցով անմիջապես հավելվածում կամ օգտագործեք Telegram Wallet (Crypto) ամբողջ աշխարհում արագ գործարքների համար:",
         securityTitle: "Կորպորատիվ մակարդակի անվտանգություն",
         securityFeatures: [
-            { title: "🔒 AES-256 Ծածկագրում", desc: "Բոլոր համակարգային թոքենները և սթրիմերի ինտեգրումները (OBS, Streamlabs, Twitch) ծածկագրվում են սերվերի կողմից՝ օգտագործելով ռազմական մակարդակի AES-256 արձանագրությունը: Սա բացառում է տվյալների արտահոսքը և երաշխավորում է, որ ոչ մի չարամիտ երրորդ կողմ չի կարող հասանելիություն ստանալ ձեր սթրիմ-բանալիներին կամ անձնական տվյալներին:" },
-            { title: "🛡️ Telegram Պաշտպանություն", desc: "Մուտքը խստորեն վերահսկվում է պաշտոնական Telegram WebApp կրիպտոգրաֆիկ հեշի վավերացման կառուցվածքներով: Ձեր անձնական տվյալները լիովին անվտանգ են, քանի որ մեր համակարգն աշխատում է մեկուսացված 'sandbox' միջավայրում՝ կանխելով չարտոնված սեսիաները կամ թոքենների փոխարինումը:" },
-            { title: "💎 Անվտանգ գործարքներ", desc: "Մենք երբեք չենք պահպանում վարկային քարտերի համարները, բանկային տվյալները կամ գաղտնի ֆինանսական տեղեկությունները մեր տվյալների բազաներում: Բոլոր գործարքներն անցնում են պաշտոնական Telegram Stars մեխանիզմով կամ պաշտպանված ապակենտրոնացված կրիպտոցանցերով՝ ապահովելով լիակատար անդորր:" },
-            { title: "⚡ Վիջեթների մեկուսացում", desc: "Վիջեթների ելակետային կոդը լիովին մեկուսացված է OBS Browser Source ճարտարապետության ներսում: Այս խիստ մեկուսացումը երաշխավորում է ձեր ԱՀ-ի արտադրողականության պահպանումը, հետին պլանում գաղտնի տվյալների հավաքագրման բացակայությունը և բացարձակ պաշտպանությունը վիրուսներից՝ պահպանելով առավելագույն FPS:" }
+            { title: "🔒 AES-256 ծածկագրում", desc: "Բոլոր համակարգային տոկենները և սթրիմների ինտեգրումները (OBS, Streamlabs) ծածկագրված են սերվերի կողմից՝ օգտագործելով ռազմական մակարդակի AES-256 արձանագրությունը:" },
+            { title: "🛡️ Telegram Sandbox", desc: "Լիազորումը խստորեն կառավարվում է պաշտոնական Telegram WebApp կրիպտոհեշի միջոցով: Ձեր տվյալները լիովին անվտանг են:" }
         ],
         supportTitle: "Ունե՞ք հարցեր",
-        supportDesc: "Մեր աջակցման թիմը պատրաստ է օգնել ձեզ OBS-ի կարգավորման կամ ցանկացած տեխնիկական խնդրի լուծման հարցում օրվա ցանկացած ժամի: Անկախ նրանից, թե դուք բախվել եք անիմացիայի սխալի, թե օգնության կարիք ունեք հաշիվը կապելու հարցում, մեր տեխնիկական փորձագետները առցանց են 24/7/365՝ ձեր հեռարձակումն անխափան պահելու համար:",
-        supportBtn: "💬 Գրել աջակցմանը",
+        supportDesc: "Մեր աջակցման թիմը պատրաստ է օգնել ձեզ OBS-ի կարգավորումների հարցում օրվա ցանկացած ժամի: Մեր տեխնիկական փորձագետները կապի մեջ են 24/7/365:",
+        supportBtn: "💬 Կապ հաստատել",
         navHome: "Գլխավոր",
         navRef: "Ռեֆերալ",
         navCreate: "Ստուդիա",
@@ -193,114 +185,95 @@ const translations = {
     }
 };
 
+// ВОТ ЭТА ФУНКЦИЯ ОЖИВЛЯЕТ ПЕРЕВОД НА СТРАНИЦЕ
 function changeLanguage(lang) {
+    if (!translations[lang]) return;
+
     const data = translations[lang];
-    if (!data) return;
 
-    // Автоматически меняем атрибут lang у тега <html> для браузера
-    document.documentElement.lang = lang;
+    // 1. Простые текстовые блоки (ID)
+    document.getElementById("user-greeting").textContent = data.greeting;
+    document.getElementById("hero-title").textContent = data.heroTitle;
+    document.getElementById("hero-desc").textContent = data.heroDesc;
+    document.getElementById("tariffs-title").textContent = data.tariffsTitle;
+    
+    document.getElementById("t1-name").textContent = data.t1Name;
+    document.getElementById("t1-desc").textContent = data.t1Desc;
+    document.getElementById("t1-btn").textContent = data.t1Btn;
 
-    const textMappings = {
-        "user-greeting": data.greeting,
-        "hero-title": data.heroTitle,
-        "hero-desc": data.heroDesc,
-        "tariffs-title": data.tariffsTitle,
-        "t1-name": data.t1Name,
-        "t1-desc": data.t1Desc,
-        "t2-name": data.t2Name,
-        "t2-desc": data.t2Desc,
-        "t3-name": data.t3Name,
-        "t3-desc": data.t3Desc,
-        "t4-name": data.t4Name,
-        "t4-desc": data.t4Desc,
-        "t1-btn": data.t1Btn,
-        "t2-btn": data.t2Btn,
-        "t3-btn": data.t3Btn,
-        "t4-btn": data.t4Btn,
-        "shop-info-title": data.shopTitle,
-        "shop-info-desc": data.shopDesc,
-        "payment-title": data.paymentTitle,
-        "payment-desc": data.paymentDesc,
-        "security-title": data.securityTitle,
-        "support-title": data.supportTitle,
-        "support-desc": data.supportDesc,
-        "nav-home": data.navHome,
-        "nav-ref": data.navRef,
-        "nav-create": data.navCreate,
-        "nav-widget": data.navWidget,
-        "nav-shop": data.navShop
-    };
+    document.getElementById("t2-name").textContent = data.t2Name;
+    document.getElementById("t2-desc").textContent = data.t2Desc;
+    document.getElementById("t2-btn").textContent = data.t2Btn;
 
-    // Дальше у тебя скорее всего идет перебор textMappings и обновление через innerText/textContent
-    for (const [id, value] of Object.entries(textMappings)) {
-        const element = document.getElementById(id);
-        if (element && value) {
-            element.textContent = value;
-        }
-    }
-}
-    // Обновляем списки преимуществ БЕЗ разрушения верстки
+    document.getElementById("t3-name").textContent = data.t3Name;
+    document.getElementById("t3-desc").textContent = data.t3Desc;
+    document.getElementById("t3-btn").textContent = data.t3Btn;
+
+    document.getElementById("t4-name").textContent = data.t4Name;
+    document.getElementById("t4-desc").textContent = data.t4Desc;
+    document.getElementById("t4-btn").textContent = data.t4Btn;
+
+    document.getElementById("shop-info-title").textContent = data.shopTitle;
+    document.getElementById("shop-info-desc").textContent = data.shopDesc;
+    
+    document.getElementById("payment-title").textContent = data.paymentTitle;
+    document.getElementById("payment-desc").textContent = data.paymentDesc;
+    
+    document.getElementById("security-title").textContent = data.securityTitle;
+    document.getElementById("support-title").textContent = data.supportTitle;
+    document.getElementById("support-desc").textContent = data.supportDesc;
+    
+    // Кнопка саппорта
+    document.querySelector(".btn-support").textContent = data.supportBtn;
+
+    // Нижний бар (менюшки)
+    document.getElementById("nav-home").textContent = data.navHome;
+    document.getElementById("nav-ref").textContent = data.navRef;
+    document.getElementById("nav-create").textContent = data.navCreate;
+    document.getElementById("nav-widget").textContent = data.navWidget;
+    document.getElementById("nav-shop").textContent = data.navShop;
+
+    // 2. Перевод списков преимуществ (ul / li)
     updateList("t1-features", data.t1Features);
     updateList("t2-features", data.t2Features);
     updateList("t3-features", data.t3Features);
     updateList("t4-features", data.t4Features);
 
-    // Обновляем кнопку саппорта (если есть отдельный класс)
-    const supportLink = document.querySelector(".btn-support");
-    if (supportLink) supportLink.innerText = data.supportBtn;
-
-    // Обновляем сетку безопасности БЕЗ удаления самих карточек
-    updateSecurityGrid(data.securityFeatures);
+    // 3. Перевод блоков безопасности
+    updateSecurityBlocks(data.securityFeatures);
 }
 
-function updateList(elementId, itemsArray) {
-    const ul = document.getElementById(elementId);
-    if (!ul || !itemsArray || !Array.isArray(itemsArray)) return;
+// Вспомогательная функция для обновления списков li
+function updateList(elementId, featuresArray) {
+    const listElement = document.getElementById(elementId);
+    if (!listElement || !featuresArray) return;
     
-    // Берем все существующие элементы <li> внутри текущего списка
-    const listItems = ul.getElementsByTagName("li");
-    
-    itemsArray.forEach((item, index) => {
-        if (listItems[index]) {
-            // Если в li есть дочерние элементы (например, красивый тег <span> или <svg> иконка),
-            // мы меняем только текстовую ноду, чтобы не снести иконку.
-            const textNode = Array.from(listItems[index].childNodes).find(node => node.nodeType === Node.TEXT_NODE);
-            if (textNode) {
-                textNode.textContent = ` ${item}`;
-            } else {
-                // Если иконки нет, просто аккуратно вставляем текст
-                listItems[index].innerText = item;
-            }
-        }
+    listElement.innerHTML = ""; // Очищаем старые строки
+    featuresArray.forEach(text => {
+        const li = document.createElement("li");
+        li.textContent = text;
+        listElement.appendChild(li);
     });
 }
 
-function updateSecurityGrid(featuresArray) {
+// Вспомогательная функция для обновления карточек безопасности
+function updateSecurityBlocks(securityArray) {
     const container = document.getElementById("security-features-container");
-    if (!container || !featuresArray || !Array.isArray(featuresArray)) return;
-    
-    // Ищем уже готовые карточки внутри контейнера, которые были сверстаны в HTML
-    const cards = container.getElementsByClassName("security-item");
-    
-    featuresArray.forEach((item, index) => {
-        if (cards[index]) {
-            const h4 = cards[index].getElementsByTagName("h4")[0];
-            const p = cards[index].getElementsByTagName("p")[0];
-            
-            if (h4) h4.innerText = item.title;
-            if (p) p.innerText = item.desc;
-        }
+    if (!container || !securityArray) return;
+
+    container.innerHTML = ""; // Очищаем блоки
+    securityArray.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "security-item";
+        
+        const h4 = document.createElement("h4");
+        h4.textContent = item.title;
+        
+        const p = document.createElement("p");
+        p.textContent = item.desc;
+        
+        div.appendChild(h4);
+        div.appendChild(p);
+        container.appendChild(div);
     });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const dropdown = document.getElementById("lang-dropdown");
-    if (dropdown) {
-        dropdown.value = "en";
-        // Слушаем изменение языка на дропдауне
-        dropdown.addEventListener("change", (e) => {
-            changeLanguage(e.target.value);
-        });
-    }
-    changeLanguage("en");
-});
