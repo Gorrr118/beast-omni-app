@@ -69,7 +69,7 @@ const translations = {
         heroDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs. Расширяйте границы своего вещания, увеличивайте удержание аудитории в несколько раз и масштабируйте личный бренд с помощью передовых технологий автоматизации, которые работают плавно, бесшовно и без высокой нагрузки на процессор вашей игровой станции.",
         tariffsTitle: "Доступные Тарифы",
         t1Name: "SHORTS BASE",
-        t1Desc: "Идеальный старт для авторов вертикального контента. Оживите свои TikTok, Shorts и Reels с помощью специализированных интерактивных механик, разработанных специально для динамичного контента! Это поможет вам выделяться в умных алгоритмах, захватывать внимание зрителя с первой секунды и без особых усилий форсировать органический рост метрик вашего канала.",
+        t1Desc: "Идеальный старт для авторов vertical контента. Оживите свои TikTok, Shorts и Reels с помощью специализированных интерактивных механик, разработанных специально для динамичного контента! Это поможет вам выделяться в умных алгоритмах, захватывать внимание зрителя с первой секунды и без особых усилий форсировать органический рост метрик вашего канала.",
         t1Features: [
             "Идеальное решение для авторов TikTok, Shorts и Reels, стремящихся к стабильному взрывному росту",
             "1 активный интерактивный виджет, работающий одновременно на вашем аккаунте без каких-либо задержек",
@@ -88,7 +88,7 @@ const translations = {
         ],
         t2Btn: "Купить PRO",
         t3Name: "ADVANCED OMNI",
-        t3Desc: "Уровень хардкор-креатора. Премииум-персонажи из игр и аниме, которые сделают твой стрим незабываемым! Разблокируйте ультрасовременные интерактивные системы, сложные условия триггеров и элементы дизайна элитного уровня, которые полностью перевернут представление о том, как живой чат влияет на ваш стрим-оверлей в реальном времени.",
+        t3Desc: "Уровень хардкор-креатора. Премиум-персонажи из игр и аниме, которые сделают твой стрим незабываемым! Разблокируйте ультрасовременные интерактивные системы, сложные условия триггеров и элементы дизайна элитного уровня, которые полностью перевернут представление о том, как живой чат влияет на ваш стрим-оверлей в реальном времени.",
         t3Features: [
             "Расширенный функционал, повышенный приоритет API и значительно увеличенные лимиты для продвинутых юзеров",
             "До 25 одновременно работающих виджетов, позволяющих собрать полностью уникальный кастомный интерфейс",
@@ -171,8 +171,8 @@ const translations = {
         paymentDesc: "Մենք գնահատում ենք ձեր հարմարավետությունը, այդ իսկ պատճառով ինտեգրել ենք ժամանակակից և անվտանգ վճարման եղանակներ: Ակտիվացրեք սակագները Telegram Stars-ի միջոցով անմիջապես հավելվածում կամ օգտագործեք Telegram Wallet (Crypto) ամբողջ աշխարհում արագ գործարքների համար:",
         securityTitle: "Կորպորատիվ մակարդակի անվտանգություն",
         securityFeatures: [
-            { title: "🔒 AES-256 ծածկագրում", desc: "Բոլոր համակարգային տոկենները և սթրիմների ինտեգրումները (OBS, Streamlabs) ծածկագրված են սերվերի կողմից՝ օգտագործելով ռազմական մակարդակի AES-256 արձանագրությունը:" },
-            { title: "🛡️ Telegram Sandbox", desc: "Լիազորումը խստորեն կառավարվում է պաշտոնական Telegram WebApp կրիպտոհեշի միջոցով: Ձեր տվյալները լիովին անվտանг են:" }
+            { title: "🔒 AES-256 ծածկագրում", desc: "Բոլոր համակարգային տոկենները и սթրիմների ինտեգրումները (OBS, Streamlabs) ծածկագրված են սերվերի կողմից՝ օգտագործելով ռազմական մակարդակի AES-256 արձանագրությունը:" },
+            { title: "🛡️ Telegram Sandbox", desc: "Լիազորումը խստորեն կառավարվում է պաշտոնական Telegram WebApp կրիպտոհեշի միջոցով: Ձեր տվյալները լիովին անվտանգ են:" }
         ],
         supportTitle: "Ունե՞ք հարցեր",
         supportDesc: "Մեր աջակցման թիմը պատրաստ է օգնել ձեզ OBS-ի կարգավորումների հարցում օրվա ցանկացած ժամի: Մեր տեխնիկական փորձագետները կապի մեջ են 24/7/365:",
@@ -185,70 +185,74 @@ const translations = {
     }
 };
 
-// ВОТ ЭТА ФУНКЦИЯ ОЖИВЛЯЕТ ПЕРЕВОД НА СТРАНИЦЕ
+// БЕЗОПАСНАЯ ФУНКЦИЯ ПЕРЕВОДА (НЕ ПАДАЕТ ПРИ ОШИБКАХ)
 function changeLanguage(lang) {
     if (!translations[lang]) return;
-
     const data = translations[lang];
 
-    // 1. Простые текстовые блоки (ID)
-    document.getElementById("user-greeting").textContent = data.greeting;
-    document.getElementById("hero-title").textContent = data.heroTitle;
-    document.getElementById("hero-desc").textContent = data.heroDesc;
-    document.getElementById("tariffs-title").textContent = data.tariffsTitle;
+    // Функция-помощник для безопасной вставки обычного текста
+    const setTxt = (id, text) => {
+        const el = document.getElementById(id);
+        if (el && text) el.textContent = text;
+    };
+
+    setTxt("user-greeting", data.greeting);
+    setTxt("hero-title", data.heroTitle);
+    setTxt("hero-desc", data.heroDesc);
+    setTxt("tariffs-title", data.tariffsTitle);
     
-    document.getElementById("t1-name").textContent = data.t1Name;
-    document.getElementById("t1-desc").textContent = data.t1Desc;
-    document.getElementById("t1-btn").textContent = data.t1Btn;
+    setTxt("t1-name", data.t1Name);
+    setTxt("t1-desc", data.t1Desc);
+    setTxt("t1-btn", data.t1Btn);
 
-    document.getElementById("t2-name").textContent = data.t2Name;
-    document.getElementById("t2-desc").textContent = data.t2Desc;
-    document.getElementById("t2-btn").textContent = data.t2Btn;
+    setTxt("t2-name", data.t2Name);
+    setTxt("t2-desc", data.t2Desc);
+    setTxt("t2-btn", data.t2Btn);
 
-    document.getElementById("t3-name").textContent = data.t3Name;
-    document.getElementById("t3-desc").textContent = data.t3Desc;
-    document.getElementById("t3-btn").textContent = data.t3Btn;
+    setTxt("t3-name", data.t3Name);
+    setTxt("t3-desc", data.t3Desc);
+    setTxt("t3-btn", data.t3Btn);
 
-    document.getElementById("t4-name").textContent = data.t4Name;
-    document.getElementById("t4-desc").textContent = data.t4Desc;
-    document.getElementById("t4-btn").textContent = data.t4Btn;
+    setTxt("t4-name", data.t4Name);
+    setTxt("t4-desc", data.t4Desc);
+    setTxt("t4-btn", data.t4Btn);
 
-    document.getElementById("shop-info-title").textContent = data.shopTitle;
-    document.getElementById("shop-info-desc").textContent = data.shopDesc;
+    setTxt("shop-info-title", data.shopTitle);
+    setTxt("shop-info-desc", data.shopDesc);
     
-    document.getElementById("payment-title").textContent = data.paymentTitle;
-    document.getElementById("payment-desc").textContent = data.paymentDesc;
+    setTxt("payment-title", data.paymentTitle);
+    setTxt("payment-desc", data.paymentDesc);
     
-    document.getElementById("security-title").textContent = data.securityTitle;
-    document.getElementById("support-title").textContent = data.supportTitle;
-    document.getElementById("support-desc").textContent = data.supportDesc;
+    setTxt("security-title", data.securityTitle);
+    setTxt("support-title", data.supportTitle);
+    setTxt("support-desc", data.supportDesc);
     
     // Кнопка саппорта
-    document.querySelector(".btn-support").textContent = data.supportBtn;
+    const supportBtnEl = document.querySelector(".btn-support");
+    if (supportBtnEl && data.supportBtn) supportBtnEl.textContent = data.supportBtn;
 
-    // Нижний бар (менюшки)
-    document.getElementById("nav-home").textContent = data.navHome;
-    document.getElementById("nav-ref").textContent = data.navRef;
-    document.getElementById("nav-create").textContent = data.navCreate;
-    document.getElementById("nav-widget").textContent = data.navWidget;
-    document.getElementById("nav-shop").textContent = data.navShop;
+    // Нижний бар
+    setTxt("nav-home", data.navHome);
+    setTxt("nav-ref", data.navRef);
+    setTxt("nav-create", data.navCreate);
+    setTxt("nav-widget", data.navWidget);
+    setTxt("nav-shop", data.navShop);
 
-    // 2. Перевод списков преимуществ (ul / li)
+    // Безопасный перевод списков
     updateList("t1-features", data.t1Features);
     updateList("t2-features", data.t2Features);
     updateList("t3-features", data.t3Features);
     updateList("t4-features", data.t4Features);
 
-    // 3. Перевод блоков безопасности
+    // Безопасный перевод блоков безопасности
     updateSecurityBlocks(data.securityFeatures);
 }
 
-// Вспомогательная функция для обновления списков li
 function updateList(elementId, featuresArray) {
     const listElement = document.getElementById(elementId);
     if (!listElement || !featuresArray) return;
     
-    listElement.innerHTML = ""; // Очищаем старые строки
+    listElement.innerHTML = ""; 
     featuresArray.forEach(text => {
         const li = document.createElement("li");
         li.textContent = text;
@@ -256,12 +260,11 @@ function updateList(elementId, featuresArray) {
     });
 }
 
-// Вспомогательная функция для обновления карточек безопасности
 function updateSecurityBlocks(securityArray) {
     const container = document.getElementById("security-features-container");
     if (!container || !securityArray) return;
 
-    container.innerHTML = ""; // Очищаем блоки
+    container.innerHTML = ""; 
     securityArray.forEach(item => {
         const div = document.createElement("div");
         div.className = "security-item";
