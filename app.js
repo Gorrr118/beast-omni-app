@@ -71,7 +71,7 @@ const translations = {
         t1Name: "SHORTS BASE",
         t1Desc: "Идеальный старт для авторов vertical контента. Оживите свои TikTok, Shorts и Reels с помощью специализированных интерактивных механик, разработанных специально для динамичного контента! Это поможет вам выделяться в умных алгоритмах, захватывать внимание зрителя с первой секунды и без особых усилий форсировать органический рост метрик вашего канала.",
         t1Features: [
-            "Идеальное решение для авторов TikTok, Shorts и Reels, стремящихся к стабильному взрывному росту",
+            "Идеал для авторов TikTok, Shorts и Reels, стремящихся к стабильному взрывному росту",
             "1 активный интерактивный виджет, работающий одновременно на вашем аккаунте без каких-либо задержек",
             "Полный доступ к стандартным системным шрифтам и базовым текстовым макетам для лаконичного стиля",
             "Строгий лимит: 500 просмотров в месяц, оптимизированный для стартовых проектов и тестирования основных функций"
@@ -84,7 +84,7 @@ const translations = {
             "Полное удаление водяного знака Beast Omni со всех оверлеев, чтобы бренд вашего стрима оставался на 100% чистым",
             "Неограниченный доступ к стартовой коллекции уникальных интерактивных персонажей с плавной анимацией движений",
             "5 премиальных светящихся неоновых шрифтов на ваш выбор, чтобы идеально соответствовать эстетике канала",
-            "Расширенный лимит: 15 000 просмотров в месяц, идеально подходящий для каналов с активными и растущими сообществами"
+            "Расширенный лимит: 15 000 просмотров в месяц, идеально подходят для каналов с активными и растущими сообществами"
         ],
         t2Btn: "Купить PRO",
         t3Name: "ADVANCED OMNI",
@@ -93,7 +93,7 @@ const translations = {
             "Расширенный функционал, повышенный приоритет API и значительно увеличенные лимиты для продвинутых юзеров",
             "До 25 одновременно работающих виджетов, позволяющих собрать полностью уникальный кастомный интерфейс",
             "Доступ к премиум-персонажам игр и аниме со специальными триггерами событий и reactive жестами",
-            "10 эксклюзивных кибер-шрифтов на выбор, гарантирующих высокотехнологичный вид оверлеев и уведомлений",
+            "10洍ксклюзивных кибер-шрифтов на выбор, гарантирующих высокотехнологичный вид оверлеев и уведомлений",
             "Высокий лимит: 50 000 просмотров в месяц, разработанный для крупных стримеров с плотным ежедневным потоком чата"
         ],
         t3Btn: "Расширить тариф",
@@ -115,7 +115,7 @@ const translations = {
         securityFeatures: [
             { title: "🔒 Шифрование AES-256", desc: "Все системные токены и интеграции со стримами (OBS, Streamlabs, Twitch) шифруются на стороне сервера с использованием военно-промышленного протокола AES-256. Это полностью предотвращает утечки данных и гарантирует, что ни одна злонамеренная третья сторона ни при каких обстоятельствах не сможет получить доступ к вашим стрим-ключам или приватным конфигурациям." },
             { title: "🛡️ Песочница Telegram", desc: "Авторизация строго контролируется официальными структурами проверки криптографического хеша Telegram WebApp. Ваши личные данные находятся в полной безопасности, поскольку наша система работает в изолированной среде 'песочницы', полностью исключая несанкционированные сессии, подмену токенов или перехват данных." },
-            { title: "💎 Безопасные платежи", desc: "Мы никогда не храним номера кредитных карт, банковские реквизиты или конфиденциальные финансовые логи в наших базах данных. Все входящие транзакции проходят через официальный движок Telegram Stars или защищенные некастодиальные криптосети, обеспечивая децентрализованный и проверенный аудит." },
+            { title: "💎 Безопасные платежи", desc: "Мы никогда не хранят номера кредитных карт, банковские реквизиты или конфиденциальные финансовые логи в наших базах данных. Все входящие транзакции проходят через официальный движок Telegram Stars или защищенные некастодиальные криптосети, обеспечивая децентрализованный и проверенный аудит." },
             { title: "⚡ Нулевая уязвимость", desc: "Исходный код виджетов полностью изолирован внутри архитектуры OBS Browser Source. Эта строгая изоляция гарантирует отсутствие падения производительности вашего ПК, отсутствие фонового сбора телеметрии и абсолютную защиту от вредоносных межсайтовых скриптов или инъекций, сохраняя максимальный FPS." }
         ],
         supportTitle: "Возникли вопросы?",
@@ -129,98 +129,101 @@ const translations = {
     }
 };
 
-// БЕЗОПАСНАЯ ФУНКЦИЯ ПЕРЕВОДА (НЕ ПАДАЕТ ПРИ ОШИБКАХ)
 function changeLanguage(lang) {
-    if (!translations[lang]) return;
     const data = translations[lang];
+    if (!data) return;
 
-    // Функция-помощник для безопасной вставки обычного текста
-    const setTxt = (id, text) => {
-        const el = document.getElementById(id);
-        if (el && text) el.textContent = text;
+    const textMappings = {
+        "user-greeting": data.greeting,
+        "hero-title": data.heroTitle,
+        "hero-desc": data.heroDesc,
+        "tariffs-title": data.tariffsTitle,
+        "t1-name": data.t1Name,
+        "t1-desc": data.t1Desc,
+        "t2-name": data.t2Name,
+        "t2-desc": data.t2Desc,
+        "t3-name": data.t3Name,
+        "t3-desc": data.t3Desc,
+        "t4-name": data.t4Name,
+        "t4-desc": data.t4Desc,
+        "t1-btn": data.t1Btn,
+        "t2-btn": data.t2Btn,
+        "t3-btn": data.t3Btn,
+        "t4-btn": data.t4Btn,
+        "shop-info-title": data.shopTitle,
+        "shop-info-desc": data.shopDesc,
+        "payment-title": data.paymentTitle,
+        "payment-desc": data.paymentDesc,
+        "security-title": data.securityTitle,
+        "support-title": data.supportTitle,
+        "support-desc": data.supportDesc,
+        "nav-home": data.navHome,
+        "nav-ref": data.navRef,
+        "nav-create": data.navCreate,
+        "nav-widget": data.navWidget,
+        "nav-shop": data.navShop
     };
 
-    setTxt("user-greeting", data.greeting);
-    setTxt("hero-title", data.heroTitle);
-    setTxt("hero-desc", data.heroDesc);
-    setTxt("tariffs-title", data.tariffsTitle);
-    
-    setTxt("t1-name", data.t1Name);
-    setTxt("t1-desc", data.t1Desc);
-    setTxt("t1-btn", data.t1Btn);
+    for (const [id, text] of Object.entries(textMappings)) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.innerText = text;
+        }
+    }
 
-    setTxt("t2-name", data.t2Name);
-    setTxt("t2-desc", data.t2Desc);
-    setTxt("t2-btn", data.t2Btn);
-
-    setTxt("t3-name", data.t3Name);
-    setTxt("t3-desc", data.t3Desc);
-    setTxt("t3-btn", data.t3Btn);
-
-    setTxt("t4-name", data.t4Name);
-    setTxt("t4-desc", data.t4Desc);
-    setTxt("t4-btn", data.t4Btn);
-
-    setTxt("shop-info-title", data.shopTitle);
-    setTxt("shop-info-desc", data.shopDesc);
-    
-    setTxt("payment-title", data.paymentTitle);
-    setTxt("payment-desc", data.paymentDesc);
-    
-    setTxt("security-title", data.securityTitle);
-    setTxt("support-title", data.supportTitle);
-    setTxt("support-desc", data.supportDesc);
-    
-    // Кнопка саппорта
-    const supportBtnEl = document.querySelector(".btn-support");
-    if (supportBtnEl && data.supportBtn) supportBtnEl.textContent = data.supportBtn;
-
-    // Нижний бар
-    setTxt("nav-home", data.navHome);
-    setTxt("nav-ref", data.navRef);
-    setTxt("nav-create", data.navCreate);
-    setTxt("nav-widget", data.navWidget);
-    setTxt("nav-shop", data.navShop);
-
-    // Безопасный перевод списков
     updateList("t1-features", data.t1Features);
     updateList("t2-features", data.t2Features);
     updateList("t3-features", data.t3Features);
     updateList("t4-features", data.t4Features);
 
-    // Безопасный перевод блоков безопасности
-    updateSecurityBlocks(data.securityFeatures);
+    const supportLink = document.querySelector(".btn-support");
+    if (supportLink) supportLink.innerText = data.supportBtn;
+
+    updateSecurityGrid(data.securityFeatures);
 }
 
-function updateList(elementId, featuresArray) {
-    const listElement = document.getElementById(elementId);
-    if (!listElement || !featuresArray) return;
+function updateList(elementId, itemsArray) {
+    const ul = document.getElementById(elementId);
+    if (!ul || !itemsArray || !Array.isArray(itemsArray)) return;
     
-    listElement.innerHTML = ""; 
-    featuresArray.forEach(text => {
-        const li = document.createElement("li");
-        li.textContent = text;
-        listElement.appendChild(li);
+    const listItems = ul.getElementsByTagName("li");
+    
+    itemsArray.forEach((item, index) => {
+        if (listItems[index]) {
+            const textNode = Array.from(listItems[index].childNodes).find(node => node.nodeType === Node.TEXT_NODE);
+            if (textNode) {
+                textNode.textContent = ` ${item}`;
+            } else {
+                listItems[index].innerText = item;
+            }
+        }
     });
 }
 
-function updateSecurityBlocks(securityArray) {
+function updateSecurityGrid(featuresArray) {
     const container = document.getElementById("security-features-container");
-    if (!container || !securityArray) return;
-
-    container.innerHTML = ""; 
-    securityArray.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "security-item";
-        
-        const h4 = document.createElement("h4");
-        h4.textContent = item.title;
-        
-        const p = document.createElement("p");
-        p.textContent = item.desc;
-        
-        div.appendChild(h4);
-        div.appendChild(p);
-        container.appendChild(div);
+    if (!container || !featuresArray || !Array.isArray(featuresArray)) return;
+    
+    const cards = container.getElementsByClassName("security-item");
+    
+    featuresArray.forEach((item, index) => {
+        if (cards[index]) {
+            const h4 = cards[index].getElementsByTagName("h4")[0];
+            const p = cards[index].getElementsByTagName("p")[0];
+            
+            if (h4) h4.innerText = item.title;
+            if (p) p.innerText = item.desc;
+        }
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.getElementById("lang-dropdown");
+    if (dropdown) {
+        dropdown.value = "en";
+        dropdown.addEventListener("change", (e) => {
+            changeLanguage(e.target.value);
+        });
+    }
+    changeLanguage("en");
+});
