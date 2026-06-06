@@ -717,12 +717,12 @@ body {
 .nav-center-btn {
     width: 50px !important;
     height: 50px !important;
-    background: linear-gradient(135deg, #b55fe6, #6c5ce7) !important;
+    background: linear-gradient(135deg, #b55fe6, #ea6bee) !important;
     border-radius: 50 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    box-shadow: 0 0 15px rgba(181, 95, 230, 0.6) !important;
+    box-shadow: 0 0 15px rgba(200, 80, 230, 0.555) !important;
 }
 
 .nav-center-btn .center-icon {
@@ -738,7 +738,3 @@ body {
 .main-container {
     padding-bottom: 90px !important;
 }
-
-
-
-      
