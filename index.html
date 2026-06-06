@@ -6,19 +6,27 @@
     <title>Beast Omni</title>
     <link rel="stylesheet" href="style.css?v=1.0.5">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        .app-tab {
+            display: none;
+        }
+        .app-tab.active-tab {
+            display: block;
+        }
+    </style>
 </head>
-<body>
-    <body translate="no">
+<body translate="no">
 
-        <div id="app-preloader">
-    <div class="preloader-content">
-        <h1 class="preloader-logo">BEAST OMNI</h1>
-        <div class="progress-bar-container">
-            <div class="progress-bar-line"></div>
+    <div id="app-preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-logo">BEAST OMNI</h1>
+            <div class="progress-bar-container">
+                <div class="progress-bar-line"></div>
+            </div>
+            <span class="preloader-status">Loading Ecosystem...</span>
         </div>
-        <span class="preloader-status">Loading Ecosystem...</span>
     </div>
-</div>
 
     <header class="global-header">
         <div class="user-box">
@@ -26,174 +34,280 @@
             <span class="username" id="user-greeting">Hello, filatow</span>
         </div>
         <select id="lang-dropdown">
-   <option value="en">🇺🇸 US</option>
-    <option value="ru">🇷🇺 RU</option>
-</select>
+            <option value="en">🇺🇸 US</option>
+            <option value="ru">🇷🇺 RU</option>
+        </select>
     </header>
 
     <main class="main-container">
         
-        <section class="hero-section">
-            <h1 class="neon-text" id="hero-title">BEAST OMNI</h1>
-            <p class="hero-desc" id="hero-desc">An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.</p>
-        </section>
+        <div id="tab-home" class="app-tab active-tab">
+            
+            <section class="hero-section">
+                <h1 class="neon-text" id="hero-title">BEAST OMNI</h1>
+                <p class="hero-desc" id="hero-desc">An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.</p>
+            </section>
 
-        <section class="section-block">
-            <h2 class="section-title" id="tariffs-title">Available Tariffs</h2>
-            <div class="tariffs-grid">
-                
-                <div class="tariff-card base">
-                    <div class="tariff-badge green">SHORTS / REELS</div>
-                    <h3 class="tariff-name gradient-text-blue" id="t1-name">SHORTS BASE</h3>
-                    <p class="tariff-desc" id="t1-desc">Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life with specialized interactive mechanics designed specifically for fast-paced content, helping you stand out in smart algorithms, capture viewer attention from the first second, and boost your organic metric growth effortlessly!</p>
-                    <p class="tariff-price price-blue">$10<span>/mo</span></p>
-                    <ul class="tariff-features" id="t1-features">
-                        <li>Ideal solution for TikTok, Shorts & Reels creators looking for steady explosive growth</li>
-                        <li>1 active interactive widget running simultaneously on your account without any delays</li>
-                        <li>Full access to standard system fonts and basic text layouts for clean styling</li>
-                        <li>Strict limit: 500 processing views per month, tailored for starting projects and testing core features</li>
-                    </ul>
-                    <button class="btn-action btn-blue" id="t1-btn">Activate</button>
+            <section class="section-block">
+                <h2 class="section-title" id="tariffs-title">Available Tariffs</h2>
+                <div class="tariffs-grid">
+                    
+                    <div class="tariff-card base">
+                        <div class="tariff-badge green">SHORTS / REELS</div>
+                        <h3 class="tariff-name gradient-text-blue" id="t1-name">SHORTS BASE</h3>
+                        <p class="tariff-desc" id="t1-desc">Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life with specialized interactive mechanics designed specifically for fast-paced content, helping you stand out in smart algorithms, capture viewer attention from the first second, and boost your organic metric growth effortlessly!</p>
+                        <p class="tariff-price price-blue">$10<span>/mo</span></p>
+                        <ul class="tariff-features" id="t1-features">
+                            <li>Ideal solution for TikTok, Shorts & Reels creators looking for steady explosive growth</li>
+                            <li>1 active interactive widget running simultaneously on your account without any delays</li>
+                            <li>Full access to standard system fonts and basic text layouts for clean styling</li>
+                            <li>Strict limit: 500 processing views per month, tailored for starting projects and testing core features</li>
+                        </ul>
+                        <button class="btn-action btn-blue" id="t1-btn">Activate</button>
+                    </div>
+
+                    <div class="tariff-card pro">
+                        <div class="tariff-badge purple">POPULAR</div>
+                        <h3 class="tariff-name gradient-text-purple" id="t2-name">MEDIUM PRO</h3>
+                        <p class="tariff-desc" id="t2-desc">The choice of active streamers. Complete audience immersion without watermarks and with neon fonts! This tier offers deeper customization tools, allowing you to establish a strong visual bond with your chat, launch multi-layered interactive alerts, and elevate your production value to professional streaming standards.</p>
+                        <p class="tariff-price price-purple">$30<span>/mo</span></p>
+                        <ul class="tariff-features" id="t2-features">
+                            <li>Up to 10 simultaneously running widgets to handle sub goals, chat alerts, and active alerts at once</li>
+                            <li>Complete removal of Beast Omni watermark from all overlays to keep your stream brand 100% clean</li>
+                            <li>Unrestricted access to the starter collection of characters, complete with smooth animations</li>
+                            <li>5 premium glowing neon fonts of your choice to perfectly match your channel's unique aesthetic</li>
+                            <li>Extended limit: 15,000 processed views per month, ideal for channels with active, growing communities</li>
+                        </ul>
+                        <button class="btn-action active-btn" id="t2-btn">Buy PRO</button>
+                    </div>
+
+                    <div class="tariff-card advanced">
+                        <div class="tariff-badge orange">EXTENDED</div>
+                        <h3 class="tariff-name gradient-text-orange" id="t3-name">ADVANCED OMNI</h3>
+                        <p class="tariff-desc" id="t3-desc">Hardcore creator level. Premium game and anime characters that make your stream unforgettable! Unlock state-of-the-art interactive systems, complex triggering conditions, and elite-tier design features that completely redefine how your live chat influences your stream overlay in real-time broadcasts.</p>
+                        <p class="tariff-price price-orange">$50<span>/mo</span></p>
+                        <ul class="tariff-features" id="t3-features">
+                            <li>Extended functionality, higher API priority, and massively increased volume limits for power users</li>
+                            <li>Up to 25 simultaneously running widgets, allowing you to craft a completely unique custom interface</li>
+                            <li>Access to premium game and anime characters with special event triggers and reactive gestures</li>
+                            <li>10 exclusive cyber-fonts to choose from, guaranteeing high-tech look for alerts and overlays</li>
+                            <li>High limit: 50,000 views per month, engineered for established streamers with heavy daily chat interactions</li>
+                        </ul>
+                        <button class="btn-action btn-orange" id="t3-btn">Upgrade</button>
+                    </div>
+
+                    <div class="tariff-card king">
+                        <div class="tariff-badge gold">UNLIMITED</div>
+                        <h3 class="tariff-name gradient-text-gold" id="t4-name">ULTIMATE KING</h3>
+                        <p class="tariff-desc" id="t4-desc">Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here! This is the ultimate corporate-grade solution for elite content creators and streaming organizations who require maximum performance, unique assets, and absolute creative freedom without boundaries.</p>
+                        <p class="tariff-price price-gold">$100<span>/mo</span></p>
+                        <ul class="tariff-features" id="t4-features">
+                            <li>Absolute unlimited widget creation and parallel operations with maximum server response speeds</li>
+                            <li>Full unhindered access to ALL premium characters, special variants, and hidden legendary fonts</li>
+                            <li>Exclusive animated voice packs included completely for free to shock and entertain your audience</li>
+                            <li>Max FPS mode for hyper-smooth web animations and fluid widget rendering directly inside OBS Studio</li>
+                            <li>Priority VIP support 24/7 with a dedicated personal account manager to solve any technical issues instantly</li>
+                        </ul>
+                        <button class="btn-action king-btn" id="t4-btn">Become KING</button>
+                    </div>
+
                 </div>
+            </section>
 
-                <div class="tariff-card pro">
-                    <div class="tariff-badge purple">POPULAR</div>
-                    <h3 class="tariff-name gradient-text-purple" id="t2-name">MEDIUM PRO</h3>
-                    <p class="tariff-desc" id="t2-desc">The choice of active streamers. Complete audience immersion without watermarks and with neon fonts! This tier offers deeper customization tools, allowing you to establish a strong visual bond with your chat, launch multi-layered interactive alerts, and elevate your production value to professional streaming standards.</p>
-                    <p class="tariff-price price-purple">$30<span>/mo</span></p>
-                    <ul class="tariff-features" id="t2-features">
-                        <li>Up to 10 simultaneously running widgets to handle sub goals, chat alerts, and active alerts at once</li>
-                        <li>Complete removal of Beast Omni watermark from all overlays to keep your stream brand 100% clean</li>
-                        <li>Unrestricted access to the starter collection of characters, complete with smooth animations</li>
-                        <li>5 premium glowing neon fonts of your choice to perfectly match your channel's unique aesthetic</li>
-                        <li>Extended limit: 15,000 processed views per month, ideal for channels with active, growing communities</li>
-                    </ul>
-                    <button class="btn-action active-btn" id="t2-btn">Buy PRO</button>
+            <section class="section-block info-card">
+                <h2 class="section-title" id="shop-info-title">In-App Store</h2>
+                <p class="block-text" id="shop-info-desc">Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.</p>
+            </section>
+
+            <section class="section-block payment-card">
+                <h2 class="section-title" id="payment-title">Convenient and Fast Payments</h2>
+                <p class="block-text" id="payment-desc">We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.</p>
+                <div class="payment-icons">
+                    <span class="pay-badge">⭐ Telegram Stars</span>
+                    <span class="pay-badge crypto">💎 TG Wallet / Crypto</span>
                 </div>
+            </section>
 
-                <div class="tariff-card advanced">
-                    <div class="tariff-badge orange">EXTENDED</div>
-                    <h3 class="tariff-name gradient-text-orange" id="t3-name">ADVANCED OMNI</h3>
-                    <p class="tariff-desc" id="t3-desc">Hardcore creator level. Premium game and anime characters that make your stream unforgettable! Unlock state-of-the-art interactive systems, complex triggering conditions, and elite-tier design features that completely redefine how your live chat influences your stream overlay in real-time broadcasts.</p>
-                    <p class="tariff-price price-orange">$50<span>/mo</span></p>
-                    <ul class="tariff-features" id="t3-features">
-                        <li>Extended functionality, higher API priority, and massively increased volume limits for power users</li>
-                        <li>Up to 25 simultaneously running widgets, allowing you to craft a completely unique custom interface</li>
-                        <li>Access to premium game and anime characters with special event triggers and reactive gestures</li>
-                        <li>10 exclusive cyber-fonts to choose from, guaranteeing high-tech look for alerts and overlays</li>
-                        <li>High limit: 50,000 views per month, engineered for established streamers with heavy daily chat interactions</li>
-                    </ul>
-                    <button class="btn-action btn-orange" id="t3-btn">Upgrade</button>
+            <div class="referral-promo-block">
+                <div class="ref-promo-content">
+                    <div class="ref-icon-glow">🚀</div>
+                    <h3 id="ref-promo-title" class="neon-text">Referral System</h3>
+                    <p id="ref-promo-desc" class="block-text">
+                        Invite your friends to the Beast Omni ecosystem and get exclusive, awesome rewards from every purchase your friends make! Build your own elite network and scale together.
+                    </p>
+                    <button id="ref-promo-btn" class="btn-primary ref-invite-btn">
+                        <span>👤 Invite Friend</span>
+                    </button>
                 </div>
-
-                <div class="tariff-card king">
-                    <div class="tariff-badge gold">UNLIMITED</div>
-                    <h3 class="tariff-name gradient-text-gold" id="t4-name">ULTIMATE KING</h3>
-                    <p class="tariff-desc" id="t4-desc">Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here! This is the ultimate corporate-grade solution for elite content creators and streaming organizations who require maximum performance, unique assets, and absolute creative freedom without boundaries.</p>
-                    <p class="tariff-price price-gold">$100<span>/mo</span></p>
-                    <ul class="tariff-features" id="t4-features">
-                        <li>Absolute unlimited widget creation and parallel operations with maximum server response speeds</li>
-                        <li>Full unhindered access to ALL premium characters, special variants, and hidden legendary fonts</li>
-                        <li>Exclusive animated voice packs included completely for free to shock and entertain your audience</li>
-                        <li>Max FPS mode for hyper-smooth web animations and fluid widget rendering directly inside OBS Studio</li>
-                        <li>Priority VIP support 24/7 with a dedicated personal account manager to solve any technical issues instantly</li>
-                    </ul>
-                    <button class="btn-action king-btn" id="t4-btn">Become KING</button>
-                </div>
-
             </div>
-        </section>
 
-        <section class="section-block info-card">
-            <h2 class="section-title" id="shop-info-title">In-App Store</h2>
-            <p class="block-text" id="shop-info-desc">Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.</p>
-        </section>
+            <section class="section-block security-card">
+                <h2 class="section-title" id="security-title">Enterprise-Grade Security</h2>
+                <div class="security-grid" id="security-features-container">
+                    
+                    <div class="security-item">
+                        <h4>🔒 AES-256 Encryption</h4>
+                        <p>All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side using the military-grade AES-256 protocol. This prevents data leaks and ensures that no malicious third party can ever gain access to your stream keys, sensitive internal configurations, or private user credentials under any circumstances.</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <h4>🛡️ Telegram Sandbox</h4>
+                        <p>Authorization is strictly managed through official Telegram WebApp cryptohash verification structures. Your personal data is fully safe because our system operates in a complete sandbox environment, preventing unauthorized sessions, token spoofing, or credential sniffing, making login attempts 100% ironclad and authenticated.</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <h4>💎 Secure Payments</h4>
+                        <p>We never store credit card numbers, banking details, or sensitive financial logs on our databases. All incoming transactions go through the official Telegram Stars engine or heavily secured non-custodial crypto networks, providing a decentralized, audited, and completely secure processing pipe for absolute peace of mind.</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <h4>⚡ Zero Vulnerability</h4>
+                        <p>Widget source code is completely sandboxed inside the OBS Browser Source architecture. This strict isolation ensures zero performance drops, zero background telemetry tracking, and total protection against malicious cross-site scripting or malware injection, keeping your local gaming computer running at peak FPS capacity.</p>
+                    </div>
 
-        <section class="section-block payment-card">
-            <h2 class="section-title" id="payment-title">Convenient and Fast Payments</h2>
-            <p class="block-text" id="payment-desc">We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.</p>
-            <div class="payment-icons">
-                <span class="pay-badge">⭐ Telegram Stars</span>
-                <span class="pay-badge crypto">💎 TG Wallet / Crypto</span>
-            </div>
-        </section>
-
-<div class="referral-promo-block">
-    <div class="ref-promo-content">
-        <div class="ref-icon-glow">🚀</div>
-        <h3 id="ref-promo-title" class="neon-text">Referral System</h3>
-        <p id="ref-promo-desc" class="block-text">
-            Invite your friends to the Beast Omni ecosystem and get exclusive, awesome rewards from every purchase your friends make! Build your own elite network and scale together.
-        </p>
-        <button id="ref-promo-btn" class="btn-primary ref-invite-btn">
-            <span>👤 Invite Friend</span>
-        </button>
-    </div>
-</div>
-        <section class="section-block security-card">
-            <h2 class="section-title" id="security-title">Enterprise-Grade Security</h2>
-            <div class="security-grid" id="security-features-container">
-                
-                <div class="security-item">
-                    <h4>🔒 AES-256 Encryption</h4>
-                    <p>All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side using the military-grade AES-256 protocol. This prevents data leaks and ensures that no malicious third party can ever gain access to your stream keys, sensitive internal configurations, or private user credentials under any circumstances.</p>
                 </div>
-                
-                <div class="security-item">
-                    <h4>🛡️ Telegram Sandbox</h4>
-                    <p>Authorization is strictly managed through official Telegram WebApp cryptohash verification structures. Your personal data is fully safe because our system operates in a complete sandbox environment, preventing unauthorized sessions, token spoofing, or credential sniffing, making login attempts 100% ironclad and authenticated.</p>
-                </div>
-                
-                <div class="security-item">
-                    <h4>💎 Secure Payments</h4>
-                    <p>We never store credit card numbers, banking details, or sensitive financial logs on our databases. All incoming transactions go through the official Telegram Stars engine or heavily secured non-custodial crypto networks, providing a decentralized, audited, and completely secure processing pipe for absolute peace of mind.</p>
-                </div>
-                
-                <div class="security-item">
-                    <h4>⚡ Zero Vulnerability</h4>
-                    <p>Widget source code is completely sandboxed inside the OBS Browser Source architecture. This strict isolation ensures zero performance drops, zero background telemetry tracking, and total protection against malicious cross-site scripting or malware injection, keeping your local gaming computer running at peak FPS capacity.</p>
-                </div>
+            </section>
 
-            </div>
-        </section>
+            <footer class="support-footer">
+                <div class="support-content">
+                    <h3 id="support-title">Have any questions?</h3>
+                    <p id="support-desc">Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.</p>
+                    <a href="https://t.me/BeastOmniSupport" target="_blank" class="btn-support">💬 Contact Support</a>
+                </div>
+            </footer>
 
-        <footer class="support-footer">
-            <div class="support-content">
-                <h3 id="support-title">Have any questions?</h3>
-                <p id="support-desc">Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.</p>
-                <a href="https://t.me/BeastOmniSupport" target="_blank" class="btn-support">💬 Contact Support</a>
-            </div>
-        </footer>
+        </div>
+
+        <div id="tab-referral" class="app-tab">
+            <section class="section-block info-card" style="margin-top: 20px;">
+                <h2 class="section-title" style="font-family: 'Unbounded', sans-serif; font-size: 24px; text-shadow: 0 0 10px rgba(199, 125, 255, 0.5);">
+                    Referral System
+                </h2>
+                <p class="block-text" style="color: #a29bfe; margin-top: 15px;">
+                    Окно реферальной системы готово к работе! Пока ты занят главным экраном, тут стоит временный рабочий каркас. Скоро мы выведем сюда твои ссылки, счётчик друзей и баланс!
+                </p>
+            </section>
+        </div>
+
+        <div id="tab-create" class="app-tab">
+            <section class="section-block info-card" style="margin-top: 20px;">
+                <h2 class="section-title">Beast Studio</h2>
+                <p class="block-text" style="color: #a29bfe; margin-top: 15px;">
+                    Окно создания интерактивных персонажей и кастомизации экосистемы.
+                </p>
+            </section>
+        </div>
+
+        <div id="tab-widget" class="app-tab">
+            <section class="section-block info-card" style="margin-top: 20px;">
+                <h2 class="section-title">Widgets Setup</h2>
+                <p class="block-text" style="color: #a29bfe; margin-top: 15px;">
+                    Здесь будет настройка и генерация ссылок на Browser Source виджеты для OBS Studio.
+                </p>
+            </section>
+        </div>
+
+        <div id="tab-shop" class="app-tab">
+            <section class="section-block info-card" style="margin-top: 20px;">
+                <h2 class="section-title">Beast Market</h2>
+                <p class="block-text" style="color: #a29bfe; margin-top: 15px;">
+                    Внутренний маркетплейс для покупки эксклюзивных шрифтов, паков озвучки и 3D-аватаров.
+                </p>
+            </section>
+        </div>
 
     </main>
 
     <nav class="bottom-navbar">
-        <a href="#" class="nav-item active">
+        <a href="#" id="nav-home" class="nav-item active">
             <span class="nav-icon">🏠</span>
-            <span class="nav-text" id="nav-home">Home</span>
+            <span class="nav-text">Home</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" id="nav-ref" class="nav-item">
             <span class="nav-icon">👥</span>
-            <span class="nav-text" id="nav-ref">Referral</span>
+            <span class="nav-text">Referral</span>
         </a>
-        
-        <a href="#" class="nav-item nav-center-item">
+        <a href="#" id="nav-create" class="nav-item nav-center-item">
             <div class="nav-center-btn">
                 <span class="center-icon">⚡</span>
             </div>
-            <span class="nav-text center-text" id="nav-create">Studio</span>
+            <span class="nav-text center-text">Studio</span>
         </a>
-
-        <a href="#" class="nav-item">
+        <a href="#" id="nav-widget" class="nav-item">
             <span class="nav-icon">⚙️</span>
-            <span class="nav-text" id="nav-widget">Widgets</span>
+            <span class="nav-text">Widgets</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" id="nav-shop" class="nav-item">
             <span class="nav-icon">🛍️</span>
-            <span class="nav-text" id="nav-shop">Shop</span>
+            <span class="nav-text">Shop</span>
         </a>
     </nav>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // Имитация скрытия прелоадера после загрузки
+            const preloader = document.getElementById("app-preloader");
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = "0";
+                    setTimeout(() => {
+                        preloader.style.display = "none";
+                    }, 500);
+                }, 1000);
+            }
+
+            // Карта соответствия Кнопок Меню и Экранов (Tabs)
+            const navTabsMap = {
+                "nav-home": "tab-home",
+                "nav-ref": "tab-referral",
+                "nav-create": "tab-create",
+                "nav-widget": "tab-widget",
+                "nav-shop": "tab-shop"
+            };
+
+            // Переключение вкладок через нижнее меню
+            Object.keys(navTabsMap).forEach(navId => {
+                const navButton = document.getElementById(navId);
+                if (navButton) {
+                    navButton.addEventListener("click", (e) => {
+                        e.preventDefault();
+
+                        // 1. Сбрасываем активный класс у всех кнопок навигации
+                        Object.keys(navTabsMap).forEach(id => {
+                            const btn = document.getElementById(id);
+                            if (btn) btn.classList.remove("active");
+                        });
+                        // Подсвечиваем текущую нажатую кнопку
+                        navButton.classList.add("active");
+
+                        // 2. Прячем все экраны приложений
+                        Object.values(navTabsMap).forEach(tabId => {
+                            const tabElement = document.getElementById(tabId);
+                            if (tabElement) tabElement.classList.remove("active-tab");
+                        });
+                        // Показываем нужный экран
+                        const targetTabId = navTabsMap[navId];
+                        const activeTab = document.getElementById(targetTabId);
+                        if (activeTab) activeTab.classList.add("active-tab");
+                    });
+                }
+            });
+
+            // === ЛОГИКА ПЕРЕХОДА НА ВКЛАДКУ РЕФЕРАЛОВ ПО КЛИКУ НА РАКЕТУ ===
+            const promoBtn = document.getElementById("ref-promo-btn");
+            if (promoBtn) {
+                promoBtn.addEventListener("click", () => {
+                    // Программный клик по кнопке "Referral" в нижнем меню
+                    const refNavButton = document.getElementById("nav-ref");
+                    if (refNavButton) {
+                        refNavButton.click();
+                    }
+                });
+            }
+
+        });
+    </script>
     <script src="script.js?v=1.0.6"></script>
     <script>
 const translations = {
@@ -492,8 +606,4 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
-
-
-
-
- 
+   
