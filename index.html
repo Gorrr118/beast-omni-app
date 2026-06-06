@@ -171,6 +171,16 @@
             <span class="nav-text" id="nav-shop">Shop</span>
         </a>
     </nav>
+    <script>
+    // Жесткий тест прямо внутри HTML
+    document.addEventListener("DOMContentLoaded", () => {
+        const title = document.getElementById("hero-title");
+        if (title) {
+            title.innerText = "ВНУТРЕННИЙ JS РАБОТАЕТ!";
+            title.style.color = "#ff00ff"; // Сделаем его ярко-розовым для верности
+        }
+    });
+</script>
 
     <script src="script.js?v=1.0.6"></script>
 </body>
