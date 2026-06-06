@@ -441,60 +441,76 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-/* Киберпанк дропдаун выбора языка */
+/* ==================== ОБНОВЛЕННЫЙ КИБЕРПАНК ДРОПДАУН ==================== */
 #lang-dropdown {
-    background: rgba(20, 15, 35, 0.6); /* Темный полупрозрачный фон */
-    color: #fff; /* Белый текст */
-    border: 2px solid #9d4edd; /* Фиолетовая неоновая рамка */
-    border-radius: 8px; /* Скругление углов */
-    padding: 6px 12px;
+    background: rgba(20, 15, 35, 0.7); /* Чуть плотнее фон */
+    color: #fff; 
+    border: 2px solid #9d4edd; 
+    border-radius: 10px; 
+    padding: 6px 10px 6px 14px; /* Увеличили отступ слева, чтобы флаг не лип к рамке */
     font-family: 'Inter', sans-serif;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700; /* Делаем текст в селекте жирным */
     cursor: pointer;
     outline: none;
-    backdrop-filter: blur(10px); /* Размытие заднего фона — эффект стекла */
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 0 10px rgba(157, 78, 221, 0.3); /* Легкое фиолетовое свечение */
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 0 12px rgba(157, 78, 221, 0.4); 
     transition: all 0.3s ease;
-    appearance: none; /* Убираем уродливую стандартную стрелку браузера */
+    appearance: none; 
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding-right: 30px; /* Место под кастомную стрелочку */
+    padding-right: 32px; 
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239d4edd' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
     background-repeat: no-repeat;
-    background-position: right 10px center;
+    background-position: right 12px center;
 }
 
-/* Эффект при наведении */
 #lang-dropdown:hover {
     border-color: #c77dff;
-    box-shadow: 0 0 15px rgba(199, 125, 255, 0.6);
+    box-shadow: 0 0 18px rgba(199, 125, 255, 0.7);
     transform: translateY(-1px);
 }
 
-/* Стили для выпадающих опций внутри */
 #lang-dropdown option {
-    background: #140f23; /* Чтобы внутри меню не было белым */
+    background: #140f23; 
     color: #fff;
     font-family: 'Inter', sans-serif;
     padding: 10px;
 }
 
-/* Фикс для заголовков, чтобы русский шрифт был как английский */
-.neon-text, .tariff-name, .section-title {
-    font-family: 'Unbounded', sans-serif !important; /* Принудительно включаем кастомный кибер-шрифт */
-    letter-spacing: -0.03em;
+/* ==================== СУПЕР-ЖИРНЫЕ ШРИФТЫ ДЛЯ РУССКОГО ==================== */
+/* Принудительно ставим самый массивный вес шрифта для всех важных элементов */
+.neon-text, .tariff-name, .section-title, .security-item h4 {
+    font-family: 'Unbounded', sans-serif !important; 
+    font-weight: 900 !important; /* Ультра-жирный стиль (King Size) */
+    letter-spacing: -0.02em;
 }
 
-/* Фикс для анимаций: предотвращаем дерганье карточек при смене языка */
-.tariff-card, .security-item {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, min-height 0.3s ease;
-    min-height: 480px; /* Задай примерно одинаковую минимальную высоту карточкам, чтобы они не прыгали из-за длинного текста */
+/* Делаем обычный текст и описания чуть плотнее, чтобы на русском не казались блеклыми */
+.hero-desc, .tariff-desc, .block-text, .security-item p, .tariff-features li {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600; /* Делаем полужирным весь контент */
+    line-height: 1.5;
+    opacity: 0.95; /* Повышаем читаемость */
+}
+
+/* ==================== ФИКС КАРТОЧЕК (УБИРАЕМ ВЫСТУПЫ) ==================== */
+/* Для тарифов оставляем контроль высоты */
+.tariff-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 460px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-
+/* Для безопасности УБИРАЕМ фиксированную высоту, добавляем аккуратные паддинги */
+.security-item {
+    height: auto !important; /* Отменяем жесткую высоту */
+    min-height: 0 !important; /* Сбрасываем пустые выступы */
+    padding: 24px !important; /* Делаем красивые аккуратные отступы внутри */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Расстояние между заголовком и текстом внутри карточки */
+}
