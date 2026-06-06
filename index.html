@@ -478,7 +478,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+// === ПЕРЕХОД НА ВКЛАДКУ РЕФЕРАЛОВ ПРИ КЛИКЕ НА КНОПКУ ===
+    const promoBtn = document.getElementById("ref-promo-btn");
+    if (promoBtn) {
+        promoBtn.addEventListener("click", () => {
+            // Имитируем клик по кнопке рефералки в нижнем меню
+            const refNavButton = document.getElementById("nav-ref");
+            if (refNavButton) {
+                refNavButton.click();
+            }
+        });
+    }
 </script>
 </body>
 </html>
-      
