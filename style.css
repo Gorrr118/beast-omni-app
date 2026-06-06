@@ -441,4 +441,57 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-    
+/* Киберпанк дропдаун выбора языка */
+#lang-dropdown {
+    background: rgba(20, 15, 35, 0.6); /* Темный полупрозрачный фон */
+    color: #fff; /* Белый текст */
+    border: 2px solid #9d4edd; /* Фиолетовая неоновая рамка */
+    border-radius: 8px; /* Скругление углов */
+    padding: 6px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    backdrop-filter: blur(10px); /* Размытие заднего фона — эффект стекла */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.3); /* Легкое фиолетовое свечение */
+    transition: all 0.3s ease;
+    appearance: none; /* Убираем уродливую стандартную стрелку браузера */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 30px; /* Место под кастомную стрелочку */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239d4edd' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+/* Эффект при наведении */
+#lang-dropdown:hover {
+    border-color: #c77dff;
+    box-shadow: 0 0 15px rgba(199, 125, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+/* Стили для выпадающих опций внутри */
+#lang-dropdown option {
+    background: #140f23; /* Чтобы внутри меню не было белым */
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    padding: 10px;
+}
+
+/* Фикс для заголовков, чтобы русский шрифт был как английский */
+.neon-text, .tariff-name, .section-title {
+    font-family: 'Unbounded', sans-serif !important; /* Принудительно включаем кастомный кибер-шрифт */
+    letter-spacing: -0.03em;
+}
+
+/* Фикс для анимаций: предотвращаем дерганье карточек при смене языка */
+.tariff-card, .security-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, min-height 0.3s ease;
+    min-height: 480px; /* Задай примерно одинаковую минимальную высоту карточкам, чтобы они не прыгали из-за длинного текста */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
