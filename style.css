@@ -738,3 +738,118 @@ body {
 .main-container {
     padding-bottom: 90px !important;
 }
+/* === КИБЕРПАНК ФУТЕР ПОДДЕРЖКИ === */
+.support-footer {
+    margin: 40px 20px 120px 20px;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(20, 20, 28, 0.8), rgba(13, 13, 18, 0.9));
+    border: 1px solid rgba(199, 125, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(199, 125, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Свечение и полоса слева */
+.support-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #c77dff, #6c5ce7);
+}
+
+.support-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.support-footer h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Пульсирующий индикатор Онлайн */
+.support-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46, 213, 115, 0.1);
+    border: 1px solid rgba(46, 213, 115, 0.25);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: #2ed573;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #2ed573;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #2ed573;
+    animation: cyberPulse 2s infinite;
+}
+
+@keyframes cyberPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 213, 115, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(46, 213, 115, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 213, 115, 0); }
+}
+
+.support-footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #a4b0be;
+    margin: 0 0 25px 0;
+}
+
+/* Кнопка с градиентом */
+.btn-support-cyber {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #6c5ce7, #b55fe6);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+.btn-support-cyber:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(181, 95, 230, 0.5);
+    background: linear-gradient(135deg, #786fa6, #c77dff);
+}
+
+
+
+
+    
+.btn-support-cyber:active {
+    transform: translateY(0);
+}
