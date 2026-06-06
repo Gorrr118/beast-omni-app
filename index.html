@@ -10,6 +10,16 @@
 <body>
     <body translate="no">
 
+        <div id="app-preloader">
+    <div class="preloader-content">
+        <h1 class="preloader-logo">BEAST OMNI</h1>
+        <div class="progress-bar-container">
+            <div class="progress-bar-line"></div>
+        </div>
+        <span class="preloader-status">Loading Ecosystem...</span>
+    </div>
+</div>
+
     <header class="global-header">
         <div class="user-box">
             <span class="user-icon">👤</span>
@@ -400,6 +410,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     changeLanguage("en");
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.getElementById("lang-dropdown");
+    // ... твой старый код ...
+    changeLanguage("en");
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.getElementById("lang-dropdown");
+    if (dropdown) {
+        dropdown.value = "en";
+        dropdown.addEventListener("change", (e) => {
+            changeLanguage(e.target.value);
+        });
+    }
+    changeLanguage("en");
+
+    // === ТРИГГЕР ДЛЯ СКРЫТИЯ ПРЕЛОАДЕРА ===
+    setTimeout(() => {
+        const preloader = document.getElementById("app-preloader");
+        if (preloader) {
+            preloader.classList.add("fade-out");
+        }
+    }, 2800); // 2.8 секунды (чуть дольше, чем анимация линии, чтобы юзер успел кайфануть)
+});
+
 </script>
 </body>
 </html>
