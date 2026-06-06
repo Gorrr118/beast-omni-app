@@ -26,7 +26,7 @@
             <span class="username" id="user-greeting">Hello, filatow</span>
         </div>
         <select id="lang-dropdown">
-    <option value="en">🇬🇧 EN</option>
+   <option value="en">🇺🇸 US</option>
     <option value="ru">🇷🇺 RU</option>
 </select>
     </header>
@@ -118,6 +118,18 @@
             </div>
         </section>
 
+<div class="referral-promo-block">
+    <div class="ref-promo-content">
+        <div class="ref-icon-glow">🚀</div>
+        <h3 id="ref-promo-title" class="neon-text">Referral System</h3>
+        <p id="ref-promo-desc" class="block-text">
+            Invite your friends to the Beast Omni ecosystem and get exclusive, awesome rewards from every purchase your friends make! Build your own elite network and scale together.
+        </p>
+        <button id="ref-promo-btn" class="btn-primary ref-invite-btn">
+            <span>👤 Invite Friend</span>
+        </button>
+    </div>
+</div>
         <section class="section-block security-card">
             <h2 class="section-title" id="security-title">Enterprise-Grade Security</h2>
             <div class="security-grid" id="security-features-container">
@@ -233,6 +245,9 @@ const translations = {
         shopDesc: "Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.",
         paymentTitle: "Convenient and Fast Payments",
         paymentDesc: "We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.",
+        refPromoTitle: "Referral System",
+        refPromoDesc: "Invite your friends to the Beast Omni ecosystem and get exclusive, awesome rewards from every purchase your friends make! Build your own elite network and scale together.",
+        refPromoBtn: "👤 Invite Friend",
         securityTitle: "Enterprise-Grade Security",
         securityFeatures: [
             { title: "🔒 AES-256 Encryption", desc: "All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side using the military-grade AES-256 protocol. This prevents data leaks and ensures that no malicious third party can ever gain access to your stream keys, sensitive internal configurations, or private user credentials under any circumstances." },
@@ -297,6 +312,9 @@ const translations = {
         shopDesc: "Кастомизируйте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые будут реагировать на действия зрителей. Уникальные неоновые и готические шрифты выделят ваши уведомления, а живые голоса персонажей, звучащие прямо внизу экрана, заставят аудиторию донатить чаще. Расширяйте свою личную коллекцию ассетов, открывайте сезонные дропы контента и приобретайте редкие эстетические бандлы, которые превратят ваш стримерский оверлей в эксклюзивное произведение интерактивного искусства, гарантируя высокое удержание комьюнити на протяжении долгих марафонов.",
         paymentTitle: "Удобная и быстрая оплата",
         paymentDesc: "Мы ценим ваш комфорт, поэтому интегрировали самые современные и безопасные методы моментальной оплаты. Пополняйте баланс и активируйте тарифы с помощью Telegram Stars прямо внутри приложения или используйте Telegram Wallet (Крипта) для быстрых транзакций по всему миру. Наслаждайтесь безупречной автоматизацией биллинга, мгновенным обновлением баланса и полной прозрачностью каждой финансовой операции без скрысий за конвертацию, что позволит вам эффективно управлять бюджетом из любой точки планеты.",
+        refPromoTitle: "Реферальная Система",
+        refPromoDesc: "Приглашай друзей в экосистему Beast Omni и получай крутые эксклюзивные подарки и проценты с каждой покупки твоего друга! Создай свою элитную сеть и разрывай медиа-пространство вместе с командой.",
+        refPromoBtn: "👤 Пригласить Друга",
         securityTitle: "Безопасность корпоративного уровня",
         securityFeatures: [
             { title: "🔒 Шифрование AES-256", desc: "Все системные токены и интеграции со стримами (OBS, Streamlabs, Twitch) шифруются на стороне сервера с использованием военно-промышленного протокола AES-256. Это полностью предотвращает утечки данных и гарантирует, что ни одна злонамеренная третья сторона ни при каких обстоятельствах не сможет получить доступ к вашим стрим-ключам или приватным конфигурациям." },
@@ -340,6 +358,9 @@ function changeLanguage(lang) {
         "shop-info-desc": data.shopDesc,
         "payment-title": data.paymentTitle,
         "payment-desc": data.paymentDesc,
+        "ref-promo-title": data.refPromoTitle,
+        "ref-promo-desc": data.refPromoDesc,
+        "ref-promo-btn": data.refPromoBtn,
         "security-title": data.securityTitle,
         "support-title": data.supportTitle,
         "support-desc": data.supportDesc,
@@ -401,21 +422,7 @@ function updateSecurityGrid(featuresArray) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const dropdown = document.getElementById("lang-dropdown");
-    if (dropdown) {
-        dropdown.value = "en";
-        dropdown.addEventListener("change", (e) => {
-            changeLanguage(e.target.value);
-        });
-    }
-    changeLanguage("en");
-});
-document.addEventListener("DOMContentLoaded", () => {
-    const dropdown = document.getElementById("lang-dropdown");
-    // ... твой старый код ...
-    changeLanguage("en");
-});
-document.addEventListener("DOMContentLoaded", () => {
+    // 1. Инициализация выбора языка
     const dropdown = document.getElementById("lang-dropdown");
     if (dropdown) {
         dropdown.value = "en";
@@ -425,15 +432,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     changeLanguage("en");
 
-    // === ТРИГГЕР ДЛЯ СКРЫТИЯ ПРЕЛОАДЕРА ===
+    // 2. Скрытие прелоадера после полной загрузки
     setTimeout(() => {
         const preloader = document.getElementById("app-preloader");
         if (preloader) {
             preloader.classList.add("fade-out");
         }
-    }, 2800); // 2.8 секунды (чуть дольше, чем анимация линии, чтобы юзер успел кайфануть)
-});
+    }, 2800);
 
+    // 3. Переключение вкладок нижнего меню
+    const navButtons = {
+        "nav-home": "tab-home",
+        "nav-ref": "tab-referral",
+        "nav-create": "tab-create",
+        "nav-widget": "tab-widget",
+        "nav-shop": "tab-shop"
+    };
+
+    Object.keys(navButtons).forEach(btnId => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                // Убираем активный стиль у кнопок навигации
+                Object.keys(navButtons).forEach(id => {
+                    const b = document.getElementById(id);
+                    if (b) b.classList.remove("active-nav");
+                });
+
+                // Скрываем все страницы
+                Object.values(navButtons).forEach(tabId => {
+                    const tab = document.getElementById(tabId);
+                    if (tab) tab.classList.remove("active");
+                });
+
+                // Подсвечиваем текущую кнопку и показываем страницу
+                btn.classList.add("active-nav");
+                const targetTabId = navButtons[btnId];
+                const targetTab = document.getElementById(targetTabId);
+                if (targetTab) {
+                    targetTab.classList.add("active");
+                }
+            });
+        }
+    });
+});
 </script>
 </body>
 </html>
+      
