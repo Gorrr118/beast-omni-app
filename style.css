@@ -667,4 +667,78 @@ body {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
 }
-     
+/* Фикс нижнего меню */
+.bottom-navbar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 70px !important;
+    background-color: #0d0d12 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    box-sizing: border-box !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+}
+
+.nav-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    color: #747d8c !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    flex: 1 !important;
+    height: 100% !important;
+}
+
+.nav-item .nav-icon {
+    font-size: 20px !important;
+    margin-bottom: 3px !important;
+}
+
+.nav-item.active {
+    color: #c77dff !important;
+}
+
+/* Центральная кнопка Студия (⚡) */
+.nav-center-item {
+    position: relative !important;
+    top: -10px !important;
+    overflow: visible !important;
+}
+
+.nav-center-btn {
+    width: 50px !important;
+    height: 50px !important;
+    background: linear-gradient(135deg, #b55fe6, #6c5ce7) !important;
+    border-radius: 50 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 0 15px rgba(181, 95, 230, 0.6) !important;
+}
+
+.nav-center-btn .center-icon {
+    font-size: 22px !important;
+    color: #ffffff !important;
+}
+
+.nav-center-item .center-text {
+    margin-top: 7px !important;
+}
+
+/* Отступ для контента, чтоб не перекрывало */
+.main-container {
+    padding-bottom: 90px !important;
+}
+
+
+
+      
