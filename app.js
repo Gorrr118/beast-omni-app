@@ -234,3 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     changeLanguage("en");
 });
+
+
+https://web.telegram.org/k/#@ViralVoice_bot
+    
