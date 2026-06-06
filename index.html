@@ -172,7 +172,7 @@
                 <div class="support-content">
                     <h3 id="support-title">Have any questions?</h3>
                     <p id="support-desc">Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.</p>
-                    <a href="https://t.me/BeastOmniSupport" target="_blank" class="btn-support">💬 Contact Support</a>
+                    <a href="https://t.me/BeastOmniSupport" target="_blank" class="btn-support" id="support-btn">💬 Contact Support</a>
                 </div>
             </footer>
 
@@ -413,197 +413,105 @@ const translations = {
         ],
         t3Btn: "Расширить",
         t4Name: "ULTIMATE KING",
-        t4Desc: "Абсолютная власть над эфиром. Безлимит на виджеты, эксклюзивная озвучка и VIP-статус. Ты здесь король! Это ультимативное решение корпоративного уровня для элитных контент-мейкеров и стримерских организаций, которым необходима максимальная производительность, уникальные ассеты и абсолютная творческая свобода без рамок.",
+        t4Desc: "Абсолютная власть над эфиром. Безлимит на виджеты, эксклюзивная озвучка и VIP-статус. Ты здесь король! Это ультимативное решение корпоративного уровня для элитных контент-мейкеров и стримерских организаций, которым необходима максимальная производительность, уникальные ассеты и абсолютная творческая свобода без каких-либо ограничений.",
         t4Features: [
-            "Абсолютный безлимит на создание виджетов и параллельную работу на максимальных скоростях отклика сервера",
-            "Полный беспрепятственный доступ ко ВСЕМ премиальным персонажам, их спецверсиям и секретным легендарным шрифтам",
-            "Эксклюзивные анимированные голосовые паки включены совершенно бесплатно для шока и развлечения вашей аудитории",
-            "Режим Max FPS для гиперплавной веб-анимации и плавной отрисовки виджетов прямо внутри OBS Studio",
-            "Приоритетная VIP-поддержка 24/7 с выделенным персональным менеджером для мгновенного решения любых тех. вопросов"
+            "Абсолютно безлимитное создание виджетов и параллельная работа с максимальной скоростью ответа сервера",
+            "Полный беспрепятственный доступ ко ВСЕМ премиум-персонажам, специальным вариантам и скрытым легендарным шрифтам",
+            "Эксклюзивные анимированные голосовые паки включены совершенно бесплатно, чтобы шокировать и развлекать вашу аудиторию",
+            "Режим максимального FPS для гиперплавной веб-анимации и текучего рендеринга виджетов прямо внутри OBS Studio",
+            "Приоритетная VIP-поддержка 24/7 с выделенным персональным аккаунт-менеджером для мгновенного решения любых технических вопросов"
         ],
-        t4Btn: "Стать KING",
-        shopTitle: "Внутриигровой Магазин",
-        shopDesc: "Кастомизируйте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые будут реагировать на действия зрителей. Уникальные неоновые и готические шрифты выделят ваши уведомления, а живые голоса персонажей, звучащие прямо внизу экрана, заставят аудиторию донатить чаще. Расширяйте свою личную коллекцию ассетов, открывайте сезонные дропы контента и приобретайте редкие эстетические бандлы, которые превратят ваш стримерский оверлей в эксклюзивное произведение интерактивного искусства, гарантируя высокое удержание комьюнити на протяжении долгих марафонов.",
-        paymentTitle: "Удобная и быстрая оплата",
-        paymentDesc: "Мы ценим ваш комфорт, поэтому интегрировали самые современные и безопасные методы моментальной оплаты. Пополняйте баланс и активируйте тарифы с помощью Telegram Stars прямо внутри приложения или используйте Telegram Wallet (Крипта) для быстрых транзакций по всему миру. Наслаждайтесь безупречной автоматизацией биллинга, мгновенным обновлением баланса и полной прозрачностью каждой финансовой операции без скрысий за конвертацию, что позволит вам эффективно управлять бюджетом из любой точки планеты.",
-        refPromoTitle: "Реферальная Система",
-        refPromoDesc: "Приглашай друзей в экосистему Beast Omni и получай крутые эксклюзивные подарки и проценты с каждой покупки твоего друга! Создай свою элитную сеть и разрывай медиа-пространство вместе с командой.",
-        refPromoBtn: "👤 Пригласить Друга",
+        t4Btn: "Стать КОРОЛЕМ",
+        shopTitle: "In-App Store",
+        shopDesc: "Настраивайте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые реагируют на действия зрителей. Уникальные неоновые и готические шрифты подчеркнут ваши оповещения, а живые голоса персонажей внизу экрана будут стимулировать аудиторию донатить чаще. Расширяйте свою коллекцию личных ассетов, открывайте сезонные дропы контента и приобретайте редкие эстетические бандлы, которые превратят ваш стрим-оверлей в эксклюзивное произведение интерактивного искусства, гарантируя, что ваше комьюнити останется вовлеченным и постоянно развлекаемым во время долгих марафонов вещания.",
+        paymentTitle: "Удобные и быстрые платежи",
+        paymentDesc: "Мы ценим ваш комфорт, поэтому интегрировали самые современные и безопасные методы мгновенной оплаты. Пополняйте баланс и активируйте планы с помощью Telegram Stars внутри приложения или используйте Telegram Wallet (Крипта) для быстрых транзакций по всему миру. Наслаждайтесь безупречной автоматизацией биллинга, немедленным обновлением баланса и полной прозрачностью каждой финансовой операции без скрытых комиссий за конвертацию или неожиданных динамических сборов, что позволит вам эффективно управлять бюджетом стрима из любой точки планеты.",
+        refPromoTitle: "Реферальная система",
+        refPromoDesc: "Приглашайте друзей в экосистему Beast Omni и получайте эксклюзивные, крутые награды с каждой покупки, совершенной вашими друзьями! Создайте свою элитную сеть и масштабируйтесь вместе.",
+        refPromoBtn: "👤 Пригласить друга",
         securityTitle: "Безопасность корпоративного уровня",
         securityFeatures: [
-            { title: "🔒 Шифрование AES-256", desc: "Все системные токены и интеграции со стримами (OBS, Streamlabs, Twitch) шифруются на стороне сервера с использованием военно-промышленного протокола AES-256. Это полностью предотвращает утечки данных и гарантирует, что ни одна злонамеренная третья сторона ни при каких обстоятельствах не сможет получить доступ к вашим стрим-ключам или приватным конфигурациям." },
-            { title: "🛡️ Песочница Telegram", desc: "Авторизация строго контролируется официальными структурами проверки криптографического хеша Telegram WebApp. Ваши личные данные находятся в полной безопасности, поскольку наша система работает в изолированной среде 'песочницы', полностью исключая несанкционированные сессии, подмену токенов или перехват данных." },
-            { title: "💎 Безопасные платежи", desc: "Мы никогда не храним номера кредитных карт, банковские реквизиты или конфиденциальные финансовые логи в наших базах данных. Все входящие транзакции проходят через официальный движок Telegram Stars или защищенные некастодиальные криптосети, обеспечивая децентрализованный и проверенный аудит." },
-            { title: "⚡ Нулевая уязвимость", desc: "Исходный код виджетов полностью изолирован внутри архитектуры OBS Browser Source. Эта строгая изоляция гарантирует отсутствие падения производительности вашего ПК, отсутствие фонового сбора телеметрии и абсолютную защиту от вредоносных межсайтовых скриптов или инъекций, сохраняя максимальный FPS." }
+            { title: "🔒 Шифрование AES-256", desc: "Все системные токены и интеграции стримов (OBS, Streamlabs, Twitch) шифруются на стороне сервера с использованием военно-промышленного протокола AES-256. Это предотвращает утечки данных и гарантирует, что никакая злонамеренная третья сторона ни при каких обстоятельствах не сможет получить доступ к вашим ключам стрима, конфиденциальным внутренним конфигурациям или личным учетным данным пользователей." },
+            { title: "🛡️ Песочница Telegram", desc: "Авторизация строго контролируется через официальные структуры проверки криптохэшей Telegram WebApp. Ваши личные данные в полной безопасности, поскольку наша система работает в изолированной среде песочницы, предотвращая несанкционированные сессии, подмену токенов или перехват учетных данных, что делает попытки входа на 100% железными и аутентифицированными." },
+            { title: "💎 Безопасные платежи", desc: "Мы никогда не храним номера кредитных карт, банковские реквизиты или конфиденциальные финансовые журналы в наших базах данных. Все входящие транзакции проходят через официальный движок Telegram Stars или надежно защищенные некастодиальные криптосети, обеспечивая децентрализованный, проверенный и полностью безопасный процессинг для абсолютного спокойствия." },
+            { title: "⚡ Нулевая уязвимость", desc: "Исходный код виджетов полностью изолирован внутри архитектуры OBS Browser Source. Эта строгая изоляция гарантирует нулевое падение производительности, нулевое отслеживание фоновой телеметрии и полную защиту от вредоносного межсайтового скриптинга или инъекций вредоносного ПО, сохраняя работу вашего локального игрового компьютера на пиковой мощности FPS." }
         ],
         supportTitle: "Возникли вопросы?",
-        supportDesc: "Наша команда поддержки готова помочь вам с настройкой OBS или решением любых технических проблем в любое время суток. Столкнулись ли вы со странным багом отрисовки, нужна ли помощь в привязке аккаунта вещания или требуется руководство по интеграции кастомных шрифтов — наши элитные технические эксперты находятся в сети 24/7/365, чтобы ваш стрим работал идеально.",
-        supportBtn: "💬 Написать в поддержку",
+        supportDesc: "Наша команда поддержки готова помочь вам с настройкой OBS или устранением неполадок в любое время суток. Столкнулись ли вы со странным багом рендеринга, нужна помощь в привязке аккаунта стрима или требуется руководство по интеграции кастомных шрифтов — наши элитные технические эксперты находятся онлайн 24/7/365, чтобы ваш эфир работал безупречно и без единой заминки.",
+        supportBtn: "💬 Связаться с поддержкой",
         navHome: "Главная",
-        navRef: "Рефералка",
+        navRef: "Рефералы",
         navCreate: "Студия",
         navWidget: "Виджеты",
         navShop: "Магазин"
     }
 };
 
-function changeLanguage(lang) {
-    const data = translations[lang];
-    if (!data) return;
-
-    const textMappings = {
-        "user-greeting": data.greeting,
-        "hero-title": data.heroTitle,
-        "hero-desc": data.heroDesc,
-        "tariffs-title": data.tariffsTitle,
-        "t1-name": data.t1Name,
-        "t1-desc": data.t1Desc,
-        "t2-name": data.t2Name,
-        "t2-desc": data.t2Desc,
-        "t3-name": data.t3Name,
-        "t3-desc": data.t3Desc,
-        "t4-name": data.t4Name,
-        "t4-desc": data.t4Desc,
-        "t1-btn": data.t1Btn,
-        "t2-btn": data.t2Btn,
-        "t3-btn": data.t3Btn,
-        "t4-btn": data.t4Btn,
-        "shop-info-title": data.shopTitle,
-        "shop-info-desc": data.shopDesc,
-        "payment-title": data.paymentTitle,
-        "payment-desc": data.paymentDesc,
-        "ref-promo-title": data.refPromoTitle,
-        "ref-promo-desc": data.refPromoDesc,
-        "ref-promo-btn": data.refPromoBtn,
-        "security-title": data.securityTitle,
-        "support-title": data.supportTitle,
-        "support-desc": data.supportDesc,
-        "nav-home": data.navHome,
-        "nav-ref": data.navRef,
-        "nav-create": data.navCreate,
-        "nav-widget": data.navWidget,
-        "nav-shop": data.navShop
-    };
-
-    for (const [id, text] of Object.entries(textMappings)) {
-        const el = document.getElementById(id);
-        if (el) el.innerText = text;
-    }
-
-    try { updateList("t1-features", data.t1Features); } catch (e) {}
-    try { updateList("t2-features", data.t2Features); } catch (e) {}
-    try { updateList("t3-features", data.t3Features); } catch (e) {}
-    try { updateList("t4-features", data.t4Features); } catch (e) {}
-
-    try {
-        const supportLink = document.querySelector(".btn-support");
-        if (supportLink) supportLink.innerText = data.supportBtn;
-    } catch (e) {}
-
-    try { updateSecurityGrid(data.securityFeatures); } catch (e) {}
-}
-
-function updateList(elementId, itemsArray) {
-    const ul = document.getElementById(elementId);
-    if (!ul || !itemsArray || !Array.isArray(itemsArray)) return;
-    const listItems = ul.getElementsByTagName("li");
+function applyLanguage(lang) {
+    // Простые текстовые узлы
+    document.getElementById("user-greeting").textContent = translations[lang].greeting;
+    document.getElementById("hero-title").textContent = translations[lang].heroTitle;
+    document.getElementById("hero-desc").textContent = translations[lang].heroDesc;
+    document.getElementById("tariffs-title").textContent = translations[lang].tariffsTitle;
     
-    itemsArray.forEach((item, index) => {
-        if (listItems[index]) {
-            const textNode = Array.from(listItems[index].childNodes).find(node => node.nodeType === Node.TEXT_NODE);
-            if (textNode) {
-                textNode.textContent = item;
-            } else {
-                listItems[index].innerText = item;
-            }
-        }
-    });
-}
-
-function updateSecurityGrid(featuresArray) {
-    const container = document.getElementById("security-features-container");
-    if (!container || !featuresArray || !Array.isArray(featuresArray)) return;
-    const cards = container.getElementsByClassName("security-item");
+    // Тариф 1
+    document.getElementById("t1-name").textContent = translations[lang].t1Name;
+    document.getElementById("t1-desc").textContent = translations[lang].t1Desc;
+    document.getElementById("t1-btn").textContent = translations[lang].t1Btn;
+    document.getElementById("t1-features").innerHTML = translations[lang].t1Features.map(text => `<li>${text}</li>`).join('');
     
-    featuresArray.forEach((item, index) => {
-        if (cards[index]) {
-            const h4 = cards[index].getElementsByTagName("h4")[0];
-            const p = cards[index].getElementsByTagName("p")[0];
-            if (h4) h4.innerText = item.title;
-            if (p) p.innerText = item.desc;
-        }
-    });
+    // Тариф 2
+    document.getElementById("t2-name").textContent = translations[lang].t2Name;
+    document.getElementById("t2-desc").textContent = translations[lang].t2Desc;
+    document.getElementById("t2-btn").textContent = translations[lang].t2Btn;
+    document.getElementById("t2-features").innerHTML = translations[lang].t2Features.map(text => `<li>${text}</li>`).join('');
+    
+    // Тариф 3
+    document.getElementById("t3-name").textContent = translations[lang].t3Name;
+    document.getElementById("t3-desc").textContent = translations[lang].t3Desc;
+    document.getElementById("t3-btn").textContent = translations[lang].t3Btn;
+    document.getElementById("t3-features").innerHTML = translations[lang].t3Features.map(text => `<li>${text}</li>`).join('');
+    
+    // Тариф 4
+    document.getElementById("t4-name").textContent = translations[lang].t4Name;
+    document.getElementById("t4-desc").textContent = translations[lang].t4Desc;
+    document.getElementById("t4-btn").textContent = translations[lang].t4Btn;
+    document.getElementById("t4-features").innerHTML = translations[lang].t4Features.map(text => `<li>${text}</li>`).join('');
+    
+    // Блоки информации
+    document.getElementById("shop-info-title").textContent = translations[lang].shopTitle;
+    document.getElementById("shop-info-desc").textContent = translations[lang].shopDesc;
+    document.getElementById("payment-title").textContent = translations[lang].paymentTitle;
+    document.getElementById("payment-desc").textContent = translations[lang].paymentDesc;
+    
+    // Реферальный промо-блок
+    document.getElementById("ref-promo-title").textContent = translations[lang].refPromoTitle;
+    document.getElementById("ref-promo-desc").textContent = translations[lang].refPromoDesc;
+    document.getElementById("ref-promo-btn").innerHTML = `<span>${translations[lang].refPromoBtn}</span>`;
+    
+    // Блок безопасности (Перерисовывается массивом без поломки верстки)
+    document.getElementById("security-title").textContent = translations[lang].securityTitle;
+    document.getElementById("security-features-container").innerHTML = translations[lang].securityFeatures
+        .map(f => `<div class="security-item"><h4>${f.title}</h4><p>${f.desc}</p></div>`)
+        .join('');
+        
+    // Футер поддержки
+    document.getElementById("support-title").textContent = translations[lang].supportTitle;
+    document.getElementById("support-desc").textContent = translations[lang].supportDesc;
+    document.getElementById("support-btn").textContent = translations[lang].supportBtn;
+    
+    // Нижнее меню навигации (Замена текстов внутри span элементов)
+    document.querySelector("#nav-home .nav-text").textContent = translations[lang].navHome;
+    document.querySelector("#nav-ref .nav-text").textContent = translations[lang].navRef;
+    document.querySelector("#nav-create .nav-text").textContent = translations[lang].navCreate;
+    document.querySelector("#nav-widget .nav-text").textContent = translations[lang].navWidget;
+    document.querySelector("#nav-shop .nav-text").textContent = translations[lang].navShop;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Инициализация выбора языка
-    const dropdown = document.getElementById("lang-dropdown");
-    if (dropdown) {
-        dropdown.value = "en";
-        dropdown.addEventListener("change", (e) => {
-            changeLanguage(e.target.value);
-        });
-    }
-    changeLanguage("en");
-
-    // 2. Скрытие прелоадера после полной загрузки
-    setTimeout(() => {
-        const preloader = document.getElementById("app-preloader");
-        if (preloader) {
-            preloader.classList.add("fade-out");
-        }
-    }, 2800);
-
-    // 3. Переключение вкладок нижнего меню
-    const navButtons = {
-        "nav-home": "tab-home",
-        "nav-ref": "tab-referral",
-        "nav-create": "tab-create",
-        "nav-widget": "tab-widget",
-        "nav-shop": "tab-shop"
-    };
-
-    Object.keys(navButtons).forEach(btnId => {
-        const btn = document.getElementById(btnId);
-        if (btn) {
-            btn.addEventListener("click", (e) => {
-                e.preventDefault();
-
-                // Убираем активный стиль у кнопок навигации
-                Object.keys(navButtons).forEach(id => {
-                    const b = document.getElementById(id);
-                    if (b) b.classList.remove("active-nav");
-                });
-
-                // Скрываем все страницы
-                Object.values(navButtons).forEach(tabId => {
-                    const tab = document.getElementById(tabId);
-                    if (tab) tab.classList.remove("active");
-                });
-
-                // Подсвечиваем текущую кнопку и показываем страницу
-                btn.classList.add("active-nav");
-                const targetTabId = navButtons[btnId];
-                const targetTab = document.getElementById(targetTabId);
-                if (targetTab) {
-                    targetTab.classList.add("active");
-                }
-            });
-        }
-    });
+// Вешаем обработчик на переключатель языков
+document.getElementById("lang-dropdown").addEventListener("change", (e) => {
+    applyLanguage(e.target.value);
 });
-// === ПЕРЕХОД НА ВКЛАДКУ РЕФЕРАЛОВ ПРИ КЛИКЕ НА КНОПКУ ===
-    const promoBtn = document.getElementById("ref-promo-btn");
-    if (promoBtn) {
-        promoBtn.addEventListener("click", () => {
-            // Имитируем клик по кнопке рефералки в нижнем меню
-            const refNavButton = document.getElementById("nav-ref");
-            if (refNavButton) {
-                refNavButton.click();
-            }
-        });
-    }
-</script>
+    </script>
 </body>
 </html>
-   
