@@ -530,10 +530,11 @@ const debugDiv = document.getElementById('audio-debug');
         });
     }
    document.addEventListener('click', () => {
+       document.addEventListener('click', () => {
         const music = document.getElementById('beast-bg-audio');
         
         if (music && music.paused) {
-            music.volume = 0.02; // Сделал еще потише — всего 2% громкости!
+            music.volume = 0.01; // Ультра-тихо! Всего 1% громкости, чисто для фона
             music.play().catch(err => console.log("Блокировка звука:", err));
         }
     }, { once: true });
