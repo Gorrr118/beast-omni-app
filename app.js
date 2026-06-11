@@ -61,7 +61,11 @@ const translations = {
         navRef: "Referral",
         navCreate: "Studio",
         navWidget: "Widgets",
-        navShop: "Shop"
+        navShop: "Shop",
+        footerLinkPrivacy: "Privacy & Cookies",
+        footerLinkTerms: "Terms of Use",
+        footerLinkAds: "About Ads",
+        footerCopyrightText: "© 2026 Beast Omni. All rights reserved."
     },
     ru: {
         greeting: "Привет, filatow",
@@ -125,10 +129,13 @@ const translations = {
         navRef: "Рефералка",
         navCreate: "Студия",
         navWidget: "Виджеты",
-        navShop: "Магазин"
+        navShop: "Магазин",
+        footerLinkPrivacy: "Конфиденциальность и файлы cookie",
+        footerLinkTerms: "Условия использования",
+        footerLinkAds: "О нашей рекламе",
+        footerCopyrightText: "© 2026 Beast Omni. Все права защищены."
     }
 };
-
 function changeLanguage(lang) {
     const data = translations[lang];
     if (!data) return;
@@ -234,7 +241,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     changeLanguage("en");
 });
-
-
-https://web.telegram.org/k/#@ViralVoice_bot
-    
