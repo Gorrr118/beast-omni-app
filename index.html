@@ -322,9 +322,6 @@
             }
 
         });
-    </script>
-    <script src="script.js?v=1.0.6"></script>
-    <script>
 const translations = {
     en: {
         greeting: "Hello, filatow",
@@ -532,38 +529,20 @@ const debugDiv = document.getElementById('audio-debug');
             debugDiv.innerHTML = `❌ <b>ОШИБКА 404 (Файл не найден):</b><br>Браузер обыскал всё, но не нашёл файл.<br><br><b>Он искал именно тут:</b><br><span style="color:#ffaa00">${music.currentSrc}</span><br><br>Проверь, совпадает ли это имя до единой буквы с файлом в папке!`;
         });
     }
-
-    // 2. Ловим ошибку при клике
     document.addEventListener('click', () => {
-        if (!music) {
-            debugDiv.innerText = "❌ Ошибка: Тег <audio> с id='beast-bg-audio' не найден в HTML!";
-            return;
-        }
+        const music = document.getElementById('beast-bg-audio');
         
-        if (music.paused) {
-            music.volume = 0.05; // Твоя тихая фоновая громкость (5%)
-            
-            music.play()
-                .then(() => {
-                    debugDiv.style.color = "#00ffcc";
-                    debugDiv.style.background = "#112211";
-                    debugDiv.style.borderColor = "#00ffcc";
-                    debugDiv.innerHTML = `✅ <b>УРА! ЗАИГРАЛО!</b><br>Файл успешно подтянулся из:<br>${music.currentSrc}`;
-                })
-                .catch(err => {
-                    // Если файл на месте, но браузер взбрыкнул
-                    if (debugDiv.innerHTML.indexOf('404') === -1) {
-                        debugDiv.innerHTML = `❌ <b>Ошибка воспроизведения:</b> ${err.message}<br>Путь к файлу: ${music.currentSrc}`;
-                    }
-                });
+        if (music && music.paused) {
+            music.volume = 0.05; // Твоя тихая громкость 5%
+            music.play().catch(err => console.log("Блокировка звука:", err));
         }
     }, { once: true });
+
     </script>
-<audio id="beast-bg-audio" src="bg.mp3" loop></audio>
+
+<audio id="beast-bg-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
 
 <div id="audio-debug" style="color: #ff3333; background: #221111; padding: 15px; border-radius: 8px; margin-top: 20px; font-family: monospace; font-size: 13px; text-align: left; border: 1px solid #ff5555; max-width: 100%; word-break: break-all;">
     ℹ️ Статус: Жду клика по экрану для теста...
 </div>
 </html>
-   
-     
