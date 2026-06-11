@@ -527,16 +527,19 @@ function applyLanguage(lang) {
 document.getElementById("lang-dropdown").addEventListener("change", (e) => {
     applyLanguage(e.target.value);
 });
-    // Слушаем первый клик по экрану, чтобы обойти блокировку звука в браузерах
     document.addEventListener('click', () => {
         const music = document.getElementById('beast-bg-audio');
         
         if (music && music.paused) {
-            music.volume = 0.05; // Громкость на 5% (чтобы тихо шуршало на фоне)
-            music.play().catch(err => console.log("Браузер заблокировал автоплей:", err));
+            // Ставим 0.15 (15% громкости), чтобы звук точно было слышно при тесте
+            music.volume = 0.15; 
+            
+            music.play()
+                .then(() => console.log("Твой лоу-фай наконец-то играет!"))
+                .catch(err => console.log("Блокировка звука:", err));
         }
-    }, { once: true }); // { once: true } — код сработает только один раз при первом тапе
+    }, { once: true });
     </script>
-<audio id="beast-bg-audio" src="bg_music.mp3.mp3" loop></audio></body>
+<audio id="beast-bg-audio" src="Chill Lofi Mix [chill lo-fi hip hop beats] - Settle.mp3" loop></audio></body>
 </html>
    
