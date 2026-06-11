@@ -529,18 +529,18 @@ const debugDiv = document.getElementById('audio-debug');
             debugDiv.innerHTML = `❌ <b>ОШИБКА 404 (Файл не найден):</b><br>Браузер обыскал всё, но не нашёл файл.<br><br><b>Он искал именно тут:</b><br><span style="color:#ffaa00">${music.currentSrc}</span><br><br>Проверь, совпадает ли это имя до единой буквы с файлом в папке!`;
         });
     }
-    document.addEventListener('click', () => {
+   document.addEventListener('click', () => {
         const music = document.getElementById('beast-bg-audio');
         
         if (music && music.paused) {
-            music.volume = 0.05; // Твоя тихая громкость 5%
+            music.volume = 0.02; // Сделал еще потише — всего 2% громкости!
             music.play().catch(err => console.log("Блокировка звука:", err));
         }
     }, { once: true });
 
     </script>
 
-<audio id="beast-bg-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+<audio id="beast-bg-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" loop></audio>
 
 <div id="audio-debug" style="color: #ff3333; background: #221111; padding: 15px; border-radius: 8px; margin-top: 20px; font-family: monospace; font-size: 13px; text-align: left; border: 1px solid #ff5555; max-width: 100%; word-break: break-all;">
     ℹ️ Статус: Жду клика по экрану для теста...
