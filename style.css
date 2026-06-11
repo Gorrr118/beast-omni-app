@@ -846,10 +846,46 @@ body {
     background: linear-gradient(135deg, #786fa6, #c77dff);
 }
 
-
-
-
-    
 .btn-support-cyber:active {
     transform: translateY(0);
+}
+/* === МИНИ-ФУТЕР (ССЫЛКИ И КОПИРАЙТ) === */
+.site-sub-footer {
+    /* Отступ снизу 140px, чтобы контент не перекрывался прижатым к низу меню */
+    margin: 0 20px 140px 20px; 
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+}
+
+/* Блок со ссылками */
+.sub-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Если экран слишком узкий, ссылки перенесутся на новую строку */
+}
+
+.sub-footer-links a {
+    color: #747d8c;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+/* Легкая подсветка при нажатии */
+.sub-footer-links a:hover, 
+.sub-footer-links a:active {
+    color: #c77dff; 
+}
+
+/* Копирайт */
+.sub-footer-copyright {
+    color: #57606f;
+    text-align: center;
+    letter-spacing: 0.3px;
 }
