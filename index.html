@@ -523,23 +523,47 @@ function applyLanguage(lang) {
     document.querySelector("#nav-shop .nav-text").textContent = translations[lang].navShop;
 }
 
-// Вешаем обработчик на переключатель языков
-document.getElementById("lang-dropdown").addEventListener("change", (e) => {
-    applyLanguage(e.target.value);
-});
+const debugDiv = document.getElementById('audio-debug');
+    const music = document.getElementById('beast-bg-audio');
+
+    // 1. Ловим ошибку если сам файл не загрузился (404)
+    if (music) {
+        music.addEventListener('error', () => {
+            debugDiv.innerHTML = `❌ <b>ОШИБКА 404 (Файл не найден):</b><br>Браузер обыскал всё, но не нашёл файл.<br><br><b>Он искал именно тут:</b><br><span style="color:#ffaa00">${music.currentSrc}</span><br><br>Проверь, совпадает ли это имя до единой буквы с файлом в папке!`;
+        });
+    }
+
+    // 2. Ловим ошибку при клике
     document.addEventListener('click', () => {
-        const music = document.getElementById('beast-bg-audio');
+        if (!music) {
+            debugDiv.innerText = "❌ Ошибка: Тег <audio> с id='beast-bg-audio' не найден в HTML!";
+            return;
+        }
         
-        if (music && music.paused) {
-            // Ставим 0.15 (15% громкости), чтобы звук точно было слышно при тесте
-            music.volume = 0.15; 
+        if (music.paused) {
+            music.volume = 0.05; // Твоя тихая фоновая громкость (5%)
             
             music.play()
-                .then(() => console.log("Твой лоу-фай наконец-то играет!"))
-                .catch(err => console.log("Блокировка звука:", err));
+                .then(() => {
+                    debugDiv.style.color = "#00ffcc";
+                    debugDiv.style.background = "#112211";
+                    debugDiv.style.borderColor = "#00ffcc";
+                    debugDiv.innerHTML = `✅ <b>УРА! ЗАИГРАЛО!</b><br>Файл успешно подтянулся из:<br>${music.currentSrc}`;
+                })
+                .catch(err => {
+                    // Если файл на месте, но браузер взбрыкнул
+                    if (debugDiv.innerHTML.indexOf('404') === -1) {
+                        debugDiv.innerHTML = `❌ <b>Ошибка воспроизведения:</b> ${err.message}<br>Путь к файлу: ${music.currentSrc}`;
+                    }
+                });
         }
     }, { once: true });
     </script>
-<audio id="beast-bg-audio" src="bg.mp3.mp3"></audio></body>
+<audio id="beast-bg-audio" src="bg.mp3" loop></audio>
+
+<div id="audio-debug" style="color: #ff3333; background: #221111; padding: 15px; border-radius: 8px; margin-top: 20px; font-family: monospace; font-size: 13px; text-align: left; border: 1px solid #ff5555; max-width: 100%; word-break: break-all;">
+    ℹ️ Статус: Жду клика по экрану для теста...
+</div>
 </html>
    
+     
