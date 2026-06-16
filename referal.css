@@ -1,72 +1,130 @@
-/* Можешь импортировать сюда стили главного экрана, чтобы шапка и нижний бар выглядели одинаково */
-/* @import url("main_style.css"); */
+/* Базовые настройки стиля как у BEAST OMNI */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
 
-.ref-container {
+body {
+    background-color: #09090b; /* Настоящий глубокий темный цвет */
+    color: #ffffff;
+    min-height: 100vh;
     padding: 20px;
-    margin-top: 60px; /* Отступ от верхней панели */
-    margin-bottom: 80px; /* Отступ от нижнего бара, чтобы контент не перекрывался */
+    padding-top: 80px;  /* Чтобы контент не залезал под верхний бар */
+    padding-bottom: 110px; /* Чтобы контент не залезал под нижнее меню */
+}
+
+/* ================= СТИЛИ ВЕРХНЕЙ ПАНЕЛИ ================= */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background-color: #09090b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.user-info {
+    background: #18181b;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.lang-dropdown {
+    background: #1c132e;
+    border: 1px solid #4c2885;
+    padding: 6px 14px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* ================= КОНТЕНТ РЕФЕРАЛКИ ================= */
+.main-content {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.ref-header {
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .ref-header h1 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    background: linear-gradient(45deg, #00f2fe, #4facfe);
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #b066ff, #ff66cc); /* Тот самый фиолетово-розовый градиент */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .ref-header p {
-    color: #788296;
+    color: #a1a1aa;
     font-size: 14px;
-    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
+/* Карточки */
 .bonus-cards {
     display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
 .card {
     flex: 1;
-    background: #1e2330;
-    border: 1px solid #2d3548;
-    border-radius: 12px;
-    padding: 15px;
+    background: #111113;
+    border: 1px solid #27272a;
+    border-radius: 16px;
+    padding: 20px 15px;
+    text-align: center;
 }
 
-.card .title {
-    font-size: 11px;
-    color: #788296;
+.card-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 12px;
+    color: #71717a;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
     margin-bottom: 5px;
 }
 
-.card .value {
-    font-size: 16px;
-    font-weight: bold;
-    color: #00f2fe;
+.card-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #22d3ee; /* Красивый голубой неон */
 }
 
+/* Поле ввода ссылки */
 .link-section {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.link-section label {
-    display: block;
-    font-size: 11px;
-    color: #788296;
-    margin-bottom: 6px;
+    margin-bottom: 25px;
 }
 
 .input-group {
     display: flex;
-    background: #1e2330;
-    border: 1px solid #2d3548;
-    border-radius: 8px;
+    background: #111113;
+    border: 1px solid #27272a;
+    border-radius: 14px;
     overflow: hidden;
+    padding: 4px;
 }
 
 .input-group input {
@@ -75,24 +133,97 @@
     border: none;
     padding: 12px;
     color: #ffffff;
+    font-size: 14px;
     outline: none;
 }
 
 .copy-btn {
-    background: linear-gradient(45deg, #00f2fe, #4facfe);
+    background: linear-gradient(45deg, #38bdf8, #3b82f6);
     border: none;
-    color: #0d0f14;
-    padding: 0 15px;
-    font-weight: bold;
+    color: #ffffff;
+    padding: 0 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
+    transition: opacity 0.2s;
 }
 
+/* Статистика */
 .ref-stats {
     display: flex;
     justify-content: space-between;
-    background: #11151d;
-    border-radius: 8px;
-    padding: 12px;
+    background: #111113;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    padding: 16px 20px;
     font-size: 14px;
+    color: #a1a1aa;
 }
 
+.stat-item span:last-child {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ================= СТИЛИ НИЖНЕГО БАРА (КОПИЯ МАКЕТА) ================= */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 85px;
+    background-color: #09090b;
+    border-top: 1px solid #18181b;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 10px; /* Сдвиг под системную полоску телефона */
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #71717a;
+    font-size: 11px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.nav-item.active {
+    color: #a855f7; /* Подсветка активной вкладки фиолетовым */
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+    opacity: 0.6;
+}
+
+.nav-item.active .nav-icon {
+    opacity: 1;
+}
+
+/* Большая центральная кнопка Studio */
+.studio-btn-wrapper {
+    position: relative;
+    top: -15px; /* Выносим кнопку чуть выше уровня меню */
+}
+
+.studio-btn {
+    width: 54px;
+    height: 54px;
+    background: linear-gradient(135deg, #c084fc, #a855f7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    margin-bottom: 3px;
+}
