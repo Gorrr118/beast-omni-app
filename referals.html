@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реферальная Программа | SaaS</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="referal.css">
+</head>
+<body>
+
+    <div class="ref-container">
+        <button class="back-btn" onclick="window.location.href='index.html'" data-lang="back">⬅ Назад</button>
+
+        <div class="ref-header">
+            <h1 data-lang="title">Приглашай друзей — зарабатывай 15%!</h1>
+            <p data-lang="desc">Поделись своей уникальной ссылкой с другими стримерами или ютуберами. Получай проценты с каждой их первой покупки прямо на баланс!</p>
+        </div>
+
+        <div class="bonus-cards">
+            <div class="card">
+                <div class="icon">💰</div>
+                <div class="title" data-lang="your_bonus">Твой Бонус</div>
+                <div class="value" data-lang="your_bonus_val">15% от оплаты</div>
+            </div>
+            <div class="card">
+                <div class="icon">🎁</div>
+                <div class="title" data-lang="friend_bonus">Бонус Другу</div>
+                <div class="value" data-lang="friend_bonus_val">+5 дней Premium</div>
+            </div>
+        </div>
+
+        <div class="link-section">
+            <label for="ref-url" data-lang="link_label">ВАША РЕФЕРАЛЬНАЯ ССЫЛКА</label>
+            <div class="input-group">
+                <input type="text" id="ref-url" value="https://t.me/bot?start=loading" readonly>
+                <button class="copy-btn" id="copy-button" data-lang="copy">Копировать</button>
+            </div>
+        </div>
+
+        <div class="ref-stats">
+            <div class="stat-item"><span data-lang="invited">Приглашено:</span> <span id="friends-count">0</span></div>
+            <div class="stat-item"><span data-lang="earned">Заработано:</span> <span id="earned-count">0 ֏</span></div>
+        </div>
+    </div>
+
+    <script src="referal.js"></script>
+</body>
+</html>
