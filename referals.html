@@ -9,12 +9,14 @@
 </head>
 <body>
 
+    <div class="top-bar">
+        <span class="logo">SaaS Bot</span>
+        <button id="lang-switch-btn">EN/RU</button> 
+    </div>
     <div class="ref-container">
-        <button class="back-btn" onclick="window.location.href='index.html'" data-lang="back">⬅ Назад</button>
-
         <div class="ref-header">
-            <h1 data-lang="title">Приглашай друзей — зарабатывай 15%!</h1>
-            <p data-lang="desc">Поделись своей уникальной ссылкой с другими стримерами или ютуберами. Получай проценты с каждой их первой покупки прямо на баланс!</p>
+            <h1 data-lang="ref_title">Приглашай друзей — зарабатывай 15%!</h1>
+            <p data-lang="ref_desc">Поделись своей уникальной ссылкой с другими стримерами. Получай проценты с каждой их первой покупки!</p>
         </div>
 
         <div class="bonus-cards">
@@ -43,7 +45,10 @@
             <div class="stat-item"><span data-lang="earned">Заработано:</span> <span id="earned-count">0 ֏</span></div>
         </div>
     </div>
-
+    <div class="bottom-nav">
+        <button class="nav-btn" onclick="window.location.href='index.html'">Home</button>
+        <button class="nav-btn active" onclick="window.location.href='referral.html'">Referrals</button>
+    </div>
     <script src="referal.js"></script>
 </body>
 </html>
