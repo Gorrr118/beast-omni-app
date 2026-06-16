@@ -1,36 +1,15 @@
-/* Общие стили для сброса отступов */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* Можешь импортировать сюда стили главного экрана, чтобы шапка и нижний бар выглядели одинаково */
+/* @import url("main_style.css"); */
 
-body {
-    background-color: #0d0f14;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-/* Контейнер окна рефералки */
 .ref-container {
-    background: #161a23;
-    border: 1px solid #262c3a;
-    border-radius: 16px;
-    padding: 30px;
-    width: 100%;
-    max-width: 550px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-top: 60px; /* Отступ от верхней панели */
+    margin-bottom: 80px; /* Отступ от нижнего бара, чтобы контент не перекрывался */
     text-align: center;
 }
 
-/* Заголовок с неоновым градиентом */
 .ref-header h1 {
-    font-size: 24px;
+    font-size: 22px;
     margin-bottom: 10px;
     background: linear-gradient(45deg, #00f2fe, #4facfe);
     -webkit-background-clip: text;
@@ -40,15 +19,13 @@ body {
 .ref-header p {
     color: #788296;
     font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
-/* Флекс-сетка для карточек */
 .bonus-cards {
     display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
 .card {
@@ -57,45 +34,31 @@ body {
     border: 1px solid #2d3548;
     border-radius: 12px;
     padding: 15px;
-    transition: transform 0.2s, border-color 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-2px);
-    border-color: #00f2fe;
-}
-
-.card .icon {
-    font-size: 24px;
-    margin-bottom: 8px;
 }
 
 .card .title {
-    font-size: 12px;
+    font-size: 11px;
     color: #788296;
     text-transform: uppercase;
-    letter-spacing: 1px;
     margin-bottom: 5px;
 }
 
 .card .value {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #00f2fe;
 }
 
-/* Стили поля ввода и ссылки */
 .link-section {
     text-align: left;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .link-section label {
     display: block;
-    font-size: 12px;
+    font-size: 11px;
     color: #788296;
-    margin-bottom: 8px;
-    font-weight: 600;
+    margin-bottom: 6px;
 }
 
 .input-group {
@@ -110,9 +73,8 @@ body {
     flex: 1;
     background: transparent;
     border: none;
-    padding: 12px 15px;
+    padding: 12px;
     color: #ffffff;
-    font-size: 14px;
     outline: none;
 }
 
@@ -120,46 +82,16 @@ body {
     background: linear-gradient(45deg, #00f2fe, #4facfe);
     border: none;
     color: #0d0f14;
-    padding: 0 20px;
+    padding: 0 15px;
     font-weight: bold;
-    font-size: 14px;
     cursor: pointer;
-    transition: background 0.2s, opacity 0.2s;
 }
 
-.copy-btn:hover {
-    opacity: 0.9;
-}
-
-/* Статистика внизу */
 .ref-stats {
     display: flex;
     justify-content: space-between;
     background: #11151d;
     border-radius: 8px;
-    padding: 12px 20px;
+    padding: 12px;
     font-size: 14px;
-    color: #a0aec0;
-}
-
-.stat-item span {
-    color: #ffffff;
-    font-weight: bold;
-}
-.back-btn {
-    background: transparent;
-    border: 1px solid #2d3548;
-    color: #788296;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    float: left; /* Сдвигаем влево */
-    font-size: 12px;
-    transition: all 0.2s;
-    margin-bottom: 15px;
-}
-
-.back-btn:hover {
-    color: #ffffff;
-    border-color: #788296;
 }
