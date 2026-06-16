@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Реферальная Программа | SaaS</title>
+    <title>BEAST OMNI | Referral</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="referal.css">
+    <link rel="stylesheet" href="referral.css">
 </head>
 <body>
 
     <div class="top-bar">
-        <span class="logo">SaaS Bot</span>
-        <button id="lang-switch-btn">EN/RU</button> 
+        <div class="user-info">
+            <span class="user-icon">👤</span>
+            <span class="username">Hello, filatow</span>
+        </div>
+        <div class="lang-dropdown" id="lang-switch-btn">
+            <span class="flag">🇺🇸</span>
+            <span class="lang-text">US</span>
+            <span class="arrow">▼</span>
+        </div>
     </div>
-    <div class="ref-container">
+
+    <div class="main-content">
         <div class="ref-header">
             <h1 data-lang="ref_title">Приглашай друзей — зарабатывай 15%!</h1>
             <p data-lang="ref_desc">Поделись своей уникальной ссылкой с другими стримерами. Получай проценты с каждой их первой покупки!</p>
@@ -21,19 +29,18 @@
 
         <div class="bonus-cards">
             <div class="card">
-                <div class="icon">💰</div>
-                <div class="title" data-lang="your_bonus">Твой Бонус</div>
-                <div class="value" data-lang="your_bonus_val">15% от оплаты</div>
+                <div class="card-icon">💰</div>
+                <div class="card-title" data-lang="your_bonus">Твой Бонус</div>
+                <div class="card-value" data-lang="your_bonus_val">15% от оплаты</div>
             </div>
             <div class="card">
-                <div class="icon">🎁</div>
-                <div class="title" data-lang="friend_bonus">Бонус Другу</div>
-                <div class="value" data-lang="friend_bonus_val">+5 дней Premium</div>
+                <div class="card-icon">🎁</div>
+                <div class="card-title" data-lang="friend_bonus">Бонус Другу</div>
+                <div class="card-value" data-lang="friend_bonus_val">+5 дней Premium</div>
             </div>
         </div>
 
         <div class="link-section">
-            <label for="ref-url" data-lang="link_label">ВАША РЕФЕРАЛЬНАЯ ССЫЛКА</label>
             <div class="input-group">
                 <input type="text" id="ref-url" value="https://t.me/bot?start=loading" readonly>
                 <button class="copy-btn" id="copy-button" data-lang="copy">Копировать</button>
@@ -45,10 +52,30 @@
             <div class="stat-item"><span data-lang="earned">Заработано:</span> <span id="earned-count">0 ֏</span></div>
         </div>
     </div>
+
     <div class="bottom-nav">
-        <button class="nav-btn" onclick="window.location.href='index.html'">Home</button>
-        <button class="nav-btn active" onclick="window.location.href='referral.html'">Referrals</button>
+        <div class="nav-item" onclick="window.location.href='index.html'">
+            <img src="img/home.png" alt="Home" class="nav-icon">
+            <span class="nav-text">Home</span>
+        </div>
+        <div class="nav-item active">
+            <img src="img/referral.png" alt="Referral" class="nav-icon">
+            <span class="nav-text">Referral</span>
+        </div>
+        <div class="nav-item studio-btn-wrapper">
+            <div class="studio-btn">⚡</div>
+            <span class="nav-text">Studio</span>
+        </div>
+        <div class="nav-item">
+            <img src="img/widgets.png" alt="Widgets" class="nav-icon">
+            <span class="nav-text">Widgets</span>
+        </div>
+        <div class="nav-item">
+            <img src="img/shop.png" alt="Shop" class="nav-icon">
+            <span class="nav-text">Shop</span>
+        </div>
     </div>
-    <script src="referal.js"></script>
+
+    <script src="referral.js"></script>
 </body>
 </html>
