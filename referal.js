@@ -153,3 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Запускаем очистку сразу при инициализации скрипта вкладки
     clearInboundBugs();
 });
+// Ждем полной загрузки всех картинок и стилей
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // Плавное исчезновение, чтобы выглядело дорого
+        preloader.style.transition = 'opacity 0.3s ease';
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 300);
+    }
+});
