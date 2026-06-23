@@ -262,7 +262,7 @@ body {
     font-weight: 700;
 }
 
-/* ================= СТИЛИ НИЖНЕГО БАРА (КОПИЯ МАКЕТА) ================= */
+/* ================= СТИЛИ НИЖНЕГО БАРА (ИСПРАВЛЕНО ПОД ЭМОДЗИ) ================= */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -293,15 +293,28 @@ body {
     color: #a855f7; /* Активная вкладка - фиолетовый неон */
 }
 
-.nav-icon {
-    width: 24px;
-    height: 24px;
+/* Новый класс для плавной работы эмодзи иконок */
+.nav-emoji {
+    font-size: 22px;
     margin-bottom: 5px;
-    opacity: 0.6; /* Неактивные - тусклые */
+    display: inline-block;
+    opacity: 0.6; /* Неактивные — тусклые */
+    transition: opacity 0.2s, transform 0.2s;
 }
 
-.nav-item.active .nav-icon {
-    opacity: 1; /* Активные - яркие */
+.nav-item.active .nav-emoji {
+    opacity: 1; /* Активный эмодзи — яркий */
+    transform: scale(1.05); /* Легкий аккуратный зум */
+}
+
+.nav-text {
+    font-size: 11px;
+    color: #71717a;
+    transition: color 0.2s;
+}
+
+.nav-item.active .nav-text {
+    color: #a855f7;
 }
 
 /* Большая центральная кнопка Studio */
