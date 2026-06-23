@@ -1,25 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const tg = window.Telegram.WebApp;
+// Инициализация Telegram WebApp в самом начале
+const tg = window.Telegram?.WebApp;
+if (tg) {
     tg.ready();
-    tg.expand();
+    tg.expand(); // Раскрываем на весь экран
+}
 
-    // Элементы реферальной страницы
+document.addEventListener('DOMContentLoaded', () => {
+    // Элементы страницы
     const copyButton = document.getElementById('copy-button');
     const refInput = document.getElementById('ref-url');
     const langBtn = document.getElementById('lang-switch-btn'); 
     
-    // Элементы переключателя языка в шапке
     const langFlag = langBtn?.querySelector('.flag');
     const langText = langBtn?.querySelector('.lang-text');
+    const usernameElement = document.getElementById('web-app-username');
 
     // Подставляем имя юзера в верхнюю панель
-    const usernameElement = document.getElementById('web-app-username');
-    const user = tg.initDataUnsafe?.user;
+    const user = tg?.initDataUnsafe?.user;
     if (user && usernameElement) {
         usernameElement.innerText = `Hello, ${user.first_name || user.username || 'filatow'}`;
     }
 
-    // ================= ОБНОВЛЕННАЯ БАЗА ПЕРЕВОДОВ (КОИНЫ И ПОДРОБНЫЕ ШАГИ) =================
+    // ================= БАЗА ПЕРЕВОДОВ =================
     const translations = {
         ru: {
             ref_title: "Строй свою медиа-империю!",
@@ -58,17 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Проверяем сохраненный язык или язык самого Телеграма
-    let currentLang = localStorage.getItem('app_lang') || (tg.initDataUnsafe?.user?.language_code === 'en' ? 'en' : 'ru');
+    let currentLang = localStorage.getItem('app_lang') || (tg?.initDataUnsafe?.user?.language_code === 'en' ? 'en' : 'ru');
 
     // Функция перевода элементов
     function applyTranslations() {
         const lang = translations[currentLang];
+        if (!lang) return;
         
         document.querySelectorAll('[data-lang]').forEach(element => {
             const key = element.getAttribute('data-lang');
             if (lang[key]) {
-                // Если сейчас горит "Скопировано!", не сбрасываем текст раньше времени
-                if (element.id === 'copy-button' && (element.innerText === "Copied!" || element.innerText === "Скопировано!")) {
+                // Если сейчас горит статус копирования, не сбрасываем текст раньше времени
+                if (element.id === 'copy-button' && element.classList.contains('copied')) {
                     return; 
                 }
                 element.innerText = lang[key];
@@ -89,11 +92,24 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('app_lang', currentLang);
     }
 
-    // Слушатель кнопки смены языка
-    if (langBtn) {
+    // ================= НАДЛАДОЧНАЯ НАВЕРХ СМЕНА ЯЗЫКА (TELEGRAM POPUP) =================
+    if (langBtn && tg) {
+        langBtn.removeAttribute('onclick'); // На всякий случай чистим старые инлайн события
         langBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'ru' ? 'en' : 'ru';
-            applyTranslations();
+            tg.showPopup({
+                title: 'Смена языка / Change Language',
+                message: 'Выберите язык интерфейса BEAST OMNI:',
+                buttons: [
+                    { id: 'en', type: 'default', text: '🇺🇸 English (US)' },
+                    { id: 'ru', type: 'default', text: '🇷🇺 Русский (RU)' },
+                    { id: 'cancel', type: 'cancel', text: 'Отмена' }
+                ]
+            }, (buttonId) => {
+                if (buttonId === 'en' || buttonId === 'ru') {
+                    currentLang = buttonId;
+                    applyTranslations();
+                }
+            });
         });
     }
 
@@ -101,41 +117,52 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTranslations();
 
     // Генерация рефералки по Telegram ID
-    if (user) {
-        refInput.value = `https://t.me/your_beast_omni_bot?start=${user.id}`; 
-    } else {
-        refInput.value = `https://t.me/your_beast_omni_bot?start=test_id`; // Фикс для тестов в браузере
+    if (refInput) {
+        if (user?.id) {
+            refInput.value = `https://t.me/your_beast_omni_bot?start=${user.id}`; 
+        } else {
+            refInput.value = `https://t.me/your_beast_omni_bot?start=test_id`; // Фикс для тестов в браузере
+        }
     }
 
     // ================= ЛОГИКА КНОПКИ КОПИРОВАНИЯ И АНИМАЦИИ =================
-    if (copyButton) {
+    if (copyButton && refInput) {
         copyButton.addEventListener('click', () => {
             refInput.select();
-            refInput.setSelectionRange(0, 99999);
-            try {
-                navigator.clipboard.writeText(refInput.value);
-            } catch (err) {
-                document.execCommand('copy');
-            }
+            refInput.setSelectionRange(0, 99999); // Для мобилок
 
+            const textToCopy = refInput.value;
             const lang = translations[currentLang];
-            copyButton.innerText = lang.copied;
-            copyButton.style.background = '#22c55e'; // Твой сочный зеленый неон при успехе
-            copyButton.style.color = '#ffffff';
-            copyButton.style.boxShadow = '0 0 15px rgba(34, 197, 94, 0.6)';
 
-            setTimeout(() => {
-                copyButton.innerText = lang.copy;
-                copyButton.style.background = 'linear-gradient(45deg, #38bdf8, #3b82f6)'; // Наш синий неоновый градиент обратно
-                copyButton.style.color = '#ffffff';
-                copyButton.style.boxShadow = '0 0 10px rgba(59, 130, 246, 0.5)';
-            }, 2000);
+            // Современный асинхронный буфер с фоллбэком
+            const proceedAnimation = () => {
+                copyButton.innerText = lang.copied;
+                copyButton.classList.add('copied');
+                copyButton.style.background = '#22c55e'; // Сочный зеленый неон при успехе
+                copyButton.style.boxShadow = '0 0 15px rgba(34, 197, 94, 0.6)';
+
+                setTimeout(() => {
+                    copyButton.classList.remove('copied');
+                    copyButton.innerText = lang.copy;
+                    copyButton.style.background = 'linear-gradient(45deg, #38bdf8, #3b82f6)'; // Возвращаем синий неон
+                    copyButton.style.boxShadow = '0 0 10px rgba(59, 130, 246, 0.5)';
+                }, 2000);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(proceedAnimation).catch(() => {
+                    // Если заблочено политикой безопасности мобилки, юзаем старый метод
+                    document.execCommand('copy');
+                    proceedAnimation();
+                });
+            } else {
+                document.execCommand('copy');
+                proceedAnimation();
+            }
         });
     }
 
-    // ================= ФИКС БАГА МИГАНИЯ И ПЕРЕХОДА =================
-    // Если у тебя SPA-структура (всё в одном index.html), этот код мгновенно 
-    // скрывает другие блоки, как только активируется вкладка рефералки.
+    // ================= Скрываем мусор других страниц (SPA Фикс) =================
     function clearInboundBugs() {
         const studioPage = document.getElementById('studio-page') || document.querySelector('.studio-container');
         const mainPage = document.getElementById('main-page') || document.querySelector('.main-container');
@@ -143,25 +170,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (studioPage) studioPage.style.display = 'none';
         if (mainPage) mainPage.style.display = 'none';
         
-        // Показываем блок рефералки без микро-задержек
         const refPage = document.getElementById('referral-page') || document.querySelector('.main-content');
         if (refPage) {
             refPage.style.display = 'block';
         }
     }
-    
-    // Запускаем очистку сразу при инициализации скрипта вкладки
     clearInboundBugs();
 });
-// Ждем полной загрузки всех картинок и стилей
+
+// ================= ФИКС БАГА МИГАНИЯ (ПРЕЛОАДЕР) =================
+// Ждем полной загрузки CSS, картинок и шрифтов, затем плавно тушим прелоадер
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     if (preloader) {
-        // Плавное исчезновение, чтобы выглядело дорого
-        preloader.style.transition = 'opacity 0.3s ease';
-        preloader.style.opacity = '0';
         setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 300);
+            preloader.style.transition = 'opacity 0.25s ease';
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 250);
+        }, 50); // Микропауза для идеального рендеринга стилей
     }
 });
