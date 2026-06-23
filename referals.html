@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEAST OMNI | Referral</title>
+    <title>BEAST OMNI | Referral System</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="referal.css">
+    <link rel="stylesheet" href="referral.css">
 </head>
 <body>
 
     <div class="top-bar">
         <div class="user-info">
             <span class="user-icon">👤</span>
-            <span class="username">Hello, filatow</span>
+            <span class="username" id="web-app-username">Hello, filatow</span>
         </div>
         <div class="lang-dropdown" id="lang-switch-btn">
             <span class="flag">🇺🇸</span>
@@ -22,34 +22,56 @@
     </div>
 
     <div class="main-content">
+        
         <div class="ref-header">
-            <h1 data-lang="ref_title">Приглашай друзей — зарабатывай 15%!</h1>
-            <p data-lang="ref_desc">Поделись своей уникальной ссылкой с другими стримерами. Получай проценты с каждой их первой покупки!</p>
+            <h1 data-lang="ref_title">Строй свою медиа-империю!</h1>
+            <p data-lang="ref_desc">Приглашай друзей, копи Omni Coins и открывай эксклюзивный контент для своих роликов абсолютно бесплатно.</p>
+        </div>
+
+        <div class="ref-banner">
+            <img src="img/ref-banner.png" alt="Beast Omni Coins Banner" class="banner-img">
+            </div>
+
+        <div class="ref-steps-box">
+            <h3 data-lang="steps_title">Как это работает?</h3>
+            <div class="step">
+                <div class="step-num">1</div>
+                <p data-lang="step_1">Копируй свою уникальную ссылку ниже и отправь её знакомым ютуберам, стримерам или в свои соцсети.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <p data-lang="step_2">Твой друг регистрируется в боте и **мгновенно получает 50 коинов и +5 дней Premium** на тест перевода видео.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <p data-lang="step_3">Тебе зачисляется **100 коинов за каждого**, а также **15% пожизненно** с каждой их покупки пакетов реальных денег!</p>
+            </div>
         </div>
 
         <div class="bonus-cards">
             <div class="card">
-                <div class="card-icon">💰</div>
-                <div class="card-title" data-lang="your_bonus">Твой Бонус</div>
-                <div class="card-value" data-lang="your_bonus_val">15% от оплаты</div>
+                <div class="card-icon">🪙</div>
+                <div class="card-title" data-lang="your_bonus">ТВОЙ БОНУС</div>
+                <div class="card-value cyan" data-lang="your_bonus_val">100 Coins + 15%</div>
             </div>
             <div class="card">
                 <div class="card-icon">🎁</div>
-                <div class="card-title" data-lang="friend_bonus">Бонус Другу</div>
-                <div class="card-value" data-lang="friend_bonus_val">+5 дней Premium</div>
+                <div class="card-title" data-lang="friend_bonus">БОНУС ДРУГУ</div>
+                <div class="card-value cyan" data-lang="friend_bonus_val">50 Coins + 5 Дней</div>
             </div>
         </div>
 
         <div class="link-section">
+            <label class="input-label" data-lang="link_label">ВАША РЕФЕРАЛЬНАЯ ССЫЛКА</label>
             <div class="input-group">
                 <input type="text" id="ref-url" value="https://t.me/bot?start=loading" readonly>
-                <button class="copy-btn" id="copy-button" data-lang="copy">Копировать</button>
+                <button class="copy-btn blue-neon" id="copy-button" data-lang="copy">Copy</button>
             </div>
         </div>
 
         <div class="ref-stats">
             <div class="stat-item"><span data-lang="invited">Приглашено:</span> <span id="friends-count">0</span></div>
-            <div class="stat-item"><span data-lang="earned">Заработано:</span> <span id="earned-count">0 ֏</span></div>
+            <div class="stat-item"><span data-lang="earned">Заработано:</span> <span id="earned-count">0 🪙</span></div>
         </div>
     </div>
 
@@ -63,7 +85,7 @@
             <span class="nav-text">Referral</span>
         </div>
         <div class="nav-item studio-btn-wrapper">
-            <div class="studio-btn">⚡</div>
+            <div class="studio-btn neon-purple">⚡</div>
             <span class="nav-text">Studio</span>
         </div>
         <div class="nav-item">
@@ -76,6 +98,6 @@
         </div>
     </div>
 
-    <script src="referal.js"></script>
+    <script src="referral.js"></script>
 </body>
 </html>
