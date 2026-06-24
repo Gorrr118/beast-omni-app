@@ -210,3 +210,14 @@ body {
 .center-text {
     margin-top: 4px;
 }
+/* Убираем дефолтную браузерную обводку при клике и тапе */
+.shop-card, .buy-btn, select, button {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important; /* Убирает синий прозрачный квадрат на телефонах */
+}
+
+/* На всякий случай гасим фокус, если кликают на кнопку */
+.buy-btn:focus, .shop-card:focus {
+    outline: none !important;
+    box-shadow: none !important; /* Если браузер пытался подсунуть свою тень */
+}
