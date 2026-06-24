@@ -234,3 +234,19 @@ body {
 .center-text {
     margin-top: 4px;
 }
+#lang-dropdown {
+    background: #171a2f; /* Твой цвет карточек, чтобы сочеталось */
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
+#lang-dropdown option {
+    background: #171a2f; /* Чтобы выпадающий список внутри тоже был темным */
+    color: #ffffff;
+}
