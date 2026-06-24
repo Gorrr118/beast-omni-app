@@ -1,10 +1,10 @@
 /* Общие настройки для страницы магазина */
 body {
-    background-color: #0b0d19; /* Твой темный фон */
+    background-color: #0b0d19; /* Твой строгий темный фон */
     color: #ffffff;
     font-family: 'Segoe UI', Roboto, sans-serif;
     margin: 0;
-    padding-top: 80px;    /* Отступ сверху, чтобы шапка не перекрывала контент */
+    padding-top: 75px;    /* Отступ сверху под компактную шапку */
     padding-bottom: 90px; /* Отступ снизу, чтобы меню не перекрывало карточки */
     box-sizing: border-box;
 }
@@ -15,46 +15,45 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
-    background: rgba(19, 22, 38, 0.9);
-    backdrop-filter: blur(10px);
+    height: 60px; /* Сделали шапку аккуратнее */
+    background: #0b0d19; /* Чистый фон в цвет боди */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 16px;
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     z-index: 1000;
 }
 
-.header-title {
-    font-size: 20px;
-    font-weight: 700;
-    background: linear-gradient(45deg, #ff007f, #7f00ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.balance-container {
-    display: flex;
-    gap: 12px;
-}
-
-.balance-item {
-    background: rgba(255, 255, 255, 0.07);
-    padding: 6px 12px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+/* Текст баланса слева */
+.shop-balance {
+    font-size: 16px;
     font-weight: 600;
-    font-size: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
 }
 
-/* СТИЛИ ДЛЯ КОНТЕНТА И КАРТОЧЕК (из примера на скрине) */
+/* Твой выпадающий список языков справа */
+#lang-dropdown {
+    background: #171a2f; 
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
+#lang-dropdown option {
+    background: #171a2f; 
+    color: #ffffff;
+}
+
+/* СТИЛИ ДЛЯ КОНТЕНТА И СЕТКИ */
 .shop-content {
-    padding: 0 16px;
+    padding: 0 12px; /* Чуть уменьшили паддинг, чтобы карточкам было просторнее */
 }
 
 .category-section {
@@ -62,115 +61,92 @@ body {
 }
 
 .category-title {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .category-line {
     width: 4px;
-    height: 18px;
+    height: 16px;
     background-color: #00e5ff;
     border-radius: 2px;
 }
 
-/* Сетка для коинов */
+/* Компактная сетка для коинов */
 .shop-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 10px; /* Уменьшили расстояние между карточками */
 }
 
-/* Карточки коинов */
+/* УЛЬТРА-КОМПАКТНЫЕ КАРТОЧКИ С АНИМАЦИЕЙ */
 .shop-card {
     background: #171a2f;
-    border-radius: 16px;
-    padding: 20px 12px 14px 12px;
+    border-radius: 12px; /* Сделали углы аккуратнее */
+    padding: 12px 8px 10px 8px; /* Сильно зажали внутренние отступы */
     text-align: center;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    
+    /* Плавный переход для анимации тапа */
+    transition: all 0.2s ease-out;
+    cursor: pointer;
 }
 
+/* Эффект наведения / удержания пальца */
+.shop-card:hover {
+    transform: scale(0.97); /* Легкое сжатие внутрь */
+    background: #1a1e35; /* Легкий отсвет фона */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* Эффект в момент самого клика */
+.shop-card:active {
+    transform: scale(0.94); /* Карточка прожимается еще сильнее */
+}
+
+/* Иконка копейки внутри карточки */
 .card-image {
-    font-size: 40px;
-    margin-bottom: 10px;
+    font-size: 26px; /* Вместо огромных 40px */
+    margin-top: 8px;
+    margin-bottom: 4px;
 }
 
+/* Название пакета */
 .card-name {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 12px;
+    font-size: 14px; /* Чуть уменьшили */
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
+/* Компактная кнопка покупки */
 .buy-btn {
     width: 100%;
-    background: linear-gradient(135deg, #bd00ff, #bd00ff);
+    background: linear-gradient(135deg, #bd00ff, #7f00ff);
     border: none;
     color: white;
-    padding: 10px;
-    border-radius: 12px;
+    padding: 8px; /* Сделали кнопку тоньше */
+    border-radius: 8px;
     font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(189, 0, 255, 0.3);
-}
-
-/* Карточки персонажей (горизонтальные) */
-.character-card {
-    background: #171a2f;
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 14px;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.char-media {
-    font-size: 45px;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.char-name {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 6px;
-}
-
-.char-desc {
     font-size: 13px;
-    color: #8a8fbc;
-    line-height: 1.4;
-    margin-bottom: 14px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(189, 0, 255, 0.2);
 }
 
-.char-buy-btn {
-    width: 100%;
-    background: #1c1f38;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #00e5ff;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-
-/* Бэйджи (POPULAR, EPIC, etc.) */
+/* Компактные бэйджи (START, POPULAR и т.д.) */
 .badge {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 9px;
+    top: 6px;
+    right: 6px;
+    font-size: 8px;
     font-weight: 800;
-    padding: 4px 8px;
-    border-radius: 6px;
+    padding: 3px 6px;
+    border-radius: 4px;
 }
 .badge-popular { background: #ff007f; color: white; }
 .badge-best { background: #00e5ff; color: #0b0d19; }
@@ -233,20 +209,4 @@ body {
 
 .center-text {
     margin-top: 4px;
-}
-#lang-dropdown {
-    background: #171a2f; /* Твой цвет карточек, чтобы сочеталось */
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    outline: none;
-    cursor: pointer;
-}
-
-#lang-dropdown option {
-    background: #171a2f; /* Чтобы выпадающий список внутри тоже был темным */
-    color: #ffffff;
 }
