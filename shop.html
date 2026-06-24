@@ -3,87 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
-    <!-- Подключи сюда свой файл стилей, если он один для всего проекта -->
+    <title>Shop - Coins</title>
     <link rel="stylesheet" href="shop.css"> 
 </head>
 <body>
 
-   <<div class="shop-header">
-    <div class="shop-balance">Баланs: <span id="user-coins">0</span> coins</div>
-    
-    <select id="lang-dropdown">
-        <option value="en">🇺🇸 US</option>
-        <option value="ru">🇷🇺 RU</option>
-    </select>
-</div>
+    <div class="shop-header">
+        <div class="shop-balance">Баланс: <span id="user-coins">0</span> coins</div>
+        
+        <select id="lang-dropdown">
+            <option value="en">🇺🇸 US</option>
+            <option value="ru">🇷🇺 RU</option>
+        </select>
+    </div>
 
-    <!-- ОСНОВНОЙ КОНТЕНТ МАГАЗИНА (из твоего скриншота 1000073609.jpg) -->
     <div class="shop-content">
         
-        <!-- Категория Коины -->
         <div class="category-section">
             <div class="category-title">
                 <span class="category-line"></span>
-                <span class="category-icon">🪙</span> Coins
+                <span class="category-icon">🪙</span> Магазин Коинов
             </div>
             
             <div class="shop-grid">
-                <!-- Карточка 1 -->
-                <div class="shop-card popular">
+                <div class="shop-card">
+                    <span class="badge badge-popular">START</span>
+                    <div class="card-image">💰</div>
+                    <div class="card-name">100 Coins</div>
+                    <button class="buy-btn">$2.99</button>
+                </div>
+
+                <div class="shop-card">
                     <span class="badge badge-popular">POPULAR</span>
                     <div class="card-image">💰</div>
                     <div class="card-name">500 Coins</div>
-                    <button class="buy-btn">⭐ 50 Stars</button>
+                    <button class="buy-btn">$9.99</button>
                 </div>
 
-                <!-- Карточка 2 -->
-                <div class="shop-card best-value">
+                <div class="shop-card">
+                    <span class="badge badge-epic">MEDIUM</span>
+                    <div class="card-image">💎</div>
+                    <div class="card-name">1,000 Coins</div>
+                    <button class="buy-btn">$14.99</button>
+                </div>
+
+                <div class="shop-card">
                     <span class="badge badge-best">BEST VALUE</span>
                     <div class="card-image">💎</div>
-                    <div class="card-name">1,500 Coins</div>
-                    <button class="buy-btn">⭐ 130 Stars</button>
+                    <div class="card-name">2,000 Coins</div>
+                    <button class="buy-btn">$24.99</button>
                 </div>
-            </div>
-        </div>
 
-        <!-- Категория Персонажи -->
-        <div class="category-section">
-            <div class="category-title">
-                <span class="category-line"></span>
-                <span class="category-icon">🎭</span> Characters
-            </div>
-
-            <!-- Персонаж 1 -->
-            <div class="character-card">
-                <span class="badge badge-legendary">LEGENDARY</span>
-                <div class="char-media">🦊</div>
-                <div class="char-info">
-                    <div class="char-name">Kurama (Nine-Tails)</div>
-                    <div class="char-desc">Reactive anime avatar. Roars on big donations and interacts with live chat.</div>
+                <div class="shop-card" style="grid-column: span 2;">
+                    <span class="badge badge-legendary">MEGA BONUS</span>
+                    <div class="card-image">👑</div>
+                    <div class="card-name">3,000 Coins</div>
+                    <button class="buy-btn">$29.99</button>
                 </div>
-                <button class="char-buy-btn">
-                    <span class="coin-mini">🪙</span> 450
-                </button>
-            </div>
-
-            <!-- Персонаж 2 -->
-            <div class="character-card">
-                <span class="badge badge-epic">EPIC</span>
-                <div class="char-media">🤖</div>
-                <div class="char-info">
-                    <div class="char-name">Cyber Samurai v3.1</div>
-                    <div class="char-desc">Glitch animated sci-fi character. Perfectly fits neon-styled overlays.</div>
-                </div>
-                <button class="char-buy-btn">
-                    <span class="coin-mini">🪙</span> 300
-                </button>
             </div>
         </div>
 
     </div>
 
-    <!-- НАШЕ НЕУБИВАЕМОЕ НИЖНЕЕ МЕНЮ -->
     <nav class="bottom-navbar">
         <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item">
@@ -114,12 +95,12 @@
         </a>
         
         <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
-            <div class="nav-item active"> <!-- Здесь активная иконка магазина -->
+            <div class="nav-item active">
                 <span class="nav-icon">🛍️</span>
                 <span class="nav-text">Shop</span>
             </div>
         </a>
     </nav>
- <script src="shop.js"></script>
+    <script src="shop.js"></script>
 </body>
 </html>
