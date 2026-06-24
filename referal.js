@@ -1,4 +1,4 @@
-// Инициализация Telegram WebApp в самом начале
+// Инициализация Telegram WebApp в самом начале (один раз!)
 const tg = window.Telegram?.WebApp;
 if (tg) {
     tg.ready();
@@ -13,13 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const langFlag = langBtn?.querySelector('.flag');
     const langText = langBtn?.querySelector('.lang-text');
-    const usernameElement = document.getElementById('web-app-username');
 
-    // Подставляем имя юзера в верхнюю панель
     const user = tg?.initDataUnsafe?.user;
-    if (user && usernameElement) {
-        usernameElement.innerText = `Hello, ${user.first_name || user.username || 'filatow'}`;
-    }
 
     // ================= БАЗА ПЕРЕВОДОВ =================
     const translations = {
@@ -38,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
             copy: "Копировать",
             copied: "Скопировано!",
             invited: "Приглашено:",
-            earned: "Заработано:"
+            earned: "Заработано:",
+            balance_prefix: "Баланс: "
         },
         en: {
             ref_title: "Build your media empire!",
@@ -55,14 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
             copy: "Copy",
             copied: "Copied!",
             invited: "Invited:",
-            earned: "Earned:"
+            earned: "Earned:",
+            balance_prefix: "Balance: "
         }
     };
 
-    // Проверяем сохраненный язык или язык самого Телеграма
-    let currentLang = localStorage.getItem('app_lang') || (tg?.initDataUnsafe?.user?.language_code === 'en' ? 'en' : 'ru');
+    // Принудительно ставим английский по умолчанию, либо берем сохраненный с главного экрана
+    let currentLang = localStorage.getItem('app_lang') || 'en';
 
-    // Функция перевода элементов
+    // Функция перевода элементов и обновления баланса
     function applyTranslations() {
         const lang = translations[currentLang];
         if (!lang) return;
@@ -77,6 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerText = lang[key];
             }
         });
+
+        // ДИНАМИЧЕСКИЙ ОБНОВЛЯЕМ ТЕКСТ БАЛАНСА В ШАПКЕ РЕФЕРАЛКИ
+        const balanceTextNode = document.querySelector('.balance-text');
+        // Подтягиваем значение из нашего глобального менеджера (если функции нет, ставим 0)
+        const coinsVal = typeof getBalance === 'function' ? getBalance() : 0;
+
+        if (balanceTextNode) {
+            balanceTextNode.innerHTML = `${lang.balance_prefix}<strong id="user-coins">${coinsVal}</strong> Omni Coins`;
+        }
 
         // Меняем флаг и текст в верхней плашке
         if (langFlag && langText) {
@@ -97,20 +103,32 @@ document.addEventListener('DOMContentLoaded', () => {
         langBtn.removeAttribute('onclick'); // На всякий случай чистим старые инлайн события
         langBtn.addEventListener('click', () => {
             tg.showPopup({
-                title: 'Смена языка / Change Language',
-                message: 'Выберите язык интерфейса BEAST OMNI:',
+                title: currentLang === 'ru' ? 'Смена языка' : 'Language / Язык',
+                message: currentLang === 'ru' ? 'Выберите язык интерфейса BEAST OMNI:' : 'Select interface language for BEAST OMNI:',
                 buttons: [
                     { id: 'en', type: 'default', text: '🇺🇸 English (US)' },
                     { id: 'ru', type: 'default', text: '🇷🇺 Русский (RU)' },
-                    { id: 'cancel', type: 'cancel', text: 'Отмена' }
+                    { id: 'cancel', type: 'cancel', text: 'Отмена / Cancel' }
                 ]
             }, (buttonId) => {
                 if (buttonId === 'en' || buttonId === 'ru') {
                     currentLang = buttonId;
                     applyTranslations();
+                    
+                    // Синхронизируем главный экран, если он запущен параллельно
+                    if (typeof updateBalanceUI === 'function') {
+                        updateBalanceUI(getBalance());
+                    }
                 }
             });
         });
+    }
+
+    // Обновляем циферблат коинов из памяти при загрузке
+    if (typeof getBalance === 'function') {
+        const currentCoins = getBalance();
+        const refCoinEl = document.getElementById('user-coins');
+        if (refCoinEl) refCoinEl.innerText = currentCoins;
     }
 
     // Принудительно переводим при старте
@@ -134,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const textToCopy = refInput.value;
             const lang = translations[currentLang];
 
-            // Современный асинхронный буфер с фоллбэком
             const proceedAnimation = () => {
                 copyButton.innerText = lang.copied;
                 copyButton.classList.add('copied');
@@ -151,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(textToCopy).then(proceedAnimation).catch(() => {
-                    // Если заблочено политикой безопасности мобилки, юзаем старый метод
                     document.execCommand('copy');
                     proceedAnimation();
                 });
@@ -179,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ================= ФИКС БАГА МИГАНИЯ (ПРЕЛОАДЕР) =================
-// Ждем полной загрузки CSS, картинок и шрифтов, затем плавно тушим прелоадер
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     if (preloader) {
@@ -189,6 +204,6 @@ window.addEventListener('load', () => {
             setTimeout(() => {
                 preloader.style.display = 'none';
             }, 250);
-        }, 50); // Микропауза для идеального рендеринга стилей
+        }, 50); 
     }
 });
