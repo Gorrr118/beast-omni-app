@@ -76,77 +76,99 @@ body {
     border-radius: 2px;
 }
 
-/* Компактная сетка для коинов */
+/* ==================== БРАВЛ-СТАЙЛ МАГАЗИН КОИНОВ ==================== */
+
+/* Сетка: ровные карточки по две в ряд */
 .shop-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px; /* Уменьшили расстояние между карточками */
+    gap: 14px; /* Оптимальный отступ под объемные рамки */
+    padding-top: 15px;
 }
 
-/* УЛЬТРА-КОМПАКТНЫЕ КАРТОЧКИ С АНИМАЦИЕЙ */
+/* Объемная бравл-карточка */
 .shop-card {
-    background: #171a2f;
-    border-radius: 12px; /* Сделали углы аккуратнее */
-    padding: 12px 8px 10px 8px; /* Сильно зажали внутренние отступы */
+    background: linear-gradient(180deg, #2a2e4e 0%, #171a2f 100%);
+    border-radius: 14px;
+    padding: 14px 10px 10px 10px;
     text-align: center;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     
-    /* Плавный переход для анимации тапа */
-    transition: all 0.2s ease-out;
+    /* Жирный темный контур, как в мультиках */
+    border: 3px solid #0b0d19; 
+    /* Эффект 3D (темное основание карточки снизу) */
+    box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.1), 0 6px 0 #070810;
+    
+    /* Плавный ход для анимации */
+    transition: all 0.1s ease-in-out;
     cursor: pointer;
 }
 
-/* Эффект наведения / удержания пальца */
-.shop-card:hover {
-    transform: scale(0.97); /* Легкое сжатие внутрь */
-    background: #1a1e35; /* Легкий отсвет фона */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-}
-
-/* Эффект в момент самого клика */
+/* ТАП-АНИМАЦИЯ: карточка физически «утапливается» вниз при нажатии */
 .shop-card:active {
-    transform: scale(0.94); /* Карточка прожимается еще сильнее */
+    transform: translateY(3px) !important; /* Сдвиг вниз */
+    box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.1), 0 3px 0 #070810 !important; /* Уменьшаем 3D-низ */
 }
 
-/* Иконка копейки внутри карточки */
+/* Наша фирменная копейка 🪙 */
 .card-image {
-    font-size: 26px; /* Вместо огромных 40px */
-    margin-top: 8px;
-    margin-bottom: 4px;
+    font-size: 36px; /* Крупная, сочная */
+    margin-top: 6px;
+    margin-bottom: 2px;
+    /* Легкая тень под монеткой для объема */
+    filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.3)); 
 }
 
-/* Название пакета */
+/* Количество коинов */
 .card-name {
-    font-size: 14px; /* Чуть уменьшили */
-    font-weight: 700;
-    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 900; /* Максимально жирный */
+    text-transform: uppercase; /* Все буквы заглавные */
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #000; /* Черная обводка текста */
+    margin-bottom: 10px;
 }
 
-/* Компактная кнопка покупки */
+/* ОБЪЕМНАЯ ЗЕЛЕНАЯ КНОПКА КУПИТЬ (стиль Brawl) */
 .buy-btn {
     width: 100%;
-    background: linear-gradient(135deg, #bd00ff, #7f00ff);
-    border: none;
-    color: white;
-    padding: 8px; /* Сделали кнопку тоньше */
+    /* Насыщенный зеленый игровой градиент */
+    background: linear-gradient(180deg, #5cfa14 0%, #3aa805 100%); 
+    border: 2px solid #000000;
+    color: #ffffff;
+    /* Объемный текст с темной тенью */
+    text-shadow: 2px 2px 0 #216102; 
+    padding: 8px;
     border-radius: 8px;
-    font-weight: 600;
-    font-size: 13px;
+    font-weight: 900;
+    font-size: 14px;
+    text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 3px 8px rgba(189, 0, 255, 0.2);
+    
+    /* 3D-эффект нажатия для самой кнопки */
+    box-shadow: 0 4px 0 #1b4d01; 
+    transition: transform 0.05s ease;
 }
 
-/* Компактные бэйджи (START, POPULAR и т.д.) */
+/* Кнопка прожимается внутрь карточки при клике */
+.buy-btn:active {
+    transform: translateY(2px) !important;
+    box-shadow: 0 2px 0 #1b4d01 !important;
+}
+
+/* Аккуратные бэйджи сверху (START, POPULAR и т.д.) */
 .badge {
     position: absolute;
-    top: 6px;
-    right: 6px;
-    font-size: 8px;
-    font-weight: 800;
-    padding: 3px 6px;
-    border-radius: 4px;
+    top: -9px; /* Слегка вылезает за рамку сверху */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    font-weight: 900;
+    padding: 3px 8px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
 }
 .badge-popular { background: #ff007f; color: white; }
 .badge-best { background: #00e5ff; color: #0b0d19; }
@@ -210,6 +232,9 @@ body {
 .center-text {
     margin-top: 4px;
 }
+
+/* ==================== АНТИ-ОБВОДКА И СБРОС ФОКУСА ==================== */
+
 /* Убираем дефолтную браузерную обводку при клике и тапе */
 .shop-card, .buy-btn, select, button {
     outline: none !important;
@@ -219,5 +244,5 @@ body {
 /* На всякий случай гасим фокус, если кликают на кнопку */
 .buy-btn:focus, .shop-card:focus {
     outline: none !important;
-    box-shadow: none !important; /* Если браузер пытался подсунуть свою тень */
+    box-shadow: none !important; /* Защита от дефолтных браузерных теней фокуса */
 }
