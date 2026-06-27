@@ -26,40 +26,35 @@
             </div>
             
             <div class="shop-grid">
-    <!-- Пак 1 -->
-    <div class="shop-card">
-        <span class="badge badge-popular" style="background: #00e5ff; color: #000;">START</span>
-        <div class="card-image">🪙</div>
-        <div class="card-name">100 Coins</div>
-        <button class="buy-btn">$0.99</button>
-    </div>
+                <div class="shop-card" data-type="coin" data-stars="50">
+                    <span class="badge badge-popular" style="background: #00e5ff; color: #000;">START</span>
+                    <div class="card-image">🪙</div>
+                    <div class="card-name">100 Coins</div>
+                    <button class="buy-btn">⭐️ 50</button>
+                </div>
 
-    <!-- Пак 2 -->
-    <div class="shop-card">
-        <span class="badge badge-epic">MINI</span>
-        <div class="card-image">🪙</div>
-        <div class="card-name">250 Coins</div>
-        <button class="buy-btn">$1.99</button>
-    </div>
+                <div class="shop-card" data-type="coin" data-stars="100">
+                    <span class="badge badge-epic">MINI</span>
+                    <div class="card-image">🪙</div>
+                    <div class="card-name">250 Coins</div>
+                    <button class="buy-btn">⭐️ 100</button>
+                </div>
 
-    <!-- Пак 3 -->
-    <div class="shop-card">
-        <span class="badge badge-popular">POPULAR</span>
-        <div class="card-image">🪙</div>
-        <div class="card-name">500 Coins</div>
-        <button class="buy-btn">$2.99</button>
-    </div>
+                <div class="shop-card" data-type="coin" data-stars="150">
+                    <span class="badge badge-popular">POPULAR</span>
+                    <div class="card-image">🪙</div>
+                    <div class="card-name">500 Coins</div>
+                    <button class="buy-btn">⭐️ 150</button>
+                </div>
 
-    <!-- Пак 4 -->
-    <div class="shop-card">
-        <span class="badge badge-legendary">MEGA</span>
-        <div class="card-image">🪙</div>
-        <div class="card-name">1,000 Coins</div>
-        <button class="buy-btn">$4.99</button>
-    </div>
-</div>
-
-    <nav class="bottom-navbar">
+                <div class="shop-card" data-type="coin" data-stars="250">
+                    <span class="badge badge-legendary">MEGA</span>
+                    <div class="card-image">🪙</div>
+                    <div class="card-name">1,000 Coins</div>
+                    <button class="buy-btn">⭐️ 250</button>
+                </div>
+            </div>
+        </div> </div> <nav class="bottom-navbar">
         <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item">
                 <span class="nav-icon">🏠</span>
@@ -95,32 +90,43 @@
             </div>
         </a>
     </nav>
-    <!-- МОДАЛЬНОЕ ОКНО ПРЕДПРОСЛУШИВАНИЯ ГОЛОСА -->
-<div id="voiceModal" class="modal-overlay">
-    <div class="modal-content">
-        <button class="modal-close">&times;</button>
-        
-        <div class="modal-header">
-            <h3 id="modalVoiceName">Голос: Альфа-Боец</h3>
-            <span class="modal-badge">PREVIEW</span>
-        </div>
 
-        <div class="modal-body">
-            <!-- Стилизованный плеер -->
-            <div class="audio-preview-box">
-                <button id="playBtn" class="play-audio-btn">▶ Слушать демо</button>
-                <!-- Скрытый тег аудио, куда JS будет подставлять нужный трек -->
-                <audio id="previewAudio" src=""></audio>
+    <div id="coinModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('coinModal')">&times;</button>
+            <div class="modal-header">
+                <h3 id="coinModalTitle">Пополнение баланса</h3>
             </div>
-            <p class="modal-desc">Этот голос идеально подойдет для хайповых игровых видео и шортсов.</p>
-        </div>
-
-        <div class="modal-footer">
-            <button id="modalBuyBtn" class="buy-btn">Купить за ⭐️ <span id="modalPrice">50</span></button>
+            <div class="modal-body" style="text-align: center; margin: 20px 0;">
+                <div style="font-size: 60px; filter: drop-shadow(0 0 15px #ffcc00); margin-bottom: 10px;">🪙</div>
+                <p id="coinModalDesc" style="color: #aaa; font-size: 14px;">Вы получаете коины для использования внутри платформы.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="coinBuyBtn" class="buy-btn">Купить за ⭐️ <span id="coinModalPrice">50</span></button>
+            </div>
         </div>
     </div>
-</div>
+
+    <div id="voiceModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('voiceModal')">&times;</button>
+            <div class="modal-header">
+                <h3 id="voiceModalTitle">Голос</h3>
+                <span class="modal-badge">PREVIEW</span>
+            </div>
+            <div class="modal-body">
+                <div class="audio-preview-box">
+                    <button id="playBtn" class="play-audio-btn">▶ Слушать демо</button>
+                    <audio id="previewAudio" src=""></audio>
+                </div>
+                <p class="modal-desc">Этот ИИ-голос станет доступен в вашей Studio сразу после покупки.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="voiceBuyBtn" class="buy-btn">Открыть за ⭐️ <span id="voiceModalPrice">100</span></button>
+            </div>
+        </div>
+    </div>
+
     <script src="shop.js"></script>
 </body>
 </html>
-                
