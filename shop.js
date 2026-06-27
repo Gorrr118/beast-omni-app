@@ -15,7 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Обработка кликов по карточкам
     shopCards.forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
+            // Если кликнули конкретно на кнопку внутри карточки, останавливаем всплытие, 
+            // чтобы событие не срабатывало дважды
+            if (e.target.classList.contains('buy-btn')) {
+                e.stopPropagation();
+            }
+
             const cardType = card.getAttribute('data-type') || 'coin'; // по дефолту коин
             const name = card.querySelector('.card-name').innerText;
             const price = card.getAttribute('data-stars') || "0";
@@ -44,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // чтобы окно не закрывалось при клике на плей
             if (previewAudio.paused) {
-                previewAudio.play();
+                previewAudio.play().catch(err => console.log("Аудио еще не загрузилось:", err));
                 playBtn.innerText = '⏸ Пауза';
             } else {
                 previewAudio.pause();
@@ -63,7 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.classList.remove('active');
-                    if (previewAudio) previewAudio.pause();
+                    if (previewAudio) {
+                        previewAudio.pause();
+                        previewAudio.currentTime = 0; // Сбрасываем трек на начало
+                    }
                 }
             });
         }
@@ -79,5 +88,6 @@ function closeModal(modalId) {
     const audio = document.getElementById('previewAudio');
     if (audio) {
         audio.pause();
+        audio.currentTime = 0; // Сбрасываем трек на начало
     }
 }
