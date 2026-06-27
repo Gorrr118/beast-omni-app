@@ -129,15 +129,15 @@ body {
     margin-bottom: 10px;
 }
 
-/* ОБЪЕМНАЯ ЗЕЛЕНАЯ КНОПКА КУПИТЬ (стиль Brawl) */
+/* ОБЪЕМНАЯ ГЕЙМЕРСКАЯ ФИОЛЕТОВАЯ КНОПКА КУПИТЬ */
 .buy-btn {
     width: 100%;
-    /* Насыщенный зеленый игровой градиент */
-    background: linear-gradient(180deg, #5cfa14 0%, #3aa805 100%); 
+    /* Насыщенный геймерский фиолетово-малиновый градиент */
+    background: linear-gradient(180deg, #a800ff 0%, #7000ff 100%); 
     border: 2px solid #000000;
     color: #ffffff;
-    /* Объемный текст с темной тенью */
-    text-shadow: 2px 2px 0 #216102; 
+    /* Объемный текст с глубокой темной тенью */
+    text-shadow: 2px 2px 0 #3a0085; 
     padding: 8px;
     border-radius: 8px;
     font-weight: 900;
@@ -145,9 +145,15 @@ body {
     text-transform: uppercase;
     cursor: pointer;
     
-    /* 3D-эффект нажатия для самой кнопки */
-    box-shadow: 0 4px 0 #1b4d01; 
+    /* Глубокий 3D-эффект основания (темно-фиолетовый низ) */
+    box-shadow: 0 4px 0 #400099; 
     transition: transform 0.05s ease;
+}
+
+/* Кнопка плавно утапливается при нажатии */
+.buy-btn:active {
+    transform: translateY(2px) !important;
+    box-shadow: 0 2px 0 #400099 !important;
 }
 
 /* Кнопка прожимается внутрь карточки при клике */
