@@ -95,6 +95,31 @@
             </div>
         </a>
     </nav>
+    <!-- МОДАЛЬНОЕ ОКНО ПРЕДПРОСЛУШИВАНИЯ ГОЛОСА -->
+<div id="voiceModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        
+        <div class="modal-header">
+            <h3 id="modalVoiceName">Голос: Альфа-Боец</h3>
+            <span class="modal-badge">PREVIEW</span>
+        </div>
+
+        <div class="modal-body">
+            <!-- Стилизованный плеер -->
+            <div class="audio-preview-box">
+                <button id="playBtn" class="play-audio-btn">▶ Слушать демо</button>
+                <!-- Скрытый тег аудио, куда JS будет подставлять нужный трек -->
+                <audio id="previewAudio" src=""></audio>
+            </div>
+            <p class="modal-desc">Этот голос идеально подойдет для хайповых игровых видео и шортсов.</p>
+        </div>
+
+        <div class="modal-footer">
+            <button id="modalBuyBtn" class="buy-btn">Купить за ⭐️ <span id="modalPrice">50</span></button>
+        </div>
+    </div>
+</div>
     <script src="shop.js"></script>
 </body>
 </html>
