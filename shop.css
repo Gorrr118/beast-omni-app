@@ -1,4 +1,6 @@
-/* Общие настройки для страницы магазина */
+/* ==========================================================================
+   ОБЩИЕ НАСТРОЙКИ СТРАНИЦЫ МАГАЗИНА
+   ========================================================================== */
 body {
     background-color: #0b0d19; /* Твой строгий темный фон */
     color: #ffffff;
@@ -76,7 +78,13 @@ body {
     border-radius: 2px;
 }
 
-/* ==================== БРАВЛ-СТАЙЛ МАГАЗИН КОИНОВ ==================== */
+/* Красивый фиолетовый акцент для линии новой категории голосов */
+.category-section:nth-of-type(2) .category-line {
+    background-color: #a800ff !important;
+    box-shadow: 0 0 8px #a800ff;
+}
+
+/* ==================== БРАВЛ-СТАЙЛ СЕТКА И КАРТОЧКИ ==================== */
 
 /* Сетка: ровные карточки по две в ряд */
 .shop-grid {
@@ -107,7 +115,7 @@ body {
 /* ТАП-АНИМАЦИЯ: карточка физически «утапливается» вниз при нажатии */
 .shop-card:active {
     transform: translateY(3px) !important; /* Сдвиг вниз */
-    box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.1), 0 3px 0 #070810 !important; /* Уменьшаем 3D-низ */
+    box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.1), 0 3px 0 #070810 !important; /* Уменьчаем 3D-низ */
 }
 
 /* Наша фирменная копейка 🪙 */
@@ -154,12 +162,6 @@ body {
 .buy-btn:active {
     transform: translateY(2px) !important;
     box-shadow: 0 2px 0 #400099 !important;
-}
-
-/* Кнопка прожимается внутрь карточки при клике */
-.buy-btn:active {
-    transform: translateY(2px) !important;
-    box-shadow: 0 2px 0 #1b4d01 !important;
 }
 
 /* Аккуратные бэйджи сверху (START, POPULAR и т.д.) */
@@ -240,18 +242,13 @@ body {
 }
 
 /* ==================== АНТИ-ОБВОДКА И СБРОС ФОКУСА ==================== */
-
-/* Убираем дефолтную браузерную обводку при клике и тапе */
 .shop-card, .buy-btn, select, button {
     outline: none !important;
     -webkit-tap-highlight-color: transparent !important; /* Убирает синий прозрачный квадрат на телефонах */
 }
 
-/* На всякий случай гасим фокус, если кликают на кнопку */
-.buy-btn:focus, .shop-card:focus {
-    outline: none !important;
-    box-shadow: none !important; /* Защита от дефолтных браузерных теней фокуса */
-}
+/* ==================== МОДНЫЕ МОДАЛЬНЫЕ ОКНА ==================== */
+
 /* Фон, который затемняет и размывает всё сзади */
 .modal-overlay {
     position: fixed;
@@ -259,12 +256,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px); /* Модный эффект размытия */
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px); /* Модный эффект размытия */
+    -webkit-backdrop-filter: blur(6px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 10005; /* Подняли выше нижнего меню */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;
@@ -279,13 +277,13 @@ body {
 /* Контент самого окошка по центру */
 .modal-content {
     background: #1e1e2f; /* Темный игровой фон как у карточек */
-    border: 2px solid #a800ff; /* Фиолетовая неоновая рамка */
+    border: 2.5px solid #a800ff; /* Фиолетовая неоновая рамка */
     border-radius: 16px;
-    width: 90%;
-    max-width: 340px;
-    padding: 20px;
+    width: 88%;
+    max-width: 330px;
+    padding: 22px;
     position: relative;
-    box-shadow: 0 0 20px rgba(168, 0, 255, 0.3);
+    box-shadow: 0 0 25px rgba(168, 0, 255, 0.4);
     transform: scale(0.8);
     transition: transform 0.2s ease;
 }
@@ -302,24 +300,40 @@ body {
     background: none;
     border: none;
     color: #888;
-    font-size: 24px;
+    font-size: 26px;
     cursor: pointer;
+    transition: color 0.1s;
 }
 .modal-close:hover { color: #fff; }
 
 /* Внутренности окна */
-.modal-header h3 { margin: 0; color: #fff; font-size: 18px; }
+.modal-header h3 { 
+    margin: 0; 
+    color: #fff; 
+    font-size: 18px; 
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
 .modal-badge {
     display: inline-block;
     background: #a800ff;
     color: #fff;
     font-size: 10px;
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 4px;
     font-weight: bold;
     margin-top: 5px;
+    letter-spacing: 0.5px;
 }
-.modal-desc { color: #aaa; font-size: 13px; margin: 15px 0; text-align: center; }
+
+.modal-desc { 
+    color: #aaa; 
+    font-size: 13px; 
+    margin: 15px 0; 
+    text-align: center; 
+    line-height: 1.4;
+}
 
 /* Кнопка запуска аудио */
 .play-audio-btn {
@@ -327,11 +341,18 @@ body {
     background: #2a2a40;
     border: 1px solid #7000ff;
     color: #00ffcc; /* Неоново-зеленый/бирюзовый для кнопки плея */
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    margin-bottom: 10px;
-    transition: background 0.2s;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, box-shadow 0.2s;
 }
-.play-audio-btn:hover { background: #343454; }
+.play-audio-btn:hover { 
+    background: #343454; 
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+}
