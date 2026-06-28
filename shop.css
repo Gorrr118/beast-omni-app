@@ -1,5 +1,5 @@
-/* Подключаем премиальный шрифт */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Подключаем оба шрифта (на всякий случай, если в HTML где-то забудется) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Unbounded:wght@400;700;900&display=swap');
 
 *, *::before, *::after {
     box-sizing: border-box;
