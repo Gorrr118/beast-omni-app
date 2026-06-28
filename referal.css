@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif; /* Дорогой шрифт вместо Segoe UI */
+    font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -18,47 +18,60 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* ================= ВЕРХНЯЙ ПАНЕЛИ ОДИН В ОДИН ================= */
-.top-bar {
+/* ==================== ВНЕДРЕННЫЙ РОДНОЙ ВЕРХНИЙ ХЕДЕР ИЗ ГЛАВНОЙ ==================== */
+.global-header, .top-bar {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    width: 100%;
     height: 65px;
-    background-color: #0b0d19;
+    background-color: #0b0d19; /* Адаптировано под фон рефералки */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     z-index: 1000;
 }
 
-.user-info {
-    background: rgba(255, 255, 255, 0.04);
-    padding: 8px 16px;
-    border-radius: 30px;
+/* Юзер-бокс (Будущее место для регистрации/аккаунта) */
+.user-box, .user-info {
     display: flex;
     align-items: center;
     gap: 8px;
+    background: #1E1E24;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #2D2D35;
     font-size: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.lang-dropdown {
-    background: #171a2f; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 8px 14px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.username {
     font-size: 14px;
     font-weight: 600;
-    cursor: pointer;
+    color: #ffffff;
 }
 
-/* ================= КОНТЕНТ РЕФЕРАЛКИ ================= */
+/* Селектор языка один в один как на главной */
+.lang-selector select, .lang-dropdown {
+    background-color: #1E1E24;
+    color: #ffffff;
+    border: 1px solid #2D2D35;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.lang-selector select:focus {
+    border-color: #A855F7;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+}
+
+/* ==================== КОНТЕНТ РЕФЕРАЛКИ ==================== */
 .main-content {
     max-width: 450px;
     margin: 0 auto;
@@ -74,7 +87,7 @@ body {
     font-weight: 800;
     margin-bottom: 12px;
     letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%); /* Градиент как у кнопки Studio! */
+    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -85,14 +98,13 @@ body {
     line-height: 1.5;
 }
 
-/* --- ОБНОВЛЕННЫЙ БАННЕР С КОРРЕКТНЫМ ПУТЕМ К ПАПКЕ --- */
+/* Фото-баннер */
 .ref-banner {
     width: 100%;
     height: 160px;
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 25px;
-    /* Если баннер не нашел картинку, сработает сочный неоновый бэкграунд */
     background: linear-gradient(135deg, #161930 0%, #0b0d19 100%);
     border: 1px solid rgba(168, 85, 247, 0.2);
     display: flex;
@@ -104,10 +116,10 @@ body {
 .banner-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Картинка заполнит весь блок без искажений */
+    object-fit: cover; 
 }
 
-/* --- СТИЛЬНЫЙ СТЕКЛЯННЫЙ БЛОК ШАГОВ --- */
+/* Стеклянный блок шагов */
 .ref-steps-box {
     background: linear-gradient(145deg, #161930 0%, #0f1121 100%);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -156,7 +168,7 @@ body {
     line-height: 1.5;
 }
 
-/* Премиум карточки бонусов */
+/* Карточки бонусов */
 .bonus-cards {
     display: flex;
     gap: 12px;
@@ -193,7 +205,7 @@ body {
 }
 
 .card-value.cyan {
-    color: #00ffcc; /* Твой фирменный сочный неон вместо тусклого голубого */
+    color: #00ffcc; 
     text-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
 }
 
@@ -278,7 +290,7 @@ body {
     left: 0;
     width: 100%;
     height: 70px;
-    background-color: #0b0d19; /* В цвет фона */
+    background-color: #0b0d19; 
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     display: flex;
     justify-content: space-around;
@@ -305,7 +317,6 @@ body {
 
 .nav-text { font-size: 11px; font-weight: 600; }
 
-/* Подсветка активной вкладки реферала фиолетовым */
 .bottom-nav a .nav-item.active,
 .nav-item.active,
 .nav-item.active .nav-text { 
@@ -329,7 +340,7 @@ body {
     justify-content: center;
     box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid #0b0d19; /* Фикс: обводка сливается с фоном рефералки, делая кнопку круглой */
+    border: 2px solid #0b0d19; 
 }
 
 .studio-btn-wrapper:hover .studio-btn,
@@ -352,8 +363,8 @@ body {
     -webkit-text-fill-color: transparent;
 } 
 
-/* Сброс лишних мобильных подсветок */
 .card, .copy-btn, input, select, button {
     outline: none !important;
     -webkit-tap-highlight-color: transparent !important;
 }
+    
