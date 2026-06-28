@@ -84,103 +84,169 @@ body {
     box-shadow: 0 0 8px #a800ff;
 }
 
-/* ==================== ПРЕМИУМ МИНИМАЛИСТИЧНЫЕ КАРТОЧКИ ==================== */
+/* ==================== ИСТИННЫЙ ПРЕМИУМ-СТИЛЬ (КАК НА ГЛАВНОЙ) ==================== */
 
-/* Сетка: аккуратные, ровные колонки */
+/* Сетка карточек */
 .shop-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px; /* Слегка уменьшили расстояние, чтобы было компактнее */
-    padding-top: 10px;
+    gap: 12px;
+    padding-top: 15px;
 }
 
-/* Элегантная стеклянная карточка */
+/* Утонченная стеклянная карточка в стиле главного экрана */
 .shop-card {
-    background: linear-gradient(145deg, #161930 0%, #0f1121 100%);
-    border-radius: 12px;
-    padding: 12px 10px;
+    background: rgba(255, 255, 255, 0.03); /* Минималистичная прозрачность */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px; /* Закругление как у блоков главной */
+    padding: 16px 12px;
     text-align: center;
     position: relative;
-    
-    /* Тонкая, едва заметная футуристичная рамка */
-    border: 1px solid rgba(255, 255, 255, 0.06); 
-    /* Мягкая глубокая тень вместо жирного бравл-эффекта */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    
-    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Очень тонкая аккуратная рамка */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
-/* КРАСИВЫЙ ТАП-ЭФФЕКТ: карточка слегка подсвечивается изнутри */
+/* Микро-отклик при нажатии на карточку */
 .shop-card:active {
-    transform: scale(0.98); /* Легкий микро-клик */
-    border-color: rgba(168, 0, 255, 0.4); /* Плавное окрашивание рамки */
-    box-shadow: 0 0 12px rgba(168, 0, 255, 0.2);
+    transform: scale(0.97);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(168, 0, 255, 0.3);
 }
 
-/* Иконка товара (монетка или микрофон) */
+/* Иконки товаров — делаем их аккуратными, без гигантизма */
 .card-image {
-    font-size: 28px; /* Сделали аккуратнее, не орет на весь экран */
-    margin-top: 4px;
-    margin-bottom: 6px;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5)); 
+    font-size: 24px; 
+    margin-top: 5px;
+    margin-bottom: 8px;
+    display: inline-block;
 }
 
-/* Название товара */
+/* Название товара — утонченный шрифт, как в описании BEAST OMNI */
 .card-name {
-    font-size: 13px; /* Меньше и аккуратнее */
-    font-weight: 600; /* Стильный полужирный вместо перекачанного жирного */
-    text-transform: none; /* Убираем капс, чтобы текст выглядел чище */
-    color: #e2e8f0;
-    text-shadow: none; /* Стираем черную обводку */
-    margin-bottom: 12px;
-    letter-spacing: 0.3px;
+    font-size: 14px;
+    font-weight: 400; /* Тонкий, благородный шрифт */
+    color: rgba(255, 255, 255, 0.85); /* Слегка приглушенный белый */
+    margin-bottom: 14px;
+    letter-spacing: 0.2px;
 }
 
-/* СТИЛЬНАЯ СТРОГАЯ КНОПКА */
+/* Стильная, минималистичная кнопка-ценник */
 .buy-btn {
     width: 100%;
-    background: #1e1b4b; /* Глубокий темный фон кнопки */
-    border: 1px solid rgba(168, 0, 255, 0.4); /* Фиолетовый светящийся контур */
-    color: #00ffcc; /* Бирюзовый неоновый текст цены */
-    text-shadow: none; 
-    padding: 6px;
-    border-radius: 6px;
-    font-weight: 700;
+    background: rgba(168, 0, 255, 0.1); /* Прозрачно-фиолетовый фон */
+    border: 1px solid rgba(168, 0, 255, 0.4); /* Тонкий неоновый контур */
+    color: #ffffff;
+    padding: 8px;
+    border-radius: 10px;
+    font-weight: 600;
     font-size: 13px;
-    text-transform: uppercase;
     cursor: pointer;
-    box-shadow: none;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
 }
 
-/* Эффект при клике на кнопку */
+/* Эффект кнопки при тапе */
 .buy-btn:active {
-    background: #a800ff !important; /* Кнопка заливается фиолетовым при тапе */
+    background: linear-gradient(135deg, #00e5ff, #7f00ff) !important; /* Градиент как у кнопки Studio! */
+    border-color: transparent !important;
     color: #ffffff !important;
-    transform: translateY(0) !important;
-    box-shadow: 0 0 10px rgba(168, 0, 255, 0.5) !important;
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4) !important;
 }
 
-/* Перекрашиваем линию категории ИИ-голосов под новый стиль */
-.category-section:nth-of-type(2) .category-line {
-    background-color: #a800ff !important;
-    box-shadow: 0 0 8px rgba(168, 0, 255, 0.6);
-}
-
-/* Аккуратные компактные бэйджи */
+/* Компактные аккуратные бэйджи над карточками */
 .badge {
     position: absolute;
-    top: -8px;
+    top: -7px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 8px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border: none;
-    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 1px 8px;
+    border-radius: 6px;
     text-transform: uppercase;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    letter-spacing: 0.5px;
+}
+.badge-popular { background: #ff007f; color: white; }
+.badge-best { background: #00e5ff; color: #0b0d19; }
+.badge-legendary { background: #ff9900; color: white; }
+.badge-epic { background: #9900ff; color: white; }
+
+/* ==================== АНТИ-ОБВОДКА И СБРОС ФОКУСА ==================== */
+.shop-card, .buy-btn, select, button {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* ==================== ИСПРАВЛЕННЫЙ НИЖНИЙ БАР (ИДЕАЛЬНЫЙ МЭТЧ) ==================== */
+.bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #0b0d19; /* В цвет фона, чтобы не выделялся швом */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.bottom-navbar a {
+    text-decoration: none;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.4); /* Тусклый белый для неактивных */
+    font-size: 10px;
+    gap: 4px;
+}
+
+/* Активная вкладка Shop подсвечивается фиолетово-розовым из градиента */
+.nav-item.active {
+    color: #b55fe6 !important; 
+}
+
+.nav-icon {
+    font-size: 18px;
+}
+
+.nav-center-item {
+    position: relative;
+    top: -15px;
+}
+
+/* Круглая кнопка Studio один в один со скрина */
+.nav-center-btn {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #a800ff, #b55fe6); /* Пурпурный светящийся неон */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(168, 0, 255, 0.45);
+}
+
+.center-icon {
+    font-size: 22px;
+    color: white;
+}
+
+.center-text {
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.4);
 }
 
 /* ==================== АНТИ-ОБВОДКА И СБРОС ФОКУСА ==================== */
@@ -365,3 +431,4 @@ body {
 .center-text {
     margin-top: 4px;
 }
+              
