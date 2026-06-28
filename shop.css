@@ -1,145 +1,142 @@
-/* ==========================================================================
-   ОБЩИЕ НАСТРОЙКИ СТРАНИЦЫ МАГАЗИНА
-   ========================================================================== */
-body {
-    background-color: #0b0d19; /* Твой строгий темный фон */
-    color: #ffffff;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    margin: 0;
-    padding-top: 75px;    /* Отступ сверху под компактную шапку */
-    padding-bottom: 90px; /* Отступ снизу, чтобы меню не перекрывало карточки */
+/* Подключаем премиальный шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
-/* СТИЛИ ВЕРХНЕГО БЛОКА (HEADER) */
+body {
+    background-color: #06070d; /* Глубокий премиум-черный как на главной */
+    color: #ffffff;
+    font-family: 'Inter', sans-serif; /* Тот самый дорогой шрифт */
+    margin: 0;
+    padding-top: 80px;
+    padding-bottom: 95px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==================== ВЕРХНИЙ БАР (HEADER) ОДИН В ОДИН С ГЛАВНОЙ ==================== */
 .shop-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Сделали шапку аккуратнее */
-    background: #0b0d19; /* Чистый фон в цвет боди */
+    height: 65px;
+    background: rgba(6, 7, 13, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
-    box-sizing: border-box;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0 20px;
     z-index: 1000;
 }
 
-/* Текст баланса слева */
 .shop-balance {
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 8px 16px;
+    border-radius: 30px; 
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Твой выпадающий список языков справа */
 #lang-dropdown {
-    background: #171a2f; 
+    background: rgba(255, 255, 255, 0.04);
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 6px 10px;
-    border-radius: 8px;
+    border: 1px solid rgba(168, 0, 255, 0.3); 
+    padding: 8px 14px;
+    border-radius: 12px;
     font-size: 14px;
     font-weight: 600;
     outline: none;
     cursor: pointer;
 }
 
-#lang-dropdown option {
-    background: #171a2f; 
-    color: #ffffff;
-}
-
-/* СТИЛИ ДЛЯ КОНТЕНТА И СЕТКИ */
+/* ==================== КОНТЕНТ И КАТЕГОРИИ ==================== */
 .shop-content {
-    padding: 0 12px; /* Чуть уменьшили паддинг, чтобы карточкам было просторнее */
+    padding: 0 16px;
 }
 
 .category-section {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .category-title {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: 10px;
+    margin-bottom: 16px;
+    letter-spacing: -0.2px;
 }
 
 .category-line {
-    width: 4px;
-    height: 16px;
-    background-color: #00e5ff;
-    border-radius: 2px;
+    width: 3px;
+    height: 18px;
+    background: #00e5ff;
+    box-shadow: 0 0 10px #00e5ff;
+    border-radius: 10px;
 }
 
-/* Красивый фиолетовый акцент для линии новой категории голосов */
 .category-section:nth-of-type(2) .category-line {
-    background-color: #a800ff !important;
-    box-shadow: 0 0 8px #a800ff;
+    background: #a800ff !important;
+    box-shadow: 0 0 10px #a800ff !important;
 }
 
-/* ==================== ИСТИННЫЙ ПРЕМИУМ-СТИЛЬ (КАК НА ГЛАВНОЙ) ==================== */
-
-/* Сетка карточек */
+/* ==================== КАРТОЧКИ ТОВАРОВ ==================== */
 .shop-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    padding-top: 15px;
 }
 
-/* Утонченная стеклянная карточка в стиле главного экрана */
 .shop-card {
-    background: rgba(255, 255, 255, 0.03); /* Минималистичная прозрачность */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px; /* Закругление как у блоков главной */
-    padding: 16px 12px;
+    background: rgba(255, 255, 255, 0.02); 
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 20px 12px 16px 12px;
     text-align: center;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Очень тонкая аккуратная рамка */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
-/* Микро-отклик при нажатии на карточку */
 .shop-card:active {
-    transform: scale(0.97);
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(168, 0, 255, 0.3);
+    transform: scale(0.96);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(168, 0, 255, 0.4);
 }
 
-/* Иконки товаров — делаем их аккуратными, без гигантизма */
+/* Фикс гигантских картинок и монет со скриншота */
 .card-image {
-    font-size: 24px; 
-    margin-top: 5px;
-    margin-bottom: 8px;
+    font-size: 26px;
+    margin-bottom: 10px;
     display: inline-block;
 }
 
-/* Название товара — утонченный шрифт, как в описании BEAST OMNI */
-.card-name {
-    font-size: 14px;
-    font-weight: 400; /* Тонкий, благородный шрифт */
-    color: rgba(255, 255, 255, 0.85); /* Слегка приглушенный белый */
-    margin-bottom: 14px;
-    letter-spacing: 0.2px;
+.card-image img {
+    width: 40px !important;  /* Жестко фиксируем размер картинок-монеток */
+    height: 40px !important;
+    object-fit: contain;
 }
 
-/* Стильная, минималистичная кнопка-ценник */
+.card-name {
+    font-size: 14px;
+    font-weight: 400; 
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 16px;
+}
+
+/* Минималистичная неоновая кнопка-ценник */
 .buy-btn {
     width: 100%;
-    background: rgba(168, 0, 255, 0.1); /* Прозрачно-фиолетовый фон */
-    border: 1px solid rgba(168, 0, 255, 0.4); /* Тонкий неоновый контур */
-    color: #ffffff;
-    padding: 8px;
+    background: rgba(168, 0, 255, 0.07);
+    border: 1px solid rgba(168, 0, 255, 0.3);
+    color: #00ffcc; 
+    padding: 8px 0;
     border-radius: 10px;
     font-weight: 600;
     font-size: 13px;
@@ -147,25 +144,22 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Эффект кнопки при тапе */
 .buy-btn:active {
-    background: linear-gradient(135deg, #00e5ff, #7f00ff) !important; /* Градиент как у кнопки Studio! */
+    background: linear-gradient(135deg, #a800ff, #b55fe6) !important;
+    color: #fff !important;
     border-color: transparent !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4) !important;
 }
 
-/* Компактные аккуратные бэйджи над карточками */
+/* Компактные бэйджи */
 .badge {
     position: absolute;
-    top: -7px;
+    top: -8px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 9px;
-    font-weight: 600;
-    padding: 1px 8px;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 8px;
     border-radius: 6px;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 .badge-popular { background: #ff007f; color: white; }
@@ -173,91 +167,7 @@ body {
 .badge-legendary { background: #ff9900; color: white; }
 .badge-epic { background: #9900ff; color: white; }
 
-/* ==================== АНТИ-ОБВОДКА И СБРОС ФОКУСА ==================== */
-.shop-card, .buy-btn, select, button {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-}
-
-/* ==================== ИСПРАВЛЕННЫЙ НИЖНИЙ БАР (ИДЕАЛЬНЫЙ МЭТЧ) ==================== */
-.bottom-navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background: #0b0d19; /* В цвет фона, чтобы не выделялся швом */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    z-index: 1000;
-    box-sizing: border-box;
-}
-
-.bottom-navbar a {
-    text-decoration: none;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.4); /* Тусклый белый для неактивных */
-    font-size: 10px;
-    gap: 4px;
-}
-
-/* Активная вкладка Shop подсвечивается фиолетово-розовым из градиента */
-.nav-item.active {
-    color: #b55fe6 !important; 
-}
-
-.nav-icon {
-    font-size: 18px;
-}
-
-.nav-center-item {
-    position: relative;
-    top: -15px;
-}
-
-/* Круглая кнопка Studio один в один со скрина */
-.nav-center-btn {
-    width: 52px;
-    height: 52px;
-    background: linear-gradient(135deg, #a800ff, #b55fe6); /* Пурпурный светящийся неон */
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 20px rgba(168, 0, 255, 0.45);
-}
-
-.center-icon {
-    font-size: 22px;
-    color: white;
-}
-
-.center-text {
-    margin-top: 4px;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-/* ==================== АНТИ-ОБВОДКА И СБРОС ФОКУСА ==================== */
-.shop-card, .buy-btn, select, button {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent !important; /* Убирает синий прозрачный квадрат на телефонах */
-}
-
-/* ==================== МОДНЫЕ МОДАЛЬНЫЕ ОКНА ==================== */
-
-/* Фон, который затемняет и размывает всё сзади */
+/* ==================== ТОТ САМЫЙ КРАСИВЫЙ ЭКРАН ПОКУПКИ (МОДАЛКА) ==================== */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -265,27 +175,25 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(6px); /* Модный эффект размытия */
+    backdrop-filter: blur(6px); 
     -webkit-backdrop-filter: blur(6px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10005; /* Подняли выше нижнего меню */
+    z-index: 10005; 
     opacity: 0;
     pointer-events: none; 
     transition: opacity 0.2s ease;
 }
 
-/* Окно становится видимым */
 .modal-overlay.active {
     opacity: 1;
     pointer-events: auto;
 }
 
-/* Контент самого окошка по центру */
 .modal-content {
-    background: #1e1e2f; /* Темный игровой фон как у карточек */
-    border: 2.5px solid #a800ff; /* Фиолетовая неоновая рамка */
+    background: #1e1e2f; 
+    border: 2.5px solid #a800ff; /* Твоя любимая фиолетовая неоновая рамка */
     border-radius: 16px;
     width: 88%;
     max-width: 330px;
@@ -300,7 +208,6 @@ body {
     transform: scale(1);
 }
 
-/* Кнопка закрытия (крестик) */
 .modal-close {
     position: absolute;
     top: 10px;
@@ -314,7 +221,6 @@ body {
 }
 .modal-close:hover { color: #fff; }
 
-/* Внутренности окна */
 .modal-header h3 { 
     margin: 0; 
     color: #fff; 
@@ -343,12 +249,11 @@ body {
     line-height: 1.4;
 }
 
-/* Кнопка запуска аудио */
 .play-audio-btn {
     width: 100%;
     background: #2a2a40;
     border: 1px solid #7000ff;
-    color: #00ffcc; /* Неоново-зеленый/бирюзовый для кнопки плея */
+    color: #00ffcc; 
     padding: 12px;
     border-radius: 8px;
     font-weight: bold;
@@ -365,20 +270,20 @@ body {
     box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
 }
 
-/* ==================== АВТОМАТИЧЕСКИЙ ФИКС НИЖНЕГО БАРА ==================== */
+/* ==================== НИЖНИЙ БАР (КЛОН С ГЛАВНОЙ СТРАНИЦЫ) ==================== */
 .bottom-navbar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 70px;
-    background: #131626;
+    height: 75px;
+    background: #06070d; 
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     z-index: 1000;
-    box-sizing: border-box;
+    padding-bottom: env(safe-area-inset-bottom); 
 }
 
 .bottom-navbar a {
@@ -388,47 +293,57 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #6c7293;
-    font-size: 11px;
-    gap: 4px;
+    color: rgba(255, 255, 255, 0.35); 
+    font-size: 10px;
+    gap: 5px;
+    font-weight: 500;
 }
 
+.bottom-navbar a .nav-item.active,
 .nav-item.active {
-    color: #ffffff;
+    color: #a800ff !important;
 }
 
 .nav-icon {
-    font-size: 20px;
+    font-size: 18px; 
 }
 
 .nav-center-item {
     position: relative;
-    top: -15px;
+    top: -12px;
 }
 
 .nav-center-btn {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #00e5ff, #7f00ff);
-    border-radius: 50px;
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, #a800ff, #b55fe6); 
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4);
+    box-shadow: 0 0 15px rgba(168, 0, 255, 0.5); 
 }
 
 .center-icon {
-    font-size: 24px;
+    font-size: 20px;
     color: white;
 }
 
 .center-text {
-    margin-top: 4px;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 10px;
 }
-              
+
+/* Сброс эффектов */
+.shop-card, .buy-btn, select, button {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
