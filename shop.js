@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const shopCards = document.querySelectorAll('.shop-card');
+    // Находим все кнопки покупки, так как теперь только они открывают окна
+    const buyButtons = document.querySelectorAll('.buy-btn');
     
     // Элементы модалки коинов
     const coinModal = document.getElementById('coinModal');
@@ -13,14 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const playBtn = document.getElementById('playBtn');
     const previewAudio = document.getElementById('previewAudio');
 
-    // Обработка кликов по карточкам
-    shopCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            // Если кликнули конкретно на кнопку внутри карточки, останавливаем всплытие, 
-            // чтобы событие не срабатывало дважды
-            if (e.target.classList.contains('buy-btn')) {
-                e.stopPropagation();
-            }
+    // Обработка кликов строго по КНОПКАМ покупки
+    buyButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            // Останавливаем всплытие, чтобы карточка не перехватывала клик
+            e.stopPropagation();
+
+            // Находим карточку, внутри которой лежит эта кнопка
+            const card = button.closest('.shop-card');
+            if (!card) return;
 
             const cardType = card.getAttribute('data-type') || 'coin'; // по дефолту коин
             const name = card.querySelector('.card-name').innerText;
