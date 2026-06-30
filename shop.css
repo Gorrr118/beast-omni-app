@@ -98,50 +98,47 @@ body {
     box-shadow: 0 0 10px #a800ff !important;
 }
 
-/* ==================== НОВЫЙ ДИЗАЙН И АНИМАЦИЯ КАРТОЧЕК ==================== */
+/* ==================== СТРОГИЙ И ТЕМНЫЙ МИНИМАЛИЗМ КАРТОЧЕК ==================== */
 .shop-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px; /* Чуть увеличили расстояние для воздуха */
+    gap: 12px;
 }
 
 .shop-card {
-    background: linear-gradient(145deg, #141629 0%, #0c0e1a 100%); /* Более глубокий стеклянный тон */
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 18px; /* Округлые аккуратные углы */
-    padding: 22px 14px 16px 14px;
+    background: #121424; /* Плотный, благородный темный цвет без градиентов-радуг */
+    border: 1px solid #1e223b; /* Строгая, заметная рамка */
+    border-radius: 14px;
+    padding: 24px 12px 14px 12px;
     text-align: center;
     position: relative;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     
-    /* Эластичный, дорогой возврат карточки при отпускании пальца */
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-                border-color 0.25s ease, 
-                box-shadow 0.25s ease;
+    /* Ультра-быстрый отклик на нажатие (0.15 секунды) — создает эффект механики */
+    transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                border-color 0.15s ease, 
+                background-color 0.15s ease;
                 
     cursor: pointer;
-    overflow: hidden;
 }
 
-/* ЭФФЕКТ ЖИВОГО ТАПА: При нажатии на САМУ карточку */
+/* Мощный физический прожим карточки внутрь при тапе */
 .shop-card:active {
-    transform: scale(0.95) translateY(2px); /* Карточка упруго сжимается вниз */
-    border-color: rgba(168, 85, 247, 0.4); /* Края вспыхивают неоновым фиолетовым светом */
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15), inset 0 0 12px rgba(168, 85, 247, 0.1);
+    transform: scale(0.94) translateY(3px); /* Заметное вдавливание */
+    background-color: #16192e; /* Карточка слегка темнеет/меняет тон при клике */
+    border-color: #A855F7; /* Строгое фиолетовое выделение активной карточки */
 }
 
-/* Картинка-эмодзи товара */
+/* Иконка товара (крупная и объемная) */
 .card-image {
-    font-size: 38px; /* Увеличили размер, чтобы они смотрелись сочно */
-    margin-bottom: 12px;
+    font-size: 36px;
+    margin-bottom: 8px;
     display: inline-block;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
-    transition: transform 0.2s ease;
+    transition: transform 0.15s ease;
 }
 
-/* Иконка внутри карточки реагирует на нажатие */
 .shop-card:active .card-image {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Иконка пружинит на пользователя */
 }
 
 .card-image img {
@@ -150,55 +147,53 @@ body {
     object-fit: contain;
 }
 
-/* Название товара */
+/* Название товара — четкий, читаемый Inter */
 .card-name {
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+    letter-spacing: -0.2px;
 }
 
-/* СОЧНАЯ КНОПКА ПОКУПКИ В СТИЛЕ СТУДИИ С ГЛАВНОЙ СТРАНИЦЫ */
+/* СТИЛЬНАЯ, МОНОЛИТНАЯ КНОПКА КЛИКА */
 .buy-btn {
     width: 100%;
-    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%); /* Тот самый шикарный градиент */
-    border: none;
-    color: #ffffff !important;
-    padding: 10px 0;
-    border-radius: 12px;
-    font-family: 'Unbounded', sans-serif; /* Шрифт цены Unbounded */
+    background: #1b1d36; /* Темный монолитный фон под стать карточке */
+    border: 1px solid #2c3057;
+    color: #00ffcc !important; /* Контрастный неоновый цвет цены */
+    padding: 9px 0;
+    border-radius: 10px;
+    font-family: 'Unbounded', sans-serif;
     font-weight: 700;
     font-size: 11px;
     letter-spacing: 0.5px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.35);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 5;
-    position: relative;
+    transition: all 0.12s ease;
 }
 
-/* Отдельный, максимально глубокий и четкий клик при попадании именно на кнопку цены */
+/* Когда палец ложится четко на цену — кнопка взрывается фиолетовым */
 .buy-btn:active {
-    transform: scale(0.92) !important; /* Прожимается сильнее карточки */
-    background: linear-gradient(135deg, #9333EA 0%, #DB2777 100%) !important; /* Становится сочнее */
-    box-shadow: 0 2px 8px rgba(168, 85, 247, 0.6) !important;
+    background: #A855F7 !important;
+    border-color: #A855F7 !important;
+    color: #ffffff !important;
+    transform: scale(0.92); /* Прожимается еще глубже */
 }
 
-/* Аккуратные бэйджи над карточками */
+/* Компактные и плоские бейджи (POPULAR, EPIC и т.д.) */
 .badge {
     position: absolute;
-    top: -7px;
+    top: -6px;
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Unbounded', sans-serif;
-    font-size: 8px;
-    font-weight: 900;
-    padding: 3px 9px;
-    border-radius: 6px;
-    letter-spacing: 0.3px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    border: none !important;
+    font-size: 7.5px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 .badge-popular { background: #ff007f; color: white; }
 .badge-epic { background: #9900ff; color: white; }
