@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Press+Start+2P&family=Orbitron:wght@700&family=Rubik+Glitch&family=Cinzel:wght@700&family=Bungee+Shade&family=Monoton&family=Creepster&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&display=swap');
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -104,20 +104,11 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.2s ease;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 200px;
 }
 
 .shop-card:active {
     transform: translateY(-4px) scale(0.97);
     border-color: rgba(168, 85, 247, 0.4);
-}
-
-.card-image-coin {
-    font-size: 34px;
-    margin: 12px 0;
 }
 
 .card-image {
@@ -128,76 +119,15 @@ body {
 
 .card-name {
     font-family: 'Unbounded', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     color: #ffffff;
-    margin-top: auto;
     margin-bottom: 16px;
     letter-spacing: -0.3px;
     line-height: 1.3;
 }
 
-/* ==================== СИМУЛЯЦИЯ OBS ЭКРАНА ==================== */
-.obs-preview-box {
-    background: #06070d;
-    border: 1px dashed rgba(255, 0, 127, 0.3);
-    border-radius: 12px;
-    padding: 10px 4px;
-    margin-bottom: 8px;
-}
-
-.obs-stream-text {
-    font-size: 8px;
-    color: #ff007f;
-    font-family: monospace;
-    font-weight: bold;
-    margin-bottom: 6px;
-}
-
-.obs-char-placeholder {
-    font-size: 26px;
-}
-
-/* ==================== КОНТЕЙНЕРЫ ПРЕСЕТОВ ШРИФТОВ ==================== */
-.font-preview-container {
-    background: #06070d;
-    border: 1px solid rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    padding: 12px 4px;
-    margin-bottom: 8px;
-}
-
-.font-example {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 2px;
-}
-
-.font-subtext {
-    font-size: 8px;
-    color: rgba(255, 255, 255, 0.3);
-    font-family: sans-serif;
-}
-
-/* СТИЛИ ДЛЯ ВСЕХ 16 ШРИФТОВ */
-.font-glitch { font-family: 'Rubik Glitch', sans-serif; color: #ff0055; text-shadow: 1px 1px #00e5ff; }
-.font-cyber { font-family: 'Orbitron', sans-serif; color: #00e5ff; }
-.font-pixel { font-family: 'Press Start 2P', cursive; font-size: 9px; color: #00ff00; }
-.font-retro { font-family: 'Monoton', cursive; color: #f472b6; font-size: 12px; }
-.font-neon { font-family: 'Unbounded', sans-serif; color: #fff; text-shadow: 0 0 5px #a855f7, 0 0 10px #a855f7; }
-.font-gothic { font-family: 'Cinzel', serif; color: #94a3b8; }
-.font-tech-font { font-family: 'Orbitron', sans-serif; color: #eab308; }
-.font-cartoon { font-family: 'Permanent Marker', cursive; color: #fb923c; }
-.font-matrix { font-family: monospace; color: #22c55e; letter-spacing: 2px; }
-.font-phonk { font-family: 'Unbounded', sans-serif; font-weight: 900; text-transform: uppercase; color: #fff; font-style: italic; }
-.font-acid { font-family: 'Creepster', cursive; color: #a3e635; font-size: 16px; }
-.font-gangsta { font-family: 'Cinzel', serif; font-style: italic; color: #ef4444; }
-.font-vapor { font-family: 'Bungee Shade', cursive; color: #38bdf8; font-size: 11px; }
-.font-fire { font-family: 'Creepster', cursive; color: #f97316; text-shadow: 0 2px 4px #ff0000; font-size: 16px; }
-.font-ice { font-family: 'Orbitron', sans-serif; color: #93c5fd; text-shadow: 0 0 6px #38bdf8; }
-.font-gold { font-family: 'Cinzel', serif; color: #fbbf24; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
-
-/* ==================== КНОПКА ПОКУПКИ ==================== */
+/* КНОПКА ПОКУПКИ */
 .buy-btn {
     width: 100%;
     background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%);
@@ -219,7 +149,7 @@ body {
     filter: brightness(0.9);
 }
 
-/* ==================== БЭЙДЖИКИ ==================== */
+/* УНИВЕРСАЛЬНЫЕ БЭЙДЖИКИ (АККУРАТНЫЕ И СТИЛЬНЫЕ) */
 .badge {
     position: absolute;
     top: -8px;
@@ -248,109 +178,109 @@ body {
 .badge-tech { background: #71717a; }
 .badge-rage { background: #ef4444; }
 
-/* ==================== СЕТКА И КАРТОЧКИ (PRO ВЕРСИЯ) ==================== */
-.shop-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px; /* Чуть увеличили отступ для свечения */
-}
-
-/* Базовая карточка (Обычная / Сommon) */
-.shop-card {
-    background: #111322;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 18px;
-    padding: 35px 12px 18px 12px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
+/* ==================== МОДАЛЬНЫЕ ОКНА ==================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 6, 12, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 210px;
-    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
 }
 
-/* Эффект при наведении/клике */
-.shop-card:active {
-    transform: translateY(-4px) scale(0.97);
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-/* --- КАТЕГОРИИ РЕДКОСТИ ДЛЯ КАРТОЧЕК --- */
-
-/* 1. ХИТ / POPULAR (Розовый неон) */
-.shop-card.rarity-hit {
-    background: linear-gradient(180deg, #141125 0%, #111322 100%);
-    border: 1px solid rgba(244, 114, 182, 0.3);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), inset 0 0 12px rgba(244, 114, 182, 0.1);
-}
-.shop-card.rarity-hit:active {
-    box-shadow: 0 0 15px rgba(244, 114, 182, 0.4);
-    border-color: #F472B6;
-}
-
-/* 2. EPIC (Фиолетовый киберпанк) */
-.shop-card.rarity-epic {
-    background: linear-gradient(180deg, #15112c 0%, #111322 100%);
-    border: 1px solid rgba(168, 85, 247, 0.3);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), inset 0 0 12px rgba(168, 85, 247, 0.15);
-}
-.shop-card.rarity-epic:active {
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
-    border-color: #A855F7;
+.modal-content {
+    background: #111322;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 22px;
+    width: 88%;
+    max-width: 320px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(168, 85, 247, 0.15);
+    transform: scale(0.88);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.2);
 }
 
-/* 3. LEGENDARY / LUXURY (Золотое свечение — для самых дорогих) */
-.shop-card.rarity-legendary {
-    background: linear-gradient(180deg, #1c1811 0%, #111322 100%);
-    border: 1px solid rgba(255, 170, 0, 0.3);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 170, 0, 0.1);
-}
-.shop-card.rarity-legendary:active {
-    box-shadow: 0 0 20px rgba(255, 170, 0, 0.6);
-    border-color: #ffaa00;
+.modal-overlay.active .modal-content {
+    transform: scale(1);
 }
 
-/* 4. CRAZY / RAGE (Огненно-красный) */
-.shop-card.rarity-rage {
-    background: linear-gradient(180deg, #1f1114 0%, #111322 100%);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), inset 0 0 12px rgba(239, 68, 68, 0.15);
-}
-.shop-card.rarity-rage:active {
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
-    border-color: #ef4444;
-}
-
-/* Внутренности карточек */
-.card-image-coin {
-    font-size: 36px;
-    margin: 10px 0;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 24px;
+    cursor: pointer;
 }
 
-.card-image {
-    font-size: 34px;
-    margin-bottom: 10px;
-    display: inline-block;
-    transition: transform 0.2s ease;
-}
-.shop-card:active .card-image {
-    transform: scale(1.1); /* Иконка слегка увеличивается при клике */
-}
-
-.card-name {
+.modal-header h3 {
+    margin: 0;
+    color: #fff;
     font-family: 'Unbounded', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-top: auto;
-    margin-bottom: 14px;
+    font-size: 14px;
+    text-transform: uppercase;
     letter-spacing: -0.3px;
-    line-height: 1.3;
 }
+
+.modal-badge {
+    position: absolute;
+    top: 15px;
+    right: 45px;
+    background: rgba(0, 229, 255, 0.1);
+    color: #00e5ff;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 8px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.modal-main-icon {
+    font-size: 60px; 
+    filter: drop-shadow(0 0 15px #ffcc00); 
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.modal-desc {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    margin: 16px 0;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.play-audio-btn {
+    width: 100%;
+    background: #151727;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #00e5ff;
+    padding: 12px;
+    border-radius: 12px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+}
+
 /* ==================== НИЖНИЙ НАВБАР ==================== */
 .bottom-navbar {
     position: fixed;
@@ -411,4 +341,3 @@ body {
     outline: none !important;
     -webkit-tap-highlight-color: transparent !important;
 }
-       
