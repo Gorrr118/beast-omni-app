@@ -1,21 +1,20 @@
-/* Подключаем шрифты с главной страницы */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&display=swap');
 
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
 body {
-    background-color: #0b0d19; /* Строгий темный фон как на главной */
+    background-color: #0b0d19;
     color: #ffffff;
     font-family: 'Inter', sans-serif;
     margin: 0;
-    padding-top: 80px;
-    padding-bottom: 110px; /* Чтобы навбар не перекрывал нижние карточки */
+    padding-top: 85px;
+    padding-bottom: 110px;
     -webkit-font-smoothing: antialiased;
 }
 
-/* ==================== ВЕРХНИЙ ХЕДЕР И БАЛАНС ==================== */
+/* ==================== ХЕДЕР И БАЛАНС ==================== */
 .shop-header {
     position: fixed;
     top: 0;
@@ -39,10 +38,9 @@ body {
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     font-family: 'Unbounded', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     color: #ffffff;
-    letter-spacing: -0.3px;
 }
 
 #lang-dropdown {
@@ -51,11 +49,12 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 8px 14px;
     border-radius: 10px;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 13px;
 }
 
-/* ==================== ЗАГОЛОВКИ КАТЕГОРИЙ (КАК НА ГЛАВНОЙ) ==================== */
+/* ==================== ЗАГОЛОВКИ КАТЕГОРИЙ ==================== */
 .shop-content {
     padding: 0 16px;
 }
@@ -65,31 +64,30 @@ body {
 }
 
 .category-title {
-    font-family: 'Unbounded', sans-serif; /* Тот самый жирный кибер-шрифт */
-    font-size: 17px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
     font-weight: 800;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 22px;
     letter-spacing: -0.5px;
+    text-transform: uppercase;
 }
 
 .category-line {
     width: 4px;
-    height: 20px;
-    background: #00e5ff;
-    box-shadow: 0 0 12px #00e5ff;
+    height: 18px;
     border-radius: 2px;
+    display: inline-block;
 }
 
-/* Фиолетовая полоска для категории ИИ-Голосов */
-.category-section:nth-of-type(2) .category-line {
-    background: #A855F7 !important;
-    box-shadow: 0 0 12px #A855F7 !important;
-}
+.category-section:nth-of-type(1) .category-line { background: #00e5ff; box-shadow: 0 0 10px #00e5ff; }
+.category-section:nth-of-type(2) .category-line { background: #a800ff; box-shadow: 0 0 10px #a800ff; }
+.category-section:nth-of-type(3) .category-line { background: #ff007f; box-shadow: 0 0 10px #ff007f; }
+.category-section:nth-of-type(4) .category-line { background: #ffaa00; box-shadow: 0 0 10px #ffaa00; }
 
-/* ==================== НОВЫЕ СТИЛЬНЫЕ КАРТОЧКИ ==================== */
+/* ==================== СЕТКА И КАРТОЧКИ ==================== */
 .shop-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -97,69 +95,61 @@ body {
 }
 
 .shop-card {
-    background: #111322; /* Темный глубокий фон под цвет навбара */
+    background: #111322;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 18px;
-    padding: 32px 14px 20px 14px; /* Сделали карточки повыше и потолще */
+    padding: 35px 12px 18px 12px;
     text-align: center;
     position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    
-    /* Упругая физика для прыжка карточки */
-    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.25s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.2s ease;
     cursor: pointer;
 }
 
-/* АНИМАЦИЯ ПРЫЖКА КАРТОЧКИ ПРИ КЛИКЕ */
 .shop-card:active {
-    transform: translateY(-5px) scale(0.98); /* Карточка упруго подпрыгивает вверх */
-    border-color: rgba(168, 85, 247, 0.4); /* Подсвечивается фиолетовым */
+    transform: translateY(-4px) scale(0.97);
+    border-color: rgba(168, 85, 247, 0.4);
 }
 
-/* Эмодзи/Иконка внутри */
 .card-image {
     font-size: 32px;
     margin-bottom: 12px;
     display: inline-block;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
-/* Имя тарифа */
 .card-name {
-    font-family: 'Unbounded', sans-serif; /* Тоже кибер-шрифт, но поменьше */
-    font-size: 13px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     letter-spacing: -0.3px;
+    line-height: 1.3;
 }
 
-/* СОЧНАЯ КНОПКА ПОКУПКИ (КОПИЯ СТИЛЯ С ГЛАВНОЙ) */
+/* КНОПКА ПОКУПКИ */
 .buy-btn {
     width: 100%;
-    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%); /* Фирменный градиент */
+    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%);
     border: none;
     color: #ffffff !important;
-    padding: 10px 0;
+    padding: 11px 0;
     border-radius: 12px;
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
-    transition: all 0.15s ease;
-    position: relative;
-    z-index: 5;
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.25);
+    transition: all 0.1s ease;
 }
 
-/* Глубокий клик по кнопке (модалка откроется из JS) */
 .buy-btn:active {
-    transform: scale(0.92) !important;
-    box-shadow: 0 2px 6px rgba(168, 85, 247, 0.5) !important;
+    transform: scale(0.94);
+    box-shadow: 0 2px 6px rgba(168, 85, 247, 0.4);
     filter: brightness(0.9);
 }
 
-/* ТЕ САНЫЕ НЕОНОВЫЕ БЭЙДЖИКИ */
+/* УНИВЕРСАЛЬНЫЕ БЭЙДЖИКИ (АККУРАТНЫЕ И СТИЛЬНЫЕ) */
 .badge {
     position: absolute;
     top: -8px;
@@ -168,20 +158,25 @@ body {
     font-family: 'Unbounded', sans-serif;
     font-size: 8px;
     font-weight: 900;
-    padding: 3px 10px;
+    padding: 3px 9px;
     border-radius: 6px;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-transform: uppercase;
 }
-.badge-popular { background: #F472B6; color: #000000; }
-.badge-epic { background: #A855F7; color: #ffffff; }
-.badge-legendary { background: #ff9900; color: #ffffff; }
 
-/* Обновленный цвет для бэйджа START под неоновый цвет полоски */
-.badge-popular[style*="background: #00e5ff"] {
-    font-weight: 900 !important;
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5) !important;
-}
+.badge-start { background: #00e5ff; color: #000000; box-shadow: 0 0 8px rgba(0, 229, 255, 0.4); }
+.badge-popular { background: #F472B6; color: #000000; }
+.badge-epic { background: #A855F7; }
+.badge-legendary { background: #ffaa00; }
+.badge-hit { background: #ff0055; }
+.badge-relax { background: #ff00aa; }
+.badge-crazy { background: #ffcc00; color: #000000; }
+.badge-old { background: #ff5500; }
+.badge-meme { background: #00ff00; color: #000000; }
+.badge-tech { background: #71717a; }
+.badge-rage { background: #ef4444; }
 
 /* ==================== МОДАЛЬНЫЕ ОКНА ==================== */
 .modal-overlay {
@@ -190,7 +185,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(5, 6, 12, 0.85);
+    background: rgba(5, 6, 12, 0.88);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex;
@@ -199,7 +194,7 @@ body {
     z-index: 2000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.2s ease;
 }
 
 .modal-overlay.active {
@@ -209,15 +204,15 @@ body {
 
 .modal-content {
     background: #111322;
-    border: 1px solid rgba(168, 85, 247, 0.3);
-    border-radius: 20px;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 22px;
     width: 88%;
     max-width: 320px;
     padding: 24px;
     position: relative;
     box-shadow: 0 15px 40px rgba(168, 85, 247, 0.15);
-    transform: scale(0.85);
-    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+    transform: scale(0.88);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.2);
 }
 
 .modal-overlay.active .modal-content {
@@ -226,7 +221,7 @@ body {
 
 .modal-close {
     position: absolute;
-    top: 12px;
+    top: 14px;
     right: 16px;
     background: none;
     border: none;
@@ -239,12 +234,34 @@ body {
     margin: 0;
     color: #fff;
     font-family: 'Unbounded', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
+    letter-spacing: -0.3px;
+}
+
+.modal-badge {
+    position: absolute;
+    top: 15px;
+    right: 45px;
+    background: rgba(0, 229, 255, 0.1);
+    color: #00e5ff;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 8px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.modal-main-icon {
+    font-size: 60px; 
+    filter: drop-shadow(0 0 15px #ffcc00); 
+    margin-bottom: 12px;
+    text-align: center;
 }
 
 .modal-desc {
     color: rgba(255, 255, 255, 0.6);
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
     margin: 16px 0;
     line-height: 1.5;
@@ -254,17 +271,17 @@ body {
 .play-audio-btn {
     width: 100%;
     background: #151727;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #00ffcc;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #00e5ff;
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
     font-size: 11px;
     cursor: pointer;
 }
 
-/* ==================== НИЖНИЙ НАВБАР И КНОПКА СТУДИИ ==================== */
+/* ==================== НИЖНИЙ НАВБАР ==================== */
 .bottom-navbar {
     position: fixed;
     bottom: 0;
@@ -279,26 +296,25 @@ body {
     z-index: 1000;
 }
 
+.bottom-navbar a {
+    text-decoration: none;
+    display: block;
+    flex: 1;
+}
+
 .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    color: #4e536e;
     gap: 5px;
+    color: #4e536e;
 }
 
 .nav-icon { font-size: 20px; }
-.nav-text { font-size: 11px; font-weight: 600; }
+.nav-text { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; }
 
-.nav-item.active { 
-    color: #A855F7 !important; 
-}
-
-.nav-center-item {
-    position: relative;
-    top: -14px;
-}
+.nav-item.active { color: #A855F7 !important; }
+.nav-center-item { position: relative; top: -14px; }
 
 .nav-center-btn {
     width: 52px;
@@ -312,20 +328,16 @@ body {
     border: 3px solid #0b0d19;
 }
 
-.center-icon {
-    font-size: 22px;
-    color: #FFFFFF;
-}
-
+.center-icon { font-size: 22px; color: #FFFFFF; }
 .center-text {
+    font-family: 'Inter', sans-serif;
     font-weight: 700 !important;
     background: linear-gradient(90deg, #A855F7, #F472B6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* Фикс кликов на мобилках */
-.shop-card, .buy-btn, button {
+.shop-card, .buy-btn, button, select {
     outline: none !important;
     -webkit-tap-highlight-color: transparent !important;
 }
