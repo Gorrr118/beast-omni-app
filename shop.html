@@ -10,7 +10,6 @@
 
     <div class="shop-header">
         <div class="shop-balance">Баланс: <span id="user-coins">0</span> coins</div>
-        
         <select id="lang-dropdown">
             <option value="en">🇺🇸 US</option>
             <option value="ru">🇷🇺 RU</option>
@@ -20,197 +19,207 @@
     <div class="shop-content">
         
         <div class="category-section">
-            <div class="category-title">
-                <span class="category-line"></span>
-                <span class="category-icon">🪙</span> Магазин Коинов
-            </div>
-            
+            <div class="category-title"><span class="category-line"></span>🪙 Магазин Коинов</div>
             <div class="shop-grid">
-                <div class="shop-card" data-type="coin" data-price="49" data-currency="₽">
+                <div class="shop-card" data-type="coin" data-name="100 Coins" data-price="49" data-currency="₽">
                     <span class="badge badge-start">START</span>
-                    <div class="card-image">🪙</div>
-                    <div class="card-name">100 Coins</div>
-                    <button class="buy-btn">49 ₽</button>
+                    <div class="card-image-coin">🪙</div><div class="card-name">100 Coins</div><button class="buy-btn">49 ₽</button>
                 </div>
-
-                <div class="shop-card" data-type="coin" data-price="149" data-currency="₽">
+                <div class="shop-card" data-type="coin" data-name="250 Coins" data-price="149" data-currency="₽">
                     <span class="badge badge-epic">MINI</span>
-                    <div class="card-image">🪙</div>
-                    <div class="card-name">250 Coins</div>
-                    <button class="buy-btn">149 ₽</button>
+                    <div class="card-image-coin">🪙</div><div class="card-name">250 Coins</div><button class="buy-btn">149 ₽</button>
                 </div>
-
-                <div class="shop-card" data-type="coin" data-price="249" data-currency="₽">
+                <div class="shop-card" data-type="coin" data-name="500 Coins" data-price="249" data-currency="₽">
                     <span class="badge badge-popular">POPULAR</span>
-                    <div class="card-image">🪙</div>
-                    <div class="card-name">500 Coins</div>
-                    <button class="buy-btn">249 ₽</button>
+                    <div class="card-image-coin">🪙</div><div class="card-name">500 Coins</div><button class="buy-btn">249 ₽</button>
                 </div>
-
-                <div class="shop-card" data-type="coin" data-price="449" data-currency="₽">
+                <div class="shop-card" data-type="coin" data-name="1,000 Coins" data-price="449" data-currency="₽">
                     <span class="badge badge-legendary">MEGA</span>
-                    <div class="card-image">🪙</div>
-                    <div class="card-name">1,000 Coins</div>
-                    <button class="buy-btn">449 ₽</button>
+                    <div class="card-image-coin">🪙</div><div class="card-name">1,000 Coins</div><button class="buy-btn">449 ₽</button>
                 </div>
             </div>
         </div>
 
         <div class="category-section">
-            <div class="category-title">
-                <span class="category-line"></span>
-                <span class="category-icon">🎙️</span> Магазин ИИ-Голосов
-            </div>
-            
+            <div class="category-title"><span class="category-line"></span>🎙️ Магазин ИИ-Голосов</div>
             <div class="shop-grid">
-                <div class="shop-card" data-type="voice" data-stars="100" data-audio="audio/alpha.mp3">
-                    <span class="badge badge-hit">ХИТ</span>
-                    <div class="card-image">🎙️</div>
-                    <div class="card-name">Альфа-Боец</div>
-                    <button class="buy-btn">⭐️ 100</button>
-                </div>
+                <div class="shop-card" data-type="voice" data-name="Альфа-Боец" data-stars="100" data-audio="audio/alpha.mp3"><span class="badge badge-hit">ХИТ</span><div class="card-image">🎙️</div><div class="card-name">Альфа-Боец</div><button class="buy-btn">⭐️ 100</button></div>
+                <div class="shop-card" data-type="voice" data-name="Аниме Тян" data-stars="150" data-audio="audio/anime.mp3"><span class="badge badge-epic">EPIC</span><div class="card-image">✨</div><div class="card-name">Аниме Тян</div><button class="buy-btn">⭐️ 150</button></div>
+                <div class="shop-card" data-type="voice" data-name="Мистер Хайп" data-stars="180" data-audio="audio/hype.mp3"><span class="badge badge-crazy">CRAZY</span><div class="card-image">⚡</div><div class="card-name">Мистер Хайп</div><button class="buy-btn">⭐️ 180</button></div>
+                <div class="shop-card" data-type="voice" data-name="Глава Банды" data-stars="160" data-audio="audio/boss.mp3"><span class="badge badge-legendary">DARK</span><div class="card-image">🕶️</div><div class="card-name">Глава Банды</div><button class="buy-btn">⭐️ 160</button></div>
+                <div class="shop-card" data-type="voice" data-name="Gamer PRO" data-stars="120" data-audio="audio/gamer.mp3"><span class="badge badge-start">NEW</span><div class="card-image">🎮</div><div class="card-name">Gamer PRO</div><button class="buy-btn">⭐️ 120</button></div>
+                <div class="shop-card" data-type="voice" data-name="Топ Шортс" data-stars="200" data-audio="audio/shorts.mp3"><span class="badge badge-legendary">LEGEND</span><div class="card-image">🔥</div><div class="card-name">Топ Шортс</div><button class="buy-btn">⭐️ 200</button></div>
+                <div class="shop-card" data-type="voice" data-name="Шепот ASMR" data-stars="130" data-audio="audio/asmr.mp3"><span class="badge badge-relax">RELAX</span><div class="card-image">🤫</div><div class="card-name">Шепот ASMR</div><button class="buy-btn">⭐️ 130</button></div>
+                <div class="shop-card" data-type="voice" data-name="Кино Диктор" data-stars="150" data-audio="audio/cinema.mp3"><span class="badge badge-epic">PREMIUM</span><div class="card-image">🎬</div><div class="card-name">Кино Диктор</div><button class="buy-btn">⭐️ 150</button></div>
+                <div class="shop-card" data-type="voice" data-name="Cyber Girl" data-stars="140" data-audio="audio/cyber_girl.mp3"><span class="badge badge-start">CYBER</span><div class="card-image">🤖</div><div class="card-name">Cyber Girl</div><button class="buy-btn">⭐️ 140</button></div>
+                <div class="shop-card" data-type="voice" data-name="Сэнсэй ИИ" data-stars="110" data-audio="audio/sensei.mp3"><span class="badge badge-old">OLD</span><div class="card-image">🥋</div><div class="card-name">Сэнсэй ИИ</div><button class="buy-btn">⭐️ 110</button></div>
+                <div class="shop-card" data-type="voice" data-name="Мемный Бро" data-stars="90" data-audio="audio/meme.mp3"><span class="badge badge-meme">MEME</span><div class="card-image">🤡</div><div class="card-name">Мемный Бро</div><button class="buy-btn">⭐️ 90</button></div>
+                <div class="shop-card" data-type="voice" data-name="Нейро-Влогер" data-stars="120" data-audio="audio/vlogger.mp3"><span class="badge badge-epic">LIVE</span><div class="card-image">📹</div><div class="card-name">Нейро-Влогер</div><button class="buy-btn">⭐️ 120</button></div>
+                <div class="shop-card" data-type="voice" data-name="Робо-Гид" data-stars="100" data-audio="audio/robot.mp3"><span class="badge badge-tech">TECH</span><div class="card-image">🔩</div><div class="card-name">Робо-Гид</div><button class="buy-btn">⭐️ 100</button></div>
+                <div class="shop-card" data-type="voice" data-name="Леди Босс" data-stars="170" data-audio="audio/lady.mp3"><span class="badge badge-legendary">VIP</span><div class="card-image">💎</div><div class="card-name">Леди Босс</div><button class="buy-btn">⭐️ 170</button></div>
+                <div class="shop-card" data-type="voice" data-name="Стример-Агро" data-stars="130" data-audio="audio/rage.mp3"><span class="badge badge-rage">RAGE</span><div class="card-image">😡</div><div class="card-name">Стример-Агро</div><button class="buy-btn">⭐️ 130</button></div>
+                <div class="shop-card" data-type="voice" data-name="Ретро Диджей" data-stars="115" data-audio="audio/dj.mp3"><span class="badge badge-epic">RETRO</span><div class="card-image">📻</div><div class="card-name">Ретро Диджей</div><button class="buy-btn">⭐️ 115</button></div>
+            </div>
+        </div>
 
-                <div class="shop-card" data-type="voice" data-stars="150" data-audio="audio/anime.mp3">
-                    <span class="badge badge-epic">EPIC</span>
-                    <div class="card-image">✨</div>
-                    <div class="card-name">Аниме Тян</div>
-                    <button class="buy-btn">⭐️ 150</button>
+        <div class="category-section">
+            <div class="category-title"><span class="category-line"></span>🎭 OBS Персонажи (Рот на звук)</div>
+            <div class="shop-grid">
+                <div class="shop-card" data-type="avatar" data-name="Крипер (Minecraft)" data-stars="190">
+                    <span class="badge badge-hit">MINECRAFT</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🟩💥</div></div>
+                    <div class="card-name">Крипер</div><button class="buy-btn">⭐️ 190</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="120" data-audio="audio/gamer.mp3">
+                <div class="shop-card" data-type="avatar" data-name="Франклин (GTA V)" data-stars="250">
+                    <span class="badge badge-legendary">GTA V</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">💵🚗</div></div>
+                    <div class="card-name">Франклин</div><button class="buy-btn">⭐️ 250</button>
+                </div>
+                <div class="shop-card" data-type="avatar" data-name="Ворон (Brawl Stars)" data-stars="220">
+                    <span class="badge badge-epic">BRAWL</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🦅🦅</div></div>
+                    <div class="card-name">Ворон</div><button class="buy-btn">⭐️ 220</button>
+                </div>
+                <div class="shop-card" data-type="avatar" data-name="Аниме Кицуне" data-stars="150">
                     <span class="badge badge-start">NEW</span>
-                    <div class="card-image">🎮</div>
-                    <div class="card-name">Gamer PRO</div>
-                    <button class="buy-btn">⭐️ 120</button>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🦊✨</div></div>
+                    <div class="card-name">Аниме Кицуне</div><button class="buy-btn">⭐️ 150</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="200" data-audio="audio/shorts.mp3">
-                    <span class="badge badge-legendary">LEGEND</span>
-                    <div class="card-image">🔥</div>
-                    <div class="card-name">Топ Шортс</div>
-                    <button class="buy-btn">⭐️ 200</button>
+                <div class="shop-card" data-type="avatar" data-name="Кибер-Самурай" data-stars="210">
+                    <span class="badge badge-crazy">CYBER</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🥷⚔️</div></div>
+                    <div class="card-name">Кибер-Самурай</div><button class="buy-btn">⭐️ 210</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="130" data-audio="audio/asmr.mp3">
-                    <span class="badge badge-relax">RELAX</span>
-                    <div class="card-image">🤫</div>
-                    <div class="card-name">Шепот ASMR</div>
-                    <button class="buy-btn">⭐️ 130</button>
+                <div class="shop-card" data-type="avatar" data-name="Стив (Minecraft)" data-stars="130">
+                    <span class="badge badge-tech">STEVE</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🟫⛏️</div></div>
+                    <div class="card-name">Стив</div><button class="buy-btn">⭐️ 130</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="180" data-audio="audio/hype.mp3">
-                    <span class="badge badge-crazy">CRAZY</span>
-                    <div class="card-image">⚡</div>
-                    <div class="card-name">Мистер Хайп</div>
-                    <button class="buy-btn">⭐️ 180</button>
+                <div class="shop-card" data-type="avatar" data-name="Леон (Brawl Stars)" data-stars="240">
+                    <span class="badge badge-epic">LEON</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🦎🍭</div></div>
+                    <div class="card-name">Леон</div><button class="buy-btn">⭐️ 240</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="150" data-audio="audio/cinema.mp3">
-                    <span class="badge badge-epic">PREMIUM</span>
-                    <div class="card-image">🎬</div>
-                    <div class="card-name">Кино Диктор</div>
-                    <button class="buy-btn">⭐️ 150</button>
+                <div class="shop-card" data-type="avatar" data-name="Тревор (GTA V)" data-stars="260">
+                    <span class="badge badge-rage">PSYCHO</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🪓🔥</div></div>
+                    <div class="card-name">Тревор</div><button class="buy-btn">⭐️ 260</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="140" data-audio="audio/cyber_girl.mp3">
-                    <span class="badge badge-start">CYBER</span>
-                    <div class="card-image">🤖</div>
-                    <div class="card-name">Cyber Girl</div>
-                    <button class="buy-btn">⭐️ 140</button>
-                </div>
-
-                <div class="shop-card" data-type="voice" data-stars="110" data-audio="audio/sensei.mp3">
-                    <span class="badge badge-old">OLD</span>
-                    <div class="card-image">🥋</div>
-                    <div class="card-name">Сэнсэй ИИ</div>
-                    <button class="buy-btn">⭐️ 110</button>
-                </div>
-
-                <div class="shop-card" data-type="voice" data-stars="160" data-audio="audio/boss.mp3">
-                    <span class="badge badge-legendary">DARK</span>
-                    <div class="card-image">🕶️</div>
-                    <div class="card-name">Глава Банды</div>
-                    <button class="buy-btn">⭐️ 160</button>
-                </div>
-
-                <div class="shop-card" data-type="voice" data-stars="90" data-audio="audio/meme.mp3">
+                <div class="shop-card" data-type="avatar" data-name="Попит Клоун" data-stars="95">
                     <span class="badge badge-meme">MEME</span>
-                    <div class="card-image">🤡</div>
-                    <div class="card-name">Мемный Бро</div>
-                    <button class="buy-btn">⭐️ 90</button>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🤡🎈</div></div>
+                    <div class="card-name">Попит Клоун</div><button class="buy-btn">⭐️ 95</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="120" data-audio="audio/vlogger.mp3">
-                    <span class="badge badge-epic">LIVE</span>
-                    <div class="card-image">📹</div>
-                    <div class="card-name">Нейро-Влогер</div>
-                    <button class="buy-btn">⭐️ 120</button>
+                <div class="shop-card" data-type="avatar" data-name="Нейро Кот" data-stars="140">
+                    <span class="badge badge-relax">CAT</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🐱🎧</div></div>
+                    <div class="card-name">Нейро Кот</div><button class="buy-btn">⭐️ 140</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="100" data-audio="audio/robot.mp3">
-                    <span class="badge badge-tech">TECH</span>
-                    <div class="card-image">🔩</div>
-                    <div class="card-name">Робо-Гид</div>
-                    <button class="buy-btn">⭐️ 100</button>
+                <div class="shop-card" data-type="avatar" data-name="Шрек" data-stars="180">
+                    <span class="badge badge-meme">GOD</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🧌🧅</div></div>
+                    <div class="card-name">Шрек</div><button class="buy-btn">⭐️ 180</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="170" data-audio="audio/lady.mp3">
-                    <span class="badge badge-legendary">VIP</span>
-                    <div class="card-image">💎</div>
-                    <div class="card-name">Леди Босс</div>
-                    <button class="buy-btn">⭐️ 170</button>
+                <div class="shop-card" data-type="avatar" data-name="Анонимус" data-stars="110">
+                    <span class="badge badge-old">HACK</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🎭💻</div></div>
+                    <div class="card-name">Анонимус</div><button class="buy-btn">⭐️ 110</button>
                 </div>
-
-                <div class="shop-card" data-type="voice" data-stars="130" data-audio="audio/rage.mp3">
-                    <span class="badge badge-rage">RAGE</span>
-                    <div class="card-image">😡</div>
-                    <div class="card-name">Стример-Агро</div>
-                    <button class="buy-btn">⭐️ 130</button>
+                <div class="shop-card" data-type="avatar" data-name="Дэдпул" data-stars="230">
+                    <span class="badge badge-hit">MARVEL</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🔴⚔️</div></div>
+                    <div class="card-name">Дэдпул</div><button class="buy-btn">⭐️ 230</button>
                 </div>
-            </div>
-        </div>
-
-        <div class="category-section">
-            <div class="category-title">
-                <span class="category-line"></span>
-                <span class="category-icon">🎭</span> OBS Персонажи (Рот на звук)
-            </div>
-            
-            <div class="shop-grid">
-                <div class="shop-card" data-type="avatar" data-stars="150">
-                    <span class="badge badge-epic">NEW</span>
-                    <div class="card-image">🦊</div>
-                    <div class="card-name">Аниме Кицуне</div>
-                    <button class="buy-btn">⭐️ 150</button>
+                <div class="shop-card" data-type="avatar" data-name="Нейро-Вайфу" data-stars="200">
+                    <span class="badge badge-epic">VIP</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">👩‍🎤⚡</div></div>
+                    <div class="card-name">Нейро-Вайфу</div><button class="buy-btn">⭐️ 200</button>
                 </div>
-
-                <div class="shop-card" data-type="avatar" data-stars="250">
-                    <span class="badge badge-legendary">LEGEND</span>
-                    <div class="card-image">🥷</div>
-                    <div class="card-name">Кибер-Самурай</div>
-                    <button class="buy-btn">⭐️ 250</button>
+                <div class="shop-card" data-type="avatar" data-name="Хаги Ваги" data-stars="85">
+                    <span class="badge badge-old">TOY</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🧸🦷</div></div>
+                    <div class="card-name">Хаги Ваги</div><button class="buy-btn">⭐️ 85</button>
+                </div>
+                <div class="shop-card" data-type="avatar" data-name="G-Man (Half-Life)" data-stars="175">
+                    <span class="badge badge-tech">MYSTERY</span>
+                    <div class="obs-preview-box"><div class="obs-stream-text">[OBS STREAM]</div><div class="obs-char-placeholder">🕴️💼</div></div>
+                    <div class="card-name">G-Man</div><button class="buy-btn">⭐️ 175</button>
                 </div>
             </div>
         </div>
 
         <div class="category-section">
-            <div class="category-title">
-                <span class="category-line"></span>
-                <span class="category-icon">🔤</span> Эксклюзивные Шрифты
-            </div>
-            
+            <div class="category-title"><span class="category-line"></span>🔤 Эксклюзивные Шрифты виджетов</div>
             <div class="shop-grid">
-                <div class="shop-card" data-type="font" data-stars="40">
-                    <div class="card-image">✨</div>
-                    <div class="card-name">GLITCH BOY</div>
-                    <button class="buy-btn">⭐️ 40</button>
+                <div class="shop-card" data-type="font" data-name="Шрифт: GLITCH BOY" data-stars="40">
+                    <div class="font-preview-container"><div class="font-example font-glitch">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">GLITCH BOY</div><button class="buy-btn">⭐️ 40</button>
                 </div>
-
-                <div class="shop-card" data-type="font" data-stars="60">
+                <div class="shop-card" data-type="font" data-name="Шрифт: CYBER PUNK" data-stars="60">
+                    <span class="badge badge-start">NEW</span>
+                    <div class="font-preview-container"><div class="font-example font-cyber">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">CYBER PUNK</div><button class="buy-btn">⭐️ 60</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: MINECRAFT" data-stars="50">
+                    <div class="font-preview-container"><div class="font-example font-pixel">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">MINECRAFT FONT</div><button class="buy-btn">⭐️ 50</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: RETRO WAVE" data-stars="45">
                     <span class="badge badge-hit">HIT</span>
-                    <div class="card-image">📺</div>
-                    <div class="card-name">RETRO WAVE</div>
-                    <button class="buy-btn">⭐️ 60</button>
+                    <div class="font-preview-container"><div class="font-example font-retro">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">RETRO WAVE</div><button class="buy-btn">⭐️ 45</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: NEON BLINK" data-stars="55">
+                    <div class="font-preview-container"><div class="font-example font-neon">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">NEON BLINK</div><button class="buy-btn">⭐️ 55</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: BARBARIAN GOTHIC" data-stars="65">
+                    <div class="font-preview-container"><div class="font-example font-gothic">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">GOTHIC STYLE</div><button class="buy-btn">⭐️ 65</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: TECH RADAR" data-stars="70">
+                    <span class="badge badge-legendary">PREMIUM</span>
+                    <div class="font-preview-container"><div class="font-example font-tech-font">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">TECH RADAR</div><button class="buy-btn">⭐️ 70</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: CARTOON BOOM" data-stars="35">
+                    <div class="font-preview-container"><div class="font-example font-cartoon">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">CARTOON BOOM</div><button class="buy-btn">⭐️ 35</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: MATRIX CODE" data-stars="50">
+                    <div class="font-preview-container"><div class="font-example font-matrix">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">MATRIX CODE</div><button class="buy-btn">⭐️ 50</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: PHONK MANIA" data-stars="80">
+                    <span class="badge badge-crazy">HOT</span>
+                    <div class="font-preview-container"><div class="font-example font-phonk">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">PHONK MANIA</div><button class="buy-btn">⭐️ 80</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: LIQUID ACID" data-stars="65">
+                    <div class="font-preview-container"><div class="font-example font-acid">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">LIQUID ACID</div><button class="buy-btn">⭐️ 65</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: GANGSTA ITALIC" data-stars="45">
+                    <div class="font-preview-container"><div class="font-example font-gangsta">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">GANGSTA ITALIC</div><button class="buy-btn">⭐️ 45</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: VAPORWAVE 1988" data-stars="50">
+                    <div class="font-preview-container"><div class="font-example font-vapor">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">VAPORWAVE</div><button class="buy-btn">⭐️ 50</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: HELL FIRE" data-stars="75">
+                    <span class="badge badge-rage">EVIL</span>
+                    <div class="font-preview-container"><div class="font-example font-fire">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">HELL FIRE</div><button class="buy-btn">⭐️ 75</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: ICE CUBE" data-stars="40">
+                    <div class="font-preview-container"><div class="font-example font-ice">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">ICE CUBE</div><button class="buy-btn">⭐️ 40</button>
+                </div>
+                <div class="shop-card" data-type="font" data-name="Шрифт: GOLD DIGGER" data-stars="100">
+                    <span class="badge badge-legendary">LUXURY</span>
+                    <div class="font-preview-container"><div class="font-example font-gold">Beast Omni</div><div class="font-subtext">Hello World</div></div>
+                    <div class="card-name">GOLD DIGGER</div><button class="buy-btn">⭐️ 100</button>
                 </div>
             </div>
         </div>
@@ -218,74 +227,30 @@
     </div> 
 
     <nav class="bottom-navbar">
-        <a href="index.html">
-            <div class="nav-item">
-                <span class="nav-icon">🏠</span>
-                <span class="nav-text">Home</span>
-            </div>
-        </a>
-        
-        <a href="referals.html">
-            <div class="nav-item">
-                <span class="nav-icon">👥</span>
-                <span class="nav-text">Referral</span>
-            </div>
-        </a>
-        
-        <div class="nav-item nav-center-item">
-            <div class="nav-center-btn">
-                <span class="center-icon">⚡</span>
-            </div>
-            <span class="nav-text center-text">Studio</span>
-        </div>
-        
-        <a href="widgets.html">
-            <div class="nav-item">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">Widgets</span>
-            </div>
-        </a>
-        
-        <a href="shop.html">
-            <div class="nav-item active">
-                <span class="nav-icon">🛍️</span>
-                <span class="nav-text">Shop</span>
-            </div>
-        </a>
+        <a href="index.html"><div class="nav-item"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></div></a>
+        <a href="referals.html"><div class="nav-item"><span class="nav-icon">👥</span><span class="nav-text">Referral</span></div></a>
+        <div class="nav-item nav-center-item"><div class="nav-center-btn"><span class="center-icon">⚡</span></div><span class="nav-text center-text">Studio</span></div>
+        <a href="widgets.html"><div class="nav-item"><span class="nav-icon">⚙️</span><span class="nav-text">Widgets</span></div></a>
+        <a href="shop.html"><div class="nav-item active"><span class="nav-icon">🛍️</span><span class="nav-text">Shop</span></div></a>
     </nav>
 
-    <div id="coinModal" class="modal-overlay">
+    <div id="universalModal" class="modal-overlay">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('coinModal')">&times;</button>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
             <div class="modal-header">
-                <h3 id="coinModalTitle">Пополнение баланса</h3>
+                <h3 id="modalTitle">Название</h3>
+                <span id="modalBadge" class="modal-badge">STORE</span>
             </div>
             <div class="modal-body">
-                <div class="modal-main-icon">🪙</div>
-                <p id="coinModalDesc">Вы получаете коины для использования внутри платформы.</p>
-            </div>
-            <div class="modal-footer">
-                <button id="coinBuyBtn" class="buy-btn">Купить за <span id="coinModalPrice">50 ₽</span></button>
-            </div>
-        </div>
-    </div>
-
-    <div id="voiceModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('voiceModal')">&times;</button>
-            <div class="modal-header">
-                <h3 id="voiceModalTitle">Голос</h3>
-                <span class="modal-badge">PREVIEW</span>
-            </div>
-            <div class="modal-body">
-                <div class="audio-preview-box">
-                    <button id="playBtn" class="play-audio-btn">▶ Слушать демо</button>
+                <div id="modalAudioBox" class="audio-preview-box" style="display: none;">
+                    <button id="playBtn" class="play-audio-btn">▶ Слушать демо голоса</button>
                     <audio id="previewAudio" src=""></audio>
                 </div>
-                <p class="modal-desc">Данный товар станет доступен в вашей Studio сразу после покупки.</p>
+                <div id="modalVisualPreview" class="modal-visual-preview"></div>
+                <p id="modalDesc" class="modal-desc">Товар мгновенно активируется в вашей панели управления Studio после подтверждения транзакции.</p>
             </div>
             <div class="modal-footer">
-                <button id="voiceBuyBtn" class="buy-btn">Открыть за <span id="voiceModalPrice">⭐️ 100</span></button>
+                <button id="modalBuyBtn" class="buy-btn">Купить</button>
             </div>
         </div>
     </div>
