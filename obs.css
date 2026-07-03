@@ -1,157 +1,109 @@
-/* Уникальные стили для экрана настроек OBS */
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Beast Omni — OBS Settings</title>
+    <link rel="stylesheet" href="obs.css">
+</head>
+<body>
 
-.obs-info-box {
-    background: #111322;
-    border: 1px solid rgba(255, 0, 127, 0.2);
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
+    <header class="shop-header">
+        <div class="shop-balance">
+            <span style="margin-right: 6px;">👋</span> hello flatow
+        </div>
+        <select id="lang-dropdown">
+            <option value="ru">RU</option>
+            <option value="en">EN</option>
+        </select>
+    </header>
 
-.obs-info-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    color: #ff007f;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    letter-spacing: -0.3px;
-}
+    <main class="shop-content">
+        
+        <div class="obs-info-box">
+            <div class="obs-info-title">Настройка виджета OBS</div>
+            <div class="obs-info-desc">
+                Здесь находятся все ваши персонажи, купленные в магазине. Выберите нужного героя снизу, скопируйте секретную ссылку и вставьте её в OBS как источник «Браузер». При разговоре в микрофон персонаж автоматически начнет открывать и закрывать рот!
+            </div>
+            
+            <div class="obs-link-container">
+                <div class="obs-link-text" id="obsUrl">https://beastomni.com/stream/widget?token=user_flatow_777&char=default</div>
+                <button class="copy-link-btn" id="copyBtn">Копировать</button>
+            </div>
+        </div>
 
-.obs-info-desc {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
-}
+        <div class="inventory-title">
+            <span>⚡</span> Ваши персонажи в OBS
+        </div>
 
-/* Поле с секретной ссылкой */
-.obs-link-container {
-    background: #06070d;
-    border: 1px dashed rgba(0, 229, 255, 0.3);
-    border-radius: 12px;
-    padding: 12px;
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
+        <div class="inventory-row">
+            <div class="inventory-card active-char" data-char-id="boy">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">👦</div>
+                <div class="char-name">Пацанчик</div>
+            </div>
 
-.obs-link-text {
-    font-family: monospace;
-    font-size: 11px;
-    color: #00e5ff;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 75%;
-    text-align: left;
-}
+            <div class="inventory-card" data-char-id="cat">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">🐱</div>
+                <div class="char-name">Барсик</div>
+            </div>
 
-.copy-link-btn {
-    background: linear-gradient(135deg, #00e5ff 0%, #A855F7 100%);
-    border: none;
-    color: #000000;
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 700;
-    font-size: 9px;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.1s ease;
-}
+            <div class="inventory-card" data-char-id="robot">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">🤖</div>
+                <div class="char-name">Кибер-Бот</div>
+            </div>
 
-.copy-link-btn:active {
-    transform: scale(0.95);
-}
+            <div class="inventory-card" data-char-id="vampire">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">🧛</div>
+                <div class="char-name">Дракула</div>
+            </div>
 
-/* Секция купленных персонажей */
-.inventory-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 14px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+            <div class="inventory-card" data-char-id="ninja">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">🥷</div>
+                <div class="char-name">Ниндзя</div>
+            </div>
+        </div>
 
-.inventory-title span {
-    color: #a800ff;
-}
+    </main>
 
-/* Горизонтальный ряд скролла */
-.inventory-row {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    padding-bottom: 15px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-}
+    <nav class="bottom-navbar">
+        <a href="index.html">
+            <div class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Главная</span>
+            </div>
+        </a>
+        <a href="shop.html">
+            <div class="nav-item">
+                <span class="nav-icon">🛒</span>
+                <span class="nav-text">Магазин</span>
+            </div>
+        </a>
+        
+        <a href="studio.html" class="nav-center-item">
+            <div class="nav-center-btn">
+                <span class="center-icon">🎬</span>
+            </div>
+        </a>
 
-.inventory-row::-webkit-scrollbar {
-    display: none; /* Скрываем дефолтный скролл */
-}
-
-/* Карточка инвентаря */
-.inventory-card {
-    background: #111322;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 16px 10px;
-    min-width: 110px;
-    max-width: 110px;
-    text-align: center;
-    flex-shrink: 0;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.inventory-card.active-char {
-    border-color: #00e5ff;
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
-    background: linear-gradient(180deg, #111528 0%, #111322 100%);
-}
-
-.inventory-card .char-emoji {
-    font-size: 32px;
-    margin-bottom: 8px;
-}
-
-.inventory-card .char-name {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    color: #ffffff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Галочка выбора */
-.active-badge {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    background: #00e5ff;
-    color: #000000;
-    font-size: 8px;
-    border-radius: 50%;
-    width: 14px;
-    height: 14px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-.inventory-card.active-char .active-badge {
-    display: flex;
-}
+        <a href="obs-settings.html">
+            <div class="nav-item active">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">OBS Settings</span>
+            </div>
+        </a>
+        <a href="profile.html">
+            <div class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Профиль</span>
+            </div>
+        </a>
+    </nav>
+     <script src="navbar.js"></script>
+    <script src="obs.js"></script>
+</body>
+</html>
