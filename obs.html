@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Beast Omni — OBS Settings</title>
+    <link rel="stylesheet" href="obs.css">
+</head>
+<body>
+
+    <header class="shop-header">
+        <div class="shop-balance">
+            <span style="margin-right: 6px;">👋</span> hello flatow
+        </div>
+        <select id="lang-dropdown">
+            <option value="ru">RU</option>
+            <option value="en">EN</option>
+        </select>
+    </header>
+
+    <main class="shop-content">
+        
+        <div class="obs-info-box">
+            <div class="obs-info-title">Настройка виджета OBS</div>
+            <div class="obs-info-desc">
+                Здесь находятся все ваши персонажи, купленные в магазине. Выберите нужного героя снизу, скопируйте секретную ссылку и вставьте её в OBS как источник «Браузер». При разговоре в микрофон персонаж автоматически начнет открывать и закрывать рот!
+            </div>
+            
+            <div class="obs-link-container">
+                <div class="obs-link-text" id="obsUrl">https://beastomni.com/stream/widget?token=user_flatow_777&char=default</div>
+                <button class="copy-link-btn" id="copyBtn">Копировать</button>
+            </div>
+        </div>
+
+        <div class="inventory-title">
+            <span>⚡</span> Ваши персонажи в OBS
+        </div>
+
+        <div class="inventory-row">
+            <div class="inventory-card active-char" data-char-id="boy">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">👦</div>
+                <div class="char-name">Пацанчик</div>
+            </div>
+
+            <div class="inventory-card" data-char-id="cat">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">🐱</div>
+                <div class="char-name">Барсик</div>
+            </div>
+
+            <div class="inventory-card" data-char-id="robot">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">🤖</div>
+                <div class="char-name">Кибер-Бот</div>
+            </div>
+
+            <div class="inventory-card" data-char-id="vampire">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">🧛</div>
+                <div class="char-name">Дракула</div>
+            </div>
+
+            <div class="inventory-card" data-char-id="ninja">
+                <div class="active-badge">✓</div>
+                <div class="char-emoji">🥷</div>
+                <div class="char-name">Ниндзя</div>
+            </div>
+        </div>
+
+    </main>
+
+    <nav class="bottom-navbar">
+        <a href="index.html">
+            <div class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Главная</span>
+            </div>
+        </a>
+        <a href="shop.html">
+            <div class="nav-item">
+                <span class="nav-icon">🛒</span>
+                <span class="nav-text">Магазин</span>
+            </div>
+        </a>
+        
+        <a href="studio.html" class="nav-center-item">
+            <div class="nav-center-btn">
+                <span class="center-icon">🎬</span>
+            </div>
+        </a>
+
+        <a href="obs-settings.html">
+            <div class="nav-item active">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">OBS Settings</span>
+            </div>
+        </a>
+        <a href="profile.html">
+            <div class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Профиль</span>
+            </div>
+        </a>
+    </nav>
+
+    <script src="obs.js"></script>
+</body>
+</html>

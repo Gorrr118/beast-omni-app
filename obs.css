@@ -1,0 +1,157 @@
+/* Уникальные стили для экрана настроек OBS */
+
+.obs-info-box {
+    background: #111322;
+    border: 1px solid rgba(255, 0, 127, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.obs-info-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: #ff007f;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+}
+
+.obs-info-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+}
+
+/* Поле с секретной ссылкой */
+.obs-link-container {
+    background: #06070d;
+    border: 1px dashed rgba(0, 229, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.obs-link-text {
+    font-family: monospace;
+    font-size: 11px;
+    color: #00e5ff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 75%;
+    text-align: left;
+}
+
+.copy-link-btn {
+    background: linear-gradient(135deg, #00e5ff 0%, #A855F7 100%);
+    border: none;
+    color: #000000;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 9px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.copy-link-btn:active {
+    transform: scale(0.95);
+}
+
+/* Секция купленных персонажей */
+.inventory-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inventory-title span {
+    color: #a800ff;
+}
+
+/* Горизонтальный ряд скролла */
+.inventory-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.inventory-row::-webkit-scrollbar {
+    display: none; /* Скрываем дефолтный скролл */
+}
+
+/* Карточка инвентаря */
+.inventory-card {
+    background: #111322;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 16px 10px;
+    min-width: 110px;
+    max-width: 110px;
+    text-align: center;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.inventory-card.active-char {
+    border-color: #00e5ff;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+    background: linear-gradient(180deg, #111528 0%, #111322 100%);
+}
+
+.inventory-card .char-emoji {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.inventory-card .char-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Галочка выбора */
+.active-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #00e5ff;
+    color: #000000;
+    font-size: 8px;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.inventory-card.active-char .active-badge {
+    display: flex;
+}
