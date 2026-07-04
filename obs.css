@@ -1,45 +1,114 @@
-/* ==================== УНИКАЛЬНЫЕ СТИЛИ ДЛЯ ЭКРАНА НАСТРОЕК OBS ==================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Press+Start+2P&family=Orbitron:wght@700&family=Rubik+Glitch&family=Cinzel:wght@700&family=Bungee+Shade&family=Monoton&family=Creepster&family=Permanent+Marker&display=swap');
 
-.obs-info-box {
-    background: #111322;
-    border: 1px solid rgba(255, 0, 127, 0.2);
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: center;
+/* ГАРАНТИРОВАННЫЙ СБРОС СТИЛЕЙ И КРУТОЙ ЧЕРНЫЙ ФОН */
+html, body {
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
     box-sizing: border-box;
+}
+
+/* ТОЧНАЯ КОПИЯ ВЕРХНЕГО БАРА С ГЛАВНОЙ */
+.custom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: transparent;
+}
+
+.user-badge {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 50px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.user-badge::before {
+    content: '👤';
+    opacity: 0.6;
+}
+
+.lang-select-wrapper {
+    position: relative;
+}
+
+.lang-select-wrapper select {
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid #7c3aed;
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 32px;
+}
+
+.lang-select-wrapper::after {
+    content: '▼';
+    font-size: 10px;
+    color: #7c3aed;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* КОНТЕНТ */
+.obs-container {
+    padding: 0 16px 100px 16px;
+}
+
+/* БЛОК С ИНСТРУКЦИЕЙ */
+.obs-info-box {
+    background: #0d0e15;
+    border: 1px solid rgba(255, 0, 127, 0.25);
+    border-radius: 24px;
+    padding: 24px 20px;
+    margin-top: 10px;
+    margin-bottom: 24px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
 .obs-info-title {
     font-family: 'Unbounded', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
     color: #ff007f;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     letter-spacing: -0.3px;
 }
 
 .obs-info-desc {
-    font-family: 'Inter', sans-serif;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
 }
 
-/* Поле с секретной ссылкой */
+/* ИНТЕРАКТИВНАЯ ССЫЛКА */
 .obs-link-container {
-    background: #06070d;
+    background: #050508;
     border: 1px dashed rgba(0, 229, 255, 0.3);
-    border-radius: 12px;
-    padding: 12px;
-    margin-top: 15px;
+    border-radius: 14px;
+    padding: 10px 12px;
+    margin-top: 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    box-sizing: border-box;
 }
 
 .obs-link-text {
@@ -49,19 +118,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 70%;
+    width: 68%;
     text-align: left;
 }
 
 .copy-link-btn {
-    background: linear-gradient(135deg, #00e5ff 0%, #A855F7 100%);
+    background: linear-gradient(135deg, #00e5ff 0%, #a855f7 100%);
     border: none;
     color: #000000;
     font-family: 'Unbounded', sans-serif;
-    font-weight: 700;
-    font-size: 9px;
-    padding: 8px 12px;
-    border-radius: 6px;
+    font-weight: 800;
+    font-size: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
     cursor: pointer;
     flex-shrink: 0;
     transition: transform 0.1s ease;
@@ -71,66 +140,54 @@
     transform: scale(0.95);
 }
 
-/* Секция купленных персонажей */
+/* ЗАГОЛОВОК СЕКЦИИ КАРТОЧЕК */
 .inventory-title {
     font-family: 'Unbounded', sans-serif;
     font-size: 13px;
     font-weight: 700;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: 8px;
+    letter-spacing: -0.5px;
 }
 
 .inventory-title span {
-    color: #a800ff;
+    color: #a855f7;
 }
 
-/* Горизонтальный ряд скролла */
-.inventory-row {
-    display: flex;
+/* СЕТКА ПЕРСОНАЖЕЙ 3х3 */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 15px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    box-sizing: border-box;
+    margin-bottom: 30px;
 }
 
-.inventory-row::-webkit-scrollbar {
-    display: none; /* Полностью убираем дефолтный скролл */
-}
-
-/* Карточка инвентаря */
+/* КАРТОЧКА ПЕРСОНАЖА */
 .inventory-card {
-    background: #111322;
+    background: #0d0e15;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 16px 10px;
-    width: 110px;
-    min-width: 110px; /* Запрещаем сжиматься внутри флексбокса */
+    border-radius: 20px;
+    padding: 18px 8px;
     text-align: center;
-    flex-shrink: 0;
     position: relative;
     cursor: pointer;
-    box-sizing: border-box;
-    scroll-snap-align: start;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
 .inventory-card.active-char {
     border-color: #00e5ff;
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
-    background: linear-gradient(180deg, #111528 0%, #111322 100%);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+    background: linear-gradient(180deg, #12162b 0%, #0d0e15 100%);
 }
 
 .inventory-card .char-emoji {
-    font-size: 32px;
-    margin-bottom: 8px;
+    font-size: 36px;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .inventory-card .char-name {
@@ -141,28 +198,100 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: block;
 }
 
-/* Галочка выбора */
+/* ГАЛОЧКА АКТИВАЦИИ */
 .active-badge {
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: 8px;
+    right: 8px;
     background: #00e5ff;
     color: #000000;
-    font-size: 8px;
+    font-size: 9px;
     border-radius: 50%;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     display: none;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    z-index: 2;
+    font-weight: 900;
 }
 
 .inventory-card.active-char .active-badge {
     display: flex;
 }
 
- 
+/* НИЖНИЙ НАВБАР */
+.bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: #090a0f;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: env(safe-area-inset-bottom);
+    z-index: 1000;
+}
+
+.bottom-navbar a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    opacity: 0.4;
+    transition: all 0.2s ease;
+}
+
+.nav-item.active {
+    opacity: 1;
+}
+
+.nav-icon {
+    font-size: 20px;
+}
+
+.nav-text {
+    font-size: 10px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.nav-item.active .nav-text {
+    color: #a855f7; 
+}
+
+/* ЦЕНТРАЛЬНАЯ КНОПКА СТУДИИ */
+.nav-center-item {
+    position: relative;
+    top: -15px;
+}
+
+.nav-center-btn {
+    width: 56px;
+    height: 56px;
+    background: #a855f7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.center-icon {
+    font-size: 24px;
+}
