@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Beast Omni — OBS Settings</title>
     <link rel="stylesheet" href="obs.css">
+    <link rel="stylesheet" href="obs-settings.css">
 </head>
 <body>
 
-    <header class="shop-header">
-        <div class="shop-balance">
-            <span style="margin-right: 6px;">👋</span> hello flatow
+    <header class="custom-header">
+        <div class="user-badge">Hello, filatow</div>
+        <div class="lang-select-wrapper">
+            <select id="lang-dropdown">
+                <option value="en">🇺🇸 US</option>
+                <option value="ru">🇷🇺 RU</option>
+            </select>
         </div>
-        <select id="lang-dropdown">
-            <option value="ru">RU</option>
-            <option value="en">EN</option>
-        </select>
     </header>
 
-    <main class="shop-content">
+    <main class="obs-container">
         
         <div class="obs-info-box">
             <div class="obs-info-title">Настройка виджета OBS</div>
@@ -27,7 +28,7 @@
             </div>
             
             <div class="obs-link-container">
-                <div class="obs-link-text" id="obsUrl">https://beastomni.com/stream/widget?token=user_flatow_777&char=default</div>
+                <div class="obs-link-text" id="obsUrl">https://beastomni.com/stream/widget?token=user_flatow_777&char=boy</div>
                 <button class="copy-link-btn" id="copyBtn">Копировать</button>
             </div>
         </div>
@@ -36,35 +37,41 @@
             <span>⚡</span> Ваши персонажи в OBS
         </div>
 
-        <div class="inventory-row">
+        <div class="inventory-grid">
             <div class="inventory-card active-char" data-char-id="boy">
                 <div class="active-badge">✓</div>
-                <div class="char-emoji">👦</div>
-                <div class="char-name">Пацанчик</div>
+                <span class="char-emoji">👦</span>
+                <span class="char-name">Пацанчик</span>
             </div>
 
             <div class="inventory-card" data-char-id="cat">
                 <div class="active-badge">✓</div>
-                <div class="char-emoji">🐱</div>
-                <div class="char-name">Барсик</div>
+                <span class="char-emoji">🐱</span>
+                <span class="char-name">Barsik</span>
             </div>
 
             <div class="inventory-card" data-char-id="robot">
                 <div class="active-badge">✓</div>
-                <div class="char-emoji">🤖</div>
-                <div class="char-name">Кибер-Бот</div>
+                <span class="char-emoji">🤖</span>
+                <span class="char-name">Кибер-Бот</span>
             </div>
 
             <div class="inventory-card" data-char-id="vampire">
                 <div class="active-badge">✓</div>
-                <div class="char-emoji">🧛</div>
-                <div class="char-name">Дракула</div>
+                <span class="char-emoji">🧛</span>
+                <span class="char-name">Дракула</span>
             </div>
 
             <div class="inventory-card" data-char-id="ninja">
                 <div class="active-badge">✓</div>
-                <div class="char-emoji">🥷</div>
-                <div class="char-name">Ниндзя</div>
+                <span class="char-emoji">🥷</span>
+                <span class="char-name">Ниндзя</span>
+            </div>
+
+            <div class="inventory-card" data-char-id="ghost">
+                <div class="active-badge">✓</div>
+                <span class="char-emoji">👻</span>
+                <span class="char-name">Призрак</span>
             </div>
         </div>
 
@@ -74,32 +81,32 @@
         <a href="index.html">
             <div class="nav-item">
                 <span class="nav-icon">🏠</span>
-                <span class="nav-text">Главная</span>
+                <span class="nav-text">Home</span>
             </div>
         </a>
-        <a href="shop.html">
+        <a href="referral.html">
             <div class="nav-item">
-                <span class="nav-icon">🛒</span>
-                <span class="nav-text">Магазин</span>
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Referral</span>
             </div>
         </a>
         
         <a href="studio.html" class="nav-center-item">
             <div class="nav-center-btn">
-                <span class="center-icon">🎬</span>
+                <span class="center-icon">⚡</span>
             </div>
         </a>
 
         <a href="obs-settings.html">
             <div class="nav-item active">
                 <span class="nav-icon">⚙️</span>
-                <span class="nav-text">OBS Settings</span>
+                <span class="nav-text">obs Settings</span>
             </div>
         </a>
-        <a href="profile.html">
+        <a href="shop.html">
             <div class="nav-item">
-                <span class="nav-icon">👤</span>
-                <span class="nav-text">Профиль</span>
+                <span class="nav-icon">🛍️</span>
+                <span class="nav-text">Shop</span>
             </div>
         </a>
     </nav>
