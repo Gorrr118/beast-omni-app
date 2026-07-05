@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #05060d; /* Сделали фон еще глубже, чтобы неон горел ярче */
+    background-color: #060713; /* Сделали общую тему чуть глубже */
     color: #ffffff;
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -21,10 +21,10 @@ body {
     left: 0;
     width: 100%;
     height: 65px;
-    background: rgba(5, 6, 13, 0.8);
-    backdrop-filter: blur(12px); /* Эффект дорогого стекла */
+    background: rgba(6, 7, 19, 0.8);
+    backdrop-filter: blur(12px); /* Эффект матового стекла в шапке */
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,23 +35,23 @@ body {
 .shop-balance {
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, rgba(21, 23, 39, 0.6) 0%, rgba(30, 33, 58, 0.6) 100%);
+    background: #121426;
     padding: 8px 16px;
-    border-radius: 30px;
-    border: 1px solid rgba(168, 85, 247, 0.25); /* Неоновый ободок баланса */
+    border-radius: 20px;
+    border: 1px solid rgba(168, 85, 247, 0.3); /* Акцентный неоновый ободок */
     font-family: 'Unbounded', sans-serif;
     font-size: 11px;
     font-weight: 700;
     color: #ffffff;
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.15);
 }
 
 #lang-dropdown {
-    background-color: #121424;
+    background-color: #121426;
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 8px 14px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 13px;
@@ -64,117 +64,100 @@ body {
 }
 
 .category-section {
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .category-title {
     font-family: 'Unbounded', sans-serif;
-    font-size: 14px;
-    font-weight: 900;
+    font-size: 15px;
+    font-weight: 800;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    letter-spacing: 0.5px;
+    gap: 10px;
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.9);
 }
 
 .category-line {
     width: 4px;
     height: 18px;
-    border-radius: 4px;
+    border-radius: 2px;
     display: inline-block;
 }
 
-.category-section:nth-of-type(1) .category-line { background: #00e5ff; box-shadow: 0 0 15px #00e5ff; }
-.category-section:nth-of-type(2) .category-line { background: #a855f7; box-shadow: 0 0 15px #a855f7; }
-.category-section:nth-of-type(3) .category-line { background: #ff007f; box-shadow: 0 0 15px #ff007f; }
-.category-section:nth-of-type(4) .category-line { background: #ffaa00; box-shadow: 0 0 15px #ffaa00; }
+.category-section:nth-of-type(1) .category-line { background: #00e5ff; box-shadow: 0 0 10px #00e5ff; }
+.category-section:nth-of-type(2) .category-line { background: #a800ff; box-shadow: 0 0 10px #a800ff; }
+.category-section:nth-of-type(3) .category-line { background: #ff007f; box-shadow: 0 0 10px #ff007f; }
+.category-section:nth-of-type(4) .category-line { background: #ffaa00; box-shadow: 0 0 10px #ffaa00; }
 
-/* ==================== Premium СЕТКА И КАРТОЧКИ ==================== */
+/* ==================== ДОРОГАЯ СЕТКА И КАРТОЧКИ ==================== */
 .shop-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px; /* Чуть увеличили расстояние для объема */
+    gap: 14px;
 }
 
-/* Убираем однотипность: делаем карточки футуристичными окнами */
 .shop-card {
-    background: linear-gradient(145deg, rgba(20, 22, 39, 0.7) 0%, rgba(10, 11, 20, 0.8) 100%);
+    /* Полупрозрачный премиальный фон с размытием */
+    background: linear-gradient(135deg, rgba(20, 23, 42, 0.8) 0%, rgba(13, 15, 28, 0.9) 100%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 24px; /* Округлили сильнее для премиального вида */
-    padding: 28px 14px 16px 14px;
+    border-radius: 20px;
+    padding: 32px 12px 16px 12px;
     text-align: center;
     position: relative;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.1), border-color 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 240px; /* Увеличили высоту для простора */
-    overflow: hidden;
+    min-height: 220px;
 }
 
-/* Уникальные неоновые отсветы для карточек при наведении/клике, чтобы уйти от серости */
+/* Динамическое изменение тени в зависимости от категории, чтобы убрать однотипность */
+.category-section:nth-of-type(1) .shop-card:active { box-shadow: 0 10px 20px rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.4); }
+.category-section:nth-of-type(2) .shop-card:active { box-shadow: 0 10px 20px rgba(168, 0, 255, 0.15); border-color: rgba(168, 0, 255, 0.4); }
+.category-section:nth-of-type(3) .shop-card:active { box-shadow: 0 10px 20px rgba(255, 0, 127, 0.15); border-color: rgba(255, 0, 127, 0.4); }
+.category-section:nth-of-type(4) .shop-card:active { box-shadow: 0 10px 20px rgba(255, 170, 0, 0.15); border-color: rgba(255, 170, 0, 0.4); }
+
 .shop-card:active {
-    transform: translateY(-5px) scale(0.98);
-    border-color: rgba(168, 85, 247, 0.35);
-    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-/* Дорогая подложка под аватары/иконки */
-.card-image-wrapper {
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
-    padding: 15px 0;
-    margin-bottom: 10px;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transform: translateY(-4px) scale(0.98);
 }
 
 .card-image-coin {
-    font-size: 38px;
-    filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.4));
+    font-size: 36px;
+    margin: 12px 0;
+    filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.4));
 }
 
 .card-image {
-    font-size: 36px;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-    transition: transform 0.3s ease;
-}
-
-.shop-card:active .card-image {
-    transform: scale(1.1) rotate(3deg); /* Анимация персонажа при тапе */
+    font-size: 34px;
+    margin-bottom: 12px;
+    display: inline-block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 .card-name {
     font-family: 'Unbounded', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    color: #ffffff;
-    margin-top: 8px;
+    color: rgba(255, 255, 255, 0.95);
+    margin-top: auto;
     margin-bottom: 14px;
-    letter-spacing: -0.2px;
+    letter-spacing: -0.3px;
     line-height: 1.4;
-    height: 34px; /* Ограничиваем высоту, чтобы текст не прыгал */
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* ==================== СИМУЛЯЦИЯ OBS ЭКРАНА ==================== */
 .obs-preview-box {
-    background: #040509;
-    border: 1px solid rgba(255, 0, 127, 0.2);
-    border-radius: 14px;
-    padding: 12px 4px;
-    margin-bottom: 12px;
-    position: relative;
-    box-shadow: inset 0 0 10px rgba(255, 0, 127, 0.05);
+    background: #04050a;
+    border: 1px dashed rgba(255, 0, 127, 0.35);
+    border-radius: 12px;
+    padding: 10px 4px;
+    margin-bottom: 8px;
 }
 
 .obs-stream-text {
@@ -182,45 +165,40 @@ body {
     color: #ff007f;
     font-family: monospace;
     font-weight: bold;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    margin-bottom: 6px;
 }
 
 .obs-char-placeholder {
-    font-size: 28px;
-    filter: drop-shadow(0 0 8px rgba(255, 0, 127, 0.3));
+    font-size: 26px;
 }
 
-/* ==================== ПРЕСЕТЫ ШРИФТОВ ==================== */
+/* ==================== КОНТЕЙНЕРЫ ПРЕСЕТОВ ШРИФТОВ ==================== */
 .font-preview-container {
-    background: #040509;
+    background: #04050a;
     border: 1px solid rgba(255, 255, 255, 0.03);
-    border-radius: 14px;
-    padding: 14px 4px;
-    margin-bottom: 12px;
+    border-radius: 12px;
+    padding: 12px 4px;
+    margin-bottom: 8px;
 }
 
 .font-example {
     font-size: 14px;
     font-weight: bold;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .font-subtext {
     font-size: 8px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.35);
     font-family: sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
-/* ШРИФТЫ (Сделали свечение дороже) */
-.font-glitch { font-family: 'Rubik Glitch', sans-serif; color: #ff0055; text-shadow: 2px 2px #00e5ff; }
-.font-cyber { font-family: 'Orbitron', sans-serif; color: #00e5ff; text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); }
-.font-pixel { font-family: 'Press Start 2P', cursive; font-size: 8px; color: #00ff00; }
-.font-retro { font-family: 'Monoton', cursive; color: #f472b6; font-size: 13px; }
-.font-neon { font-family: 'Unbounded', sans-serif; color: #fff; text-shadow: 0 0 8px #a855f7, 0 0 15px #a855f7; }
+/* === ПОДКЛЮЧЕНИЕ ШРИФТОВ === */
+.font-glitch { font-family: 'Rubik Glitch', sans-serif; color: #ff0055; text-shadow: 1px 1px #00e5ff; }
+.font-cyber { font-family: 'Orbitron', sans-serif; color: #00e5ff; }
+.font-pixel { font-family: 'Press Start 2P', cursive; font-size: 9px; color: #00ff00; }
+.font-retro { font-family: 'Monoton', cursive; color: #f472b6; font-size: 12px; }
+.font-neon { font-family: 'Unbounded', sans-serif; color: #fff; text-shadow: 0 0 5px #a855f7, 0 0 10px #a855f7; }
 .font-gothic { font-family: 'Cinzel', serif; color: #94a3b8; }
 .font-tech-font { font-family: 'Orbitron', sans-serif; color: #eab308; }
 .font-cartoon { font-family: 'Permanent Marker', cursive; color: #fb923c; }
@@ -229,64 +207,61 @@ body {
 .font-acid { font-family: 'Creepster', cursive; color: #a3e635; font-size: 16px; }
 .font-gangsta { font-family: 'Cinzel', serif; font-style: italic; color: #ef4444; }
 .font-vapor { font-family: 'Bungee Shade', cursive; color: #38bdf8; font-size: 11px; }
-.font-fire { font-family: 'Creepster', cursive; color: #f97316; text-shadow: 0 2px 8px #ff0000; font-size: 16px; }
-.font-ice { font-family: 'Orbitron', sans-serif; color: #93c5fd; text-shadow: 0 0 8px #38bdf8; }
-.font-gold { font-family: 'Cinzel', serif; color: #fbbf24; text-shadow: 0 2px 5px rgba(0,0,0,0.9); }
+.font-fire { font-family: 'Creepster', cursive; color: #f97316; text-shadow: 0 2px 4px #ff0000; font-size: 16px; }
+.font-ice { font-family: 'Orbitron', sans-serif; color: #93c5fd; text-shadow: 0 0 6px #38bdf8; }
+.font-gold { font-family: 'Cinzel', serif; color: #fbbf24; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
 
-/* ==================== Premium КНОПКА ПОКУПКИ ==================== */
+/* ==================== ДОРОГАЯ КНОПКА ПОКУПКИ ==================== */
 .buy-btn {
     width: 100%;
-    background: linear-gradient(135deg, #a855f7 0%, #ff007f 100%); /* Фирменный дорогой градиент */
+    background: linear-gradient(135deg, #a855f7 0%, #ff007f 100%); /* Сочный неоновый градиент */
     border: none;
     color: #ffffff !important;
     padding: 12px 0;
-    border-radius: 14px;
+    border-radius: 12px;
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 0.5px;
+    font-size: 11px;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(255, 0, 127, 0.2);
-    transition: all 0.2s ease;
-    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.25);
+    transition: all 0.15s ease;
 }
 
 .buy-btn:active {
     transform: scale(0.95);
-    box-shadow: 0 2px 10px rgba(255, 0, 127, 0.4);
+    box-shadow: 0 2px 8px rgba(255, 0, 127, 0.4);
     filter: brightness(1.1);
 }
 
 /* ==================== ОБЪЕМНЫЕ БЭЙДЖИКИ ==================== */
 .badge {
     position: absolute;
-    top: 0;
+    top: -9px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     font-family: 'Unbounded', sans-serif;
-    font-size: 7px;
+    font-size: 8px;
     font-weight: 900;
     padding: 4px 12px;
-    border-radius: 8px;
-    letter-spacing: 0.8px;
+    border-radius: 7px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     color: #ffffff;
     text-transform: uppercase;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Придали индивидуальный стиль каждому бейджу, чтобы разбить однотипность */
-.badge-start { background: #00e5ff; color: #000000; box-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
-.badge-popular { background: linear-gradient(90deg, #ff007f, #f472b6); box-shadow: 0 0 10px rgba(255, 0, 127, 0.4); }
-.badge-epic { background: #a855f7; box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
-.badge-legendary { background: linear-gradient(90deg, #ff8800, #ffaa00); color: #000000; box-shadow: 0 0 12px rgba(255, 170, 0, 0.4); }
-.badge-hit { background: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.4); }
+.badge-start { background: #00e5ff; color: #000000; box-shadow: 0 0 8px rgba(0, 229, 255, 0.4); }
+.badge-popular { background: #ff007f; box-shadow: 0 0 8px rgba(255, 0, 127, 0.4); }
+.badge-epic { background: #a855f7; box-shadow: 0 0 8px rgba(168, 85, 247, 0.4); }
+.badge-legendary { background: #ffaa00; color: #000000; box-shadow: 0 0 8px rgba(255, 170, 0, 0.4); }
+.badge-hit { background: #ff0055; }
 .badge-relax { background: #ff00aa; }
 .badge-crazy { background: #ffcc00; color: #000000; }
 .badge-old { background: #ff5500; }
-.badge-meme { background: #00ff00; color: #000000; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
-.badge-tech { background: #4b5563; }
-.badge-rage { background: #ef4444; box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+.badge-meme { background: #00ff00; color: #000000; }
+.badge-tech { background: #52525b; }
+.badge-rage { background: #ef4444; }
 
 /* ==================== МОДАЛЬНЫЕ ОКНА ==================== */
 .modal-overlay {
@@ -295,16 +270,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(3, 4, 8, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(4, 5, 11, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.2s ease;
 }
 
 .modal-overlay.active {
@@ -313,16 +288,16 @@ body {
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #111322 0%, #07080f 100%);
-    border: 1px solid rgba(168, 85, 247, 0.3);
-    border-radius: 28px;
+    background: #111322;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 22px;
     width: 88%;
     max-width: 320px;
-    padding: 26px;
+    padding: 24px;
     position: relative;
-    box-shadow: 0 20px 50px rgba(168, 85, 247, 0.2);
-    transform: scale(0.85);
-    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+    box-shadow: 0 15px 40px rgba(168, 85, 247, 0.15);
+    transform: scale(0.88);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.2);
 }
 
 .modal-overlay.active .modal-content {
@@ -331,24 +306,22 @@ body {
 
 .modal-close {
     position: absolute;
-    top: 16px;
-    right: 18px;
+    top: 14px;
+    right: 16px;
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
     font-size: 24px;
     cursor: pointer;
-    transition: color 0.2s;
 }
-.modal-close:active { color: #ff007f; }
 
 .modal-header h3 {
     margin: 0;
     color: #fff;
     font-family: 'Unbounded', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 0.2px;
+    letter-spacing: -0.3px;
 }
 
 .modal-badge {
@@ -360,14 +333,14 @@ body {
     border: 1px solid rgba(0, 229, 255, 0.3);
     font-family: 'Unbounded', sans-serif;
     font-size: 8px;
-    padding: 2px 8px;
-    border-radius: 5px;
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 .modal-main-icon {
-    font-size: 64px; 
-    filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.6)); 
-    margin-bottom: 14px;
+    font-size: 60px; 
+    filter: drop-shadow(0 0 15px #ffcc00); 
+    margin-bottom: 12px;
     text-align: center;
 }
 
@@ -375,37 +348,33 @@ body {
     color: rgba(255, 255, 255, 0.6);
     font-family: 'Inter', sans-serif;
     font-size: 13px;
-    margin: 18px 0;
-    line-height: 1.6;
+    margin: 16px 0;
+    line-height: 1.5;
     text-align: center;
 }
 
 .play-audio-btn {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
+    background: #151727;
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: #00e5ff;
     padding: 12px;
-    border-radius: 14px;
+    border-radius: 12px;
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: 11px;
     cursor: pointer;
-    transition: background 0.2s;
 }
-.play-audio-btn:active { background: rgba(0, 229, 255, 0.1); }
 
-/* ==================== Premium НИЖНИЙ НАВБАР ==================== */
+/* ==================== НИЖНИЙ НАВБАР ==================== */
 .bottom-navbar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 75px;
-    background: rgba(5, 6, 13, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    background-color: #060713;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -424,33 +393,34 @@ body {
     align-items: center;
     gap: 5px;
     color: #4e536e;
-    transition: color 0.2s ease;
 }
 
 .nav-icon { font-size: 20px; }
 .nav-text { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; }
 
-/* Активная кнопка теперь сочно светится */
-.nav-item.active { 
-    color: #a855f7 !important; 
-    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
-}
-
+.nav-item.active { color: #a855f7 !important; }
 .nav-center-item { position: relative; top: -14px; }
 
 .nav-center-btn {
-    width: 54px;
-    height: 54px;
+    width: 52px;
+    height: 52px;
     background: linear-gradient(135deg, #a855f7 0%, #ff007f 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
-    border: 4px solid #05060d; /* Сделали ободок под цвет нового фона */
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.5);
+    border: 3px solid #060713;
 }
 
 .center-icon { font-size: 22px; color: #FFFFFF; }
+.center-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700 !important;
+    background: linear-gradient(90deg, #a855f7, #ff007f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 .shop-card, .buy-btn, button, select {
     outline: none !important;
