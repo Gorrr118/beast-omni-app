@@ -4,132 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Beast Omni — AI Studio</title>
+    <!-- Подключаем шрифты и стили отдельно -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rubik+Glitch&family=Pixelify+Sans:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="studio.css">
 </head>
 <body>
 
-    <!-- ХЕДЕР СТУДИИ -->
-    <header class="shop-header">
-        <div class="shop-balance">⚡ AI STUDIO</div>
-        <div class="user-status">PRO MODE</div>
+    <!-- ВЕРХНЯЯ ПАНЕЛЬ СТУДИИ -->
+    <header class="studio-header">
+        <div class="studio-logo">⚡ AI STUDIO</div>
+        <div class="studio-status-tag">PRO MODE</div>
     </header>
 
-    <main class="studio-container">
+    <!-- ОСНОВНОЙ КОНТЕНТ СТУДИИ -->
+    <main class="studio-main">
         
-        <!-- 1. ЗОНА ЗАГРУЗКИ ВИДЕО -->
-        <section class="studio-section">
-            <div class="section-title">
-                <span class="category-line"></span>
+        <!-- БЛОК ЗАГРУЗКИ ВИДЕО -->
+        <section class="studio-card-section">
+            <div class="studio-section-header">
+                <span class="neon-line-indicator"></span>
                 <h3>ЗАГРУЗКА И ОБРАБОТКА</h3>
             </div>
             
-            <div class="upload-dropzone" id="dropzone">
-                <div class="upload-icon">📁</div>
-                <p class="upload-main-text">Перетащите видео или нажмите для загрузки</p>
-                <p class="upload-sub-text">MP4, MOV (до 500 MB)</p>
-                <!-- Скрытый инпут для файлов -->
-                <input type="file" id="video-input" accept="video/*" style="display: none;">
+            <div class="video-dropzone" id="dropzone">
+                <div class="dropzone-icon">📁</div>
+                <p class="dropzone-title">Перетащите видео или нажмите для загрузки</p>
+                <p class="dropzone-info">Поддерживаются форматы MP4, MOV (до 500 MB)</p>
+                <input type="file" id="video-file-input" accept="video/*">
             </div>
         </section>
 
-        <!-- 2. НАСТРОЙКИ ПЕРЕВОДА И НЕЙРОСЕТИ -->
-        <section class="studio-section">
-            <div class="section-title">
-                <span class="category-line"></span>
+        <!-- БЛОК НАСТРОЕК НЕЙРОСЕТИ И ПЕРЕВОДА -->
+        <section class="studio-card-section">
+            <div class="studio-section-header">
+                <span class="neon-line-indicator"></span>
                 <h3>УМНЫЙ ПЕРЕВОД (AI TRANSLATE)</h3>
             </div>
             
-            <div class="studio-card">
-                <div class="settings-row">
-                    <label>Язык оригинала:</label>
-                    <select class="studio-select">
+            <div class="studio-glass-card">
+                <div class="studio-control-group">
+                    <label class="control-label">Язык оригинала:</label>
+                    <select class="studio-custom-select">
                         <option value="ru">Русский 🇷🇺</option>
                         <option value="en">Английский 🇺🇸</option>
                     </select>
                 </div>
                 
-                <div class="settings-row">
-                    <label>Перевести на:</label>
-                    <select class="studio-select">
+                <div class="studio-control-group">
+                    <label class="control-label">Перевести на:</label>
+                    <select class="studio-custom-select">
                         <option value="en">Английский 🇺🇸</option>
                         <option value="es">Испанский 🇪🇸</option>
                         <option value="de">Немецкий 🇩🇪</option>
+                        <option value="fr">Французский 🇫🇷</option>
                     </select>
                 </div>
 
-                <div class="checkbox-container">
-                    <input type="checkbox" id="clone-voice" checked>
-                    <label for="clone-voice">Клонировать мой голос (AI Voice Match)</label>
+                <div class="studio-checkbox-field">
+                    <input type="checkbox" id="voice-cloning-toggle" checked>
+                    <label for="voice-cloning-toggle">Клонировать мой голос (AI Voice Match)</label>
                 </div>
             </div>
         </section>
 
-        <!-- 3. КАСТОМИЗАЦИЯ СУБТИТРОВ И ШРИФТОВ -->
-        <section class="studio-section">
-            <div class="section-title">
-                <span class="category-line"></span>
+        <!-- БЛОК ВЫБОРА ТОПОВЫХ ШРИФТОВ -->
+        <section class="studio-card-section">
+            <div class="studio-section-header">
+                <span class="neon-line-indicator"></span>
                 <h3>СТИЛЬ И ТОПОВЫЕ ШРИФТЫ</h3>
             </div>
             
-            <div class="studio-card">
-                <label style="display: block; margin-bottom: 10px; font-size: 12px; color: rgba(255,255,255,0.6);">
-                    Выберите пресет для текста:
-                </label>
-                
-                <!-- Выпадающий список со всеми твоими крутыми шрифтами -->
-                <select class="studio-select" id="font-selector" onchange="updateFontPreview()">
-                    <option value="font-neon">🔮 NEON GLOW</option>
-                    <option value="font-cyber">🤖 CYBERPUNK (Orbitron)</option>
-                    <option value="font-glitch">💥 RUBIK GLITCH</option>
-                    <option value="font-pixel">👾 RETRO PIXEL</option>
-                    <option value="font-phonk">🔥 PHONK ITALIC</option>
-                    <option value="font-acid">🤮 ACID CREEPSTER</option>
-                    <option value="font-gold">👑 GOLD CINZEL</option>
-                </select>
+            <div class="studio-glass-card">
+                <div class="studio-control-group">
+                    <label class="control-label">Кастомизация субтитров:</label>
+                    <select class="studio-custom-select" id="studio-font-picker">
+                        <option value="font-neon">🔮 NEON GLOW</option>
+                        <option value="font-cyber">🤖 CYBERPUNK (Orbitron)</option>
+                        <option value="font-glitch">💥 RUBIK GLITCH</option>
+                        <option value="font-pixel">👾 RETRO PIXEL</option>
+                        <option value="font-phonk">🔥 PHONK ITALIC</option>
+                        <option value="font-acid">🤮 ACID CREEPSTER</option>
+                        <option value="font-gold">👑 GOLD CINZEL</option>
+                    </select>
+                </div>
 
-                <!-- Интерактивное превью выбранного шрифта -->
-                <div class="studio-font-preview">
-                    <div id="preview-text" class="font-neon">Так будут выглядеть субтитры</div>
+                <!-- ОКНО ИНТЕРАКТИВНОГО ПРЕВЬЮ ШРИФТА -->
+                <div class="font-preview-box">
+                    <div id="text-preview-target" class="font-neon">Так будут выглядеть субтитры видоса</div>
                 </div>
             </div>
         </section>
 
-        <!-- ГЛАВНАЯ КНОПКА ЗАПУСКА -->
-        <button class="generate-btn">
+        <!-- КНОПКА ЗАПУСКА НЕЙРОСЕТИ -->
+        <button class="studio-launch-btn" id="start-process-btn">
             <span>✨ НАЧАТЬ ОБРАБОТКУ ВИДЕО</span>
         </button>
 
     </main>
 
-    <!-- НАВБАР (Кнопка Студии по центру горит огнем) -->
+    <!-- НАЖНЯЯ НАВИГАЦИОННАЯ ПАНЕЛЬ -->
     <nav class="bottom-navbar">
-        <a href="index.html">
+        <a href="index.html" class="nav-link">
             <div class="nav-item">
                 <span class="nav-icon">🏠</span>
                 <span class="nav-text">Home</span>
             </div>
         </a>
-        <a href="referral.html">
+        <a href="referral.html" class="nav-link">
             <div class="nav-item">
                 <span class="nav-icon">👥</span>
                 <span class="nav-text">Referral</span>
             </div>
         </a>
         
-        <a href="studio.html" class="nav-center-item">
-            <div class="nav-center-btn">
-                <span class="center-icon">⚡</span>
+        <!-- Центральная кнопка Студии — подсвечена главным неоном -->
+        <a href="studio.html" class="nav-center-link-active">
+            <div class="nav-center-button">
+                <span class="center-icon-flash">⚡</span>
             </div>
         </a>
 
-        <a href="obs-settings.html">
+        <a href="obs-settings.html" class="nav-link">
             <div class="nav-item">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-text">Settings</span>
             </div>
         </a>
         
-        <a href="shop.html">
+        <a href="shop.html" class="nav-link">
             <div class="nav-item">
                 <span class="nav-icon">🛍️</span>
                 <span class="nav-text">Shop</span>
@@ -137,19 +141,7 @@
         </a>
     </nav>
 
-    <!-- Небольшой скрипт для теста смены шрифтов прямо в превью -->
-    <script>
-        function updateFontPreview() {
-            const selector = document.getElementById('font-selector');
-            const preview = document.getElementById('preview-text');
-            // Сбрасываем старый класс и ставим новый из выбранного option
-            preview.className = selector.value;
-        }
-        
-        // Клик по дропзоне открывает выбор файла
-        document.getElementById('dropzone').addEventListener('click', () => {
-            document.getElementById('video-input').click();
-        });
-    </script>
+    <!-- Подключаем логику отдельно -->
+    <script src="studio.js"></script>
 </body>
 </html>
