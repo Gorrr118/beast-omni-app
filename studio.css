@@ -1,4 +1,3 @@
-/* Общие настройки темы */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,132 +5,167 @@
 }
 
 body {
-    background-color: #121212;
+    background-color: #0c0c0c;
     color: #E0E0E0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .studio-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
+    max-width: 480px; /* Идеальный размер под мобилку даже на ПК */
+    margin: 0 auto;
+    background-color: #121212;
+    position: relative;
 }
 
-/* Шапка */
-.studio-header {
-    background-color: #181818;
-    border-bottom: 1px solid #282828;
-    padding: 10px 20px;
+/* 1. ПЛЕЕР (Занимает верхнюю часть) */
+.preview-window {
+    flex: 1;
+    min-height: 280px;
+    background-color: #000000;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 50px;
-    flex-shrink: 0;
+    border-bottom: 1px solid #1a1a1a;
 }
 
-.logo {
+.player-screen {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #222;
+    border-radius: 6px;
+}
+
+.preview-placeholder {
+    color: #333;
     font-weight: bold;
     font-size: 16px;
+    letter-spacing: 1px;
 }
 
-.logo span {
-    color: #00F0FF; /* Неоновый голубой */
-}
-
-.status {
-    font-size: 12px;
-    color: #888;
-}
-
-/* 🚀 ГИБКАЯ РАБОЧАЯ ОБЛАСТЬ */
-.main-workspace {
-    display: flex;
-    flex-wrap: wrap; /* Разрешаем перенос блоков на новую строку, если мало места! */
-    flex: 1;
-    width: 100%;
-}
-
-/* Левая панель настроек */
-.left-panel {
-    flex: 1 1 320px; /* Минимальная ширина 320px, если экран меньше — блок уйдет вниз */
-    max-width: 100%;
-    background-color: #181818;
-    border-right: 1px solid #282828;
-    padding: 20px;
+/* 2. ТАЙМЛАЙН (Посередине) */
+.timeline-container {
+    height: 120px;
+    background-color: #141414;
+    border-bottom: 1px solid #222;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    justify-content: center;
 }
 
-/* На больших экранах ограничиваем ширину левой панели */
-@media (min-width: 769px) {
-    .left-panel {
-        max-width: 350px;
-    }
-}
-
-.left-panel h3 {
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid #282828;
-    padding-bottom: 10px;
-}
-
-.control-group {
+.timeline-tracks {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
-.control-group label {
-    font-size: 12px;
-    color: #888888;
+.track {
+    height: 32px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
 }
 
-.left-panel select, 
-.left-panel textarea {
-    background-color: #222222;
-    border: 1px solid #333333;
+.video-track {
+    background-color: #1a2635;
+    border: 1px solid #253b54;
+}
+
+.audio-track {
+    background-color: #132a1e;
+    border: 1px solid #1c452f;
+}
+
+.track-label {
+    font-size: 11px;
+    color: #ccc;
+}
+
+/* 3. ДИНАМИЧЕСКАЯ ПАНЕЛЬ НАСТРОЕК (Появляется над меню) */
+.dynamic-panel {
+    background-color: #181818;
+    border-top: 1px solid #282828;
+    min-height: 160px;
+    padding: 15px;
+    display: none; /* Скрыта по умолчанию */
+}
+
+/* Класс для показа панели */
+.dynamic-panel.active {
+    display: block;
+}
+
+.tool-panel-content {
+    display: none; /* Все вкладки внутри скрыты */
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tool-panel-content.active {
+    display: flex; /* Показываем только выбранную вкладку */
+}
+
+.tool-panel-content h4 {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.tool-panel-content p {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Инпуты внутри панелей */
+.tool-panel-content select,
+.tool-panel-content textarea {
+    background-color: #242424;
+    border: 1px solid #333;
     border-radius: 6px;
     padding: 10px;
-    color: #ffffff;
+    color: #fff;
     font-size: 13px;
     outline: none;
-    transition: border-color 0.2s;
     width: 100%;
 }
 
-.left-panel select:focus, 
-.left-panel textarea:focus {
-    border-color: #00F0FF;
-}
-
-.left-panel textarea {
+.tool-panel-content textarea {
+    height: 60px;
     resize: none;
-    height: 80px;
 }
 
 /* Слайдер громкости */
 input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
-    height: 5px;
+    height: 4px;
     background: #333;
-    border-radius: 5px;
+    border-radius: 2px;
     outline: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background: #00F0FF;
     cursor: pointer;
 }
 
-/* Кнопка Рендера */
+/* Кнопка создания видео */
 #render-btn {
     background-color: #00F0FF;
     color: #121212;
@@ -141,97 +175,43 @@ input[type="range"]::-webkit-slider-thumb {
     font-weight: bold;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.2s, transform 0.1s;
-    margin-top: 20px;
     width: 100%;
 }
 
-#render-btn:hover {
-    background-color: #00D1DD;
-}
-
-/* Центральная зона */
-.center-area {
-    flex: 2 1 400px; /* Занимает оставшееся место, но не сжимается меньше 400px */
-    display: flex;
-    flex-direction: column;
+/* 4. СТИЛЬНОЕ НИЖНЕЕ МЕНЮ (Как в CapCut) */
+.bottom-navigation {
+    height: 70px;
     background-color: #101010;
-    padding: 15px;
-    gap: 15px;
-}
-
-/* Плеер */
-.preview-window {
-    height: 350px; /* Задаем четкую высоту для плеера, чтобы он не схлопывался */
+    border-top: 1px solid #1a1a1a;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    background-color: #000000;
-    border: 1px solid #222;
-    border-radius: 8px;
+    padding-bottom: 5px; /* Коррекция под жест телефона */
+    flex-shrink: 0;
 }
 
-.player-screen {
-    width: 90%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px dashed #333;
-    border-radius: 4px;
-}
-
-.preview-placeholder {
-    color: #444;
-    font-weight: bold;
-    font-size: 18px;
-    letter-spacing: 1px;
-}
-
-/* Таймлайн */
-.timeline-container {
-    height: 150px;
-    background-color: #181818;
-    border: 1px solid #282828;
-    border-radius: 8px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.timeline-container h4 {
-    font-size: 13px;
+.nav-item {
+    background: none;
+    border: none;
     color: #888;
-}
-
-.timeline-tracks {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    flex: 1;
-}
-
-.track {
-    height: 35px;
-    border-radius: 4px;
-    display: flex;
     align-items: center;
-    padding: 0 15px;
+    gap: 4px;
+    cursor: pointer;
+    width: 25%;
+    transition: color 0.2s;
 }
 
-.video-track {
-    background-color: #1F2D3D;
-    border: 1px solid #2D4A6B;
+.nav-icon {
+    font-size: 20px;
 }
 
-.audio-track {
-    background-color: #1F3D2D;
-    border: 1px solid #2D6B4A;
-}
-
-.track-label {
+.nav-text {
     font-size: 11px;
-    font-weight: bold;
-    color: #AAAAAA;
+}
+
+/* Подсветка активной вкладки */
+.nav-item.active {
+    color: #00F0FF; /* Подсвечиваем неоновым */
 }
