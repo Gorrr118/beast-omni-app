@@ -316,3 +316,23 @@ input[type="range"]::-webkit-slider-thumb {
 .nav-center-item:active .nav-center-btn {
     transform: scale(0.92);
 }
+.player-screen {
+    width: 100%;
+    height: 100%;
+    background-color: #050505;
+    border: 1px solid #1C1C1E;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Показывает, что на экран можно кликнуть */
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Эффект при наведении на плеер, чтобы пользователь понимал, что туда надо тыкать */
+.player-screen:hover {
+    background-color: #0c0c0f;
+    border-color: #00F0FF;
+}
