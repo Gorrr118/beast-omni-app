@@ -60,25 +60,35 @@ body {
     cursor: pointer;
 }
 
-/* 🎞 РАБОЧАЯ ОБЛАСТЬ И ПЛЕЕР */
+/* 🎞 РАБОЧАЯ ОБЛАСТЬ (Плеер + Таймлайн) */
+.editor-workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    height: calc(100vh - 132px); /* Жестко вычитаем высоту хэдера (60px) и нижнего меню (72px) */
+}
+
+/* 🖥 КОНТЕЙНЕР ДЛЯ ПЛЕЕРА */
 .preview-window {
-    flex: 1.2;
+    flex: 1; /* Позволяет плееру забирать всё СВОБОДНОЕ место, но не больше */
+    min-height: 0; /* Важнейший фикс! Запрещает внутреннему контенту раздувать блок */
     background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px;
-    min-height: 0; /* Важно: запрещает flex-элементу раздуваться больше своей доли */
+    padding: 12px 16px; /* Чуть уменьшим падинги, чтобы сэкономить место */
     width: 100%;
+    box-sizing: border-box;
 }
 
-/* ЭКРАН ПЛЕЕРА (Теперь он жесткий контейнер) */
+/* 📱 ЭКРАН ПЛЕЕРА */
 .player-screen {
-    position: relative; /* Дает нам абсолютный контроль над видео внутри */
+    position: relative;
     width: 100%;
     height: 100%;
-    max-width: 100%;
-    max-height: 100%;
+    max-height: 100%; /* Не дает плееру вырасти больше, чем выделено под .preview-window */
     background-color: #050505;
     border: 1px solid #1C1C1E;
     border-radius: 12px;
@@ -86,7 +96,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    overflow: hidden; /* Срезает абсолютно всё лишнее по краям скругления */
+    overflow: hidden; /* Обрезает всё, что пытается вылезти наружу */
     transition: background-color 0.2s, border-color 0.2s;
 }
 
@@ -96,16 +106,19 @@ body {
     border-color: #00F0FF;
 }
 
-/* 🎥 ВИДЕО (Железно зажато в рамки) */
+/* 🎥 ВИДЕО (Жестко зажато в рамки плеера) */
 .player-screen video {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрируем видео идеально по центру */
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain; /* Вписывает видео без растягивания и искажений */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Вписывает вертикальные и горизонтальные видео без искажения пропорций */
     border-radius: 11px;
-    background-color: #000000; /* Черные поля по бокам, если видео вертикальное */
+    background-color: #000000;
 }
 
 /* 🔥 ИСПРАВЛЕНИЕ: Ограничиваем видео строго рамками плеера */
