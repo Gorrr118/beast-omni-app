@@ -77,6 +77,7 @@ body {
     padding: 15px;
 }
 
+/* 🖥 ЭКРАН ПЛЕЕРА */
 .player-screen {
     width: 100%;
     height: 100%;
@@ -86,6 +87,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer; /* Показывает, что на экран можно кликнуть */
+    position: relative;
+    overflow: hidden; /* Обрезает все, что пытается выйти за рамки */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Эффект при наведении на плеер */
+.player-screen:hover {
+    background-color: #0c0c0f;
+    border-color: #00F0FF;
+}
+
+/* 🔥 ИСПРАВЛЕНИЕ: Ограничиваем видео строго рамками плеера */
+.player-screen video {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Видео сожмется под размеры экрана без искажений */
+    border-radius: 11px; /* Скругляем края видео под рамку */
+    display: block;
 }
 
 .preview-placeholder {
@@ -93,6 +115,9 @@ body {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 2px;
+    text-align: center;
+    padding: 10px;
+    user-select: none;
 }
 
 /* Таймлайн */
@@ -287,7 +312,7 @@ input[type="range"]::-webkit-slider-thumb {
 /* Особый стиль для центральной кнопки Studio */
 .nav-center-item {
     position: relative;
-    top: -12px; /* Выталкиваем кнопку чуть вверх, как в дорогих приложениях! */
+    top: -12px; /* Выталкиваем кнопку чуть вверх */
     z-index: 10;
     width: 20%;
 }
@@ -315,24 +340,4 @@ input[type="range"]::-webkit-slider-thumb {
 
 .nav-center-item:active .nav-center-btn {
     transform: scale(0.92);
-}
-.player-screen {
-    width: 100%;
-    height: 100%;
-    background-color: #050505;
-    border: 1px solid #1C1C1E;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer; /* Показывает, что на экран можно кликнуть */
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-/* Эффект при наведении на плеер, чтобы пользователь понимал, что туда надо тыкать */
-.player-screen:hover {
-    background-color: #0c0c0f;
-    border-color: #00F0FF;
 }
