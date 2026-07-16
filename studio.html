@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creator Studio PRO</title>
-    <link rel="stylesheet" href="studio.css?v=1.4">
+    <link rel="stylesheet" href="style.css?v=1.5">
 </head>
 <body>
 
@@ -20,8 +20,12 @@
 
         <div class="editor-workspace">
             <div class="preview-window">
-                <div class="player-screen">
-                    <span class="preview-placeholder">PREVIEW PLAYER</span>
+                <div class="player-screen" id="player-screen-trigger">
+                    <span class="preview-placeholder" id="placeholder-text">КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО</span>
+                    
+                    <video id="main-player" style="display: none; width: 100%; height: 100%; object-fit: contain;" controls playsinline loop></video>
+                    
+                    <input type="file" id="video-upload" accept="video/*" style="display: none;">
                 </div>
             </div>
 
@@ -29,7 +33,7 @@
                 <div class="timeline-tracks">
                     <div class="track video-track">
                         <span class="track-icon">🎬</span>
-                        <span class="track-label">Видеодорожка 01</span>
+                        <span class="track-label" id="video-track-name">Видеодорожка 01</span>
                     </div>
                     <div class="track audio-track">
                         <span class="track-icon">🎵</span>
@@ -40,7 +44,6 @@
         </div>
 
         <div class="dynamic-panel" id="dynamic-panel">
-            
             <div class="tool-panel-content" id="panel-format">
                 <div class="panel-header">📐 Формат кадра</div>
                 <select id="video-format">
@@ -72,7 +75,6 @@
                 <div class="panel-header">⚡ Экспорт готового видео</div>
                 <button id="render-btn">ГЕНЕРИРОВАТЬ ВИДЕО</button>
             </div>
-
         </div>
 
         <div class="studio-sub-tools" id="studio-sub-tools">
@@ -119,6 +121,6 @@
 
     </div>
 
-    <script src="studio.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
