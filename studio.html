@@ -4,25 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creator Studio PRO</title>
-    <link rel="stylesheet" href="studio.css">
+    <link rel="stylesheet" href="style.css?v=1.4">
 </head>
 <body>
 
     <div class="studio-container">
         
-        <div class="preview-window">
-            <div class="player-screen">
-                <span class="preview-placeholder">PREVIEW PLAYER</span>
-            </div>
+        <div class="shop-header">
+            <div class="shop-balance">Баланс: <span id="user-coins">0</span> coins</div>
+            <select id="lang-dropdown">
+                <option value="en">🇺🇸 US</option>
+                <option value="ru" selected>🇷🇺 RU</option>
+            </select>
         </div>
 
-        <div class="timeline-container">
-            <div class="timeline-tracks">
-                <div class="track video-track">
-                    <span class="track-label">🎬 Видеодорожка 01</span>
+        <div class="editor-workspace">
+            <div class="preview-window">
+                <div class="player-screen">
+                    <span class="preview-placeholder">PREVIEW PLAYER</span>
                 </div>
-                <div class="track audio-track">
-                    <span class="track-label">🎵 Фоновое аудио</span>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-tracks">
+                    <div class="track video-track">
+                        <span class="track-icon">🎬</span>
+                        <span class="track-label">Видеодорожка 01</span>
+                    </div>
+                    <div class="track audio-track">
+                        <span class="track-icon">🎵</span>
+                        <span class="track-label">Фоновое аудио</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,7 +42,7 @@
         <div class="dynamic-panel" id="dynamic-panel">
             
             <div class="tool-panel-content" id="panel-format">
-                <h4>📐 Выберите формат видео</h4>
+                <div class="panel-header">📐 Формат кадра</div>
                 <select id="video-format">
                     <option value="16:9">YouTube Video (16:9)</option>
                     <option value="9:16">TikTok / Shorts (9:16)</option>
@@ -39,7 +51,7 @@
             </div>
 
             <div class="tool-panel-content" id="panel-text">
-                <h4>📝 Добавить текст (Субтитры)</h4>
+                <div class="panel-header">📝 Субтитры и Текст</div>
                 <textarea id="subtitles-text" placeholder="Введите текст для видео..."></textarea>
                 <select id="font-style">
                     <option value="Montserrat">Montserrat Bold</option>
@@ -49,40 +61,64 @@
             </div>
 
             <div class="tool-panel-content" id="panel-audio">
-                <h4>🎵 Настройки аудио</h4>
-                <label>Громкость музыки</label>
-                <input type="range" id="music-volume" min="0" max="100" value="50">
+                <div class="panel-header">🎵 Настройки аудио</div>
+                <div class="volume-control">
+                    <label>Громкость музыки</label>
+                    <input type="range" id="music-volume" min="0" max="100" value="50">
+                </div>
             </div>
 
             <div class="tool-panel-content" id="panel-export">
-                <h4>⚡ Готово к созданию?</h4>
-                <p>Все настройки применены. Нажмите кнопку ниже, чтобы запустить сборку видео.</p>
-                <button id="render-btn">СОЗДАТЬ ВИДЕО</button>
+                <div class="panel-header">⚡ Экспорт готового видео</div>
+                <button id="render-btn">ГЕНЕРИРОВАТЬ ВИДЕО</button>
             </div>
 
         </div>
 
-        <nav class="bottom-navigation">
-            <button class="nav-item" data-target="panel-format">
-                <span class="nav-icon">📐</span>
-                <span class="nav-text">Формат</span>
-            </button>
-            <button class="nav-item" data-target="panel-text">
-                <span class="nav-icon">📝</span>
-                <span class="nav-text">Текст</span>
-            </button>
-            <button class="nav-item" data-target="panel-audio">
-                <span class="nav-icon">🎵</span>
-                <span class="nav-text">Звук</span>
-            </button>
-            <button class="nav-item" data-target="panel-export">
-                <span class="nav-icon">⚡</span>
-                <span class="nav-text">Экспорт</span>
-            </button>
+        <div class="studio-sub-tools" id="studio-sub-tools">
+            <button class="tool-btn" data-target="panel-format">📐 Формат</button>
+            <button class="tool-btn" data-target="panel-text">📝 Текст</button>
+            <button class="tool-btn" data-target="panel-audio">🎵 Звук</button>
+            <button class="tool-btn" data-target="panel-export">⚡ Экспорт</button>
+        </div>
+
+        <nav class="bottom-navbar">
+            <a href="index.html">
+                <div class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </div>
+            </a>
+            <a href="referals.html">
+                <div class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Referral</span>
+                </div>
+            </a>
+            
+            <div class="nav-item nav-center-item active" id="studio-trigger">
+                <div class="nav-center-btn">
+                    <span class="center-icon">⚡</span>
+                </div>
+                <span class="nav-text center-text">Studio</span>
+            </div>
+
+            <a href="widgets.html">
+                <div class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Widgets</span>
+                </div>
+            </a>
+            <a href="shop.html">
+                <div class="nav-item">
+                    <span class="nav-icon">🛍️</span>
+                    <span class="nav-text">Shop</span>
+                </div>
+            </a>
         </nav>
 
     </div>
 
-    <script src="studio.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
