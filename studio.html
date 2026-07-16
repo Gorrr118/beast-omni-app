@@ -2,145 +2,79 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Beast Omni — AI Studio</title>
-    <!-- Подключаем шрифты и стили отдельно -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rubik+Glitch&family=Pixelify+Sans:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Studio PRO</title>
     <link rel="stylesheet" href="studio.css">
 </head>
 <body>
 
-    <!-- ВЕРХНЯЯ ПАНЕЛЬ СТУДИИ -->
-    <header class="studio-header">
-        <div class="studio-logo">⚡ AI STUDIO</div>
-        <div class="studio-status-tag">PRO MODE</div>
-    </header>
+    <div class="studio-container">
+        <header class="studio-header">
+            <div class="logo">🎬 <span>Creator Studio PRO</span></div>
+            <div class="status">Режим: Готов к работе</div>
+        </header>
 
-    <!-- ОСНОВНОЙ КОНТЕНТ СТУДИИ -->
-    <main class="studio-main">
-        
-        <!-- БЛОК ЗАГРУЗКИ ВИДЕО -->
-        <section class="studio-card-section">
-            <div class="studio-section-header">
-                <span class="neon-line-indicator"></span>
-                <h3>ЗАГРУЗКА И ОБРАБОТКА</h3>
-            </div>
+        <div class="main-workspace">
             
-            <div class="video-dropzone" id="dropzone">
-                <div class="dropzone-icon">📁</div>
-                <p class="dropzone-title">Перетащите видео или нажмите для загрузки</p>
-                <p class="dropzone-info">Поддерживаются форматы MP4, MOV (до 500 MB)</p>
-                <input type="file" id="video-file-input" accept="video/*">
-            </div>
-        </section>
-
-        <!-- БЛОК НАСТРОЕК НЕЙРОСЕТИ И ПЕРЕВОДА -->
-        <section class="studio-card-section">
-            <div class="studio-section-header">
-                <span class="neon-line-indicator"></span>
-                <h3>УМНЫЙ ПЕРЕВОД (AI TRANSLATE)</h3>
-            </div>
-            
-            <div class="studio-glass-card">
-                <div class="studio-control-group">
-                    <label class="control-label">Язык оригинала:</label>
-                    <select class="studio-custom-select">
-                        <option value="ru">Русский 🇷🇺</option>
-                        <option value="en">Английский 🇺🇸</option>
-                    </select>
-                </div>
+            <aside class="left-panel">
+                <h3>⚙️ Настройки видео</h3>
                 
-              <div class="studio-control-group">
-    <label class="control-label">Перевести на:</label>
-    <select class="studio-custom-select" id="target-lang-select">
-        <option value="en">Английский 🇺🇸</option>
-        <option value="es">Испанский 🇪🇸</option>
-        <option value="de">Немецкий 🇩🇪</option>
-        <option value="fr">Французский 🇫🇷</option>
-    </select>
-</div>
-                <div class="studio-checkbox-field">
-                    <input type="checkbox" id="voice-cloning-toggle" checked>
-                    <label for="voice-cloning-toggle">Клонировать мой голос (AI Voice Match)</label>
-                </div>
-            </div>
-        </section>
-
-        <!-- БЛОК ВЫБОРА ТОПОВЫХ ШРИФТОВ -->
-        <section class="studio-card-section">
-            <div class="studio-section-header">
-                <span class="neon-line-indicator"></span>
-                <h3>СТИЛЬ И ТОПОВЫЕ ШРИФТЫ</h3>
-            </div>
-            
-            <div class="studio-glass-card">
-                <div class="studio-control-group">
-                    <label class="control-label">Кастомизация субтитров:</label>
-                    <select class="studio-custom-select" id="studio-font-picker">
-                        <option value="font-neon">🔮 NEON GLOW</option>
-                        <option value="font-cyber">🤖 CYBERPUNK (Orbitron)</option>
-                        <option value="font-glitch">💥 RUBIK GLITCH</option>
-                        <option value="font-pixel">👾 RETRO PIXEL</option>
-                        <option value="font-phonk">🔥 PHONK ITALIC</option>
-                        <option value="font-acid">🤮 ACID CREEPSTER</option>
-                        <option value="font-gold">👑 GOLD CINZEL</option>
+                <div class="control-group">
+                    <label for="video-format">Формат видео</label>
+                    <select id="video-format">
+                        <option value="16:9">YouTube Video (16:9)</option>
+                        <option value="9:16">TikTok / Shorts (9:16)</option>
+                        <option value="1:1">Square (1:1)</option>
                     </select>
                 </div>
 
-                <!-- ОКНО ИНТЕРАКТИВНОГО ПРЕВЬЮ ШРИФТА -->
-                <div class="font-preview-box">
-                    <div id="text-preview-target" class="font-neon">Так будут выглядеть субтитры видоса</div>
+                <div class="control-group">
+                    <label for="subtitles-text">Текст субтитров</label>
+                    <textarea id="subtitles-text" placeholder="Введите текст для наложения..."></textarea>
                 </div>
-            </div>
-        </section>
 
-        <!-- КНОПКА ЗАПУСКА НЕЙРОСЕТИ -->
-        <button class="studio-launch-btn" id="start-process-btn">
-            <span>✨ НАЧАТЬ ОБРАБОТКУ ВИДЕО</span>
-        </button>
+                <div class="control-group">
+                    <label for="font-style">Стиль шрифта</label>
+                    <select id="font-style">
+                        <option value="Montserrat">Montserrat Bold</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial Black</option>
+                    </select>
+                </div>
 
-    </main>
+                <div class="control-group">
+                    <label for="music-volume">Громкость музыки</label>
+                    <input type="range" id="music-volume" min="0" max="100" value="50">
+                </div>
 
-    <!-- НАЖНЯЯ НАВИГАЦИОННАЯ ПАНЕЛЬ -->
-    <nav class="bottom-navbar">
-        <a href="index.html" class="nav-link">
-            <div class="nav-item">
-                <span class="nav-icon">🏠</span>
-                <span class="nav-text">Home</span>
-            </div>
-        </a>
-        <a href="referral.html" class="nav-link">
-            <div class="nav-item">
-                <span class="nav-icon">👥</span>
-                <span class="nav-text">Referral</span>
-            </div>
-        </a>
-        
-        <!-- Центральная кнопка Студии — подсвечена главным неоном -->
-        <a href="studio.html" class="nav-center-link-active">
-            <div class="nav-center-button">
-                <span class="center-icon-flash">⚡</span>
-            </div>
-        </a>
+                <button id="render-btn">⚡ СОЗДАТЬ ВИДЕО</button>
+            </aside>
 
-        <a href="obs-settings.html" class="nav-link">
-            <div class="nav-item">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">Settings</span>
-            </div>
-        </a>
-        
-        <a href="shop.html" class="nav-link">
-            <div class="nav-item">
-                <span class="nav-icon">🛍️</span>
-                <span class="nav-text">Shop</span>
-            </div>
-        </a>
-    </nav>
+            <main class="center-area">
+                
+                <div class="preview-window">
+                    <div class="player-screen" id="player">
+                        <span class="preview-placeholder">PREVIEW PLAYER</span>
+                    </div>
+                </div>
 
-    <!-- Подключаем логику отдельно -->
+                <div class="timeline-container">
+                    <h4>🎞 Таймлайн</h4>
+                    <div class="timeline-tracks">
+                        <div class="track video-track">
+                            <span class="track-label">Видеодорожка 01</span>
+                        </div>
+                        <div class="track audio-track">
+                            <span class="track-label">Фоновое аудио</span>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
     <script src="studio.js"></script>
 </body>
 </html>
