@@ -28,6 +28,7 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 50px;
+    flex-shrink: 0;
 }
 
 .logo {
@@ -49,6 +50,7 @@ body {
     display: flex;
     flex: 1;
     height: calc(100vh - 50px);
+    overflow: hidden;
 }
 
 /* Левая панель настроек */
@@ -60,6 +62,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 18px;
+    flex-shrink: 0;
 }
 
 .left-panel h3 {
@@ -133,6 +136,7 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 14px;
     transition: background-color 0.2s, transform 0.1s;
     margin-top: auto; /* Прижимает кнопку вниз */
+    flex-shrink: 0;
 }
 
 #render-btn:hover {
@@ -151,11 +155,13 @@ input[type="range"]::-webkit-slider-thumb {
     background-color: #101010;
     padding: 15px;
     gap: 15px;
+    overflow-y: auto;
 }
 
 /* Плеер */
 .preview-window {
     flex: 2;
+    min-height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,6 +198,7 @@ input[type="range"]::-webkit-slider-thumb {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .timeline-container h4 {
@@ -228,4 +235,51 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 12px;
     font-weight: bold;
     color: #AAAAAA;
+}
+
+/* ========================================================== */
+/* МОБИЛЬНАЯ АДАПТАЦИЯ (Для экранов смартфонов) */
+/* ========================================================== */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Позволяем скроллить всю страницу на телефоне */
+        height: auto;
+    }
+
+    .studio-container {
+        height: auto;
+    }
+
+    .main-workspace {
+        flex-direction: column; /* Ставим блоки один под другой */
+        height: auto;
+        overflow: visible;
+    }
+
+    /* Левая панель перемещается под плеер */
+    .left-panel {
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid #282828;
+        order: 2; /* Показываем настройки ниже плеера */
+    }
+
+    #render-btn {
+        margin-top: 10px; /* Отступ сверху для кнопки на мобилке */
+    }
+
+    /* Центр (плеер + таймлайн) */
+    .center-area {
+        width: 100%;
+        order: 1; /* Плеер будет в самом верху мобилки */
+        padding: 10px;
+    }
+
+    .preview-window {
+        min-height: 300px; /* Фиксированная высота плеера на мобилке */
+    }
+
+    .timeline-container {
+        order: 3; /* Таймлайн падает в самый низ */
+    }
 }
