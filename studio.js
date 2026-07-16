@@ -1,48 +1,58 @@
-const navItems = document.querySelectorAll('.nav-item');
+const studioTrigger = document.getElementById('studio-trigger');
+const subToolsContainer = document.getElementById('studio-sub-tools');
+const toolButtons = document.querySelectorAll('.tool-btn');
 const dynamicPanel = document.getElementById('dynamic-panel');
 const toolPanels = document.querySelectorAll('.tool-panel-content');
 
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const targetId = item.getAttribute('data-target');
+// Клик по центральной кнопке Studio — скрывает/показывает панель инструментов
+studioTrigger.addEventListener('click', () => {
+    if (subToolsContainer.style.display === 'none') {
+        subToolsContainer.style.display = 'flex';
+        studioTrigger.classList.add('active');
+    } else {
+        subToolsContainer.style.display = 'none';
+        dynamicPanel.classList.remove('active');
+        studioTrigger.classList.remove('active');
+        toolButtons.forEach(btn => btn.classList.remove('active'));
+    }
+});
 
-        // Если нажали на уже активную вкладку — закрываем панель совсем
-        if (item.classList.contains('active')) {
-            item.classList.remove('active');
+// Клик по быстрым инструментам (Формат, Текст, Звук, Экспорт)
+toolButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+
+        // Если инструмент уже нажат — закрываем панель настроек
+        if (button.classList.contains('active')) {
+            button.classList.remove('active');
             dynamicPanel.classList.remove('active');
             return;
         }
 
-        // Убираем активный класс у всех кнопок меню
-        navItems.forEach(nav => nav.classList.remove('active'));
-        // Скрываем все панели настроек
+        // Сбрасываем активные классы
+        toolButtons.forEach(btn => btn.classList.remove('active'));
         toolPanels.forEach(panel => panel.classList.remove('active'));
 
-        // Активируем текущую кнопку меню
-        item.classList.add('active');
-        // Показываем главную плашку настроек
+        // Активируем выбранный инструмент и открываем его панель настроек
+        button.classList.add('active');
         dynamicPanel.classList.add('active');
-        // Показываем конкретную панель настроек
         document.getElementById(targetId).classList.add('active');
     });
 });
 
-// Логика кнопки РЕНДЕРА (Создать видео)
+// Логика кнопки рендера
 document.getElementById('render-btn').addEventListener('click', () => {
-    const format = document.getElementById('video-format').value;
-    const text = document.getElementById('subtitles-text').value;
-    const font = document.getElementById('font-style').value;
-    const volume = document.getElementById('music-volume').value;
-
     const btn = document.getElementById('render-btn');
     btn.disabled = true;
-    btn.innerText = "⏳ СОЗДАНИЕ ВИДЕО...";
-    btn.style.backgroundColor = "#555";
+    btn.innerText = "⏳ СБОРКА ВИДЕО...";
+    btn.style.backgroundColor = "#2C2C2E";
+    btn.style.color = "#8E8E93";
 
     setTimeout(() => {
-        alert(`Видео готово!\nФормат: ${format}\nТекст: ${text}\nГромкость: ${volume}%`);
+        alert("Видео успешно смонтировано!");
         btn.disabled = false;
-        btn.innerText = "СОЗДАТЬ ВИДЕО";
+        btn.innerText = "ГЕНЕРИРОВАТЬ ВИДЕО";
         btn.style.backgroundColor = "#00F0FF";
-    }, 2500);
+        btn.style.color = "#000000";
+    }, 2000);
 });
