@@ -4,77 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creator Studio PRO</title>
-    <link rel="stylesheet" href="studio.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="studio-container">
-        <header class="studio-header">
-            <div class="logo">🎬 <span>Creator Studio PRO</span></div>
-            <div class="status">Режим: Готов к работе</div>
-        </header>
+        
+        <div class="preview-window">
+            <div class="player-screen">
+                <span class="preview-placeholder">PREVIEW PLAYER</span>
+            </div>
+        </div>
 
-        <div class="main-workspace">
+        <div class="timeline-container">
+            <div class="timeline-tracks">
+                <div class="track video-track">
+                    <span class="track-label">🎬 Видеодорожка 01</span>
+                </div>
+                <div class="track audio-track">
+                    <span class="track-label">🎵 Фоновое аудио</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dynamic-panel" id="dynamic-panel">
             
-            <aside class="left-panel">
-                <h3>⚙️ Настройки видео</h3>
-                
-                <div class="control-group">
-                    <label for="video-format">Формат видео</label>
-                    <select id="video-format">
-                        <option value="16:9">YouTube Video (16:9)</option>
-                        <option value="9:16">TikTok / Shorts (9:16)</option>
-                        <option value="1:1">Square (1:1)</option>
-                    </select>
-                </div>
+            <div class="tool-panel-content" id="panel-format">
+                <h4>📐 Выберите формат видео</h4>
+                <select id="video-format">
+                    <option value="16:9">YouTube Video (16:9)</option>
+                    <option value="9:16">TikTok / Shorts (9:16)</option>
+                    <option value="1:1">Square (1:1)</option>
+                </select>
+            </div>
 
-                <div class="control-group">
-                    <label for="subtitles-text">Текст субтитров</label>
-                    <textarea id="subtitles-text" placeholder="Введите текст для наложения..."></textarea>
-                </div>
+            <div class="tool-panel-content" id="panel-text">
+                <h4>📝 Добавить текст (Субтитры)</h4>
+                <textarea id="subtitles-text" placeholder="Введите текст для видео..."></textarea>
+                <select id="font-style">
+                    <option value="Montserrat">Montserrat Bold</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial Black</option>
+                </select>
+            </div>
 
-                <div class="control-group">
-                    <label for="font-style">Стиль шрифта</label>
-                    <select id="font-style">
-                        <option value="Montserrat">Montserrat Bold</option>
-                        <option value="Impact">Impact</option>
-                        <option value="Arial">Arial Black</option>
-                    </select>
-                </div>
+            <div class="tool-panel-content" id="panel-audio">
+                <h4>🎵 Настройки аудио</h4>
+                <label>Громкость музыки</label>
+                <input type="range" id="music-volume" min="0" max="100" value="50">
+            </div>
 
-                <div class="control-group">
-                    <label for="music-volume">Громкость музыки</label>
-                    <input type="range" id="music-volume" min="0" max="100" value="50">
-                </div>
-
-                <button id="render-btn">⚡ СОЗДАТЬ ВИДЕО</button>
-            </aside>
-
-            <main class="center-area">
-                
-                <div class="preview-window">
-                    <div class="player-screen" id="player">
-                        <span class="preview-placeholder">PREVIEW PLAYER</span>
-                    </div>
-                </div>
-
-                <div class="timeline-container">
-                    <h4>🎞 Таймлайн</h4>
-                    <div class="timeline-tracks">
-                        <div class="track video-track">
-                            <span class="track-label">Видеодорожка 01</span>
-                        </div>
-                        <div class="track audio-track">
-                            <span class="track-label">Фоновое аудио</span>
-                        </div>
-                    </div>
-                </div>
-
-            </main>
+            <div class="tool-panel-content" id="panel-export">
+                <h4>⚡ Готово к созданию?</h4>
+                <p>Все настройки применены. Нажмите кнопку ниже, чтобы запустить сборку видео.</p>
+                <button id="render-btn">СОЗДАТЬ ВИДЕО</button>
+            </div>
 
         </div>
+
+        <nav class="bottom-navigation">
+            <button class="nav-item" data-target="panel-format">
+                <span class="nav-icon">📐</span>
+                <span class="nav-text">Формат</span>
+            </button>
+            <button class="nav-item" data-target="panel-text">
+                <span class="nav-icon">📝</span>
+                <span class="nav-text">Текст</span>
+            </button>
+            <button class="nav-item" data-target="panel-audio">
+                <span class="nav-icon">🎵</span>
+                <span class="nav-text">Звук</span>
+            </button>
+            <button class="nav-item" data-target="panel-export">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Экспорт</span>
+            </button>
+        </nav>
+
     </div>
 
-    <script src="studio.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
