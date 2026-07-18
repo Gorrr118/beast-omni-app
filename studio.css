@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent; /* Убираем синее выделение при тапах на смартфонах */
 }
 
 body {
@@ -27,7 +28,7 @@ body {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
 }
 
-/* 💰 СТИЛИ ТВОЕГО ВЕРХНЕГО БЛОКА */
+/* 💰 ВЕРХНИЙ БЛОК: Баланс и Язык */
 .shop-header {
     height: 60px;
     background-color: #121214;
@@ -40,13 +41,32 @@ body {
 }
 
 .shop-balance {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
-    color: #00F0FF; /* Неоновый голубой под монеты */
+    color: #00F0FF;
     background: rgba(0, 240, 255, 0.08);
-    padding: 8px 14px;
+    padding: 6px 12px;
     border-radius: 20px;
     border: 1px solid rgba(0, 240, 255, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.text-gold {
+    color: #FFD700;
+}
+
+.translation-target {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.label-sm {
+    font-size: 11px;
+    color: #8E8E93;
+    font-weight: 500;
 }
 
 #lang-dropdown {
@@ -58,6 +78,7 @@ body {
     font-size: 12px;
     outline: none;
     cursor: pointer;
+    font-weight: 600;
 }
 
 /* 🎞 РАБОЧАЯ ОБЛАСТЬ (Плеер + Таймлайн) */
@@ -67,20 +88,18 @@ body {
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    height: calc(100vh - 132px); /* Жестко вычитаем высоту хэдера (60px) и нижнего меню (72px) */
 }
 
 /* 🖥 КОНТЕЙНЕР ДЛЯ ПЛЕЕРА */
 .preview-window {
-    flex: 1; /* Позволяет плееру забирать всё СВОБОДНОЕ место, но не больше */
-    min-height: 0; /* Важнейший фикс! Запрещает внутреннему контенту раздувать блок */
+    flex: 1;
+    min-height: 0;
     background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 12px 16px; /* Чуть уменьшим падинги, чтобы сэкономить место */
+    padding: 12px 16px;
     width: 100%;
-    box-sizing: border-box;
 }
 
 /* 📱 ЭКРАН ПЛЕЕРА */
@@ -88,95 +107,215 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    max-height: 100%; /* Не дает плееру вырасти больше, чем выделено под .preview-window */
-    background-color: #050505;
+    max-height: 100%;
+    background-color: #08080A;
     border: 1px solid #1C1C1E;
-    border-radius: 12px;
+    border-radius: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    overflow: hidden; /* Обрезает всё, что пытается вылезти наружу */
+    overflow: hidden;
     transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* Эффект при наведении */
 .player-screen:hover {
     background-color: #0c0c0f;
-    border-color: #00F0FF;
+    border-color: rgba(0, 240, 255, 0.4);
 }
 
-/* 🎥 ВИДЕО (Жестко зажато в рамки плеера) */
+/* Зона загрузки контента */
+.upload-zone-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    z-index: 2;
+}
+
+.upload-icon {
+    font-size: 40px;
+    color: #3A3A3C;
+    margin-bottom: 12px;
+    transition: color 0.2s;
+}
+
+.player-screen:hover .upload-icon {
+    color: #00F0FF;
+}
+
+.preview-placeholder {
+    color: #E5E5EA;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    user-select: none;
+}
+
+.file-info-sm {
+    font-size: 11px;
+    color: #636366;
+}
+
+/* 🎥 ВИДЕО */
 .player-screen video {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Центрируем видео идеально по центру */
+    transform: translate(-50%, -50%);
     width: 100% !important;
     height: 100% !important;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Вписывает вертикальные и горизонтальные видео без искажения пропорций */
-    border-radius: 11px;
+    object-fit: contain;
     background-color: #000000;
+    z-index: 1;
 }
 
-/* 🔥 ИСПРАВЛЕНИЕ: Ограничиваем видео строго рамками плеера */
-.player-screen video {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Видео сожмется под размеры экрана без искажений */
-    border-radius: 11px; /* Скругляем края видео под рамку */
-    display: block;
-}
-
-.preview-placeholder {
-    color: #3A3A3C;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-align: center;
-    padding: 10px;
+/* 🤖 ИИ АВАТАР НАД ВИДЕО (Драгабельный) */
+.ai-avatar-overlay {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #00F0FF;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5), 0 4px 10px rgba(0,0,0,0.5);
+    overflow: visible; /* Чтоб ресайзер не обрезался */
+    cursor: move;
+    z-index: 10;
+    top: 20px;
+    left: 20px;
     user-select: none;
+    touch-action: none; /* Отключаем системный скролл при перетаскивании фейса */
 }
 
-/* Таймлайн */
+.ai-avatar-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Маркер изменения размера (правый нижний угол аватара) */
+.avatar-resize-handle {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    border: 2px solid #0072FF;
+    border-radius: 50%;
+    right: -2px;
+    bottom: -2px;
+    cursor: se-resize;
+    z-index: 11;
+    touch-action: none;
+}
+
+/* ⚙️ ЭКРАН РЕНДЕРИНГА (Оверлей загрузки) */
+.render-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 20;
+    backdrop-filter: blur(4px);
+}
+
+.spinner-loader {
+    width: 44px;
+    height: 44px;
+    border: 4px solid rgba(0, 240, 255, 0.1);
+    border-left-color: #00F0FF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.render-status-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.progress-bar-container {
+    width: 80%;
+    height: 6px;
+    background-color: #2C2C2E;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0072FF 0%, #00F0FF 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-percentage {
+    font-size: 12px;
+    font-weight: 700;
+    color: #00F0FF;
+}
+
+/* 🎞 ТАЙМЛАЙН */
 .timeline-container {
-    height: 110px;
+    height: auto;
     background-color: #121214;
     border-top: 1px solid #1C1C1E;
     padding: 12px 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     flex-shrink: 0;
 }
 
 .timeline-tracks {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .track {
-    height: 34px;
-    border-radius: 8px;
+    height: 30px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 10px;
     gap: 8px;
 }
 
 .video-track {
-    background: linear-gradient(90deg, #1A2238 0%, #151B2B 100%);
-    border: 1px solid #223154;
+    background: linear-gradient(90deg, rgba(26, 34, 56, 0.6) 0%, rgba(21, 27, 43, 0.6) 100%);
+    border: 1px solid #1E2D4A;
 }
 
 .audio-track {
-    background: linear-gradient(90deg, #12231C 0%, #0E1B15 100%);
-    border: 1px solid #1D3A2C;
+    background: linear-gradient(90deg, rgba(18, 35, 28, 0.6) 0%, rgba(14, 27, 21, 0.6) 100%);
+    border: 1px solid #163023;
+}
+
+.ai-track {
+    background: linear-gradient(90deg, rgba(50, 20, 70, 0.4) 0%, rgba(35, 15, 50, 0.4) 100%);
+    border: 1px solid #4A1E6D;
+}
+
+.track-icon {
+    font-size: 12px;
 }
 
 .track-label {
@@ -190,12 +329,8 @@ body {
     background-color: #121214;
     border-top: 1px solid #1C1C1E;
     padding: 16px;
-    display: none;
     flex-shrink: 0;
-}
-
-.dynamic-panel.active {
-    display: block;
+    min-height: 140px;
 }
 
 .tool-panel-content {
@@ -212,26 +347,128 @@ body {
     font-size: 13px;
     font-weight: 600;
     color: #8E8E93;
-    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.tool-panel-content select,
-.tool-panel-content textarea {
-    background-color: #1C1C1E;
-    border: 1px solid #2C2C2E;
-    border-radius: 8px;
-    padding: 10px;
-    color: #FFFFFF;
-    font-size: 13px;
-    outline: none;
+/* Сетка выбора формата */
+.format-grid {
+    display: flex;
+    gap: 8px;
     width: 100%;
 }
 
-.tool-panel-content textarea {
-    height: 60px;
-    resize: none;
+.format-btn {
+    flex: 1;
+    background-color: #1C1C1E;
+    border: 1px solid #2C2C2E;
+    border-radius: 8px;
+    padding: 12px 6px;
+    color: #AEAEB2;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
 }
 
+.format-btn i {
+    font-size: 14px;
+}
+
+.format-btn.active {
+    background-color: rgba(0, 240, 255, 0.05);
+    border-color: #00F0FF;
+    color: #00F0FF;
+}
+
+/* Переключатели / Чекбоксы */
+.switch-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1C1C1E;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Инвентарь: Шрифты, Голоса, Аватары */
+.inventory-quick-access {
+    display: flex;
+    gap: 8px;
+}
+
+.inventory-trigger-btn {
+    flex: 1;
+    background-color: #1C1C1E;
+    border: 1px solid #2C2C2E;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background-color 0.2s;
+}
+
+.inventory-trigger-btn:hover {
+    background-color: #2C2C2E;
+}
+
+/* Ползунки звука */
+.volume-control {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: #1C1C1E;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+    color: #AEAEB2;
+}
+
+.panel-info-text {
+    font-size: 12px;
+    color: #8E8E93;
+    line-height: 1.4;
+}
+
+.main-action-btn {
+    background: linear-gradient(135deg, #00F0FF 0%, #0072FF 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+    transition: transform 0.1s;
+}
+
+.main-action-btn:active {
+    transform: scale(0.98);
+}
+
+/* Слайдеры */
 input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
@@ -247,50 +484,43 @@ input[type="range"]::-webkit-slider-thumb {
     height: 16px;
     border-radius: 50%;
     background: #00F0FF;
+    box-shadow: 0 0 6px rgba(0,240,255,0.4);
     cursor: pointer;
 }
 
-#render-btn {
-    background-color: #00F0FF;
-    color: #000000;
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    font-weight: 700;
-    font-size: 13px;
-    cursor: pointer;
-    width: 100%;
-}
-
-/* 🛠 ВСПЛЫВАЮЩИЕ ИНСТРУМЕНТЫ РЕДАКТОРА (Над меню) */
+/* 🛠 ПОД-ИНСТРУМЕНТЫ РЕДАКТОРА (Над меню) */
 .studio-sub-tools {
     display: flex;
     justify-content: space-around;
     background-color: #121214;
     border-top: 1px solid #1C1C1E;
-    padding: 10px 8px;
+    padding: 6px 4px;
     flex-shrink: 0;
 }
 
 .tool-btn {
-    background-color: #1C1C1E;
-    border: 1px solid #2C2C2E;
-    color: #AEAEB2;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
+    background: transparent;
+    border: none;
+    color: #636366;
+    padding: 6px;
+    font-size: 10px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    text-align: center;
+    width: 22%;
+    transition: color 0.2s;
+}
+
+.tool-btn i {
+    font-size: 16px;
+    margin-bottom: 4px;
 }
 
 .tool-btn.active {
-    background-color: rgba(0, 240, 255, 0.1);
-    border-color: #00F0FF;
     color: #00F0FF;
 }
 
-/* 📱 СТИЛИ ДЛЯ ТВОЕГО НИЖНЕГО МЕНЮ (Bottom Navbar) */
+/* 📱 НИЖНЕЕ МЕНЮ (Bottom Navbar) */
 .bottom-navbar {
     height: 72px;
     background-color: #0A0A0C;
@@ -314,11 +544,10 @@ input[type="range"]::-webkit-slider-thumb {
     gap: 4px;
     color: #636366;
     cursor: pointer;
-    transition: color 0.2s;
 }
 
 .nav-icon {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .nav-text {
@@ -326,15 +555,13 @@ input[type="range"]::-webkit-slider-thumb {
     font-weight: 500;
 }
 
-/* Активный пункт меню */
 .nav-item.active {
-    color: #00F0FF; /* Твой неоновый голубой цвет */
+    color: #00F0FF;
 }
 
-/* Особый стиль для центральной кнопки Studio */
 .nav-center-item {
     position: relative;
-    top: -12px; /* Выталкиваем кнопку чуть вверх */
+    top: -12px;
     z-index: 10;
     width: 20%;
 }
@@ -351,15 +578,170 @@ input[type="range"]::-webkit-slider-thumb {
     transition: transform 0.2s ease;
 }
 
-.center-icon {
+.nav-center-btn span {
     font-size: 20px;
     color: #ffffff;
 }
 
-.center-text {
-    margin-top: 2px;
-}
-
 .nav-center-item:active .nav-center-btn {
     transform: scale(0.92);
+}
+
+/* 🛍️ ВСПЛЫВАЮЩЕЕ ОКНО (BOTTOM SHEET) МАГАЗИНА / ИНВЕНТАРЯ */
+.bottom-sheet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none; /* Контролируется через JS */
+}
+
+.bottom-sheet.active {
+    display: block;
+}
+
+.sheet-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.sheet-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-height: 75%;
+    background-color: #121216;
+    border-radius: 20px 20px 0 0;
+    border-top: 1px solid #2C2C2E;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.3, 1);
+}
+
+.bottom-sheet.active .sheet-content {
+    transform: translateY(0);
+}
+
+.sheet-drag-handle {
+    width: 36px;
+    height: 4px;
+    background-color: #3A3A3C;
+    border-radius: 2px;
+    margin: 8px auto 0 auto;
+    flex-shrink: 0;
+}
+
+.sheet-header {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1C1C1E;
+}
+
+.sheet-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.sheet-close-btn {
+    background: transparent;
+    border: none;
+    color: #8E8E93;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.sheet-body {
+    overflow-y: auto;
+    padding: 16px;
+    flex: 1;
+}
+
+/* Сетка карточек товаров в инвентаре */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.inventory-card {
+    background-color: #1C1C22;
+    border: 1px solid #2C2C35;
+    border-radius: 12px;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    min-height: 85px;
+    transition: border-color 0.2s;
+}
+
+.inventory-card.selected {
+    border-color: #00F0FF;
+    background-color: rgba(0, 240, 255, 0.04);
+}
+
+.inventory-card.locked {
+    opacity: 0.6;
+}
+
+.card-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.avatar-preview-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 6px;
+}
+
+.card-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: #E5E5EA;
+}
+
+/* Метка типа "Стандарт" или "Куплено" */
+.card-badge {
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+.badge-free {
+    background-color: #2C2C2E;
+    color: #AEAEB2;
+}
+
+.badge-premium {
+    background-color: rgba(0, 240, 255, 0.15);
+    color: #00F0FF;
+}
+
+/* Замочек для закрытых товаров */
+.lock-overlay {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 10px;
+    color: #FF3B30;
 }
