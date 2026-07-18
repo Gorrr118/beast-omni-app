@@ -2,88 +2,156 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Creator Studio PRO</title>
-    <link rel="stylesheet" href="studio.css?v=1.5">
+    <!-- Подключаем иконки для красивых кнопок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="studio.css?v=1.6">
 </head>
 <body>
 
     <div class="studio-container">
         
+        <!-- HEADER: Баланс и Язык перевода -->
         <div class="shop-header">
-            <div class="shop-balance">Баланс: <span id="user-coins">0</span> coins</div>
-            <select id="lang-dropdown">
-                <option value="en">🇺🇸 US</option>
-                <option value="ru" selected>🇷🇺 RU</option>
-            </select>
+            <div class="shop-balance"><i class="fas fa-coins text-gold"></i> Баланс: <span id="user-coins">0</span> coins</div>
+            <div class="translation-target">
+                <span class="label-sm">Перевод на:</span>
+                <select id="lang-dropdown">
+                    <option value="ru" selected>🇷🇺 Русский</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="hy">🇦🇲 Հայերեն</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                </select>
+            </div>
         </div>
 
+        <!-- WORKSPACE: Плеер + Загрузка + Аватар -->
         <div class="editor-workspace">
             <div class="preview-window">
+                <!-- Главный черный квадрат загрузки и плеер -->
                 <div class="player-screen" id="player-screen-trigger">
-                    <span class="preview-placeholder" id="placeholder-text">КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО</span>
+                    <div class="upload-zone-wrapper" id="upload-zone">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <span class="preview-placeholder" id="placeholder-text">КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО</span>
+                        <span class="file-info-sm" id="file-info">Поддерживается MP4, MOV до 50 МБ</span>
+                    </div>
                     
+                    <!-- Видео-плеер (скрыт по дефолту) -->
                     <video id="main-player" style="display: none; width: 100%; height: 100%; object-fit: contain;" controls playsinline loop></video>
+                    
+                    <!-- ИИ АВАТАР: Персонаж, которого можно двигать (скрыт, пока не выберут в инвентаре) -->
+                    <div class="ai-avatar-overlay" id="ai-avatar" style="display: none;">
+                        <img src="https://inside-care.ru/wp-content/uploads/5/0/0/500b5fc912d09dfad789ff4c264a938c.jpeg" alt="AI Avatar" id="avatar-img">
+                        <div class="avatar-resize-handle" id="avatar-resizer"></div>
+                    </div>
+
+                    <!-- ЭКРАН ПРОГРЕССА ГЕНЕРАЦИИ (Перекрывает плеер во время рендеринга) -->
+                    <div class="render-overlay" id="render-status-screen" style="display: none;">
+                        <div class="spinner-loader"></div>
+                        <div class="render-status-title" id="render-status-text">Загрузка видео на сервер...</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+                        </div>
+                        <span class="progress-percentage" id="progress-pct">0%</span>
+                    </div>
                     
                     <input type="file" id="video-upload" accept="video/*" style="display: none;">
                 </div>
             </div>
 
+            <!-- TIMELINE -->
             <div class="timeline-container">
                 <div class="timeline-tracks">
                     <div class="track video-track">
                         <span class="track-icon">🎬</span>
-                        <span class="track-label" id="video-track-name">Видеодорожка 01</span>
+                        <span class="track-label" id="video-track-name">Видеодорожка пуста</span>
                     </div>
                     <div class="track audio-track">
                         <span class="track-icon">🎵</span>
-                        <span class="track-label">Фоновое аудио</span>
+                        <span class="track-label">Фоновое аудио (Оригинал)</span>
+                    </div>
+                    <div class="track ai-track" id="ai-track-row" style="display: none;">
+                        <span class="track-icon">🤖</span>
+                        <span class="track-label">Дубляж ИИ + Аватар</span>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- DYNAMIC CONTROL PANELS -->
         <div class="dynamic-panel" id="dynamic-panel">
-            <div class="tool-panel-content" id="panel-format">
-                <div class="panel-header">📐 Формат кадра</div>
-                <select id="video-format">
-                    <option value="16:9">YouTube Video (16:9)</option>
-                    <option value="9:16">TikTok / Shorts (9:16)</option>
-                    <option value="1:1">Square (1:1)</option>
-                </select>
-            </div>
-
-            <div class="tool-panel-content" id="panel-text">
-                <div class="panel-header">📝 Субтитры и Текст</div>
-                <textarea id="subtitles-text" placeholder="Введите текст для видео..."></textarea>
-                <select id="font-style">
-                    <option value="Montserrat">Montserrat Bold</option>
-                    <option value="Impact">Impact</option>
-                    <option value="Arial">Arial Black</option>
-                </select>
-            </div>
-
-            <div class="tool-panel-content" id="panel-audio">
-                <div class="panel-header">🎵 Настройки аудио</div>
-                <div class="volume-control">
-                    <label>Громкость музыки</label>
-                    <input type="range" id="music-volume" min="0" max="100" value="50">
+            
+            <!-- Панель: Формат -->
+            <div class="tool-panel-content active" id="panel-format">
+                <div class="panel-header"><i class="fas fa-compress-alt"></i> Формат кадра</div>
+                <div class="format-grid">
+                    <button class="format-btn active" data-ratio="16:9"><i class="fab fa-youtube"></i> 16:9 YouTube</button>
+                    <button class="format-btn" data-ratio="9:16"><i class="fas fa-mobile-alt"></i> 9:16 Shorts / TikTok</button>
+                    <button class="format-btn" data-ratio="1:1"><i class="fas fa-square"></i> 1:1 Квадрат</button>
                 </div>
             </div>
 
+            <!-- Панель: Субтитры и Кастомизация -->
+            <div class="tool-panel-content" id="panel-text">
+                <div class="panel-header"><i class="fas fa-closed-captioning"></i> Текст и Субтитры</div>
+                <div class="switch-row">
+                    <label for="subtitles-toggle">Включить «умные» субтитры</label>
+                    <input type="checkbox" id="subtitles-toggle" checked>
+                </div>
+                
+                <!-- Быстрый вызов инвентаря покупок (Шрифты, Голоса, Аватары) -->
+                <div class="inventory-quick-access">
+                    <button class="inventory-trigger-btn" data-shop-type="fonts">
+                        <i class="fas fa-font"></i> Шрифты
+                    </button>
+                    <button class="inventory-trigger-btn" data-shop-type="voices">
+                        <i class="fas fa-microphone-lines"></i> ИИ Голоса
+                    </button>
+                    <button class="inventory-trigger-btn" data-shop-type="avatars">
+                        <i class="fas fa-user-astronaut"></i> ИИ Аватары
+                    </button>
+                </div>
+            </div>
+
+            <!-- Панель: Настройки Звука -->
+            <div class="tool-panel-content" id="panel-audio">
+                <div class="panel-header"><i class="fas fa-sliders-h"></i> Аудиомикшер студии</div>
+                <div class="volume-control">
+                    <div class="slider-label-row">
+                        <label><i class="fas fa-music"></i> Оригинальный звук (Фон)</label>
+                        <span id="vol-music-val">50%</span>
+                    </div>
+                    <input type="range" id="music-volume" min="0" max="100" value="50">
+                </div>
+                <div class="volume-control">
+                    <div class="slider-label-row">
+                        <label><i class="fas fa-robot"></i> Громкость ИИ дубляжа</label>
+                        <span id="vol-voice-val">100%</span>
+                    </div>
+                    <input type="range" id="voice-volume" min="0" max="200" value="100">
+                </div>
+            </div>
+
+            <!-- Панель: Экспорт -->
             <div class="tool-panel-content" id="panel-export">
-                <div class="panel-header">⚡ Экспорт готового видео</div>
-                <button id="render-btn">ГЕНЕРИРОВАТЬ ВИДЕО</button>
+                <div class="panel-header"><i class="fas fa-rocket"></i> Обработка медиафайла</div>
+                <p class="panel-info-text">ИИ автоматически сгенерирует перевод, наложит эффекты, тайминги и отрендерит ролик.</p>
+                <button id="render-btn" class="main-action-btn">НАЧАТЬ ОБРАБОТКУ РОЛИКА</button>
             </div>
         </div>
 
+        <!-- SUB-TOOLS BUTTONS -->
         <div class="studio-sub-tools" id="studio-sub-tools">
-            <button class="tool-btn" data-target="panel-format">📐 Формат</button>
-            <button class="tool-btn" data-target="panel-text">📝 Текст</button>
-            <button class="tool-btn" data-target="panel-audio">🎵 Звук</button>
-            <button class="tool-btn" data-target="panel-export">⚡ Экспорт</button>
+            <button class="tool-btn active" data-target="panel-format"><i class="fas fa-border-all"></i><br>Формат</button>
+            <button class="tool-btn" data-target="panel-text"><i class="fas fa-magic"></i><br>Кастом</button>
+            <button class="tool-btn" data-target="panel-audio"><i class="fas fa-volume-up"></i><br>Звук</button>
+            <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br>Экспорт</button>
         </div>
 
+        <!-- BOTTOM NAVBAR -->
         <nav class="bottom-navbar">
             <a href="index.html">
                 <div class="nav-item">
@@ -119,6 +187,22 @@
             </a>
         </nav>
 
+    </div>
+
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО (BOTTOM SHEET) ДЛЯ НАСТРОЕК ШРИФТОВ / ГОЛОСОВ / АВАТАРОВ -->
+    <div class="bottom-sheet" id="shop-inventory-sheet">
+        <div class="sheet-overlay" id="sheet-overlay-close"></div>
+        <div class="sheet-content">
+            <div class="sheet-drag-handle"></div>
+            <div class="sheet-header">
+                <h3 id="sheet-title">Ваш инвентарь</h3>
+                <button class="sheet-close-btn" id="sheet-close-x">&times;</button>
+            </div>
+            <div class="sheet-body">
+                <!-- Сюда JS будет динамически рендерить карточки товаров -->
+                <div class="inventory-grid" id="inventory-items-container"></div>
+            </div>
+        </div>
     </div>
 
     <script src="studio.js"></script>
