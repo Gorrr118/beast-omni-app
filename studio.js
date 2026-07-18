@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Элементы плеера и загрузки
+    // === Инициализация базовых элементов плеера и загрузки ===
     const playerScreenTrigger = document.getElementById('player-screen-trigger');
     const videoUpload = document.getElementById('video-upload');
     const mainPlayer = document.getElementById('main-player');
     const placeholderText = document.getElementById('placeholder-text');
     const videoTrackName = document.getElementById('video-track-name');
 
-    // Элементы меню и инструментов
+    // === Элементы меню, инструментов и панелей ===
     const studioTrigger = document.getElementById('studio-trigger');
     const subToolsContainer = document.getElementById('studio-sub-tools');
     const toolButtons = document.querySelectorAll('.tool-btn');
@@ -14,48 +14,168 @@ document.addEventListener('DOMContentLoaded', () => {
     const toolPanels = document.querySelectorAll('.tool-panel-content');
     const renderBtn = document.getElementById('render-btn');
 
-    // 🎥 ЛОГИКА ЗАГРУЗКИ ВИДЕО ИЗ ГАЛЕРЕИ
+    // === Новые элементы из обновленного CSS ===
+    const aiAvatar = document.getElementById('ai-avatar'); // Элемент .ai-avatar-overlay
+    const resizeHandle = document.getElementById('avatar-resize-handle');
+    const renderOverlay = document.getElementById('render-overlay');
+    const progressFill = document.getElementById('progress-bar-fill');
+    const progressPercent = document.getElementById('progress-percentage');
+    
+    // Элементы Bottom Sheet (Магазин / Инвентарь)
+    const inventoryBottomSheet = document.getElementById('inventory-bottom-sheet');
+    const closeSheetBtn = document.getElementById('close-sheet-btn');
+    const inventoryCards = document.querySelectorAll('.inventory-card');
+    const openInventoryBtns = document.querySelectorAll('.inventory-trigger-btn'); // Кнопки вызова инвентаря
+
+    // === 🎥 ЛОГИКА ЗАГРУЗКИ ВИДЕО ИЗ ГАЛЕРЕИ + API БЭКЕНДА ===
     if (playerScreenTrigger && videoUpload && mainPlayer && placeholderText) {
-        
-        // Клик по черному экрану открывает галерею
         playerScreenTrigger.addEventListener('click', (event) => {
-            // Если кликнули на само играющее видео (например, на кнопку паузы), 
-            // не открываем галерею заново
-            if (event.target === mainPlayer) return;
-            
+            if (event.target === mainPlayer || event.target.closest('.ai-avatar-overlay')) return;
             videoUpload.click();
         });
 
-        // Событие, когда пользователь выбрал файл в галерее
         videoUpload.addEventListener('change', (event) => {
             const file = event.target.files[0];
-            
             if (file) {
-                // Создаем временный URL-адрес для локального видеофайла
                 const videoURL = URL.createObjectURL(file);
-                
-                // Скрываем текст-заглушку и показываем сам плеер
                 placeholderText.style.display = 'none';
                 mainPlayer.style.display = 'block';
                 
-                // Подставляем видео в src и запускаем
                 mainPlayer.src = videoURL;
                 mainPlayer.load();
                 mainPlayer.play().catch(err => {
-                    console.log("Автовоспроизведение заблокировано браузером, нужен ручной клик:", err);
+                    console.log("Автовоспроизведение заблокировано браузером:", err);
                 });
 
-                // Бонус: пишем имя загруженного файла на дорожку таймлайна!
                 if (videoTrackName) {
-                    // Обрезаем слишком длинные имена файлов для красоты
                     const shortName = file.name.length > 20 ? file.name.substring(0, 17) + "..." : file.name;
                     videoTrackName.innerText = `🎬 ${shortName}`;
                 }
+
+                // Отправка на Python бэкенд (FastAPI / server.py)
+                const formData = new FormData();
+                formData.append("file", file);
+
+                console.log("Отправка видео на бэкенд...");
+                fetch("http://127.0.0.1:8000/api/upload-video", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) console.log("Ответ от Python сервера:", data.message);
+                    else console.error("Бэкенд вернул ошибку:", data.message);
+                })
+                .catch(error => {
+                    console.error("Не удалось связаться с сервером. Проверь server.py:", error);
+                });
             }
         });
     }
 
-    // ⚡ ЛОГИКА ДЛЯ ЦЕНТРАЛЬНОЙ КНОПКИ STUDIO
+    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-АВАТАР: DRAG & DROP & RESIZE (Mouse + Touch) ===
+    if (aiAvatar) {
+        let isDragging = false;
+        let isResizing = false;
+        let startX, startY, startLeft, startTop, startWidth, startHeight;
+
+        // --- Функция перемещения (Drag) ---
+        aiAvatar.addEventListener('mousedown', startDrag);
+        aiAvatar.addEventListener('touchstart', startDrag, { passive: false });
+
+        function startDrag(e) {
+            if (e.target === resizeHandle) return; // Если кликнули на ресайзер — не двигаем
+            e.preventDefault();
+            
+            isDragging = true;
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            
+            startX = clientX;
+            startY = clientY;
+            startLeft = aiAvatar.offsetLeft;
+            startTop = aiAvatar.offsetTop;
+
+            document.addEventListener('mousemove', doDrag);
+            document.addEventListener('touchmove', doDrag, { passive: false });
+            document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchend', stopDrag);
+        }
+
+        function doDrag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+            const deltaX = clientX - startX;
+            const deltaY = clientY - startY;
+
+            // Ограничиваем перемещение границами плеера (родительского контейнера)
+            const parent = aiAvatar.parentElement;
+            let newLeft = startLeft + deltaX;
+            let newTop = startTop + deltaY;
+
+            newLeft = Math.max(0, Math.min(newLeft, parent.clientWidth - aiAvatar.clientWidth));
+            newTop = Math.max(0, Math.min(newTop, parent.clientHeight - aiAvatar.clientHeight));
+
+            aiAvatar.style.left = `${newLeft}px`;
+            aiAvatar.style.top = `${newTop}px`;
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            document.removeEventListener('mousemove', doDrag);
+            document.removeEventListener('touchmove', doDrag);
+        }
+
+        // --- Функция изменения размера (Resize) ---
+        if (resizeHandle) {
+            resizeHandle.addEventListener('mousedown', startResize);
+            resizeHandle.addEventListener('touchstart', startResize, { passive: false });
+        }
+
+        function startResize(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Чтобы не сработало перемещение
+            
+            isResizing = true;
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            
+            startX = clientX;
+            startWidth = aiAvatar.clientWidth;
+            startHeight = aiAvatar.clientHeight;
+
+            document.addEventListener('mousemove', doResize);
+            document.addEventListener('touchmove', doResize, { passive: false });
+            document.addEventListener('mouseup', stopResize);
+            document.addEventListener('touchend', stopResize);
+        }
+
+        function doResize(e) {
+            if (!isResizing) return;
+            e.preventDefault();
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            
+            const deltaX = clientX - startX;
+            // Сохраняем пропорции 1:1, так как аватар круглый
+            let newSize = startWidth + deltaX; 
+            
+            // Задаем лимиты размера (от 50px до 200px)
+            newSize = Math.max(50, Math.min(newSize, 200));
+
+            aiAvatar.style.width = `${newSize}px`;
+            aiAvatar.style.height = `${newSize}px`;
+        }
+
+        function stopResize() {
+            isResizing = false;
+            document.removeEventListener('mousemove', doResize);
+            document.removeEventListener('touchmove', doResize);
+        }
+    }
+
+    // === ⚡ УПРАВЛЕНИЕ МЕНЮ STUDIO И ИНСТРУМЕНТАМИ ===
     if (studioTrigger && subToolsContainer) {
         studioTrigger.addEventListener('click', (event) => {
             event.preventDefault(); 
@@ -72,12 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 🛠 ЛОГИКА ДЛЯ ИНСТРУМЕНТОВ (Формат, Текст, Звук, Экспорт)
     if (toolButtons.length > 0 && dynamicPanel) {
         toolButtons.forEach(button => {
             button.addEventListener('click', (event) => {
                 event.preventDefault();
-                
                 const targetId = button.getAttribute('data-target');
                 const targetPanel = document.getElementById(targetId);
 
@@ -93,30 +211,94 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 button.classList.add('active');
                 dynamicPanel.classList.add('active');
-                if (targetPanel) {
-                    targetPanel.classList.add('active');
-                }
+                if (targetPanel) targetPanel.classList.add('active');
             });
         });
     }
 
-    // 🚀 ЛОГИКА КНОПКИ ГЕНЕРАЦИИ (РЕНДЕРА)
-    if (renderBtn) {
+    // === 🛍️ ЛОГИКА BOTTOM SHEET (ИНВЕНТАРЬ И МАГАЗИН) ===
+    function openBottomSheet() {
+        if (inventoryBottomSheet) inventoryBottomSheet.classList.add('active');
+    }
+
+    function closeBottomSheet() {
+        if (inventoryBottomSheet) inventoryBottomSheet.classList.remove('active');
+    }
+
+    if (openInventoryBtns.length > 0) {
+        openInventoryBtns.forEach(btn => btn.addEventListener('click', openBottomSheet));
+    }
+
+    if (closeSheetBtn) {
+        closeSheetBtn.addEventListener('click', closeBottomSheet);
+    }
+
+    // Клик по оверлею закрывает шторку
+    const sheetOverlay = inventoryBottomSheet?.querySelector('.sheet-overlay');
+    if (sheetOverlay) {
+        sheetOverlay.addEventListener('click', closeBottomSheet);
+    }
+
+    // Выбор элементов внутри инвентаря
+    inventoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            if (card.classList.contains('locked')) {
+                alert("Этот премиум элемент закрыт. Разблокируйте его в магазине!");
+                return;
+            }
+            // Убираем выделение у остальных карточек в этой же группе
+            const siblings = card.parentElement.querySelectorAll('.inventory-card');
+            siblings.forEach(c => c.classList.remove('selected'));
+            
+            card.classList.add('selected');
+
+            // Пример динамического изменения аватарки на экране, если это блок аватаров
+            const newAvatarSrc = card.querySelector('img')?.getAttribute('src');
+            const targetAvatarImg = aiAvatar?.querySelector('img');
+            if (newAvatarSrc && targetAvatarImg) {
+                targetAvatarImg.src = newAvatarSrc;
+            }
+        });
+    });
+
+    // === 📐 ВЫБОР ФОРМАТА КАДРА (Интерактивные кнопки) ===
+    const formatButtons = document.querySelectorAll('.format-btn');
+    formatButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            formatButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            console.log("Выбран формат:", btn.innerText.trim());
+        });
+    });
+
+    // === 🚀 ПОЛНОЦЕННЫЙ ЭКРАН РЕНДЕРИНГА С ПРОГРЕСС-БАРОМ ===
+    if (renderBtn && renderOverlay && progressFill && progressPercent) {
         renderBtn.addEventListener('click', (event) => {
             event.preventDefault();
             
-            renderBtn.disabled = true;
-            renderBtn.innerText = "⏳ СБОРКА ВИДЕО...";
-            renderBtn.style.backgroundColor = "#2C2C2E";
-            renderBtn.style.color = "#8E8E93";
+            // Показываем красивый оверлей сборки видео
+            renderOverlay.style.display = 'flex';
+            
+            let progress = 0;
+            progressFill.style.width = '0%';
+            progressPercent.innerText = '0%';
 
-            setTimeout(() => {
-                alert("Видео успешно смонтировано!");
-                renderBtn.disabled = false;
-                renderBtn.innerText = "ГЕНЕРИРОВАТЬ ВИДЕО";
-                renderBtn.style.backgroundColor = "#00F0FF";
-                renderBtn.style.color = "#000000";
-            }, 2000);
+            // Симуляция рендеринга (в продакшене тут будет Long Polling или WebSockets к FastAPI)
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 12) + 5; // Случайный шаг
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        renderOverlay.style.display = 'none';
+                        alert("🎉 Видео успешно сгенерировано и сохранено в галерею!");
+                    }, 500);
+                }
+                
+                progressFill.style.width = `${progress}%`;
+                progressPercent.innerText = `${progress}%`;
+            }, 300);
         });
     }
 });
