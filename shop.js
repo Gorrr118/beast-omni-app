@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const price = card.getAttribute('data-price');
                 modalTitle.innerText = name;
                 modalBadge.innerText = 'ПОПОЛНЕНИЕ';
-                modalVisualPreview.innerHTML = `<div style="font-size: 60px; filter: drop-shadow(0 0 15px #ffaa00); text-align: center; margin-bottom: 12px;">🪙</div>`;
+                modalVisualPreview.innerHTML = `<div class="modal-main-icon">🪙</div>`;
                 modalBuyBtn.innerText = `Купить за ${price} ₽`;
             } 
             
@@ -66,8 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 modalTitle.innerText = name;
                 modalBadge.innerText = 'OBS ПЕРСОНАЖ';
+                // Стили забираются из CSS классов .obs-preview-box и .obs-stream-text
                 modalVisualPreview.innerHTML = `
-                    <div class="obs-preview-box" style="max-width: 180px; margin: 0 auto; border-color: #ff007f; text-align: center;">
+                    <div class="obs-preview-box" style="max-width: 190px; margin: 0 auto 16px auto;">
                         <div class="obs-stream-text">[ОКНО СТРИМА ДЛЯ OBS]</div>
                         <div class="obs-char-placeholder" style="font-size: 40px;">${innerEmoji}</div>
                     </div>
@@ -83,10 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 modalTitle.innerText = name;
                 modalBadge.innerText = 'ШРИФТ ВИДЖЕТА';
+                // Стили подтягиваются из .font-preview-container
                 modalVisualPreview.innerHTML = `
-                    <div class="font-preview-container" style="max-width: 220px; margin: 0 auto; text-align: center;">
+                    <div class="font-preview-container" style="max-width: 220px; margin: 0 auto 16px auto;">
                         <div class="${fontExampleClass}" style="font-size: 18px;">Beast Omni</div>
-                        <div style="font-size: 10px; color: rgba(255,255,255,0.4); margin-top:4px;">Пример отображения текста</div>
+                        <div class="font-subtext" style="margin-top: 6px;">Пример отображения текста</div>
                     </div>
                 `;
                 modalBuyBtn.innerText = `Купить за ⭐️ ${stars}`;
@@ -125,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Глобальная функция закрытия (для крестика onclick="closeModal()")
+// Глобальная функция закрытия (включая фикс сброса текста кнопки плеера)
 function closeModal() {
     const modal = document.getElementById('universalModal');
     if (modal) {
@@ -135,5 +137,9 @@ function closeModal() {
     if (previewAudio) {
         previewAudio.pause();
         previewAudio.currentTime = 0; // Сбрасываем трек на начало
+    }
+    const playBtn = document.getElementById('playBtn');
+    if (playBtn) {
+        playBtn.innerText = '▶ Слушать демо голоса'; // Возвращаем исходный текст при любом закрытии
     }
 }
