@@ -3,176 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Магазин виджетов</title>
-    <link rel="stylesheet" href="shop.css">
+    <title>Creator Studio PRO</title>
+    <!-- Подключаем иконки для красивых кнопок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=1.6">
 </head>
 <body>
 
-    <!-- ==================== ХЕДЕР И БАЛАНС ==================== -->
-    <header class="shop-header">
-        <div class="shop-balance">
-            🪙 <span>1,250</span> коинов
+    <div class="studio-container">
+        
+        <!-- HEADER: Баланс и Язык перевода -->
+        <div class="shop-header">
+            <div class="shop-balance"><i class="fas fa-coins text-gold"></i> Баланс: <span id="user-coins">0</span> coins</div>
+            <div class="translation-target">
+                <span class="label-sm">Перевод на:</span>
+                <select id="lang-dropdown">
+                    <option value="ru" selected>🇷🇺 Русский</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="hy">🇦🇲 Հայերեն</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                </select>
+            </div>
         </div>
-        <select id="lang-dropdown">
-            <option value="ru">RU</option>
-            <option value="en">EN</option>
-        </select>
-    </header>
 
-    <!-- ==================== ОСНОВНОЙ КОНТЕНТ ==================== -->
-    <main class="shop-content">
+        <!-- WORKSPACE: Плеер + Загрузка + Аватар -->
+        <div class="editor-workspace">
+            <div class="preview-window">
+                <!-- Главный черный квадрат загрузки и плеер -->
+                <div class="player-screen" id="player-screen-trigger">
+                    <div class="upload-zone-wrapper" id="upload-zone">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <span class="preview-placeholder" id="placeholder-text">КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО</span>
+                        <span class="file-info-sm" id="file-info">Поддерживается MP4, MOV до 50 МБ</span>
+                    </div>
+                    
+                    <!-- Видео-плеер (скрыт по дефолту) -->
+                    <video id="main-player" style="display: none; width: 100%; height: 100%; object-fit: contain;" controls playsinline loop></video>
+                    
+                    <!-- ИИ АВАТАР: Персонаж, которого можно двигать (скрыт, пока не выберут в инвентаре) -->
+                    <div class="ai-avatar-overlay" id="ai-avatar" style="display: none;">
+                        <img src="https://inside-care.ru/wp-content/uploads/5/0/0/500b5fc912d09dfad789ff4c264a938c.jpeg" alt="AI Avatar" id="avatar-img">
+                        <div class="avatar-resize-handle" id="avatar-resizer"></div>
+                    </div>
 
-        <!-- КАТЕГОРИЯ 1: ПОПОЛНЕНИЕ (КОИНЫ) -->
-        <section class="category-section">
-            <h2 class="category-title">
-                <span class="category-line"></span> Пополнение коинов
-            </h2>
-            <div class="shop-grid">
-                <!-- Карточка коинов -->
-                <div class="shop-card" data-type="coin" data-name="Стартовый пак" data-price="99">
-                    <span class="badge badge-start">Выгодно</span>
-                    <div class="card-image-coin">🪙</div>
-                    <div class="card-name">100 Коинов</div>
-                    <button class="buy-btn">99 ₽</button>
-                </div>
-                <div class="shop-card" data-type="coin" data-name="Популярный пак" data-price="299">
-                    <span class="badge badge-popular">Хит</span>
-                    <div class="card-image-coin">🪙</div>
-                    <div class="card-name">350 Коинов</div>
-                    <button class="buy-btn">299 ₽</button>
+                    <!-- ЭКРАН ПРОГРЕССА ГЕНЕРАЦИИ (Перекрывает плеер во время рендеринга) -->
+                    <div class="render-overlay" id="render-status-screen" style="display: none;">
+                        <div class="spinner-loader"></div>
+                        <div class="render-status-title" id="render-status-text">Загрузка видео на сервер...</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+                        </div>
+                        <span class="progress-percentage" id="progress-pct">0%</span>
+                    </div>
+                    
+                    <input type="file" id="video-upload" accept="video/*" style="display: none;">
                 </div>
             </div>
-        </section>
 
-        <!-- КАТЕГОРИЯ 2: ИИ-ГОЛОСА -->
-        <section class="category-section">
-            <h2 class="category-title">
-                <span class="category-line"></span> ИИ-Голоса озвучки
-            </h2>
-            <div class="shop-grid">
-                <!-- Карточка голоса -->
-                <div class="shop-card" data-type="voice" data-name="Кибер-Сталкер" data-stars="15" data-audio="audio/stalker.mp3">
-                    <span class="badge badge-epic">Epic</span>
-                    <div class="card-image">🎙️</div>
-                    <div class="card-name">Голос Сталкера</div>
-                    <button class="buy-btn">⭐️ 15</button>
-                </div>
-                <div class="shop-card" data-type="voice" data-name="Аниме Тян" data-stars="25" data-audio="audio/anime.mp3">
-                    <span class="badge badge-legendary">Legendary</span>
-                    <div class="card-image">🎙️</div>
-                    <div class="card-name">Голос Няшки</div>
-                    <button class="buy-btn">⭐️ 25</button>
+            <!-- TIMELINE -->
+            <div class="timeline-container">
+                <div class="timeline-tracks">
+                    <div class="track video-track">
+                        <span class="track-icon">🎬</span>
+                        <span class="track-label" id="video-track-name">Видеодорожка пуста</span>
+                    </div>
+                    <div class="track audio-track">
+                        <span class="track-icon">🎵</span>
+                        <span class="track-label">Фоновое аудио (Оригинал)</span>
+                    </div>
+                    <div class="track ai-track" id="ai-track-row" style="display: none;">
+                        <span class="track-icon">🤖</span>
+                        <span class="track-label">Дубляж ИИ + Аватар</span>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- КАТЕГОРИЯ 3: OBS ПЕРСОНАЖИ -->
-        <section class="category-section">
-            <h2 class="category-title">
-                <span class="category-line"></span> Персонажи для OBS
-            </h2>
-            <div class="shop-grid">
-                <!-- Карточка OBS -->
-                <div class="shop-card" data-type="avatar" data-name="Киберпанк Кот" data-stars="40">
-                    <span class="badge badge-crazy">Crazy</span>
-                    <div class="obs-preview-box">
-                        <div class="obs-stream-text">[ОКНО СТРИМА ДЛЯ OBS]</div>
-                        <div class="obs-char-placeholder">🐱⚡</div>
-                    </div>
-                    <div class="card-name">Кибер-Кот</div>
-                    <button class="buy-btn">⭐️ 40</button>
-                </div>
-                <div class="shop-card" data-type="avatar" data-name="Ретро Вейв Демон" data-stars="50">
-                    <span class="badge badge-rage">Rage</span>
-                    <div class="obs-preview-box">
-                        <div class="obs-stream-text">[ОКНО СТРИМА ДЛЯ OBS]</div>
-                        <div class="obs-char-placeholder">😈🔥</div>
-                    </div>
-                    <div class="card-name">Synth Demon</div>
-                    <button class="buy-btn">⭐️ 50</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- КАТЕГОРИЯ 4: ШРИФТЫ -->
-        <section class="category-section">
-            <h2 class="category-title">
-                <span class="category-line"></span> Кастомные шрифты
-            </h2>
-            <div class="shop-grid">
-                <!-- Карточка Шрифта -->
-                <div class="shop-card" data-type="font" data-name="Кибер Глитч" data-stars="10">
-                    <span class="badge badge-tech">Tech</span>
-                    <div class="font-preview-container">
-                        <div class="font-example font-glitch">GLITCH</div>
-                        <div class="font-subtext">Стиль текста</div>
-                    </div>
-                    <div class="card-name">шрифт Glitch</div>
-                    <button class="buy-btn">⭐️ 10</button>
-                </div>
-                <div class="shop-card" data-type="font" data-name="Неоновый Сити" data-stars="12">
-                    <span class="badge badge-hit">Hit</span>
-                    <div class="font-preview-container">
-                        <div class="font-example font-neon">NEON</div>
-                        <div class="font-subtext">Стиль текста</div>
-                    </div>
-                    <div class="card-name">шрифт Neon</div>
-                    <button class="buy-btn">⭐️ 12</button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ==================== УНИВЕРСАЛЬНОЕ МОДАЛЬНОЕ ОКНО ==================== -->
-    <div id="universalModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">×</button>
+        <!-- DYNAMIC CONTROL PANELS -->
+        <div class="dynamic-panel" id="dynamic-panel">
             
-            <div class="modal-header">
-                <h3 id="modalTitle">Название товара</h3>
-                <span id="modalBadge" class="modal-badge">ТИП</span>
+            <!-- Панель: Формат -->
+            <div class="tool-panel-content active" id="panel-format">
+                <div class="panel-header"><i class="fas fa-compress-alt"></i> Формат кадра</div>
+                <div class="format-grid">
+                    <button class="format-btn active" data-ratio="16:9"><i class="fab fa-youtube"></i> 16:9 YouTube</button>
+                    <button class="format-btn" data-ratio="9:16"><i class="fas fa-mobile-alt"></i> 9:16 Shorts / TikTok</button>
+                    <button class="format-btn" data-ratio="1:1"><i class="fas fa-square"></i> 1:1 Квадрат</button>
+                </div>
             </div>
 
-            <!-- Сюда JS динамически вставит иконку, OBS-окно или превью шрифта -->
-            <div id="modalVisualPreview"></div>
-
-            <!-- Блок аудио-плеера (по умолчанию скрыт в CSS через display: none) -->
-            <div id="modalAudioBox" style="display: none; margin-bottom: 16px;">
-                <audio id="previewAudio"></audio>
-                <button id="playBtn" class="play-audio-btn">▶ Слушать демо голоса</button>
+            <!-- Панель: Субтитры и Кастомизация -->
+            <div class="tool-panel-content" id="panel-text">
+                <div class="panel-header"><i class="fas fa-closed-captioning"></i> Текст и Субтитры</div>
+                <div class="switch-row">
+                    <label for="subtitles-toggle">Включить «умные» субтитры</label>
+                    <input type="checkbox" id="subtitles-toggle" checked>
+                </div>
+                
+                <!-- Быстрый вызов инвентаря покупок (Шрифты, Голоса, Аватары) -->
+                <div class="inventory-quick-access">
+                    <button class="inventory-trigger-btn" data-shop-type="fonts">
+                        <i class="fas fa-font"></i> Шрифты
+                    </button>
+                    <button class="inventory-trigger-btn" data-shop-type="voices">
+                        <i class="fas fa-microphone-lines"></i> ИИ Голоса
+                    </button>
+                    <button class="inventory-trigger-btn" data-shop-type="avatars">
+                        <i class="fas fa-user-astronaut"></i> ИИ Аватары
+                    </button>
+                </div>
             </div>
 
-            <p class="modal-desc">Вы действительно хотите приобрести этот предмет? Он сразу станет доступен в вашей панели управления виджетами.</p>
+            <!-- Панель: Настройки Звука -->
+            <div class="tool-panel-content" id="panel-audio">
+                <div class="panel-header"><i class="fas fa-sliders-h"></i> Аудиомикшер студии</div>
+                <div class="volume-control">
+                    <div class="slider-label-row">
+                        <label><i class="fas fa-music"></i> Оригинальный звук (Фон)</label>
+                        <span id="vol-music-val">50%</span>
+                    </div>
+                    <input type="range" id="music-volume" min="0" max="100" value="50">
+                </div>
+                <div class="volume-control">
+                    <div class="slider-label-row">
+                        <label><i class="fas fa-robot"></i> Громкость ИИ дубляжа</label>
+                        <span id="vol-voice-val">100%</span>
+                    </div>
+                    <input type="range" id="voice-volume" min="0" max="200" value="100">
+                </div>
+            </div>
 
-            <div class="modal-footer">
-                <button id="modalBuyBtn" class="buy-btn">Купить за...</button>
+            <!-- Панель: Экспорт -->
+            <div class="tool-panel-content" id="panel-export">
+                <div class="panel-header"><i class="fas fa-rocket"></i> Обработка медиафайла</div>
+                <p class="panel-info-text">ИИ автоматически сгенерирует перевод, наложит эффекты, тайминги и отрендерит ролик.</p>
+                <button id="render-btn" class="main-action-btn">НАЧАТЬ ОБРАБОТКУ РОЛИКА</button>
+            </div>
+        </div>
+
+        <!-- SUB-TOOLS BUTTONS -->
+        <div class="studio-sub-tools" id="studio-sub-tools">
+            <button class="tool-btn active" data-target="panel-format"><i class="fas fa-border-all"></i><br>Формат</button>
+            <button class="tool-btn" data-target="panel-text"><i class="fas fa-magic"></i><br>Кастом</button>
+            <button class="tool-btn" data-target="panel-audio"><i class="fas fa-volume-up"></i><br>Звук</button>
+            <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br>Экспорт</button>
+        </div>
+
+        <!-- BOTTOM NAVBAR -->
+        <nav class="bottom-navbar">
+            <a href="index.html">
+                <div class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </div>
+            </a>
+            <a href="referals.html">
+                <div class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Referral</span>
+                </div>
+            </a>
+            
+            <div class="nav-item nav-center-item active" id="studio-trigger">
+                <div class="nav-center-btn">
+                    <span class="center-icon">⚡</span>
+                </div>
+                <span class="nav-text center-text">Studio</span>
+            </div>
+
+            <a href="widgets.html">
+                <div class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Widgets</span>
+                </div>
+            </a>
+            <a href="shop.html">
+                <div class="nav-item">
+                    <span class="nav-icon">🛍️</span>
+                    <span class="nav-text">Shop</span>
+                </div>
+            </a>
+        </nav>
+
+    </div>
+
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО (BOTTOM SHEET) ДЛЯ НАСТРОЕК ШРИФТОВ / ГОЛОСОВ / АВАТАРОВ -->
+    <div class="bottom-sheet" id="shop-inventory-sheet">
+        <div class="sheet-overlay" id="sheet-overlay-close"></div>
+        <div class="sheet-content">
+            <div class="sheet-drag-handle"></div>
+            <div class="sheet-header">
+                <h3 id="sheet-title">Ваш инвентарь</h3>
+                <button class="sheet-close-btn" id="sheet-close-x">&times;</button>
+            </div>
+            <div class="sheet-body">
+                <!-- Сюда JS будет динамически рендерить карточки товаров -->
+                <div class="inventory-grid" id="inventory-items-container"></div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== НИЖНИЙ НАВБАР ==================== -->
-    <nav class="bottom-navbar">
-        <a href="#widgets">
-            <div class="nav-item">
-                <div class="nav-icon">🧩</div>
-                <div class="nav-text">Виджеты</div>
-            </div>
-        </a>
-        <a href="#studio" class="nav-center-item">
-            <div class="nav-center-btn">
-                <div class="center-icon">🎙️</div>
-            </div>
-        </a>
-        <a href="#shop">
-            <div class="nav-item active">
-                <div class="nav-icon">🛒</div>
-                <div class="nav-text">Магазин</div>
-            </div>
-        </a>
-    </nav>
-
-    <!-- Подключаем логику скрипта -->
-    <script src="shop.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
