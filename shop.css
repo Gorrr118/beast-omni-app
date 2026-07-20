@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #060713; /* Сделали общую тему чуть глубже */
+    background-color: #060713; 
     color: #ffffff;
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -14,17 +14,17 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* ==================== ХЕДЕР И БАЛАНС ==================== */
+/* ==================== ХЕДЕР И БАЛАНС (ДОРОГОЙ КИБЕРПАНК) ==================== */
 .shop-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 65px;
-    background: rgba(6, 7, 19, 0.8);
-    backdrop-filter: blur(12px); /* Эффект матового стекла в шапке */
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(6, 7, 19, 0.75);
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,15 +35,22 @@ body {
 .shop-balance {
     display: flex;
     align-items: center;
-    background: #121426;
+    gap: 6px;
+    background: rgba(18, 20, 38, 0.6);
     padding: 8px 16px;
-    border-radius: 20px;
-    border: 1px solid rgba(168, 85, 247, 0.3); /* Акцентный неоновый ободок */
+    border-radius: 30px; /* Сделали более мягкую капсулу */
+    border: 1px solid rgba(0, 229, 255, 0.3); /* Бирюзовый неоновый ободок для баланса коинов */
     font-family: 'Unbounded', sans-serif;
     font-size: 11px;
     font-weight: 700;
     color: #ffffff;
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.15);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.shop-balance span {
+    color: #00e5ff !important; /* Подсвечиваем саму цифру */
+    font-weight: 800;
 }
 
 #lang-dropdown {
@@ -51,7 +58,7 @@ body {
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 8px 14px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 13px;
@@ -91,7 +98,7 @@ body {
 .category-section:nth-of-type(3) .category-line { background: #ff007f; box-shadow: 0 0 10px #ff007f; }
 .category-section:nth-of-type(4) .category-line { background: #ffaa00; box-shadow: 0 0 10px #ffaa00; }
 
-/* ==================== ДОРОГАЯ СЕТКА И КАРТОЧКИ ==================== */
+/* ==================== СЕТКА И НЕОНОВЫЕ КАРТОЧКИ ==================== */
 .shop-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -99,45 +106,40 @@ body {
 }
 
 .shop-card {
-    /* Полупрозрачный премиальный фон с размытием */
-    background: linear-gradient(135deg, rgba(20, 23, 42, 0.8) 0%, rgba(13, 15, 28, 0.9) 100%);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 20px;
-    padding: 32px 12px 16px 12px;
+    background: linear-gradient(135deg, rgba(22, 25, 49, 0.7) 0%, rgba(11, 12, 24, 0.85) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 22px;
+    padding: 28px 12px 14px 12px;
     text-align: center;
     position: relative;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.1), border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 220px;
+    min-height: 225px;
 }
 
-/* Динамическое изменение тени в зависимости от категории, чтобы убрать однотипность */
-.category-section:nth-of-type(1) .shop-card:active { box-shadow: 0 10px 20px rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.4); }
-.category-section:nth-of-type(2) .shop-card:active { box-shadow: 0 10px 20px rgba(168, 0, 255, 0.15); border-color: rgba(168, 0, 255, 0.4); }
-.category-section:nth-of-type(3) .shop-card:active { box-shadow: 0 10px 20px rgba(255, 0, 127, 0.15); border-color: rgba(255, 0, 127, 0.4); }
-.category-section:nth-of-type(4) .shop-card:active { box-shadow: 0 10px 20px rgba(255, 170, 0, 0.15); border-color: rgba(255, 170, 0, 0.4); }
-
-.shop-card:active {
-    transform: translateY(-4px) scale(0.98);
-}
+/* Мягкое неоновое свечение граней при таче (убрали прыжок вверх, теперь уходит плавно вниз) */
+.category-section:nth-of-type(1) .shop-card:active { box-shadow: 0 4px 15px rgba(0, 229, 255, 0.25); border-color: rgba(0, 229, 255, 0.5); transform: scale(0.96); }
+.category-section:nth-of-type(2) .shop-card:active { box-shadow: 0 4px 15px rgba(168, 0, 255, 0.25); border-color: rgba(168, 0, 255, 0.5); transform: scale(0.96); }
+.category-section:nth-of-type(3) .shop-card:active { box-shadow: 0 4px 15px rgba(255, 0, 127, 0.25); border-color: rgba(255, 0, 127, 0.5); transform: scale(0.96); }
+.category-section:nth-of-type(4) .shop-card:active { box-shadow: 0 4px 15px rgba(255, 170, 0, 0.25); border-color: rgba(255, 170, 0, 0.5); transform: scale(0.96); }
 
 .card-image-coin {
-    font-size: 36px;
-    margin: 12px 0;
-    filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.4));
+    font-size: 38px;
+    margin: 16px 0;
+    filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.5));
 }
 
 .card-image {
-    font-size: 34px;
-    margin-bottom: 12px;
+    font-size: 36px;
+    margin: 14px 0;
     display: inline-block;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
 
 .card-name {
@@ -146,18 +148,19 @@ body {
     font-weight: 700;
     color: rgba(255, 255, 255, 0.95);
     margin-top: auto;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     letter-spacing: -0.3px;
     line-height: 1.4;
 }
 
-/* ==================== СИМУЛЯЦИЯ OBS ЭКРАНА ==================== */
+/* ==================== СИМУЛЯЦИЯ OBS ЭКРАНА (БЕЗ ПУНКТИРА) ==================== */
 .obs-preview-box {
-    background: #04050a;
-    border: 1px dashed rgba(255, 0, 127, 0.35);
-    border-radius: 12px;
-    padding: 10px 4px;
-    margin-bottom: 8px;
+    background: rgba(4, 5, 10, 0.8);
+    border: 1px solid rgba(255, 0, 127, 0.25); /* Плавный сплошной контур вместо дешевого пунктира */
+    box-shadow: inset 0 0 12px rgba(255, 0, 127, 0.1);
+    border-radius: 14px;
+    padding: 12px 4px;
+    margin-bottom: 10px;
 }
 
 .obs-stream-text {
@@ -166,25 +169,29 @@ body {
     font-family: monospace;
     font-weight: bold;
     margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 6px rgba(255, 0, 127, 0.5);
 }
 
 .obs-char-placeholder {
     font-size: 26px;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
 }
 
 /* ==================== КОНТЕЙНЕРЫ ПРЕСЕТОВ ШРИФТОВ ==================== */
 .font-preview-container {
-    background: #04050a;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 12px 4px;
-    margin-bottom: 8px;
+    background: rgba(4, 5, 10, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 14px;
+    padding: 14px 4px;
+    margin-bottom: 10px;
 }
 
 .font-example {
     font-size: 14px;
     font-weight: bold;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 }
 
 .font-subtext {
@@ -195,7 +202,7 @@ body {
 
 /* === ПОДКЛЮЧЕНИЕ ШРИФТОВ === */
 .font-glitch { font-family: 'Rubik Glitch', sans-serif; color: #ff0055; text-shadow: 1px 1px #00e5ff; }
-.font-cyber { font-family: 'Orbitron', sans-serif; color: #00e5ff; }
+.font-cyber { font-family: 'Orbitron', sans-serif; color: #00e5ff; text-shadow: 0 0 6px rgba(0, 229, 255, 0.4); }
 .font-pixel { font-family: 'Press Start 2P', cursive; font-size: 9px; color: #00ff00; }
 .font-retro { font-family: 'Monoton', cursive; color: #f472b6; font-size: 12px; }
 .font-neon { font-family: 'Unbounded', sans-serif; color: #fff; text-shadow: 0 0 5px #a855f7, 0 0 10px #a855f7; }
@@ -211,29 +218,29 @@ body {
 .font-ice { font-family: 'Orbitron', sans-serif; color: #93c5fd; text-shadow: 0 0 6px #38bdf8; }
 .font-gold { font-family: 'Cinzel', serif; color: #fbbf24; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
 
-/* ==================== ДОРОГАЯ КНОПКА ПОКУПКИ ==================== */
+/* ==================== КНОПКА ПОКУПКИ ==================== */
 .buy-btn {
     width: 100%;
-    background: linear-gradient(135deg, #a855f7 0%, #ff007f 100%); /* Сочный неоновый градиент */
+    background: linear-gradient(135deg, #a855f7 0%, #ff007f 100%); 
     border: none;
     color: #ffffff !important;
     padding: 12px 0;
-    border-radius: 12px;
+    border-radius: 14px;
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
     font-size: 11px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.25);
-    transition: all 0.15s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
 }
 
 .buy-btn:active {
     transform: scale(0.95);
-    box-shadow: 0 2px 8px rgba(255, 0, 127, 0.4);
+    box-shadow: 0 2px 8px rgba(255, 0, 127, 0.45);
     filter: brightness(1.1);
 }
 
-/* ==================== ОБЪЕМНЫЕ БЭЙДЖИКИ ==================== */
+/* ==================== КИБЕРПАНК БЭЙДЖИКИ ==================== */
 .badge {
     position: absolute;
     top: -9px;
@@ -242,8 +249,8 @@ body {
     font-family: 'Unbounded', sans-serif;
     font-size: 8px;
     font-weight: 900;
-    padding: 4px 12px;
-    border-radius: 7px;
+    padding: 5px 14px;
+    border-radius: 8px;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     color: #ffffff;
@@ -255,13 +262,13 @@ body {
 .badge-popular { background: #ff007f; box-shadow: 0 0 8px rgba(255, 0, 127, 0.4); }
 .badge-epic { background: #a855f7; box-shadow: 0 0 8px rgba(168, 85, 247, 0.4); }
 .badge-legendary { background: #ffaa00; color: #000000; box-shadow: 0 0 8px rgba(255, 170, 0, 0.4); }
-.badge-hit { background: #ff0055; }
-.badge-relax { background: #ff00aa; }
-.badge-crazy { background: #ffcc00; color: #000000; }
-.badge-old { background: #ff5500; }
-.badge-meme { background: #00ff00; color: #000000; }
+.badge-hit { background: #ff0055; box-shadow: 0 0 6px rgba(255, 0, 85, 0.3); }
+.badge-relax { background: #ff00aa; box-shadow: 0 0 6px rgba(255, 0, 170, 0.3); }
+.badge-crazy { background: #ffcc00; color: #000000; box-shadow: 0 0 6px rgba(255, 204, 0, 0.3); }
+.badge-old { background: #ff5500; box-shadow: 0 0 6px rgba(255, 85, 0, 0.3); }
+.badge-meme { background: #00ff00; color: #000000; box-shadow: 0 0 6px rgba(0, 255, 0, 0.3); }
 .badge-tech { background: #52525b; }
-.badge-rage { background: #ef4444; }
+.badge-rage { background: #ef4444; box-shadow: 0 0 6px rgba(239, 68, 68, 0.3); }
 
 /* ==================== МОДАЛЬНЫЕ ОКНА ==================== */
 .modal-overlay {
@@ -271,8 +278,8 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(4, 5, 11, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -290,14 +297,14 @@ body {
 .modal-content {
     background: #111322;
     border: 1px solid rgba(168, 85, 247, 0.25);
-    border-radius: 22px;
+    border-radius: 24px;
     width: 88%;
     max-width: 320px;
     padding: 24px;
     position: relative;
-    box-shadow: 0 15px 40px rgba(168, 85, 247, 0.15);
-    transform: scale(0.88);
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+    box-shadow: 0 15px 40px rgba(168, 85, 247, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.15);
 }
 
 .modal-overlay.active .modal-content {
