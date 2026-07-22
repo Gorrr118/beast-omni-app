@@ -261,8 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === 📐 ВЫБОР ФОРМАТА КАДРА (Интерактивные кнопки + Бэкенд) ===
+    // === 📐 ВЫБОР ФОРМАТА КАДРА (Интерактивные кнопки + Бэкенд + Динамический текст) ===
     const formatButtons = document.querySelectorAll('.format-btn');
+    const formatDisplaySpan = document.getElementById('current-format-text'); // Сюда выводится текущий выбранный формат
+
     formatButtons.forEach(btn => {
         btn.addEventListener('click', (event) => {
             event.preventDefault();
@@ -270,8 +272,14 @@ document.addEventListener('DOMContentLoaded', () => {
             formatButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const selectedFormat = btn.getAttribute('data-format') || btn.innerText.trim();
+            // Безопасно вытаскиваем чистый формат (например, "16:9")
+            const selectedFormat = btn.getAttribute('data-format') || btn.innerText.trim().split(' ')[0];
             console.log("Выбран формат:", selectedFormat);
+
+            // Выводим текст выбранного формата в плашку/элемент интерфейса, если он есть на странице
+            if (formatDisplaySpan) {
+                formatDisplaySpan.innerText = selectedFormat;
+            }
 
             // Динамическое добавление класса формата на главный плеер/контейнер
             if (mainPlayer) {
