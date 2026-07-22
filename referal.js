@@ -20,17 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const translations = {
         ru: {
             ref_title: "Строй свою медиа-империю!",
-            ref_desc: "Приглашай друзей, копи Omni Coins и открывай эксклюзивный контент для своих роликов абсолютно бесплатно.",
+            ref_desc: "Приглашай создателей контента, забирай эпические награды и прокачивай свои видео без ограничений.",
             steps_title: "Как это работает?",
-            step_1: "Копируй свою уникальную ссылку ниже и отправь её знакомым ютуберам, стримерам или опубликуй в соцсетях.",
-            step_2: "Твой друг регистрируется в боте и мгновенно получает 50 коинов и +5 дней Premium на тест перевода видео.",
-            step_3: "Тебе зачисляется 100 коинов за каждого, а также 15% пожизненно с каждой их покупки пакетов реальных денег!",
-            your_bonus: "ТВОЙ БОНУС",
-            your_bonus_val: "100 Coins + 15%",
-            friend_bonus: "БОНУС ДРУГУ",
-            friend_bonus_val: "50 Coins + 5 Дней",
-            link_label: "ВАША РЕФЕРАЛЬНАЯ ССЫЛКА",
-            copy: "Копировать",
+            step_1: "Копируй персональную ссылку и делись ею с ютуберами, стримерами или в Telegram-каналах.",
+            step_2: "Друг запускает бота и мгновенно забирает 50 коинов + 7 дней Premium на тест перевода.",
+            step_3: "Когда друг делает первую покупку, ты получаешь 150 Coins + пожизненный эксклюзивный аватар и % от пополнений!",
+            your_bonus: "ТВОЙ БОНУС ЗА ПОКУПКУ ДРУГА",
+            your_bonus_val: "150 Coins + Avatar",
+            friend_bonus: "БОНУС ДРУГУ СТАРТ",
+            friend_bonus_val: "50 Coins + 7 Days",
+            link_label: "Твоя реферальная ссылка",
+            copy: "Copy",
             copied: "Скопировано!",
             invited: "Приглашено:",
             earned: "Заработано:",
@@ -38,16 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         en: {
             ref_title: "Build your media empire!",
-            ref_desc: "Invite friends, stack Omni Coins, and unlock exclusive content for your videos absolutely for free.",
+            ref_desc: "Invite content creators, claim epic rewards, and upgrade your videos without limits.",
             steps_title: "How does it work?",
-            step_1: "Copy your unique link below and send it to fellow YouTubers, streamers, or share it on social media.",
-            step_2: "Your friend signs up and instantly gets 50 coins and +5 days of Premium to test video translation.",
-            step_3: "You get 100 coins for each referral, plus 15% lifetime commission from their real money pack purchases!",
-            your_bonus: "YOUR BONUS",
-            your_bonus_val: "100 Coins + 15%",
-            friend_bonus: "FRIEND'S BONUS",
-            friend_bonus_val: "50 Coins + 5 Days",
-            link_label: "YOUR REFERRAL LINK",
+            step_1: "Copy your personal link and share it with YouTubers, streamers, or in Telegram channels.",
+            step_2: "Your friend launches the bot and instantly claims 50 coins + 7 days of Premium to test translation.",
+            step_3: "When your friend makes their first purchase, you get 150 Coins + a lifetime exclusive avatar and a % of top-ups!",
+            your_bonus: "YOUR BONUS FOR FRIEND'S PURCHASE",
+            your_bonus_val: "150 Coins + Avatar",
+            friend_bonus: "FRIEND START BONUS",
+            friend_bonus_val: "50 Coins + 7 Days",
+            link_label: "Your referral link",
             copy: "Copy",
             copied: "Copied!",
             invited: "Invited:",
@@ -75,9 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // ДИНАМИЧЕСКИЙ ОБНОВЛЯЕМ ТЕКСТ БАЛАНСА В ШАПКЕ РЕФЕРАЛКИ
+        // ДИНАМИЧЕСКИ ОБНОВЛЯЕМ ТЕКСТ БАЛАНСА В ШАПКЕ РЕФЕРАЛКИ
         const balanceTextNode = document.querySelector('.balance-text');
-        // Подтягиваем значение из нашего глобального менеджера (если функции нет, ставим 0)
         const coinsVal = typeof getBalance === 'function' ? getBalance() : 0;
 
         if (balanceTextNode) {
@@ -100,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ================= НАДЛАДОЧНАЯ НАВЕРХ СМЕНА ЯЗЫКА (TELEGRAM POPUP) =================
     if (langBtn && tg) {
-        langBtn.removeAttribute('onclick'); // На всякий случай чистим старые инлайн события
+        langBtn.removeAttribute('onclick'); 
         langBtn.addEventListener('click', () => {
             tg.showPopup({
                 title: currentLang === 'ru' ? 'Смена языка' : 'Language / Язык',
@@ -115,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentLang = buttonId;
                     applyTranslations();
                     
-                    // Синхронизируем главный экран, если он запущен параллельно
                     if (typeof updateBalanceUI === 'function') {
                         updateBalanceUI(getBalance());
                     }
@@ -135,15 +133,26 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTranslations();
 
     // Генерация рефералки по Telegram ID
+    let userRefUrl = `https://t.me/your_beast_omni_bot?start=test_id`;
+    if (user?.id) {
+        userRefUrl = `https://t.me/your_beast_omni_bot?start=ref_${user.id}`; 
+    }
+
     if (refInput) {
-        if (user?.id) {
-            refInput.value = `https://t.me/your_beast_omni_bot?start=${user.id}`; 
+        refInput.value = userRefUrl;
+    }
+
+    // Динамически обновляем ссылку и в готовом тексте для друга
+    const promoMessageText = document.getElementById('promo-message-text');
+    if (promoMessageText) {
+        if (currentLang === 'ru') {
+            promoMessageText.innerHTML = `🚀 Здарова! Я тут тестирую крутого AI-бота для перевода и озвучки видео <b>BEAST OMNI</b>. Переводит голосом один в один, делает крутые аватары и виджеты. Переходи по ссылке, забирай <b>50 халявных коинов и 7 дней Премиума</b> на тест: ${userRefUrl} 🔥`;
         } else {
-            refInput.value = `https://t.me/your_beast_omni_bot?start=test_id`; // Фикс для тестов в браузере
+            promoMessageText.innerHTML = `🚀 Hey! I'm testing an awesome AI video translation & voiceover bot called <b>BEAST OMNI</b>. It does voice cloning, cool avatars, and widgets. Use my link to grab <b>50 free coins & 7 days of Premium</b>: ${userRefUrl} 🔥`;
         }
     }
 
-    // ================= ЛОГИКА КНОПКИ КОПИРОВАНИЯ И АНИМАЦИИ =================
+    // ================= ЛОГИКА КНОПКИ КОПИРОВАНИЯ ССЫЛКИ И АНИМАЦИИ =================
     if (copyButton && refInput) {
         copyButton.addEventListener('click', () => {
             refInput.select();
@@ -153,16 +162,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const lang = translations[currentLang];
 
             const proceedAnimation = () => {
-                copyButton.innerText = lang.copied;
+                copyButton.innerHTML = `<i class="fa-solid fa-check"></i> ${lang.copied}`;
                 copyButton.classList.add('copied');
-                copyButton.style.background = '#22c55e'; // Сочный зеленый неон при успехе
-                copyButton.style.boxShadow = '0 0 15px rgba(34, 197, 94, 0.6)';
+                copyButton.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)'; // Сочный зеленый неон
+                copyButton.style.boxShadow = '0 0 15px rgba(16, 185, 129, 0.6)';
 
                 setTimeout(() => {
                     copyButton.classList.remove('copied');
-                    copyButton.innerText = lang.copy;
-                    copyButton.style.background = 'linear-gradient(45deg, #38bdf8, #3b82f6)'; // Возвращаем синий неон
-                    copyButton.style.boxShadow = '0 0 10px rgba(59, 130, 246, 0.5)';
+                    copyButton.innerHTML = `<i class="fa-regular fa-copy"></i> ${lang.copy}`;
+                    copyButton.style.background = 'linear-gradient(135deg, #00F0FF 0%, #0072FF 100%)'; // Возвращаем синий неон
+                    copyButton.style.boxShadow = '0 2px 10px rgba(0, 240, 255, 0.3)';
                 }, 2000);
             };
 
@@ -178,6 +187,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ================= ЛОГИКА КОПИРОВАНИЯ ГОТОВОГО ПРОМО-ТЕКСТА =================
+    const copyPromoBtn = document.getElementById("copy-promo-text");
+
+    if (copyPromoBtn && promoMessageText) {
+        copyPromoBtn.addEventListener("click", () => {
+            navigator.clipboard.writeText(promoMessageText.innerText);
+            
+            const originalText = copyPromoBtn.innerText;
+            copyPromoBtn.innerText = currentLang === 'ru' ? "Скопировано!" : "Copied!";
+            copyPromoBtn.style.color = "#10B981";
+
+            setTimeout(() => {
+                copyPromoBtn.innerText = originalText;
+                copyPromoBtn.style.color = "#a855f7";
+            }, 2000);
+        });
+    }
+
     // ================= Скрываем мусор других страниц (SPA Фикс) =================
     function clearInboundBugs() {
         const studioPage = document.getElementById('studio-page') || document.querySelector('.studio-container');
@@ -188,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const refPage = document.getElementById('referral-page') || document.querySelector('.main-content');
         if (refPage) {
-            refPage.style.display = 'block';
+            refPage.style.display = 'flex';
         }
     }
     clearInboundBugs();
