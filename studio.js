@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const inventoryCards = document.querySelectorAll('.inventory-card');
     const openInventoryBtns = document.querySelectorAll('.inventory-trigger-btn'); // Кнопки вызова инвентаря
 
+    let hideControlsTimeout = null;
+
     // === 🎥 ЛОГИКА ЗАГРУЗКИ ВИДЕО ИЗ ГАЛЕРЕИ + API БЭКЕНДА ===
     if (playerScreenTrigger && videoUpload && mainPlayer && placeholderText) {
         playerScreenTrigger.addEventListener('click', (event) => {
@@ -52,6 +54,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 mainPlayer.src = videoURL;
                 mainPlayer.load();
+
+                // Автоматическое определение формата и подгонка под черный фон
+                mainPlayer.onloadedmetadata = () => {
+                    const width = mainPlayer.videoWidth;
+                    const height = mainPlayer.videoHeight;
+                    const formatButtons = document.querySelectorAll('.format-btn');
+                    
+                    let targetFormat = '16:9';
+                    if (height > width) {
+                        targetFormat = '9:16';
+                    } else if (width === height) {
+                        targetFormat = '1-1';
+                    }
+
+                    formatButtons.forEach(btn => {
+                        const fmt = btn.getAttribute('data-format') || btn.innerText.trim();
+                        if (fmt.includes(targetFormat)) {
+                            btn.click();
+                        }
+                    });
+                };
+
                 mainPlayer.play().catch(err => {
                     console.log("Автовоспроизведение заблокировано браузером:", err);
                 });
@@ -78,6 +102,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(error => {
                     console.error("Не удалось связаться с сервером. Проверь server.py:", error);
                 });
+            }
+        });
+    }
+
+    // === ⏱️ СКРЫТИЕ КНОПОК ПЛЕЕРА ЧЕРЕЗ 3 СЕКУНДЫ НА ПАУЗЕ ===
+    if (mainPlayer) {
+        mainPlayer.addEventListener('pause', () => {
+            clearTimeout(hideControlsTimeout);
+            hideControlsTimeout = setTimeout(() => {
+                if (mainPlayer.paused) {
+                    mainPlayer.classList.add('paused-hidden');
+                }
+            }, 3000);
+        });
+
+        mainPlayer.addEventListener('play', () => {
+            clearTimeout(hideControlsTimeout);
+            mainPlayer.classList.remove('paused-hidden');
+        });
+
+        mainPlayer.addEventListener('click', () => {
+            if (mainPlayer.paused) {
+                clearTimeout(hideControlsTimeout);
+                mainPlayer.classList.remove('paused-hidden');
+                
+                hideControlsTimeout = setTimeout(() => {
+                    if (mainPlayer.paused) {
+                        mainPlayer.classList.add('paused-hidden');
+                    }
+                }, 3000);
             }
         });
     }
