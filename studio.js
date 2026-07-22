@@ -38,8 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const file = event.target.files[0];
             if (file) {
                 const videoURL = URL.createObjectURL(file);
-                placeholderText.style.display = 'none';
-                mainPlayer.style.display = 'block';
+                
+                // Жестко скрываем плейсхолдер и показываем плеер
+                placeholderText.style.setProperty('display', 'none', 'important');
+                mainPlayer.style.setProperty('display', 'block', 'important');
                 
                 mainPlayer.src = videoURL;
                 mainPlayer.load();
