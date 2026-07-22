@@ -6,7 +6,6 @@ if (tg) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const copyButton = document.getElementById('copy-button');
-    const btnTextMain = document.getElementById('btn-text-main');
     const langBtn = document.getElementById('lang-switch-btn'); 
     
     const langFlag = langBtn?.querySelector('.flag');
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const user = tg?.initDataUnsafe?.user;
 
-    // Генерируем чистую реферальную ссылку
     let userRefUrl = `https://t.me/your_bot?start=test_id`;
     if (user?.id) {
         userRefUrl = `https://t.me/your_bot?start=ref_${user.id}`; 
@@ -22,40 +20,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const translations = {
         ru: {
-            badge_text: "ПАРТНЕРСКАЯ ПРОГРАММА 2.0",
-            ref_title: "Строй свою медиа-империю!",
-            ref_desc: "Приглашай друзей, копи Omni Coins и открывай эксклюзивный контент для своих роликов абсолютно бесплатно.",
-            steps_title: "Как это работает?",
-            step_1: "Жми на кнопку ниже — готовый текст со ссылкой сразу скопируется в буфер обмена.",
-            step_2: "Твой друг запускает бота по ссылке и мгновенно получает 50 коинов и +7 дней Premium.",
-            step_3: "Тебе падает 150 коинов + эксклюзивный аватар за его первую покупку и % пожизненно!",
+            badge_text: "ПАРТНЕРСКАЯ СЕТЬ 2.0",
+            ref_title: "СТРОЙ СВОЮ ИМПЕРИЮ",
+            ref_desc: "Приглашай контент-мейкеров, создавай децентрализованную сеть и фарми Omni Coins вместе с премиум-бонусами.",
+            steps_title: "ПРОТОКОЛ РАБОТЫ",
+            step_1: "Жми кнопку активации, чтобы скопировать зашифрованный инвайт-пакет в буфер.",
+            step_2: "Друг инициализирует бота и мгновенно забирает стартовые бонусы.",
+            step_3: "Ты получаешь пожизненный процент от пополнений и эксклюзивные аватары.",
             your_bonus: "ТВОЙ БОНУС",
             your_bonus_val: "150 Coins + Avatar",
             friend_bonus: "БОНУС ДРУГУ",
             friend_bonus_val: "50 Coins + 7 Days",
-            copy_btn_text: "Скопировать приглашение с ссылкой",
-            copied: "Успешно скопировано в буфер!",
-            hint_sub: "Нажми, чтобы скопировать текст и сразу отправить другу в Telegram",
-            invited: "Приглашено:",
-            earned: "Заработано:"
+            copy_btn_text: "СКОПИРОВАТЬ ПРИГЛАШЕНИЕ",
+            copied: "ПАКЕТ УСПЕШНО СКОПИРОВАН!",
+            hint_sub: "Моментальное копирование для отправки в Telegram чаты",
+            invited: "УЗЛОВ СВЯЗИ",
+            earned: "ЗАРАБОТАНО"
         },
         en: {
-            badge_text: "PARTNER PROGRAM 2.0",
-            ref_title: "Build your media empire!",
-            ref_desc: "Invite friends, stack Omni Coins, and unlock exclusive content for your videos absolutely for free.",
-            steps_title: "How does it work?",
-            step_1: "Tap the button below — the ready text with your link will be instantly copied.",
-            step_2: "Your friend launches the bot via your link and instantly gets 50 coins & +7 days of Premium.",
-            step_3: "You get 150 coins + an exclusive avatar for their first purchase, plus a lifetime %!",
-            your_bonus: "YOUR BONUS",
+            badge_text: "PARTNER NETWORK 2.0",
+            ref_title: "SCALE YOUR EMPIRE",
+            ref_desc: "Invite creators, build your decentralized network, and farm Omni Coins & VIP perks automatically.",
+            steps_title: "PROTOCOL WORKFLOW",
+            step_1: "Tap the activation button to copy your encrypted invite payload.",
+            step_2: "Friend initializes the bot and claims instant starter bonuses.",
+            step_3: "You secure lifetime revenue shares and custom NFT/Avatar assets.",
+            your_bonus: "YOUR REWARD",
             your_bonus_val: "150 Coins + Avatar",
-            friend_bonus: "FRIEND BONUS",
+            friend_bonus: "FRIEND START",
             friend_bonus_val: "50 Coins + 7 Days",
-            copy_btn_text: "Copy Invitation with Link",
-            copied: "Successfully Copied!",
-            hint_sub: "Tap to copy the text and send it directly to your friend in Telegram",
-            invited: "Invited:",
-            earned: "Earned:"
+            copy_btn_text: "COPY INVITATION PAYLOAD",
+            copied: "PAYLOAD COPIED TO BUFFER!",
+            hint_sub: "One-tap copy for Telegram chats & creator communities",
+            invited: "NODES LINKED",
+            earned: "TOTAL MINED"
         }
     };
 
@@ -106,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applyTranslations();
 
-    // Сборка готового рекламного текста прямо в коде кнопки
     if (copyButton) {
         copyButton.addEventListener('click', () => {
             let textToCopy = "";
@@ -119,14 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const lang = translations[currentLang];
 
             const proceedAnimation = () => {
-                copyButton.innerHTML = `<i class="fa-solid fa-check"></i> ${lang.copied}`;
+                copyButton.innerHTML = `<div class="btn-content"><i class="fa-solid fa-check"></i> <span>${lang.copied}</span></div>`;
                 copyButton.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
-                copyButton.style.boxShadow = '0 0 20px rgba(16, 185, 129, 0.6)';
+                copyButton.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.6)';
 
                 setTimeout(() => {
-                    copyButton.innerHTML = `<i class="fa-regular fa-copy"></i> <span id="btn-text-main">${lang.copy_btn_text}</span>`;
+                    copyButton.innerHTML = `<div class="btn-content"><i class="fa-solid fa-share-nodes"></i> <span id="btn-text-main">${lang.copy_btn_text}</span></div>`;
                     copyButton.style.background = 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)';
-                    copyButton.style.boxShadow = '0 4px 20px rgba(168, 85, 247, 0.45)';
+                    copyButton.style.boxShadow = '0 8px 25px rgba(168, 85, 247, 0.45)';
                 }, 2000);
             };
 
@@ -156,14 +153,3 @@ function fallbackCopyText(text, callback) {
     }
     document.body.removeChild(textArea);
 }
-
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        setTimeout(() => {
-            preloader.style.transition = 'opacity 0.3s ease';
-            preloader.style.opacity = '0';
-            setTimeout(() => preloader.remove(), 300);
-        }, 100); 
-    }
-});
