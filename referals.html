@@ -3,139 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEAST OMNI | Referral Empire</title>
+    <title>BEAST OMNI | Partner Hub</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="referal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    
-    <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #09090b; z-index: 9999; display: flex; justify-content: center; align-items: center;">
-        <div style="color: #00F0FF; font-size: 18px; font-weight: 800; font-family: sans-serif; letter-spacing: 1px;">
-            BEAST OMNI...
-        </div>
+
+    <!-- Футуристичный фон с неоновыми спотами -->
+    <div class="cyber-bg">
+        <div class="glow-spot spot-1"></div>
+        <div class="glow-spot spot-2"></div>
     </div>
 
-    <!-- Верхний блок (оставляем неизменным по структуре) -->
+    <!-- Шапка -->
     <header class="global-header">
-        <div class="user-box">
-            <span class="username">Hello, filatow</span>
+        <div class="user-badge-box">
+            <div class="user-avatar-glow"><i class="fa-solid fa-user-astronaut"></i></div>
+            <span class="username">filatow</span>
         </div>
-        <div class="lang-selector">
-            <select>
-                <option value="us">🇺🇸 US</option>
-                <option value="ru">🇷🇺 RU</option>
-            </select>
+        <div class="lang-selector" id="lang-switch-btn">
+            <span class="flag">🇺🇸</span>
+            <span class="lang-text">US</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
         </div>
     </header>
 
-    <!-- Основной контент (Пушка-петарда дизайн) -->
+    <!-- Основной контент -->
     <div class="main-content">
         
-        <!-- Логотип и заголовок -->
-        <div class="ref-brand-box">
-            <div class="brand-logo-badge">
-                <i class="fa-solid fa-shield-halved"></i>
-                <span>BEAST OMNI VIP</span>
+        <!-- Главный баннер -->
+        <div class="hero-banner">
+            <div class="badge-pill">
+                <i class="fa-solid fa-fire"></i> <span data-lang="badge_text">PARTNER NETWORK 2.0</span>
             </div>
-            <h1 data-lang="ref_title">Строй свою медиа-империю!</h1>
-            <p data-lang="ref_desc">Приглашай создателей контента, забирай эпические награды и прокачивай свои видео без ограничений.</p>
+            <h1 data-lang="ref_title">SCALE YOUR EMPIRE</h1>
+            <p data-lang="ref_desc">Invite creators, build your decentralized network, and farm Omni Coins & VIP perks automatically.</p>
         </div>
 
-        <!-- Баннер с неоновым свечением -->
-        <div class="ref-banner">
-            <div class="banner-glow"></div>
-            <div class="banner-content">
-                <div class="banner-icon-group">
-                    <i class="fa-solid fa-users-viewfinder"></i>
-                </div>
-                <div class="banner-text">
-                    <span class="banner-tag">ПАРТНЕРСКАЯ ПРОГРАММА 2.0</span>
-                    <h3>Пригласи друга — получи эксклюзив!</h3>
+        <!-- Карточки бонусов (Геймификация) -->
+        <div class="rewards-grid">
+            <div class="reward-card cyan-glow">
+                <div class="icon-wrap"><i class="fa-solid fa-bolt-lightning"></i></div>
+                <div class="reward-info">
+                    <span class="r-title" data-lang="your_bonus">YOUR REWARD</span>
+                    <span class="r-val" data-lang="your_bonus_val">150 Coins + Avatar</span>
                 </div>
             </div>
-        </div>
-
-        <!-- Шаги системы -->
-        <div class="ref-steps-box">
-            <h3 data-lang="steps_title"><i class="fa-solid fa-bolt" style="color: #00F0FF;"></i> Как это работает?</h3>
-            <div class="step">
-                <div class="step-num">1</div>
-                <p data-lang="step_1">Копируй персональную ссылку и делись ею с ютуберами, стримерами или в Telegram-каналах.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">2</div>
-                <p data-lang="step_2">Друг запускает бота и <strong>мгновенно забирает 50 коинов + 7 дней Premium</strong> на тест перевода.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">3</div>
-                <p data-lang="step_3">Когда друг делает первую покупку, ты получаешь <strong>150 Coins + пожизненный эксклюзивный аватар</strong> и % от пополнений!</p>
+            <div class="reward-card gold-glow">
+                <div class="icon-wrap"><i class="fa-solid fa-gift"></i></div>
+                <div class="reward-info">
+                    <span class="r-title" data-lang="friend_bonus">FRIEND START</span>
+                    <span class="r-val" data-lang="friend_bonus_val">50 Coins + 7 Days</span>
+                </div>
             </div>
         </div>
 
-        <!-- Карточки бонусов -->
-        <div class="bonus-cards">
-            <div class="card cyan-card">
-                <div class="card-icon">⚡</div>
-                <div class="card-title" data-lang="your_bonus">ТВОЙ БОНУС ЗА ПОКУПКУ ДРУГА</div>
-                <div class="card-value cyan" data-lang="your_bonus_val">150 Coins + Avatar</div>
+        <!-- Блок механики (Стеклянные шаги) -->
+        <div class="glass-steps-card">
+            <h3 data-lang="steps_title"><i class="fa-solid fa-network-wired"></i> PROTOCOL WORKFLOW</h3>
+            <div class="step-row">
+                <div class="s-num">01</div>
+                <div class="s-text" data-lang="step_1">Tap the activation button to copy your encrypted invite payload.</div>
             </div>
-            <div class="card gold-card">
-                <div class="card-icon">🎁</div>
-                <div class="card-title" data-lang="friend_bonus">БОНУС ДРУГУ СТАРТ</div>
-                <div class="card-value gold" data-lang="friend_bonus_val">50 Coins + 7 Days</div>
+            <div class="step-row">
+                <div class="s-num">02</div>
+                <div class="s-text" data-lang="step_2">Friend initializes the bot and claims instant starter bonuses.</div>
             </div>
-        </div>
-
-        <!-- Блок реферальной ссылки -->
-        <div class="link-section">
-            <label class="input-label" data-lang="link_label"><i class="fa-solid fa-link"></i> Твоя реферальная ссылка</label>
-            <div class="input-group">
-                <input type="text" id="ref-url" value="https://t.me/your_beast_omni_bot?start=ref_filatow" readonly>
-                <button class="copy-btn blue-neon" id="copy-button">
-                    <i class="fa-regular fa-copy"></i> Copy
-                </button>
+            <div class="step-row">
+                <div class="s-num">03</div>
+                <div class="s-text" data-lang="step_3">You secure lifetime revenue shares and custom NFT/Avatar assets.</div>
             </div>
         </div>
 
-        <!-- Готовый продающий текст для отправки другу -->
-        <div class="promo-text-box">
-            <div class="promo-header">
-                <span><i class="fa-solid fa-bullhorn" style="color: #a855f7;"></i> Готовый текст для друга:</span>
-                <button id="copy-promo-text" class="text-copy-sm">Копировать текст</button>
-            </div>
-            <div class="promo-body" id="promo-message-text">
-                🚀 Здарова! Я тут тестирую крутого AI-бота для перевода и озвучки видео **BEAST OMNI**. Переводит голосом один в один, делает крутые аватары и виджеты. Переходи по ссылке, забирай **50 халявных коинов и 7 дней Премиума** на тест: https://t.me/your_beast_omni_bot?start=ref_filatow 🔥
-            </div>
+        <!-- ГЛАВНАЯ КНОПКА ДЕЙСТВИЯ (КИБЕРПАНК) -->
+        <div class="action-dock">
+            <button class="cyber-action-btn" id="copy-button">
+                <div class="btn-content">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span id="btn-text-main" data-lang="copy_btn_text">COPY INVITATION PAYLOAD</span>
+                </div>
+                <div class="btn-shine"></div>
+            </button>
+            <div class="sub-hint" data-lang="hint_sub">One-tap copy for Telegram chats & creator communities</div>
         </div>
 
         <!-- Статистика -->
-        <div class="ref-stats">
-            <div class="stat-item">
-                <i class="fa-solid fa-user-group" style="color: #00F0FF;"></i>
-                <div>
-                    <span data-lang="invited">Приглашено:</span>
-                    <span id="friends-count">0</span>
-                </div>
+        <div class="stats-matrix">
+            <div class="matrix-cell">
+                <span class="m-label" data-lang="invited">NODES LINKED</span>
+                <span class="m-val" id="friends-count">0</span>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <i class="fa-solid fa-coins" style="color: #FFD700;"></i>
-                <div>
-                    <span data-lang="earned">Заработано:</span>
-                    <span id="earned-count">0 🪙</span>
-                </div>
+            <div class="matrix-divider"></div>
+            <div class="matrix-cell">
+                <span class="m-label" data-lang="earned">TOTAL MINED</span>
+                <span class="m-val gold-text" id="earned-count">0 🪙</span>
             </div>
         </div>
     </div>
 
-    <!-- Нижнее меню (оставляем неизменным по структуре) -->
+    <!-- Нижняя навигация -->
     <div class="bottom-nav">
         <div class="nav-item" onclick="window.location.href='index.html'">
             <span class="nav-emoji">🏠</span>
             <span class="nav-text">Home</span>
         </div>
-        <div class="nav-item active">
+        <div class="nav-item active" onclick="window.location.href='referal.html'">
             <span class="nav-emoji">👥</span>
             <span class="nav-text">Referral</span>
         </div>
