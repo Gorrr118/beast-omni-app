@@ -261,13 +261,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === 📐 ВЫБОР ФОРМАТА КАДРА (Интерактивные кнопки) ===
+    // === 📐 ВЫБОР ФОРМАТА КАДРА (Интерактивные кнопки + Бэкенд) ===
     const formatButtons = document.querySelectorAll('.format-btn');
     formatButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+
             formatButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            console.log("Выбран формат:", btn.innerText.trim());
+
+            const selectedFormat = btn.getAttribute('data-format') || btn.innerText.trim();
+            console.log("Выбран формат:", selectedFormat);
+
+            // Динамическое добавление класса формата на главный плеер/контейнер
+            if (mainPlayer) {
+                mainPlayer.classList.remove('format-9-16', 'format-16-9', 'format-1-1', 'format-4-5');
+                mainPlayer.classList.add(`format-${selectedFormat.replace(':', '-')}`);
+            }
+
+            // Отправка выбранного формата на FastAPI бэкенд
+            fetch("http://127.0.0.1:8000/api/set-format", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ format: selectedFormat })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Ответ бэкенда по формату:", data);
+            })
+            .catch(error => {
+                console.error("Не удалось отправить формат на сервер:", error);
+            });
         });
     });
 
