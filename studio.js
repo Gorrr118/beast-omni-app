@@ -39,9 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (file) {
                 const videoURL = URL.createObjectURL(file);
                 
-                // Жестко скрываем плейсхолдер и показываем плеер
+                // Жестко скрываем плейсхолдер и облачко, чтобы они не перекрывали видео
                 placeholderText.style.setProperty('display', 'none', 'important');
+                
+                const uploadOverlay = placeholderText.parentElement;
+                if (uploadOverlay && uploadOverlay !== mainPlayer) {
+                    uploadOverlay.style.setProperty('display', 'none', 'important');
+                }
+
                 mainPlayer.style.setProperty('display', 'block', 'important');
+                mainPlayer.style.setProperty('z-index', '5', 'important');
                 
                 mainPlayer.src = videoURL;
                 mainPlayer.load();
