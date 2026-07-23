@@ -20,30 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
         usernameDisplay.innerText = user.first_name;
     }
 
+    // Реферальная ссылка с ID пользователя (замени your_bot на юзернейм своего бота)
     let userRefUrl = `https://t.me/your_bot?start=test_id`;
     if (user?.id) {
         userRefUrl = `https://t.me/your_bot?start=ref_${user.id}`; 
     }
 
+    // Словари перевода (основной язык по умолчанию — английский 'en')
     const translations = {
-        ru: {
-            badge_text: "ПАРТНЕРСКАЯ ПРОГРАММА 2.0",
-            ref_title: "Строй свою медиа-империю!",
-            ref_desc: "Приглашай друзей, копи Omni Coins и открывай эксклюзивный контент для своих роликов абсолютно бесплатно.",
-            steps_title: "КАК ЭТО РАБОТАЕТ?",
-            step_1: "Жми на кнопку ниже — готовый текст со ссылкой мгновенно копируется в буфер обмена.",
-            step_2: "Друг запускает бота по ссылке и получает 50 коинов и +7 дней Premium.",
-            step_3: "Тебе падает 150 коинов + эксклюзивный аватар за его первую покупку и % пожизненно!",
-            your_bonus: "ТВОЙ БОНУС",
-            your_bonus_val: "150 Coins + Avatar",
-            friend_bonus: "БОНУС ДРУГУ",
-            friend_bonus_val: "50 Coins + 7 Days",
-            copy_btn_text: "СКОПИРОВАТЬ ПРИГЛАШЕНИЕ",
-            copied: "УСПЕШНО СКОПИРОВАНО!",
-            hint_sub: "Нажми и сразу отправляй готовый текст другу в Telegram",
-            invited: "ПРИГЛАШЕНО",
-            earned: "ЗАРАБОТАНО"
-        },
         en: {
             badge_text: "PARTNER NETWORK 2.0",
             ref_title: "Build your media empire!",
@@ -61,9 +45,28 @@ document.addEventListener('DOMContentLoaded', () => {
             hint_sub: "One-tap copy for Telegram chats & creator communities",
             invited: "NODES LINKED",
             earned: "TOTAL MINED"
+        },
+        ru: {
+            badge_text: "ПАРТНЕРСКАЯ ПРОГРАММА 2.0",
+            ref_title: "Строй свою медиа-империю!",
+            ref_desc: "Приглашай друзей, копи Omni Coins и открывай эксклюзивный контент для своих роликов абсолютно бесплатно.",
+            steps_title: "КАК ЭТО РАБОТАЕТ?",
+            step_1: "Жми на кнопку ниже — готовый текст со ссылкой мгновенно копируется в буфер обмена.",
+            step_2: "Друг запускает бота по ссылке и получает 50 коинов и +7 дней Premium.",
+            step_3: "Тебе падает 150 коинов + эксклюзивный аватар за его первую покупку и % пожизненно!",
+            your_bonus: "ТВОЙ БОНУС",
+            your_bonus_val: "150 Coins + Avatar",
+            friend_bonus: "БОНУС ДРУГУ",
+            friend_bonus_val: "50 Coins + 7 Days",
+            copy_btn_text: "СКОПИРОВАТЬ ПРИГЛАШЕНИЕ",
+            copied: "УСПЕШНО СКОПИРОВАНО!",
+            hint_sub: "Нажми и сразу отправляй готовый текст другу в Telegram",
+            invited: "ПРИГЛАШЕНО",
+            earned: "ЗАРАБОТАНО"
         }
     };
 
+    // Устанавливаем английский ('en') по умолчанию
     let currentLang = localStorage.getItem('app_lang') || 'en';
 
     function applyTranslations() {
@@ -90,11 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('app_lang', currentLang);
     }
 
+    // Кнопка смены языка через Telegram Popup
     if (langBtn && tg) {
         langBtn.addEventListener('click', () => {
             tg.showPopup({
                 title: currentLang === 'ru' ? 'Смена языка' : 'Language / Язык',
-                message: currentLang === 'ru' ? 'Выберите язык интерфейса BEAST OMNI:' : 'Select interface language:',
+                message: currentLang === 'ru' ? 'Выберите язык интерфейса:' : 'Select interface language:',
                 buttons: [
                     { id: 'en', type: 'default', text: '🇺🇸 English (US)' },
                     { id: 'ru', type: 'default', text: '🇷🇺 Русский (RU)' },
@@ -111,26 +115,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applyTranslations();
 
+    // Логика копирования реферального текста
     if (copyButton) {
         copyButton.addEventListener('click', () => {
             let textToCopy = "";
             if (currentLang === 'ru') {
-                textToCopy = `🚀 Здарова! Я тут тестирую крутого AI-бота для перевода и озвучки видео BEAST OMNI. Переводит голосом один в один, делает аватары и виджеты. Забирай 50 халявных коинов и 7 дней Премиума по моей ссылке: ${userRefUrl} 🔥`;
+                textToCopy = `🚀 Здарова! Тестирую крутого AI-бота BEAST OMNI. Забирай 50 коинов и 7 дней Премиума по моей ссылке: ${userRefUrl} 🔥`;
             } else {
-                textToCopy = `🚀 Hey! I'm testing an awesome AI video translation & voiceover bot called BEAST OMNI. It does voice cloning, cool avatars, and widgets. Grab 50 free coins & 7 days of Premium using my link: ${userRefUrl} 🔥`;
+                textToCopy = `🚀 Hey! Testing BEAST OMNI bot. Grab 50 free coins & 7 days of Premium using my link: ${userRefUrl} 🔥`;
             }
 
             const lang = translations[currentLang];
 
             const proceedAnimation = () => {
-                copyButton.querySelector('.btn-content').innerHTML = `<i class="fa-solid fa-check"></i> <span>${lang.copied}</span>`;
-                copyButton.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
-                copyButton.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.6)';
-
+                copyButton.querySelector('.btn-content').innerHTML = `<span>${lang.copied}</span>`;
                 setTimeout(() => {
-                    copyButton.querySelector('.btn-content').innerHTML = `<i class="fa-regular fa-copy"></i> <span id="btn-text-main">${lang.copy_btn_text}</span>`;
-                    copyButton.style.background = 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)';
-                    copyButton.style.boxShadow = '0 8px 25px rgba(168, 85, 247, 0.45)';
+                    copyButton.querySelector('.btn-content').innerHTML = `<span>${lang.copy_btn_text}</span>`;
                 }, 2000);
             };
 
