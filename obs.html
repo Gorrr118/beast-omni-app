@@ -2,113 +2,126 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Beast Omni — OBS Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEAST OMNI | AI Character Matrix</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="obs.css">
-    <link rel="stylesheet" href="obs-settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <header class="custom-header">
-        <div class="user-badge">Hello, filatow</div>
-        <div class="lang-select-wrapper">
-            <select id="lang-dropdown">
-                <option value="en">🇺🇸 US</option>
-                <option value="ru">🇷🇺 RU</option>
-            </select>
+    <!-- Фоновые неоновые споты -->
+    <div class="cyber-bg">
+        <div class="glow-spot spot-1"></div>
+        <div class="glow-spot spot-2"></div>
+    </div>
+
+    <!-- Шапка -->
+    <header class="global-header">
+        <div class="user-badge-box">
+            <div class="user-avatar-glow">⚡</div>
+            <span class="username" id="username-display">filatow</span>
+        </div>
+        <div class="tier-status-badge">
+            <i class="fa-solid fa-crown"></i> <span id="current-tier-text">TIER 0</span>
         </div>
     </header>
 
-    <main class="obs-container">
+    <!-- Основной контент -->
+    <main class="main-content">
         
-        <div class="obs-info-box">
-            <div class="obs-info-title">Настройка виджета OBS</div>
-            <div class="obs-info-desc">
-                Здесь находятся все ваши персонажи, купленные в магазине. Выберите нужного героя снизу, скопируйте секретную ссылку и вставьте её в OBS как источник «Браузер». При разговоре в микрофон персонаж автоматически начнет открывать и закрывать рот!
+        <!-- Баннер -->
+        <div class="hero-banner">
+            <div class="badge-pill">
+                <i class="fa-solid fa-microchip"></i> <span data-lang="studio_badge">30 AI AVATARS & SPEAKING MATRIX</span>
             </div>
+            <h1 data-lang="studio_title">Выбери свой уровень мощи</h1>
+            <p data-lang="studio_desc">Разблокируй паки аватаров с процедурной анимацией рта для стримов, озвучки и видео-контента.</p>
+        </div>
+
+        <!-- Выбор пакетов (Таргеты $30, $50, $100) -->
+        <div class="pricing-tiers-grid">
             
-            <div class="obs-link-container">
-                <div class="obs-link-text" id="obsUrl">https://beastomni.com/stream/widget?token=user_flatow_777&char=boy</div>
-                <button class="copy-link-btn" id="copyBtn">Копировать</button>
+            <!-- Пак 1: $30 -->
+            <div class="tier-card" data-tier="1">
+                <div class="tier-header">
+                    <span class="t-name">STARTER PACK</span>
+                    <span class="t-price">$30</span>
+                </div>
+                <div class="tier-features">
+                    <span><i class="fa-solid fa-check"></i> 10 персонажей</span>
+                    <span><i class="fa-solid fa-check"></i> Базовая анимация рта</span>
+                    <span><i class="fa-solid fa-check"></i> 720p / HD Экспорт</span>
+                </div>
+                <button class="tier-btn" onclick="unlockTier(30, 1) ">РАЗБЛОКИРОВАТЬ 10 ПЕРСОВ</button>
             </div>
+
+            <!-- Пак 2: $50 (Хит) -->
+            <div class="tier-card popular-glow" data-tier="2">
+                <div class="pop-badge">POPULAR</div>
+                <div class="tier-header">
+                    <span class="t-name">PRO CREATOR</span>
+                    <span class="t-price">$50</span>
+                </div>
+                <div class="tier-features">
+                    <span><i class="fa-solid fa-check"></i> 20 персонажей</span>
+                    <span><i class="fa-solid fa-check"></i> Продвинутая лип-синк анимация</span>
+                    <span><i class="fa-solid fa-check"></i> 4K / Stream Widgets</span>
+                </div>
+                <button class="tier-btn active-btn" onclick="unlockTier(50, 2)">РАЗБЛОКИРОВАТЬ 20 ПЕРСОВ</button>
+            </div>
+
+            <!-- Пак 3: $100 (Империя) -->
+            <div class="tier-card beast-glow" data-tier="3">
+                <div class="pop-badge beast-badge">BEAST IMPERIAL</div>
+                <div class="tier-header">
+                    <span class="t-name">BEAST OMNI 30</span>
+                    <span class="t-price">$100</span>
+                </div>
+                <div class="tier-features">
+                    <span><i class="fa-solid fa-check"></i> Все 30 персонажей</span>
+                    <span><i class="fa-solid fa-check"></i> Премиум AI голос + Рот 24/7</span>
+                    <span><i class="fa-solid fa-check"></i> Безлимит & API доступ</span>
+                </div>
+                <button class="tier-btn beast-action" onclick="unlockTier(100, 3)">ВЗЯТЬ ВСЮ БАЗУ (30)</button>
+            </div>
+
         </div>
 
-        <div class="inventory-title">
-            <span>⚡</span> Ваши персонажи в OBS
+        <!-- Секция предпросмотра персонажей (Матрица 30 слотов) -->
+        <div class="characters-section-title">
+            <h3 data-lang="matrix_title"><i class="fa-solid fa-users-viewfinder"></i> КАТАЛОГ АВАТАРОВ (30/30)</h3>
+            <span class="matrix-subtitle" data-lang="matrix_sub">Нажми на персонажа, чтобы протестировать анимацию рта</span>
         </div>
 
-        <div class="inventory-grid">
-            <div class="inventory-card active-char" data-char-id="boy">
-                <div class="active-badge">✓</div>
-                <span class="char-emoji">👦</span>
-                <span class="char-name">Пацанчик</span>
-            </div>
-
-            <div class="inventory-card" data-char-id="cat">
-                <div class="active-badge">✓</div>
-                <span class="char-emoji">🐱</span>
-                <span class="char-name">Barsik</span>
-            </div>
-
-            <div class="inventory-card" data-char-id="robot">
-                <div class="active-badge">✓</div>
-                <span class="char-emoji">🤖</span>
-                <span class="char-name">Кибер-Бот</span>
-            </div>
-
-            <div class="inventory-card" data-char-id="vampire">
-                <div class="active-badge">✓</div>
-                <span class="char-emoji">🧛</span>
-                <span class="char-name">Дракула</span>
-            </div>
-
-            <div class="inventory-card" data-char-id="ninja">
-                <div class="active-badge">✓</div>
-                <span class="char-emoji">🥷</span>
-                <span class="char-name">Ниндзя</span>
-            </div>
-
-            <div class="inventory-card" data-char-id="ghost">
-                <div class="active-badge">✓</div>
-                <span class="char-emoji">👻</span>
-                <span class="char-name">Призрак</span>
-            </div>
+        <div class="characters-matrix" id="characters-container">
+            <!-- Динамически сгенерируем 30 карточек через JS или вставим шаблоном -->
         </div>
 
     </main>
 
-    <nav class="bottom-navbar">
-        <a href="index.html">
-            <div class="nav-item">
-                <span class="nav-icon">🏠</span>
-                <span class="nav-text">Home</span>
-            </div>
-        </a>
-        <a href="referral.html">
-            <div class="nav-item">
-                <span class="nav-icon">👥</span>
-                <span class="nav-text">Referral</span>
-            </div>
-        </a>
-        
-        <a href="studio.html" class="nav-center-item">
-            <div class="nav-center-btn">
-                <span class="center-icon">⚡</span>
-            </div>
-        </a>
-
-        <a href="obs-settings.html">
-            <div class="nav-item active">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">obs Settings</span>
-            </div>
-        </a>
-        <a href="shop.html">
-            <div class="nav-item">
-                <span class="nav-icon">🛍️</span>
-                <span class="nav-text">Shop</span>
-            </div>
-        </a>
+    <!-- Нижняя панель навигации -->
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="window.location.href='index.html'">
+            <span class="nav-emoji">🏠</span>
+            <span class="nav-text">Home</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='referal.html'">
+            <span class="nav-emoji">👥</span>
+            <span class="nav-text">Referral</span>
+        </div>
+        <div class="nav-item studio-btn-wrapper" onclick="window.location.href='studio.html'">
+            <div class="studio-btn">⚡</div>
+            <span class="nav-text">Studio</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='widgets.html'">
+            <span class="nav-emoji">⚙️</span>
+            <span class="nav-text">Widgets</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='shop.html'">
+            <span class="nav-emoji">🛍️</span>
+            <span class="nav-text">Shop</span>
+        </div>
     </nav>
 
     <script src="obs.js"></script>
