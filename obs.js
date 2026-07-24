@@ -1,73 +1,58 @@
+const tg = window.Telegram?.WebApp;
+if (tg) {
+    tg.ready();
+    tg.expand();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Безопасно ищем элементы на странице
-    const cards = document.querySelectorAll('.inventory-card');
-    const urlBox = document.getElementById('obsUrl');
-    const copyBtn = document.getElementById('copyBtn');
+    const container = document.getElementById('characters-container');
+    const user = tg?.initDataUnsafe?.user;
+    const usernameDisplay = document.getElementById('username-display');
 
-    // ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ПЕРСОНАЖЕЙ
-    if (cards.length > 0 && urlBox) {
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                // Снимаем активный класс со всех карточек
-                cards.forEach(c => c.classList.remove('active-char'));
-                
-                // Добавляем класс текущей выбранной карточке
-                card.classList.add('active-char');
-                
-                // Берем ID персонажа
-                const charId = card.getAttribute('data-char-id') || 'default';
-                
-                // Обновляем ссылку в инпуте
-                urlBox.innerText = `https://beastomni.com/stream/widget?token=user_flatow_777&char=${charId}`;
-            });
-        });
+    if (user?.username) {
+        usernameDisplay.innerText = user.username;
+    } else if (user?.first_name) {
+        usernameDisplay.innerText = user.first_name;
     }
 
-    // ЛОГИКА КОПИРОВАНИЯ ССЫЛКИ
-    if (copyBtn && urlBox) {
-        copyBtn.addEventListener('click', () => {
-            const textToCopy = urlBox.innerText || urlBox.textContent;
-            
-            // Используем современный Clipboard API с фолбеком на случай старых браузеров
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(textToCopy)
-                    .then(() => {
-                        showCopyAlert();
-                    })
-                    .catch(err => {
-                        console.error('Ошибка копирования через Clipboard API:', err);
-                        fallbackCopyText(textToCopy);
-                    });
+    // Генерация 30 персонажей в сетку
+    const avatarsEmojis = ['🤖', '🦊', '🐱', '💀', '👩‍🎤', '🧙‍♂️', '🥷', '🦸‍♂️', '🦁', '👽', 
+                           '🧑‍💻', '⚡', '🐉', '👾', '🧛‍♂️', '🧜‍♀️', '🧞‍♂️', '🤖', '🐯', '🐼',
+                           '🦄', '👺', '👻', '🤖', '🦁', '🦊', '🐱', '💀', '👩‍🎤', '👑'];
+
+    for (let i = 1; i <= 30; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'char-slot';
+        
+        // Первые 10 доступны в Starter, до 20 в Pro, до 30 в Beast
+        let isLocked = i > 10; 
+        let lockHtml = isLocked ? `<i class="fa-solid fa-lock lock-icon"></i>` : ``;
+
+        slot.innerHTML = `
+            <div class="char-avatar-preview">${avatarsEmojis[i-1] || '🤖'}</div>
+            <span class="char-name">Unit #${i < 10 ? '0' + i : i}</span>
+            ${lockHtml}
+        `;
+
+        slot.addEventListener('click', () => {
+            if (isLocked) {
+                tg?.HapticFeedback?.notificationOccurred('error');
+                alert(`Персонаж #${i} заблокирован! Повысьте свой пакет до Pro ($50) или Beast ($100), чтобы разблокировать всех 30 персонажей с живой анимацией рта.`);
             } else {
-                // Старый проверенный способ, если Clipboard API не поддерживается в WebApp
-                fallbackCopyText(textToCopy);
+                tg?.HapticFeedback?.impactOccurred('medium');
+                alert(`Выбран персонаж Unit #${i}. Синхронизация рта и анимация активны!`);
             }
         });
-    }
 
-    // Функция для вывода уведомления (чтобы не спамить стандартным alert)
-    function showCopyAlert() {
-        alert('Ссылка успешно скопирована! Вставьте её в OBS как Источник Браузера.');
-    }
-
-    // Запасной метод копирования для старых WebView внутри Telegram
-    function fallbackCopyText(text) {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed"; // Чтобы не дергался экран
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-            const successful = document.execCommand('copy');
-            if (successful) {
-                showCopyAlert();
-            } else {
-                alert('Не удалось скопировать ссылку. Выделите её вручную.');
-            }
-        } catch (err) {
-            console.error('Фолбек тоже не сработал:', err);
-        }
-        document.body.removeChild(textArea);
+        container.appendChild(slot);
     }
 });
+
+function unlockTier(price, tierLevel) {
+    if (tg && tg.openInvoice) {
+        // Здесь будет вызов инвойса на оплату пакета через Telegram Stars / Crypto / Payment Provider
+        tg.showAlert(`Инициирован запрос на покупку пакета Tier ${tierLevel} за $${price}. Подключение к шлюзу оплаты...`);
+    } else {
+        alert(`Покупка пакета Tier ${tierLevel} ($${price}). В Telegram WebApp оплата откроется автоматически.`);
+    }
+}
