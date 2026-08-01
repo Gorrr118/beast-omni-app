@@ -213,14 +213,13 @@
     </a>
     
    <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
-      <div class="nav-item">
-        <span class="nav-icon">🛍️</span>
-        <span class="nav-text">Shop</span>
-    </div>
+    <span class="nav-emoji">📌</span>
+    <span class="nav-text">Tegs</span>
+</div>
 </a>
 </nav>
 
-    <script>
+   <script>
         document.addEventListener("DOMContentLoaded", () => {
             
             // Имитация скрытия прелоадера после загрузки
@@ -426,7 +425,6 @@ const translations = {
 };
 
 function applyLanguage(lang) {
-    // Простые текстовые узлы
     document.getElementById("user-greeting").textContent = translations[lang].greeting;
     document.getElementById("hero-title").textContent = translations[lang].heroTitle;
     document.getElementById("hero-desc").textContent = translations[lang].heroDesc;
@@ -467,7 +465,7 @@ function applyLanguage(lang) {
     document.getElementById("ref-promo-desc").textContent = translations[lang].refPromoDesc;
     document.getElementById("ref-promo-btn").innerHTML = `<span>${translations[lang].refPromoBtn}</span>`;
     
-    // Блок безопасности (Перерисовывается массивом без поломки верстки)
+    // Блок безопасности
     document.getElementById("security-title").textContent = translations[lang].securityTitle;
     document.getElementById("security-features-container").innerHTML = translations[lang].securityFeatures
         .map(f => `<div class="security-item"><h4>${f.title}</h4><p>${f.desc}</p></div>`)
@@ -478,7 +476,7 @@ function applyLanguage(lang) {
     document.getElementById("support-desc").textContent = translations[lang].supportDesc;
     document.getElementById("support-btn").textContent = translations[lang].supportBtn;
     
-    // Нижнее меню навигации (Замена текстов внутри span элементов)
+    // Нижнее меню навигации
     document.querySelector("#nav-home .nav-text").textContent = translations[lang].navHome;
     document.querySelector("#nav-ref .nav-text").textContent = translations[lang].navRef;
     document.querySelector("#nav-create .nav-text").textContent = translations[lang].navCreate;
@@ -486,21 +484,34 @@ function applyLanguage(lang) {
     document.querySelector("#nav-shop .nav-text").textContent = translations[lang].navShop;
 }
 
-// Вешаем обработчик на переключатель языков
-document.getElementById("lang-dropdown").addEventListener("change", (e) => {
-    applyLanguage(e.target.value);
-});
-    // Слушаем первый клик по экрану, чтобы обойти блокировку звука в браузерах
-    document.addEventListener('click', () => {
-        const music = document.getElementById('beast-bg-audio');
-        
-        if (music && music.paused) {
-            music.volume = 0.05; // Громкость на 5% (чтобы тихо шуршало на фоне)
-            music.play().catch(err => console.log("Браузер заблокировал автоплей:", err));
-        }
-    }, { once: true }); // { once: true } — код сработает только один раз при первом тапе
+// 1. При загрузке страницы проверяем сохраненный в памяти язык
+const savedLang = localStorage.getItem('app_lang') || 'en';
+const langDropdown = document.getElementById("lang-dropdown");
+
+if (langDropdown) {
+    langDropdown.value = savedLang;
+}
+applyLanguage(savedLang);
+
+// 2. Слушаем переключение языка в селекте и сохраняем для всего приложения
+if (langDropdown) {
+    langDropdown.addEventListener("change", (e) => {
+        const chosenLang = e.target.value;
+        localStorage.setItem('app_lang', chosenLang);
+        applyLanguage(chosenLang);
+    });
+}
+
+// Слушаем первый клик по экрану, чтобы обойти блокировку звука в браузерах
+document.addEventListener('click', () => {
+    const music = document.getElementById('beast-bg-audio');
+    
+    if (music && music.paused) {
+        music.volume = 0.05;
+        music.play().catch(err => console.log("Браузер заблокировал автоплей:", err));
+    }
+}, { once: true });
     </script>
 <audio id="beast-bg-audio" src="bg_music.mp3" loop></audio></body>
-</html>
-                                                                  
+</html>                                                         
    
