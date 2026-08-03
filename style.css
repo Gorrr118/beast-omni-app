@@ -1,1069 +1,534 @@
-/* ==========================================================================
-   1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И СБРОС СТИЛЕЙ
-   ========================================================================== */
-:root {
-    --bg-main: #0B0B0C;
-    --bg-card: #151518;
-    --bg-header: #121214;
-    --text-white: #FFFFFF;
-    --text-gray: #94A3B8;
-    --color-purple: #A855F7;
-    --purple-glow: 0 0 20px rgba(168, 85, 247, 0.5);
-    --border-card: 1px solid #232329;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: var(--bg-main);
-    color: var(--text-white);
-    font-family: 'Inter', sans-serif;
-    padding-top: 70px;  /* Отступ под верхний хедер */
-    padding-bottom: 90px; /* Отступ под нижний навбар */
-    overflow-x: hidden;
-}
-
-/* ==========================================================================
-   2. ВЕРХНИЙ ХЕДЕР И СЕЛЕКТОР ЯЗЫКА
-   ========================================================================== */
-.global-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 65px;
-    background-color: var(--bg-header);
-    border-bottom: var(--border-card);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    z-index: 1000;
-}
-
-.user-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #1E1E24;
-    padding: 6px 12px;
-    border-radius: 20px;
-    border: 1px solid #2D2D35;
-}
-
-.username {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.lang-selector select {
-    background-color: #1E1E24;
-    color: var(--text-white);
-    border: 1px solid #2D2D35;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.lang-selector select:focus {
-    border-color: var(--color-purple);
-    box-shadow: var(--purple-glow);
-}
-
-/* ==========================================================================
-   3. ОСНОВНОЙ КОНТЕНТ И ГЕРОЙ-БЛОК
-   ========================================================================== */
-.main-container {
-    max-width: 1200px; /* Немного расширил, чтобы огромные тексты смотрелись солиднее */
-    margin: 0 auto;
-    padding: 15px;
-}
-
-.hero-section {
-    text-align: center;
-    padding: 40px 10px; /* Чуть добавил простора сверху */
-}
-
-.neon-text {
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, #A855F7 0%, #F472B6 50%, #38BDF8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
-    margin-bottom: 20px;
-}
-
-.hero-desc {
-    color: var(--text-gray);
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: 850px; /* Расширил под большой объем текста */
-    margin: 0 auto;
-}
-
-.section-block {
-    margin-top: 45px;
-}
-
-.section-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    padding-left: 10px;
-    border-left: 4px solid var(--color-purple);
-}
-
-/* ==========================================================================
-   4. СЕТКА И КАРТОЧКИ ТАРИФОВ
-   ========================================================================== */
-.tariffs-grid {
-    display: grid;
-    /* Увеличил минимальную ширину до 280px, чтобы длинные списки фичей не сужались в кашу */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.tariff-card {
-    background-color: var(--bg-card);
-    border: var(--border-card);
-    border-radius: 16px;
-    padding: 30px 24px 24px 24px; /* Оптимизировал внутренние паддинги */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: transform; /* Меняем на прямую сборку, выравнивание сделаем за счет margin-top: auto */
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.tariff-card:hover {
-    transform: translateY(-5px);
-    border-color: #3F3F46;
-}
-
-/* Специфические бордеры тарифов */
-.tariff-card.base { border-color: #0284C7; }
-.tariff-card.pro { border-color: var(--color-purple); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); }
-.tariff-card.advanced { border-color: #EA580C; }
-.tariff-card.king { border-color: #EAB308; }
-
-/* Кастомные бэйджи */
-.tariff-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #27272A;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    z-index: 2;
-}
-.tariff-badge.green { background: #0369A1; color: #FFF; }
-.tariff-badge.purple { background: #7C3AED; color: #FFF; }
-.tariff-badge.orange { background: #C2410C; color: #FFF; }
-.tariff-badge.hot { background: var(--color-purple); }
-.tariff-badge.gold { background: #EAB308; color: #000; }
-
-.tariff-name {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    padding-right: 90px; /* Чтобы длинное имя не налезло на абсолютный бейջ */
-}
-
-/* Крутые описания возможностей пакетов */
-.tariff-desc {
-    font-size: 13px;
-    color: #94A3B8;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    /* Убрал min-height: 36px, так как он ломал верстку больших текстов */
-}
-
-/* Цены и кастомные свечения */
-.tariff-price { 
-    font-size: 38px; 
-    font-weight: 800; 
-    margin-bottom: 15px; 
-    margin-top: auto; /* Важнейшая фишка: толкает блок цены и кнопку вниз, выравнивая их в ряд! */
-}
-.tariff-price span { font-size: 14px; color: var(--text-gray); font-weight: 400; }
-
-.price-blue { color: #38BDF8; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
-.price-purple { color: #E879F9; text-shadow: 0 0 15px rgba(232, 121, 249, 0.4); }
-.price-orange { color: #FB923C; text-shadow: 0 0 15px rgba(251, 146, 60, 0.4); }
-.price-gold { color: #FACC15; text-shadow: 0 0 20px rgba(250, 204, 21, 0.5); }
-
-/* Градиентный текст для названий планов */
-.gradient-text-blue { background: linear-gradient(135deg, #38BDF8 0%, #0369A1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.gradient-text-purple { background: linear-gradient(135deg, #F472B6 0%, #A855F7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.gradient-text-orange { background: linear-gradient(135deg, #FDBA74 0%, #EA580C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.gradient-text-gold { background: linear-gradient(135deg, #FDE047 0%, #CA8A04 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 10px rgba(253, 224, 71, 0.2); }
-
-/* Списки преимуществ */
-.tariff-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 25px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    text-align: left;
-}
-
-.tariff-features li {
-    font-size: 13px;
-    color: #94A3B8;
-    line-height: 1.5;
-    position: relative;
-    padding-left: 22px;
-}
-
-/* Цветные галочки */
-.tariff-features li::before { content: "✓"; position: absolute; left: 0; font-weight: 800; }
-.tariff-card.base .tariff-features li::before { color: #38BDF8; }
-.tariff-card.pro .tariff-features li::before { color: #E879F9; }
-.tariff-card.advanced .tariff-features li::before { color: #FB923C; }
-.tariff-card.king .tariff-features li::before { content: "✦"; color: #FACC15; }
-
-/* ==========================================================================
-   5. КНОПКИ ДЕЙСТВИЯ
-   ========================================================================== */
-.btn-action {
-    width: 100%;
-    padding: 14px; /* Чуть увеличил для солидности */
-    border-radius: 10px;
-    border: 1px solid #3F3F46;
-    background: transparent;
-    color: var(--text-white);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-action:hover { background: #27272A; }
-
-.btn-blue { background: #0284C7; border: none; }
-.btn-blue:hover { box-shadow: 0 0 15px rgba(2, 132, 199, 0.6); background: #0369A1; }
-
-.active-btn { background: var(--color-purple); border: none; }
-.active-btn:hover { background: #9333EA; box-shadow: var(--purple-glow); }
-
-.btn-orange { background: #EA580C; border: none; }
-.btn-orange:hover { box-shadow: 0 0 15px rgba(234, 88, 12, 0.6); background: #C2410C; }
-
-.king-btn { background: #EAB308; color: #000; border: none; }
-.king-btn:hover { background: #CA8A04; box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); }
-
-/* ==========================================================================
-   6. ИНФОРМАЦИОННЫЕ БЛОКИ И БЕЗОПАСНОСТЬ
-   ========================================================================== */
-.info-card, .payment-card {
-    background-color: var(--bg-card);
-    border: var(--border-card);
-    border-radius: 16px;
-    padding: 30px; /* Увеличил внутренний отступ */
-    margin-top: 25px;
-}
-
-.block-text {
-    color: var(--text-gray);
-    font-size: 15px;
-    line-height: 1.6;
-}
-
-.payment-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.pay-badge {
-    background: #1E293B;
-    border: 1px solid #334155;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.pay-badge.crypto {
-    background: #14532D;
-    border-color: #166534;
-}
-
-/* Блок безопасности */
-.security-card {
-    background: linear-gradient(135deg, #151518 0%, #0F172A 100%);
-    border: var(--border-card);
-    border-radius: 16px;
-    padding: 30px;
-    margin-bottom: 30px;
-}
-
-.security-grid {
-    display: grid;
-    /* Увеличил до 260px для читаемости развернутых описаний */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-top: 25px;
-}
-
-.security-item {
-    background: #1E293B;
-    padding: 22px; /* Чуть просторнее */
-    border-radius: 12px;
-    border: 1px solid #334155;
-    text-align: left;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.security-item:hover {
-    transform: scale(1.02);
-    border-color: #A855F7;
-}
-
-.security-item h4 {
-    color: #38BDF8;
-    margin-bottom: 12px;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.security-item p {
-    color: var(--text-gray);
-    font-size: 13.5px;
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* ==========================================================================
-   7. ПОДВАЛ И НАВБАР
-   ========================================================================== */
-.support-footer {
-    margin-top: 45px;
-    background: linear-gradient(135deg, #151518 0%, #241435 100%);
-    border: var(--border-card);
-    border-radius: 16px;
-    padding: 35px;
-    text-align: center;
-}
-
-.support-content h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
-.support-content p { color: var(--text-gray); font-size: 14.5px; line-height: 1.6; margin-bottom: 25px; }
-
-.btn-support {
-    display: inline-block;
-    background: var(--color-purple);
-    color: var(--text-white);
-    text-decoration: none;
-    padding: 14px 28px;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-support:hover { box-shadow: var(--purple-glow); transform: scale(1.02); }
-/* ==========================================================================
-   ФИКС И СТИЛИЗАЦИЯ НИЖНЕГО НАВБАРА И ЦЕНТРАЛЬНОЙ КНОПКИ СТУДИИ
-   ========================================================================== */
-
-.bottom-navbar {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 70px !important;
-    background-color: #0d0d12 !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-    display: flex !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-    z-index: 9999 !important;
-    box-sizing: border-box !important;
-    padding-bottom: env(safe-area-inset-bottom) !important;
-    overflow: visible !important; /* Важно, чтобы приподнятая кнопка не обрезалась */
-}
-
-/* Обычные элементы меню */
-.bottom-navbar > a {
-    text-decoration: none !important;
-    display: flex !important;
-    flex: 1 !important;
-    height: 100% !important;
-    justify-content: center !important;
-}
-
-.nav-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-decoration: none !important;
-    color: #747d8c !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 11px !important;
-    font-weight: 600 !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.nav-item .nav-icon {
-    font-size: 20px !important;
-    margin-bottom: 3px !important;
-}
-
-.nav-item.active {
-    color: #c77dff !important;
-}
-
-/* === ЦЕНТРАЛЬНАЯ КНОПКА СТУДИЯ (ПРИПОДНЯТАЯ ⚡) === */
-.nav-center-item-link {
-    overflow: visible !important;
-}
-
-.nav-center-item {
-    position: relative !important;
-    top: -14px !important; /* Эффектно задираем кнопку вверх над панелью */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-decoration: none !important;
-    width: 100% !important;
-}
-
-.nav-center-btn {
-    width: 50px !important;
-    height: 50px !important;
-    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%) !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.7) !important;
-    border: 2px solid #0B0B0C !important;
-    transition: transform 0.3s ease !important;
-}
-
-.nav-center-item:hover .nav-center-btn {
-    transform: scale(1.1) rotate(10deg);
-}
-
-.center-icon {
-    font-size: 22px !important;
-    color: #FFFFFF !important;
-}
-
-.nav-center-item .center-text {
-    margin-top: 4px !important;
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    background: linear-gradient(90deg, #A855F7, #F472B6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Отступ для контента, чтоб нижнее меню ничего не перекрывало */
-.main-container {
-    padding-bottom: 90px !important;
-}
-/* ==================== ОБНОВЛЕННЫЙ КИБЕРПАНК ДРОПДАУН ==================== */
-#lang-dropdown {
-    background: rgba(20, 15, 35, 0.7); /* Чуть плотнее фон */
-    color: #fff; 
-    border: 2px solid #9d4edd; 
-    border-radius: 10px; 
-    padding: 6px 10px 6px 14px; /* Увеличили отступ слева, чтобы флаг не лип к рамке */
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 700; /* Делаем текст в селекте жирным */
-    cursor: pointer;
-    outline: none;
-    backdrop-filter: blur(12px); 
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 0 12px rgba(157, 78, 221, 0.4); 
-    transition: all 0.3s ease;
-    appearance: none; 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-right: 32px; 
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239d4edd' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-}
-
-#lang-dropdown:hover {
-    border-color: #c77dff;
-    box-shadow: 0 0 18px rgba(199, 125, 255, 0.7);
-    transform: translateY(-1px);
-}
-
-#lang-dropdown option {
-    background: #140f23; 
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    padding: 10px;
-}
-
-/* ==================== СУПЕР-ЖИРНЫЕ ШРИФТЫ ДЛЯ РУССКОГО ==================== */
-/* Принудительно ставим самый массивный вес шрифта для всех важных элементов */
-.neon-text, .tariff-name, .section-title, .security-item h4 {
-    font-family: 'Unbounded', sans-serif !important; 
-    font-weight: 900 !important; /* Ультра-жирный стиль (King Size) */
-    letter-spacing: -0.02em;
-}
-
-/* Делаем обычный текст и описания чуть плотнее, чтобы на русском не казались блеклыми */
-.hero-desc, .tariff-desc, .block-text, .security-item p, .tariff-features li {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 600; /* Делаем полужирным весь контент */
-    line-height: 1.5;
-    opacity: 0.95; /* Повышаем читаемость */
-}
-
-/* ==================== ФИКС КАРТОЧЕК (УБИРАЕМ ВЫСТУПЫ) ==================== */
-/* Для тарифов оставляем контроль высоты */
-.tariff-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 460px; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Для безопасности УБИРАЕМ фиксированную высоту, добавляем аккуратные паддинги */
-.security-item {
-    height: auto !important; /* Отменяем жесткую высоту */
-    min-height: 0 !important; /* Сбрасываем пустые выступы */
-    padding: 24px !important; /* Делаем красивые аккуратные отступы внутри */
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Расстояние между заголовком и текстом внутри карточки */
-}
-/* ==================== КИБЕРПАНК ЭКРАН ЗАГРУЗКИ ==================== */
-#app-preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0a0516; /* Глубокий темный фон */
-    z-index: 99999; /* Жестко поверх всех элементов */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.preloader-content {
-    text-align: center;
-    width: 80%;
-    max-width: 400px;
-}
-
-/* Анимированный логотип */
-.preloader-logo {
-    font-family: 'Unbounded', sans-serif !important;
-    font-weight: 900;
-    font-size: 32px;
-    color: #fff;
-    text-shadow: 0 0 10px #9d4edd, 0 0 30px #9d4edd;
-    margin-bottom: 30px;
-    letter-spacing: 0.05em;
-    animation: logo-pulsate 2s infinite ease-in-out;
-}
-
-/* Контейнер для линии прогресса */
-.progress-bar-container {
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
-    margin-bottom: 15px;
-}
-
-/* Сама светящаяся линия */
-.progress-bar-line {
-    width: 0%; /* Стартуем с нуля */
-    height: 100%;
-    background: linear-gradient(90deg, #7b2cbf, #c77dff);
-    box-shadow: 0 0 12px #9d4edd, 0 0 20px #c77dff;
-    border-radius: 10px;
-    /* Анимация заполнения линии на 3 секунды */
-    animation: fill-progress 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Текст статуса под линией */
-.preloader-status {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: #9d4edd;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.7;
-}
-
-/* Класс для плавного исчезновения */
-#app-preloader.fade-out {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(1.05); /* Легкий эффект улетания в экран */
-}
-
-/* КЛЮЧЕВЫЕ КАДРЫ ДЛЯ АНИМАЦИЙ */
-@keyframes fill-progress {
-    0% { width: 0%; }
-    20% { width: 15%; }
-    40% { width: 55%; }
-    80% { width: 85%; }
-    100% { width: 100%; }
-}
-
-@keyframes logo-pulsate {
-    0%, 100% { text-shadow: 0 0 10px #9d4edd, 0 0 25px #9d4edd; transform: scale(1); }
-    50% { text-shadow: 0 0 20px #c77dff, 0 0 40px #c77dff; transform: scale(1.02); }
-}
-/* ==================== СТИЛИ ДЛЯ РЕФЕРАЛЬНОГО БЛОКА НА ГЛАВНОЙ ==================== */
-.referral-promo-block {
-    background: linear-gradient(135deg, rgba(26, 17, 47, 0.6) 0%, rgba(15, 10, 30, 0.8) 100%);
-    border: 2px solid #7b2cbf;
-    border-radius: 16px;
-    padding: 30px 20px;
-    margin: 25px 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(123, 44, 191, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-/* Эффект неонового сияния на фоне */
-.referral-promo-block::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(157, 78, 221, 0.15) 0%, transparent 60%);
-    pointer-events: none;
-}
-
-.ref-icon-glow {
-    font-size: 40px;
-    margin-bottom: 10px;
-    filter: drop-shadow(0 0 10px #9d4edd);
-    animation: floating-icon 3s infinite ease-in-out;
-}
-
-/* Мощная кибер-кнопка "Пригласить друга" */
-.ref-invite-btn {
-    background: linear-gradient(90deg, #9d4edd, #c77dff);
-    color: #fff;
-    border: none;
-    padding: 14px 32px;
-    font-family: 'Unbounded', sans-serif !important;
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
-    transition: all 0.3s ease;
-    margin-top: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.ref-invite-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(199, 125, 255, 0.8);
-    background: linear-gradient(90deg, #a85cfc, #d291ff);
-}
-
-.ref-invite-btn:active {
-    transform: translateY(1px);
-}
-
-/* Анимация покачивания ракеты */
-@keyframes floating-icon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-/* Фикс нижнего меню */
-.bottom-navbar {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 70px !important;
-    background-color: #0d0d12 !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-    display: flex !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-    z-index: 9999 !important;
-    box-sizing: border-box !important;
-    padding-bottom: env(safe-area-inset-bottom) !important;
-}
-
-.nav-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-decoration: none !important;
-    color: #747d8c !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 11px !important;
-    font-weight: 600 !important;
-    flex: 1 !important;
-    height: 100% !important;
-}
-
-.nav-item .nav-icon {
-    font-size: 20px !important;
-    margin-bottom: 3px !important;
-}
-
-.nav-item.active {
-    color: #c77dff !important;
-}
-
-/* Центральная кнопка Студия (⚡) */
-.nav-center-item {
-    position: relative !important;
-    top: -10px !important;
-    overflow: visible !important;
-}
-
-.nav-center-btn {
-    width: 50px !important;
-    height: 50px !important;
-    background: linear-gradient(135deg, #b55fe6, #ea6bee) !important;
-    border-radius: 50 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 0 15px rgba(200, 80, 230, 0.555) !important;
-}
-
-.nav-center-btn .center-icon {
-    font-size: 22px !important;
-    color: #ffffff !important;
-}
-
-.nav-center-item .center-text {
-    margin-top: 7px !important;
-}
-
-/* Отступ для контента, чтоб не перекрывало */
-.main-container {
-    padding-bottom: 90px !important;
-}
-/* === КИБЕРПАНК ФУТЕР ПОДДЕРЖКИ === */
-.support-footer {
-    margin: 40px 20px 120px 20px;
-    padding: 30px;
-    background: linear-gradient(135deg, rgba(20, 20, 28, 0.8), rgba(13, 13, 18, 0.9));
-    border: 1px solid rgba(199, 125, 255, 0.15);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(199, 125, 255, 0.05);
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-/* Свечение и полоса слева */
-.support-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(to bottom, #c77dff, #6c5ce7);
-}
-
-.support-top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.support-footer h3 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 20px;
-    color: #ffffff;
-    margin: 0;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Пульсирующий индикатор Онлайн */
-.support-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(46, 213, 115, 0.1);
-    border: 1px solid rgba(46, 213, 115, 0.25);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    color: #2ed573;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.pulse-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #2ed573;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #2ed573;
-    animation: cyberPulse 2s infinite;
-}
-
-@keyframes cyberPulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 213, 115, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(46, 213, 115, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 213, 115, 0); }
-}
-
-.support-footer p {
-    font-family: 'Inter', sans-serif;
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: #a4b0be;
-    margin: 0 0 25px 0;
-}
-
-/* Кнопка с градиентом */
-.btn-support-cyber {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #6c5ce7, #b55fe6);
-    border: none;
-    border-radius: 12px;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-sizing: border-box;
-}
-
-.btn-support-cyber:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(181, 95, 230, 0.5);
-    background: linear-gradient(135deg, #786fa6, #c77dff);
-}
-
-.btn-support-cyber:active {
-    transform: translateY(0);
-}
-/* === МИНИ-ФУТЕР (ССЫЛКИ И КОПИРАЙТ) === */
-.site-sub-footer {
-    /* Отступ снизу 140px, чтобы контент не перекрывался прижатым к низу меню */
-    margin: 0 20px 140px 20px; 
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-}
-
-/* Блок со ссылками */
-.sub-footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap; /* Если экран слишком узкий, ссылки перенесутся на новую строку */
-}
-
-.sub-footer-links a {
-    color: #747d8c;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-/* Легкая подсветка при нажатии */
-.sub-footer-links a:hover, 
-.sub-footer-links a:active {
-    color: #c77dff; 
-}
-
-/* Копирайт */
-.sub-footer-copyright {
-    color: #57606f;
-    text-align: center;
-    letter-spacing: 0.3px;
-}
-/* ==========================================================================
-   ПРОФЕССИОНАЛЬНЫЙ ФУТТЕР (СЕТКА ПО 2 В РЯД)
-   ========================================================================== */
-
-.pro-footer {
-    background: linear-gradient(180deg, #0B0B0C 0%, #070708 100%);
-    border-top: 1px solid rgba(168, 85, 247, 0.2);
-    padding: 40px 15px 110px 15px;
-    margin-top: 60px;
-    color: #94A3B8;
-    font-family: 'Inter', sans-serif;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 30px;
-    justify-content: space-between;
-}
-
-/* Первый блок (о бренде) на всю ширину сверху */
-.footer-col.brand-col {
-    width: 100% !important;
-    margin-bottom: 10px;
-}
-
-/* Остальные 3 блока встают ровно по 2 штуки в ряд (примерно по 48% ширины) */
-.footer-col {
-    width: 48% !important;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background: rgba(21, 21, 24, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 12px;
-    box-sizing: border-box;
-}
-
-.footer-logo {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: 22px;
-    font-weight: 900;
-    background: linear-gradient(90deg, #A855F7, #F472B6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0;
-}
-
-.footer-about {
-    font-size: 13px;
-    line-height: 1.5;
-    color: #71717A;
-    margin: 0;
-}
-
-.footer-socials {
-    display: flex;
-    gap: 10px;
-    margin-top: 5px;
-}
-
-.social-icon {
-    width: 34px;
-    height: 34px;
-    background: #151518;
-    border: 1px solid #232329;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.footer-title {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: 14px;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin: 0 0 5px 0;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.footer-links a {
-    color: #94A3B8;
-    text-decoration: none;
-    font-size: 13px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.status-badge-mini {
-    background: rgba(46, 213, 115, 0.15);
-    color: #2ED573;
-    font-size: 9px;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-weight: 700;
-}
-
-/* Нижняя копирайт-полоса */
-.footer-bottom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    font-size: 11px;
-    color: #52525B;
-}
-
-.footer-bottom p {
-    margin: 0;
-}
-
-.footer-legal-links {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.footer-links a:hover,
-.footer-legal-links a:hover {
-    color: #C77DFF;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beast Omni</title>
+    <link rel="stylesheet" href="style.css?v=1.01">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        .app-tab {
+            display: none;
+        }
+        .app-tab.active-tab {
+            display: block;
+        }
+    </style>
+</head>
+<body translate="no">
+
+    <div id="app-preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-logo">Beast Omni</h1>
+            <div class="progress-bar-container">
+                <div class="progress-bar-line"></div>
+            </div>
+            <span class="preloader-status">Loading Ecosystem...</span>
+        </div>
+    </div>
+
+    <header class="global-header">
+        <div class="user-box">
+            <span class="user-icon">⚡</span>
+            <span class="username" id="user-greeting">Hello, filatow</span>
+        </div>
+        <select id="lang-dropdown">
+            <option value="en">🇺🇸 US</option>
+            <option value="ru">🇷🇺 RU</option>
+        </select>
+    </header>
+
+    <main class="main-container">
+        
+        <div id="tab-home" class="app-tab active-tab">
+            
+            <section class="hero-section">
+                <h1 class="neon-text" id="hero-title">TEGS</h1>
+                <p class="hero-desc" id="hero-desc">An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.</p>
+            </section>
+
+            <section class="section-block">
+                <h2 class="section-title" id="tariffs-title">Available Tariffs</h2>
+                <div class="tariffs-grid">
+                    
+                    <div class="tariff-card base">
+                        <div class="tariff-badge green">SHORTS / REELS</div>
+                        <h3 class="tariff-name gradient-text-blue" id="t1-name">SHORTS BASE</h3>
+                        <p class="tariff-desc" id="t1-desc">Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life with specialized interactive mechanics designed specifically for fast-paced content, helping you stand out in smart algorithms, capture viewer attention from the first second, and boost your organic metric growth effortlessly!</p>
+                        <p class="tariff-price price-blue">$10<span>/mo</span></p>
+                        <ul class="tariff-features" id="t1-features">
+                            <li>Ideal solution for TikTok, Shorts & Reels creators looking for steady explosive growth</li>
+                            <li>1 active interactive widget running simultaneously on your account without any delays</li>
+                            <li>Full access to standard system fonts and basic text layouts for clean styling</li>
+                            <li>Strict limit: 500 processing views per month, tailored for starting projects and testing core features</li>
+                        </ul>
+                        <button class="btn-action btn-blue" id="t1-btn">Activate</button>
+                    </div>
+
+                    <div class="tariff-card pro">
+                        <div class="tariff-badge purple">POPULAR</div>
+                        <h3 class="tariff-name gradient-text-purple" id="t2-name">MEDIUM PRO</h3>
+                        <p class="tariff-desc" id="t2-desc">The choice of active streamers. Complete audience immersion without watermarks and with neon fonts! This tier offers deeper customization tools, allowing you to establish a strong visual bond with your chat, launch multi-layered interactive alerts, and elevate your production value to professional streaming standards.</p>
+                        <p class="tariff-price price-purple">$30<span>/mo</span></p>
+                        <ul class="tariff-features" id="t2-features">
+                            <li>Up to 10 simultaneously running widgets to handle sub goals, chat alerts, and active alerts at once</li>
+                            <li>Complete removal of TEGS watermark from all overlays to keep your stream brand 100% clean</li>
+                            <li>Unrestricted access to the starter collection of characters, complete with smooth animations</li>
+                            <li>5 premium glowing neon fonts of your choice to perfectly match your channel's unique aesthetic</li>
+                            <li>Extended limit: 15,000 processed views per month, ideal for channels with active, growing communities</li>
+                        </ul>
+                        <button class="btn-action active-btn" id="t2-btn">Buy PRO</button>
+                    </div>
+
+                    <div class="tariff-card advanced">
+                        <div class="tariff-badge orange">EXTENDED</div>
+                        <h3 class="tariff-name gradient-text-orange" id="t3-name">ADVANCED OMNI</h3>
+                        <p class="tariff-desc" id="t3-desc">Hardcore creator level. Premium game and anime characters that make your stream unforgettable! Unlock state-of-the-art interactive systems, complex triggering conditions, and elite-tier design features that completely redefine how your live chat influences your stream overlay in real-time broadcasts.</p>
+                        <p class="tariff-price price-orange">$50<span>/mo</span></p>
+                        <ul class="tariff-features" id="t3-features">
+                            <li>Extended functionality, higher API priority, and massively increased volume limits for power users</li>
+                            <li>Up to 25 simultaneously running widgets, allowing you to craft a completely unique custom interface</li>
+                            <li>Access to premium game and anime characters with special event triggers and reactive gestures</li>
+                            <li>10 exclusive cyber-fonts to choose from, guaranteeing high-tech look for alerts and overlays</li>
+                            <li>High limit: 50,000 views per month, engineered for established streamers with heavy daily chat interactions</li>
+                        </ul>
+                        <button class="btn-action btn-orange" id="t3-btn">Upgrade</button>
+                    </div>
+
+                    <div class="tariff-card king">
+                        <div class="tariff-badge gold">UNLIMITED</div>
+                        <h3 class="tariff-name gradient-text-gold" id="t4-name">ULTIMATE KING</h3>
+                        <p class="tariff-desc" id="t4-desc">Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here! This is the ultimate corporate-grade solution for elite content creators and streaming organizations who require maximum performance, unique assets, and absolute creative freedom without boundaries.</p>
+                        <p class="tariff-price price-gold">$100<span>/mo</span></p>
+                        <ul class="tariff-features" id="t4-features">
+                            <li>Absolute unlimited widget creation and parallel operations with maximum server response speeds</li>
+                            <li>Full unhindered access to ALL premium characters, special variants, and hidden legendary fonts</li>
+                            <li>Exclusive animated voice packs included completely for free to shock and entertain your audience</li>
+                            <li>Max FPS mode for hyper-smooth web animations and fluid widget rendering directly inside OBS Studio</li>
+                            <li>Priority VIP support 24/7 with a dedicated personal account manager to solve any technical issues instantly</li>
+                        </ul>
+                        <button class="btn-action king-btn" id="t4-btn">Become KING</button>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="section-block info-card">
+                <h2 class="section-title" id="shop-info-title">In-App Store</h2>
+                <p class="block-text" id="shop-info-desc">Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.</p>
+            </section>
+
+            <section class="section-block payment-card">
+                <h2 class="section-title" id="payment-title">Convenient and Fast Payments</h2>
+                <p class="block-text" id="payment-desc">We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.</p>
+                <div class="payment-icons">
+                    <span class="pay-badge">⭐ Telegram Stars</span>
+                    <span class="pay-badge crypto">💎 TG Wallet / Crypto</span>
+                </div>
+            </section>
+
+            <div class="referral-promo-block">
+                <div class="ref-promo-content">
+                    <div class="ref-icon-glow">🚀</div>
+                    <h3 id="ref-promo-title" class="neon-text">Referral System</h3>
+                    <p id="ref-promo-desc" class="block-text">
+                        Invite your friends to the TEGS ecosystem and get exclusive, awesome rewards from every purchase your friends make! Build your own elite network and scale together.
+                    </p>
+                    <button id="ref-promo-btn" class="btn-primary ref-invite-btn">
+                        <span>👤 Invite Friend</span>
+                    </button>
+                </div>
+            </div>
+
+            <section class="section-block security-card">
+                <h2 class="section-title" id="security-title">Enterprise-Grade Security</h2>
+                <div class="security-grid" id="security-features-container">
+                    
+                    <div class="security-item">
+                        <h4>🔒 AES-256 Encryption</h4>
+                        <p>All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side using the military-grade AES-256 protocol. This prevents data leaks and ensures that no malicious third party can ever gain access to your stream keys, sensitive internal configurations, or private user credentials under any circumstances.</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <h4>🛡️ Telegram Sandbox</h4>
+                        <p>Authorization is strictly managed through official Telegram WebApp cryptohash verification structures. Your personal data is fully safe because our system operates in a complete sandbox environment, preventing unauthorized sessions, token spoofing, or credential sniffing, making login attempts 100% ironclad and authenticated.</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <h4>💎 Secure Payments</h4>
+                        <p>We never store credit card numbers, banking details, or sensitive financial logs on our databases. All incoming transactions go through the official Telegram Stars engine or heavily secured non-custodial crypto networks, providing a decentralized, audited, and completely secure processing pipe for absolute peace of mind.</p>
+                    </div>
+                    
+                    <div class="security-item">
+                        <h4>⚡ Zero Vulnerability</h4>
+                        <p>Widget source code is completely sandboxed inside the OBS Browser Source architecture. This strict isolation ensures zero performance drops, zero background telemetry tracking, and total protection against malicious cross-site scripting or malware injection, keeping your local gaming computer running at peak FPS capacity.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <footer class="support-footer">
+                <div class="support-top-bar">
+                    <h3 id="support-title">Have any questions?</h3>
+                    <div class="support-status">
+                        <span class="pulse-dot"></span>
+                        <span>Online</span>
+                    </div>
+                </div>
+                
+                <p id="support-desc">Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.</p>
+                
+                <a href="https://t.me/BeastOmniSupport" target="_blank" class="btn-support-cyber" id="support-btn">💬 Contact Support</a>
+            </footer>
+        </div>
+    </main>
+
+    <nav class="bottom-navbar">
+        <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+            </div>
+        </a>
+        
+        <a href="referals.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Referral</span>
+            </div>
+        </a>
+        
+      <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-center-item">
+                <div class="nav-center-btn">
+                    <span class="center-icon">⚡</span>
+                </div>
+                <span class="nav-text center-text">Studio</span>
+            </div>
+        </a>
+        
+        <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">obs Settings</span>
+            </div>
+        </a>
+        
+       <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">🏷️</span>
+                <span class="nav-text">Tegs</span>
+            </div>
+        </a>
+    </nav>
+  <!-- МИНИМАЛИСТИЧНЫЙ КИБЕР-ФУТТЕР -->
+    <footer class="clean-footer">
+        <div class="clean-footer-content">
+            <a href="#faq" class="footer-chip">📌 FAQ & Guides</a>
+            <a href="https://t.me/BeastOmniSupport" target="_blank" class="footer-chip">💬 Admin Support</a>
+            <a href="https://t.me/BeastOmniSupport" target="_blank" class="footer-chip">📢 Advertising</a>
+            <a href="https://t.me/BeastOmniSupport" target="_blank" class="footer-chip">⚡ API Status</a>
+        </div>
+        <div class="clean-footer-copy">
+            © 2026 TEGS Ecosystem. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
+   <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // Имитация скрытия прелоадера после загрузки
+            const preloader = document.getElementById("app-preloader");
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = "0";
+                    setTimeout(() => {
+                        preloader.style.display = "none";
+                    }, 500);
+                }, 1000);
+            }
+
+            // Карта соответствия Кнопок Меню и Экранов (Tabs)
+            const navTabsMap = {
+                "nav-home": "tab-home",
+                "nav-ref": "tab-referral",
+                "nav-create": "tab-create",
+                "nav-widget": "tab-widget",
+                "nav-shop": "tab-shop"
+            };
+
+            // Переключение вкладок через нижнее меню
+            Object.keys(navTabsMap).forEach(navId => {
+                const navButton = document.getElementById(navId);
+                if (navButton) {
+                    navButton.addEventListener("click", (e) => {
+                        e.preventDefault();
+
+                        // 1. Сбрасываем активный класс у всех кнопок навигации
+                        Object.keys(navTabsMap).forEach(id => {
+                            const btn = document.getElementById(id);
+                            if (btn) btn.classList.remove("active");
+                        });
+                        // Подсвечиваем текущую нажатую кнопку
+                        navButton.classList.add("active");
+
+                        // 2. Прячем все экраны приложений
+                        Object.values(navTabsMap).forEach(tabId => {
+                            const tabElement = document.getElementById(tabId);
+                            if (tabElement) tabElement.classList.remove("active-tab");
+                        });
+                        // Показываем нужный экран
+                        const targetTabId = navTabsMap[navId];
+                        const activeTab = document.getElementById(targetTabId);
+                        if (activeTab) activeTab.classList.add("active-tab");
+                    });
+                }
+            });
+
+            // === ЛОГИКА ПЕРЕХОДА НА ВКЛАДКУ РЕФЕРАЛОВ ПО КЛИКУ НА РАКЕТУ ===
+            const promoBtn = document.getElementById("ref-promo-btn");
+            if (promoBtn) {
+                promoBtn.addEventListener("click", () => {
+                    // Программный клик по кнопке "Referral" в нижнем меню
+                    const refNavButton = document.getElementById("nav-ref");
+                    if (refNavButton) {
+                        refNavButton.click();
+                    }
+                });
+            }
+
+        });
+    </script>
+    <script src="navbar.js"></script>
+    <script src="script.js?v=1.0.6"></script>
+    <script>
+const translations = {
+    en: {
+        greeting: "Hello, filatow",
+        heroTitle: "BEAST OMNI",
+        heroDesc: "An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.",
+        tariffsTitle: "Available Tariffs",
+        t1Name: "SHORTS BASE",
+        t1Desc: "Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life with specialized interactive mechanics designed specifically for fast-paced content, helping you stand out in smart algorithms, capture viewer attention from the first second, and boost your organic metric growth effortlessly!",
+        t1Features: [
+            "Ideal solution for TikTok, Shorts & Reels creators looking for steady explosive growth",
+            "1 active interactive widget running simultaneously on your account without any delays",
+            "Full access to standard system fonts and basic text layouts for clean styling",
+            "Strict limit: 500 processing views per month, tailored for starting projects and testing core features"
+        ],
+        t1Btn: "Activate",
+        t2Name: "MEDIUM PRO",
+        t2Desc: "The choice of active streamers. Complete audience immersion without watermarks and with neon fonts! This tier offers deeper customization tools, allowing you to establish a strong visual bond with your chat, launch multi-layered interactive alerts, and elevate your production value to professional streaming standards.",
+        t2Features: [
+            "Up to 10 simultaneously running widgets to handle sub goals, chat alerts, and active alerts at once",
+            "Complete removal of Beast Omni watermark from all overlays to keep your stream brand 100% clean",
+            "Unrestricted access to the starter collection of characters, complete with smooth animations",
+            "5 premium glowing neon fonts of your choice to perfectly match your channel's unique aesthetic",
+            "Extended limit: 15,000 processed views per month, ideal for channels with active, growing communities"
+        ],
+        t2Btn: "Buy PRO",
+        t3Name: "ADVANCED OMNI",
+        t3Desc: "Hardcore creator level. Premium game and anime characters that make your stream unforgettable! Unlock state-of-the-art interactive systems, complex triggering conditions, and elite-tier design features that completely redefine how your live chat influences your stream overlay in real-time broadcasts.",
+        t3Features: [
+            "Extended functionality, higher API priority, and massively increased volume limits for power users",
+            "Up to 25 simultaneously running widgets, allowing you to craft a completely unique custom interface",
+            "Access to premium game and anime characters with special event triggers and reactive gestures",
+            "10 exclusive cyber-fonts to choose from, guaranteeing high-tech look for alerts and overlays",
+            "High limit: 50,000 views per month, engineered for established streamers with heavy daily chat interactions"
+        ],
+        t3Btn: "Upgrade",
+        t4Name: "ULTIMATE KING",
+        t4Desc: "Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here! This is the ultimate corporate-grade solution for elite content creators and streaming organizations who require maximum performance, unique assets, and absolute creative freedom without boundaries.",
+        t4Features: [
+            "Absolute unlimited widget creation and parallel operations with maximum server response speeds",
+            "Full unhindered access to ALL premium characters, special variants, and hidden legendary fonts",
+            "Exclusive animated voice packs included completely for free to shock and entertain your audience",
+            "Max FPS mode for hyper-smooth web animations and fluid widget rendering directly inside OBS Studio",
+            "Priority VIP support 24/7 with a dedicated personal account manager to solve any technical issues instantly"
+        ],
+        t4Btn: "Become KING",
+        shopTitle: "In-App Store",
+        shopDesc: "Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.",
+        paymentTitle: "Convenient and Fast Payments",
+        paymentDesc: "We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.",
+        refPromoTitle: "Referral System",
+        refPromoDesc: "Invite your friends to the Beast Omni ecosystem and get exclusive, awesome rewards from every purchase your friends make! Build your own elite network and scale together.",
+        refPromoBtn: "👤 Invite Friend",
+        securityTitle: "Enterprise-Grade Security",
+        securityFeatures: [
+            { title: "🔒 AES-256 Encryption", desc: "All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side using the military-grade AES-256 protocol. This prevents data leaks and ensures that no malicious third party can ever gain access to your stream keys, sensitive internal configurations, or private user credentials under any circumstances." },
+            { title: "🛡️ Telegram Sandbox", desc: "Authorization is strictly managed through official Telegram WebApp cryptohash verification structures. Your personal data is fully safe because our system operates in a complete sandbox environment, preventing unauthorized sessions, token spoofing, or credential sniffing, making login attempts 100% ironclad and authenticated." },
+            { title: "💎 Secure Payments", desc: "We never store credit card numbers, banking details, or sensitive financial logs on our databases. All incoming transactions go through the official Telegram Stars engine or heavily secured non-custodial crypto networks, providing a decentralized, audited, and completely secure processing pipe for absolute peace of mind." },
+            { title: "⚡ Zero Vulnerability", desc: "Widget source code is completely sandboxed inside the OBS Browser Source architecture. This strict isolation ensures zero performance drops, zero background telemetry tracking, and total protection against malicious cross-site scripting or malware injection, keeping your local gaming computer running at peak FPS capacity." }
+        ],
+        supportTitle: "Have any questions?",
+        supportDesc: "Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.",
+        supportBtn: "💬 Contact Support",
+        navHome: "Home",
+        navRef: "Referral",
+        navCreate: "Studio",
+        navWidget: "Widgets",
+        navShop: "Shop"
+    },
+    ru: {
+        greeting: "Привет, filatow",
+        heroTitle: "BEAST OMNI",
+        heroDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs. Расширяйте границы своего вещания, увеличивайте удержание аудитории в несколько раз и масштабируйте личный бренд с помощью передовых технологий автоматизации, которые работают плавно, бесшовно и без высокой нагрузки на процессор вашей игровой станции.",
+        tariffsTitle: "Доступные Тарифы",
+        t1Name: "SHORTS BASE",
+        t1Desc: "Идеальный старт для авторов вертикального контента. Оживите свои TikTok, Shorts и Reels с помощью специализированных интерактивных механик, разработанных специально для динамичного контента! Это поможет вам выделяться в умных алгоритмах, захватывать внимание зрителя с первой секунды и без особых усилий форсировать органический рост метрик вашего канала.",
+        t1Features: [
+            "Идеал для авторов TikTok, Shorts и Reels, стремящихся к стабильному взрывному росту",
+            "1 активный интерактивный виджет, работающий одновременно на вашем аккаунте без каких-либо задержек",
+            "Полный доступ к стандартным системным шрифтам и базовым текстовым макетам для лаконичного стиля",
+            "Строгий лимит: 500 просмотров в месяц, оптимизированный для стартовых проектов и тестирования основных функций"
+        ],
+        t1Btn: "Активировать",
+        t2Name: "MEDIUM PRO",
+        t2Desc: "Выбор активных стримеров. Полное погружение зрителей, без водяных знаков и со светящимися шрифтами! Этот уровень предлагает более глубокие инструменты кастомизации, позволяя вам установить прочную визуальную связь с чатом, запускать многослойные интерактивные оповещения и поднять общее качество продакшена до профессиональных стандартов стриминга.",
+        t2Features: [
+            "До 10 одновременно работающих виджетов для вывода целей подписок, чат-оповещений и активных алертов",
+            "Полное удаление водяного знака Beast Omni со всех оверлеев, чтобы бренд вашего стрима оставался на 100% чистым",
+            "Неограниченный доступ к стартовой коллекции уникальных интерактивных персонажей с плавной анимацией движений",
+            "5 премиальных светящихся неоновых шрифтов на ваш выбор, чтобы идеально соответствовать эстетике канала",
+            "Расширенный лимит: 15 000 просмотров в месяц, идеально подходят для каналов с активными и растущими сообществами"
+        ],
+        t2Btn: "Купить PRO",
+        t3Name: "ADVANCED OMNI",
+        t3Desc: "Уровень хардкор-креатора. Премиум-персонажи из игр и аниме, которые сделают твой стрим незабываемым! Разблокируйте ультрасовременные интерактивные системы, сложные условия триггеров и элементы дизайна элитного уровня, которые полностью перевернут представление о том, как живой чат влияет на ваш стрим-оверлей в реальном времени.",
+        t3Features: [
+            "Расширенный функционал, повышенный приоритет API и значительно увеличенные лимиты для продвинутых юзеров",
+            "До 25 одновременно работающих виджетов, позволяющих собрать полностью уникальный кастомный интерфейс",
+            "Доступ к премиум-персонажам игр и аниме со специальными триггерами событий и реактивными жестами",
+            "10 эксклюзивных кибер-шрифтов на выбор, гарантирующих высокотехнологичный вид оверлеев и уведомлений",
+            "Высокий лимит: 50 000 просмотров в месяц, разработанный для крупных стримеров с плотным ежедневным потоком чата"
+        ],
+        t3Btn: "Расширить",
+        t4Name: "ULTIMATE KING",
+        t4Desc: "Абсолютная власть над эфиром. Безлимит на виджеты, эксклюзивная озвучка и VIP-статус. Ты здесь король! Это ультимативное решение корпоративного уровня для элитных контент-мейкеров и стримерских организаций, которым необходима максимальная производительность, уникальные ассеты и абсолютная творческая свобода без каких-либо ограничений.",
+        t4Features: [
+            "Абсолютно безлимитное создание виджетов и параллельная работа с максимальной скоростью ответа сервера",
+            "Полный беспрепятственный доступ ко ВСЕМ премиум-персонажам, специальным вариантам и скрытым легендарным шрифтам",
+            "Эксклюзивные анимированные голосовые паки включены совершенно бесплатно, чтобы шокировать и развлекать вашу аудиторию",
+            "Режим максимального FPS для гиперплавной веб-анимации и текучего рендеринга виджетов прямо внутри OBS Studio",
+            "Приоритетная VIP-поддержка 24/7 с выделенным персональным аккаунт-менеджером для мгновенного решения любых технических вопросов"
+        ],
+        t4Btn: "Стать КОРОЛЕМ",
+        shopTitle: "In-App Store",
+        shopDesc: "Настраивайте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые реагируют на действия зрителей. Уникальные неоновые и готические шрифты подчеркнут ваши оповещения, а живые голоса персонажей внизу экрана будут стимулировать аудиторию донатить чаще. Расширяйте свою коллекцию личных ассетов, открывайте сезонные дропы контента и приобретайте редкие эстетические бандлы, которые превратят ваш стрим-оверлей в эксклюзивное произведение интерактивного искусства, гарантируя, что ваше комьюнити останется вовлеченным и постоянно развлекаемым во время долгих марафонов вещания.",
+        paymentTitle: "Удобные и быстрые платежи",
+        paymentDesc: "Мы ценим ваш комфорт, поэтому интегрировали самые современные и безопасные методы мгновенной оплаты. Пополняйте баланс и активируйте планы с помощью Telegram Stars внутри приложения или используйте Telegram Wallet (Крипта) для быстрых транзакций по всему миру. Наслаждайтесь безупречной автоматизацией биллинга, немедленным обновлением баланса и полной прозрачностью каждой финансовой операции без скрытых комиссий за конвертацию или неожиданных динамических сборов, что позволит вам эффективно управлять бюджетом стрима из любой точки планеты.",
+        refPromoTitle: "Реферальная система",
+        refPromoDesc: "Приглашайте друзей в экосистему Beast Omni и получайте эксклюзивные, крутые награды с каждой покупки, совершенной вашими друзьями! Создайте свою элитную сеть и масштабируйтесь вместе.",
+        refPromoBtn: "👤 Пригласить друга",
+        securityTitle: "Безопасность корпоративного уровня",
+        securityFeatures: [
+            { title: "🔒 Шифрование AES-256", desc: "Все системные токены и интеграции стримов (OBS, Streamlabs, Twitch) шифруются на стороне сервера с использованием военно-промышленного протокола AES-256. Это предотвращает утечки данных и гарантирует, что никакая злонамеренная третья сторона ни при каких обстоятельствах не сможет получить доступ к вашим ключам стрима, конфиденциальным внутренним конфигурациям или личным учетным данным пользователей." },
+            { title: "🛡️ Песочница Telegram", desc: "Авторизация строго контролируется через официальные структуры проверки криптохэшей Telegram WebApp. Ваши личные данные в полной безопасности, поскольку наша система работает в изолированной среде песочницы, предотвращая несанкционированные сессии, подмену токенов или перехват учетных данных, что делает попытки входа на 100% железными и аутентифицированными." },
+            { title: "💎 Безопасные платежи", desc: "Мы никогда не храним номера кредитных карт, банковские реквизиты или конфиденциальные финансовые журналы в наших базах данных. Все входящие транзакции проходят через официальный движок Telegram Stars или надежно защищенные некастодиальные криптосети, обеспечивая децентрализованный, проверенный и полностью безопасный процессинг для абсолютного спокойствия." },
+            { title: "⚡ Нулевая уязвимость", desc: "Исходный код виджетов полностью изолирован внутри архитектуры OBS Browser Source. Эта строгая изоляция гарантирует нулевое падение производительности, нулевое отслеживание фоновой телеметрии и полную защиту от вредоносного межсайтового скриптинга или инъекций вредоносного ПО, сохраняя работу вашего локального игрового компьютера на пиковой мощности FPS." }
+        ],
+        supportTitle: "Возникли вопросы?",
+        supportDesc: "Наша команда поддержки готова помочь вам с настройкой OBS или устранением неполадок в любое время суток. Столкнулись ли вы со странным багом рендеринга, нужна помощь в привязке аккаунта стрима или требуется руководство по интеграции кастомных шрифтов — наши элитные технические эксперты находятся онлайн 24/7/365, чтобы ваш эфир работал безупречно и без единой заминки.",
+        supportBtn: "💬 Связаться с поддержкой",
+        navHome: "Главная",
+        navRef: "Рефералы",
+        navCreate: "Студия",
+        navWidget: "Виджеты",
+        navShop: "Магазин"
+    }
+};
+
+function applyLanguage(lang) {
+    document.getElementById("user-greeting").textContent = translations[lang].greeting;
+    document.getElementById("hero-title").textContent = translations[lang].heroTitle;
+    document.getElementById("hero-desc").textContent = translations[lang].heroDesc;
+    document.getElementById("tariffs-title").textContent = translations[lang].tariffsTitle;
+    
+    // Тариф 1
+    document.getElementById("t1-name").textContent = translations[lang].t1Name;
+    document.getElementById("t1-desc").textContent = translations[lang].t1Desc;
+    document.getElementById("t1-btn").textContent = translations[lang].t1Btn;
+    document.getElementById("t1-features").innerHTML = translations[lang].t1Features.map(text => `<li>${text}</li>`).join('');
+    
+    // Тариф 2
+    document.getElementById("t2-name").textContent = translations[lang].t2Name;
+    document.getElementById("t2-desc").textContent = translations[lang].t2Desc;
+    document.getElementById("t2-btn").textContent = translations[lang].t2Btn;
+    document.getElementById("t2-features").innerHTML = translations[lang].t2Features.map(text => `<li>${text}</li>`).join('');
+    
+    // Тариф 3
+    document.getElementById("t3-name").textContent = translations[lang].t3Name;
+    document.getElementById("t3-desc").textContent = translations[lang].t3Desc;
+    document.getElementById("t3-btn").textContent = translations[lang].t3Btn;
+    document.getElementById("t3-features").innerHTML = translations[lang].t3Features.map(text => `<li>${text}</li>`).join('');
+    
+    // Тариф 4
+    document.getElementById("t4-name").textContent = translations[lang].t4Name;
+    document.getElementById("t4-desc").textContent = translations[lang].t4Desc;
+    document.getElementById("t4-btn").textContent = translations[lang].t4Btn;
+    document.getElementById("t4-features").innerHTML = translations[lang].t4Features.map(text => `<li>${text}</li>`).join('');
+    
+    // Блоки информации
+    document.getElementById("shop-info-title").textContent = translations[lang].shopTitle;
+    document.getElementById("shop-info-desc").textContent = translations[lang].shopDesc;
+    document.getElementById("payment-title").textContent = translations[lang].paymentTitle;
+    document.getElementById("payment-desc").textContent = translations[lang].paymentDesc;
+    
+    // Реферальный промо-блок
+    document.getElementById("ref-promo-title").textContent = translations[lang].refPromoTitle;
+    document.getElementById("ref-promo-desc").textContent = translations[lang].refPromoDesc;
+    document.getElementById("ref-promo-btn").innerHTML = `<span>${translations[lang].refPromoBtn}</span>`;
+    
+    // Блок безопасности
+    document.getElementById("security-title").textContent = translations[lang].securityTitle;
+    document.getElementById("security-features-container").innerHTML = translations[lang].securityFeatures
+        .map(f => `<div class="security-item"><h4>${f.title}</h4><p>${f.desc}</p></div>`)
+        .join('');
+        
+    // Футер поддержки
+    document.getElementById("support-title").textContent = translations[lang].supportTitle;
+    document.getElementById("support-desc").textContent = translations[lang].supportDesc;
+    document.getElementById("support-btn").textContent = translations[lang].supportBtn;
+    
+    // Нижнее меню навигации
+    document.querySelector("#nav-home .nav-text").textContent = translations[lang].navHome;
+    document.querySelector("#nav-ref .nav-text").textContent = translations[lang].navRef;
+    document.querySelector("#nav-create .nav-text").textContent = translations[lang].navCreate;
+    document.querySelector("#nav-widget .nav-text").textContent = translations[lang].navWidget;
+    document.querySelector("#nav-shop .nav-text").textContent = translations[lang].navShop;
+}
+
+// 1. При загрузке страницы проверяем сохраненный в памяти язык
+const savedLang = localStorage.getItem('app_lang') || 'en';
+const langDropdown = document.getElementById("lang-dropdown");
+
+if (langDropdown) {
+    langDropdown.value = savedLang;
+}
+applyLanguage(savedLang);
+
+// 2. Слушаем переключение языка в селекте и сохраняем для всего приложения
+if (langDropdown) {
+    langDropdown.addEventListener("change", (e) => {
+        const chosenLang = e.target.value;
+        localStorage.setItem('app_lang', chosenLang);
+        applyLanguage(chosenLang);
+    });
+}
+
+// Слушаем первый клик по экрану, чтобы обойти блокировку звука в браузерах
+document.addEventListener('click', () => {
+    const music = document.getElementById('beast-bg-audio');
+    
+    if (music && music.paused) {
+        music.volume = 0.05;
+        music.play().catch(err => console.log("Браузер заблокировал автоплей:", err));
+    }
+}, { once: true });
+    </script>
+<audio id="beast-bg-audio" src="bg_music.mp3" loop></audio></body>
+</html>                                                         
+   
