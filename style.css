@@ -925,3 +925,149 @@ body {
     text-align: center;
     letter-spacing: 0.3px;
 }
+/* ==========================================================================
+   ПРОФЕССИОНАЛЬНЫЙ ФУТТЕР (FOOTER)
+   ========================================================================== */
+
+.pro-footer {
+    background: linear-gradient(180deg, #0B0B0C 0%, #070708 100%);
+    border-top: 1px solid rgba(168, 85, 247, 0.2);
+    padding: 50px 20px 110px 20px; /* Большой нижний отступ, чтобы не перекрываться нижним баром */
+    margin-top: 60px;
+    color: #94A3B8;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-logo {
+    font-family: 'Unbounded', sans-serif !important;
+    font-size: 24px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #A855F7, #F472B6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.footer-about {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #71717A;
+    margin: 0;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.social-icon {
+    width: 36px;
+    height: 36px;
+    background: #151518;
+    border: 1px solid #232329;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    border-color: #A855F7;
+    background: rgba(168, 85, 247, 0.1);
+    transform: translateY(-2px);
+}
+
+.footer-title {
+    font-family: 'Unbounded', sans-serif !important;
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0 0 5px 0;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: #94A3B8;
+    text-decoration: none;
+    font-size: 13.5px;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a:hover {
+    color: #C77DFF;
+    padding-left: 4px;
+}
+
+.status-badge-mini {
+    background: rgba(46, 213, 115, 0.15);
+    color: #2ED573;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+/* Нижняя копирайт-полоса */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12px;
+    color: #52525B;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-legal-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-legal-links a {
+    color: #52525B;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-legal-links a:hover {
+    color: #A855F7;
+}
