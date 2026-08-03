@@ -1,7 +1,6 @@
 :root {
     --bg-color: #0f1016;
     --card-bg: #181a26;
-    /* Меняем зеленый на киберпанковый градиент и неоново-фиолетовый акцент */
     --accent-primary: #FF007F;
     --accent-secondary: #7928CA;
     --accent-gradient: linear-gradient(135deg, #FF007F 0%, #7928CA 100%);
@@ -109,7 +108,7 @@ body {
 
 .card-title {
     font-size: 19px;
-    font-weight: 800; /* Жирные заголовки */
+    font-weight: 800;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -156,7 +155,7 @@ textarea:focus {
     border: none;
     border-radius: 12px;
     padding: 14px;
-    font-weight: 800; /* Жирный текст на кнопке */
+    font-weight: 800;
     font-size: 15px;
     letter-spacing: 0.5px;
     cursor: pointer;
@@ -182,15 +181,17 @@ textarea:focus {
     padding: 14px;
     font-size: 14px;
     font-weight: 600;
-    /* Убираем зеленый, делаем текст с тем же неоново-розовым градиентом или ярким неоном */
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #FF66B2;
+    text-shadow: 0 0 8px rgba(255, 0, 127, 0.5);
+    background-image: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
     word-break: break-all;
     min-height: 60px;
     display: flex;
     align-items: center;
 }
+
 .copy-btn {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-color);
