@@ -942,17 +942,16 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
+    /* Устанавливаем сетку: на мобилках ровно по 2 колонки в ряд */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 20px;
     margin-bottom: 40px;
 }
 
-.footer-col {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* Делаем первую колонку (логотип и описание) на всю ширину сверху, чтобы красиво начиналось */
+.footer-col.brand-col {
+    grid-column: span 2;
 }
-
 .footer-logo {
     font-family: 'Unbounded', sans-serif !important;
     font-size: 24px;
