@@ -182,13 +182,15 @@ textarea:focus {
     padding: 14px;
     font-size: 14px;
     font-weight: 600;
-    color: #FF66B2; /* Неоново-розовый для тегов вместо зеленого */
+    /* Убираем зеленый, делаем текст с тем же неоново-розовым градиентом или ярким неоном */
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     word-break: break-all;
     min-height: 60px;
     display: flex;
     align-items: center;
 }
-
 .copy-btn {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-color);
