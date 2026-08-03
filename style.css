@@ -374,72 +374,108 @@ body {
 }
 
 .btn-support:hover { box-shadow: var(--purple-glow); transform: scale(1.02); }
+/* ==========================================================================
+   ФИКС И СТИЛИЗАЦИЯ НИЖНЕГО НАВБАРА И ЦЕНТРАЛЬНОЙ КНОПКИ СТУДИИ
+   ========================================================================== */
 
 .bottom-navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background-color: var(--bg-header);
-    border-top: var(--border-card);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 1000;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 70px !important;
+    background-color: #0d0d12 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    box-sizing: border-box !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+    overflow: visible !important; /* Важно, чтобы приподнятая кнопка не обрезалась */
+}
+
+/* Обычные элементы меню */
+.bottom-navbar > a {
+    text-decoration: none !important;
+    display: flex !important;
+    flex: 1 !important;
+    height: 100% !important;
+    justify-content: center !important;
 }
 
 .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-gray);
-    gap: 4px;
-    transition: color 0.2s ease;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    color: #747d8c !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
-.nav-icon { font-size: 20px; }
-.nav-text { font-size: 11px; font-weight: 600; }
-.nav-item.active { color: var(--color-purple); }
+.nav-item .nav-icon {
+    font-size: 20px !important;
+    margin-bottom: 3px !important;
+}
 
-/* СТИЛИЗАЦИЯ ПРИПОДНЯТОЙ НЕОНОВОЙ КНОПКИ «СТУДИЯ» */
+.nav-item.active {
+    color: #c77dff !important;
+}
+
+/* === ЦЕНТРАЛЬНАЯ КНОПКА СТУДИЯ (ПРИПОДНЯТАЯ ⚡) === */
+.nav-center-item-link {
+    overflow: visible !important;
+}
+
 .nav-center-item {
-    position: relative;
-    top: -12px; /* Приподнимает кнопку над основным навбаром */
-    transform: scale(1.05);
+    position: relative !important;
+    top: -14px !important; /* Эффектно задираем кнопку вверх над панелью */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    width: 100% !important;
 }
 
 .nav-center-btn {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid #0B0B0C;
+    width: 50px !important;
+    height: 50px !important;
+    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.7) !important;
+    border: 2px solid #0B0B0C !important;
+    transition: transform 0.3s ease !important;
 }
 
 .nav-center-item:hover .nav-center-btn {
-    transform: rotate(15deg) scale(1.1);
-    box-shadow: 0 0 25px rgba(244, 114, 182, 0.8);
+    transform: scale(1.1) rotate(10deg);
 }
 
 .center-icon {
-    font-size: 22px;
-    color: #FFFFFF;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    font-size: 22px !important;
+    color: #FFFFFF !important;
 }
 
-.center-text {
-    margin-top: 2px !important;
+.nav-center-item .center-text {
+    margin-top: 4px !important;
+    font-size: 11px !important;
     font-weight: 700 !important;
     background: linear-gradient(90deg, #A855F7, #F472B6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* Отступ для контента, чтоб нижнее меню ничего не перекрывало */
+.main-container {
+    padding-bottom: 90px !important;
 }
 /* ==================== ОБНОВЛЕННЫЙ КИБЕРПАНК ДРОПДАУН ==================== */
 #lang-dropdown {
