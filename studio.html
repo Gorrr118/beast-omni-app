@@ -3,30 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Creator Studio PRO</title>
-    <!-- Подключаем иконки для красивых кнопок -->
+    <title>BEAST OMNI | Creator Studio PRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="studio.css?v=1.6">
+    <link rel="stylesheet" href="style.css?v=1.7">
 </head>
 <body>
 
     <div class="studio-container">
         
-        <!-- HEADER: Баланс и Язык перевода -->
-        <div class="shop-header">
-            <div class="shop-balance"><i class="fas fa-coins text-gold"></i> Баланс: <span id="user-coins">0</span> coins</div>
-            <div class="translation-target">
-                <span class="label-sm">Перевод на:</span>
+        <!-- ВЕРХНИЙ ХЕДЕР (Идентичен главному меню) -->
+        <header class="global-header">
+            <div class="user-box">
+                <span class="user-icon">⚡</span>
+                <span class="username" id="user-greeting">Hello, filatow</span>
+            </div>
+            <div class="header-right-group">
+                <div class="shop-balance"><i class="fas fa-coins text-gold"></i> <span id="user-coins">0</span></div>
                 <select id="lang-dropdown">
-                    <option value="ru" selected>🇷🇺 Русский</option>
-                    <option value="en">🇺🇸 English</option>
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="hy">🇦🇲 Հայերեն</option>
-                    <option value="fr">🇫🇷 Français</option>
-                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="en">🇺🇸 US</option>
+                    <option value="ru" selected>🇷🇺 RU</option>
+                    <option value="es">🇪🇸 ES</option>
+                    <option value="hy">🇦🇲 HY</option>
+                    <option value="fr">🇫🇷 FR</option>
+                    <option value="de">🇩🇪 DE</option>
                 </select>
             </div>
-        </div>
+        </header>
 
         <!-- WORKSPACE: Плеер + Загрузка + Аватар -->
         <div class="editor-workspace">
@@ -35,7 +37,7 @@
                 <div class="player-screen" id="player-screen-trigger">
                     <div class="upload-zone-wrapper" id="upload-zone">
                         <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                        <span class="preview-placeholder" id="placeholder-text">КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО</span>
+                        <span class="preview-placeholder" id="placeholder-text" data-lang="upload_placeholder">КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО</span>
                         <span class="file-info-sm" id="file-info">Поддерживается MP4, MOV до 50 МБ</span>
                     </div>
                     
@@ -151,7 +153,7 @@
             <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br>Экспорт</button>
         </div>
 
-        <!-- BOTTOM NAVBAR -->
+        <!-- НИЖНЯЯ ПАНЕЛЬ НАВИГАЦИИ (Точная копия главного меню с приподнятой кнопкой) -->
         <nav class="bottom-navbar">
             <a href="index.html">
                 <div class="nav-item">
@@ -159,30 +161,34 @@
                     <span class="nav-text">Home</span>
                 </div>
             </a>
-            <a href="referals.html">
+            
+            <a href="referal.html">
                 <div class="nav-item">
                     <span class="nav-icon">👥</span>
                     <span class="nav-text">Referral</span>
                 </div>
             </a>
             
-            <div class="nav-item nav-center-item active" id="studio-trigger">
-                <div class="nav-center-btn">
-                    <span class="center-icon">⚡</span>
-                </div>
-                <span class="nav-text center-text">Studio</span>
-            </div>
-
-            <a href="widgets.html">
-                <div class="nav-item">
-                    <span class="nav-icon">⚙️</span>
-                    <span class="nav-text">Widgets</span>
+            <a href="studio.html" class="nav-center-item-link">
+                <div class="nav-center-item">
+                    <div class="nav-center-btn">
+                        <span class="center-icon">⚡</span>
+                    </div>
+                    <span class="nav-text center-text">Studio</span>
                 </div>
             </a>
+            
+            <a href="obs.html">
+                <div class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">obs Settings</span>
+                </div>
+            </a>
+            
             <a href="shop.html">
                 <div class="nav-item">
-                    <span class="nav-icon">🛍️</span>
-                    <span class="nav-text">Shop</span>
+                    <span class="nav-icon">🏷️</span>
+                    <span class="nav-text">Tegs</span>
                 </div>
             </a>
         </nav>
@@ -190,7 +196,7 @@
     </div>
 
     <!-- ВСПЛЫВАЮЩЕЕ ОКНО (BOTTOM SHEET) ДЛЯ НАСТРОЕК ШРИФТОВ / ГОЛОСОВ / АВАТАРОВ -->
-    <div class="bottom-sheet" id="shop-inventory-sheet">
+    <bottom-sheet class="bottom-sheet" id="shop-inventory-sheet">
         <div class="sheet-overlay" id="sheet-overlay-close"></div>
         <div class="sheet-content">
             <div class="sheet-drag-handle"></div>
@@ -199,12 +205,11 @@
                 <button class="sheet-close-btn" id="sheet-close-x">&times;</button>
             </div>
             <div class="sheet-body">
-                <!-- Сюда JS будет динамически рендерить карточки товаров -->
                 <div class="inventory-grid" id="inventory-items-container"></div>
             </div>
         </div>
-    </div>
+    </bottom-sheet>
 
-    <script src="studio.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
