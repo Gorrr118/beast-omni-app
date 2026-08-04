@@ -10,27 +10,31 @@
 </head>
 <body>
 
-    <!-- Фоновые неоновые споты -->
-    <div class="cyber-bg">
-        <div class="glow-spot spot-1"></div>
-        <div class="glow-spot spot-2"></div>
+    <!-- Прелоадер (как на главном) -->
+    <div id="app-preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-logo">Beast Omni</h1>
+            <div class="progress-bar-container">
+                <div class="progress-bar-line"></div>
+            </div>
+            <span class="preloader-status">Loading Ecosystem...</span>
+        </div>
     </div>
 
-    <!-- Шапка -->
+    <!-- Верхний хедер (идентичен главному меню) -->
     <header class="global-header">
-        <div class="user-badge-box">
-            <div class="user-avatar-glow">⚡</div>
-            <span class="username" id="username-display">filatow</span>
+        <div class="user-box">
+            <span class="user-icon">⚡</span>
+            <span class="username" id="user-greeting">Hello, filatow</span>
         </div>
-        <div class="lang-selector" id="lang-switch-btn">
-            <span class="flag">🇺🇸</span>
-            <span class="lang-text">US</span>
-            <span class="dropdown-arrow">▼</span>
-        </div>
+        <select id="lang-dropdown">
+            <option value="en">🇺🇸 US</option>
+            <option value="ru">🇷🇺 RU</option>
+        </select>
     </header>
 
-    <!-- Основной контент -->
-    <main class="main-content">
+    <!-- Основной контент (с отступом снизу для навбара) -->
+    <main class="main-content main-container">
         
         <!-- Баннер -->
         <div class="hero-banner">
@@ -76,7 +80,7 @@
             </div>
         </div>
 
-        <!-- Кнопка действия (Единая для копирования всего текста) -->
+        <!-- Кнопка действия (с фирменным градиентом) -->
         <div class="action-dock">
             <button class="cyber-action-btn" id="copy-button">
                 <div class="btn-content">
@@ -102,28 +106,44 @@
 
     </main>
 
-    <!-- Нижняя панель навигации -->
-    <nav class="bottom-nav">
-        <div class="nav-item" onclick="window.location.href='index.html'">
-            <span class="nav-emoji">🏠</span>
-            <span class="nav-text">Home</span>
-        </div>
-        <div class="nav-item active" onclick="window.location.href='referal.html'">
-            <span class="nav-emoji">👥</span>
-            <span class="nav-text">Referral</span>
-        </div>
-        <div class="nav-item studio-btn-wrapper" onclick="window.location.href='studio.html'">
-            <div class="studio-btn">⚡</div>
-            <span class="nav-text">Studio</span>
-        </div>
-        <div class="nav-item" onclick="window.location.href='widgets.html'">
-            <span class="nav-emoji">⚙️</span>
-            <span class="nav-text">Widgets</span>
-        </div>
-        <div class="nav-item" onclick="window.location.href='shop.html'">
-            <span class="nav-emoji">🛍️</span>
-            <span class="nav-text">Shop</span>
-        </div>
+    <!-- Нижняя панель навигации (идентична главному меню) -->
+    <nav class="bottom-navbar">
+        <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+            </div>
+        </a>
+        
+        <a href="referal.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item active">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Referral</span>
+            </div>
+        </a>
+        
+        <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-center-item">
+                <div class="nav-center-btn">
+                    <span class="center-icon">⚡</span>
+                </div>
+                <span class="nav-text center-text">Studio</span>
+            </div>
+        </a>
+        
+        <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">obs Settings</span>
+            </div>
+        </a>
+        
+        <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">🏷️</span>
+                <span class="nav-text">Tegs</span>
+            </div>
+        </a>
     </nav>
 
     <script src="referal.js"></script>
