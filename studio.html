@@ -6,24 +6,23 @@
     <title>Creator Studio PRO</title>
     <!-- Подключаем иконки для красивых кнопок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="studio.css?v=1.6">
+    <link rel="stylesheet" href="studio.css?v=1.7">
 </head>
 <body>
 
     <div class="studio-container">
         
-        <!-- HEADER: Баланс и Язык перевода -->
+        <!-- HEADER: Точная копия шапки с главного экрана -->
         <div class="shop-header">
-            <div class="shop-balance"><i class="fas fa-coins text-gold"></i> Баланс: <span id="user-coins">0</span> coins</div>
-            <div class="translation-target">
-                <span class="label-sm">Перевод на:</span>
+            <div class="user-welcome-badge">
+                <i class="fas fa-bolt text-gold"></i> Hello, filatow
+            </div>
+            <div class="lang-selector-box">
                 <select id="lang-dropdown">
-                    <option value="ru" selected>🇷🇺 Русский</option>
-                    <option value="en">🇺🇸 English</option>
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="hy">🇦🇲 Հայերեն</option>
-                    <option value="fr">🇫🇷 Français</option>
-                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="en" selected>🇺🇸 US</option>
+                    <option value="ru">🇷🇺 RU</option>
+                    <option value="es">🇪🇸 ES</option>
+                    <option value="hy">🇦🇲 HY</option>
                 </select>
             </div>
         </div>
@@ -42,13 +41,13 @@
                     <!-- Видео-плеер (скрыт по дефолту) -->
                     <video id="main-player" style="display: none; width: 100%; height: 100%; object-fit: contain;" controls playsinline loop></video>
                     
-                    <!-- ИИ АВАТАР: Персонаж, которого можно двигать (скрыт, пока не выберут в инвентаре) -->
+                    <!-- ИИ АВАТАР: Персонаж, которого можно двигать -->
                     <div class="ai-avatar-overlay" id="ai-avatar" style="display: none;">
                         <img src="https://inside-care.ru/wp-content/uploads/5/0/0/500b5fc912d09dfad789ff4c264a938c.jpeg" alt="AI Avatar" id="avatar-img">
                         <div class="avatar-resize-handle" id="avatar-resizer"></div>
                     </div>
 
-                    <!-- ЭКРАН ПРОГРЕССА ГЕНЕРАЦИИ (Перекрывает плеер во время рендеринга) -->
+                    <!-- ЭКРАН ПРОГРЕССА ГЕНЕРАЦИИ -->
                     <div class="render-overlay" id="render-status-screen" style="display: none;">
                         <div class="spinner-loader"></div>
                         <div class="render-status-title" id="render-status-text">Загрузка видео на сервер...</div>
@@ -102,7 +101,6 @@
                     <input type="checkbox" id="subtitles-toggle" checked>
                 </div>
                 
-                <!-- Быстрый вызов инвентаря покупок (Шрифты, Голоса, Аватары) -->
                 <div class="inventory-quick-access">
                     <button class="inventory-trigger-btn" data-shop-type="fonts">
                         <i class="fas fa-font"></i> Шрифты
@@ -151,37 +149,40 @@
             <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br>Экспорт</button>
         </div>
 
-        <!-- BOTTOM NAVBAR -->
+        <!-- BOTTOM NAVBAR: Точная копия нижнего меню с главного экрана -->
         <nav class="bottom-navbar">
-            <a href="index.html">
+            <a href="index.html" class="nav-link-item">
                 <div class="nav-item">
-                    <span class="nav-icon">🏠</span>
+                    <i class="fas fa-home nav-icon-i"></i>
                     <span class="nav-text">Home</span>
                 </div>
             </a>
-            <a href="referals.html">
+            <a href="referals.html" class="nav-link-item">
                 <div class="nav-item">
-                    <span class="nav-icon">👥</span>
+                    <i class="fas fa-users nav-icon-i"></i>
                     <span class="nav-text">Referral</span>
                 </div>
             </a>
             
-            <div class="nav-item nav-center-item active" id="studio-trigger">
-                <div class="nav-center-btn">
-                    <span class="center-icon">⚡</span>
-                </div>
-                <span class="nav-text center-text">Studio</span>
-            </div>
-
-            <a href="widgets.html">
-                <div class="nav-item">
-                    <span class="nav-icon">⚙️</span>
-                    <span class="nav-text">Widgets</span>
+            <!-- Центральная активная кнопка Studio с фиолетовым свечением -->
+            <a href="studio.html" class="nav-link-item active-center-link">
+                <div class="nav-item nav-center-item active">
+                    <div class="nav-center-btn">
+                        <i class="fas fa-bolt center-icon-i"></i>
+                    </div>
+                    <span class="nav-text center-text">Studio</span>
                 </div>
             </a>
-            <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
+
+            <a href="widgets.html" class="nav-link-item">
                 <div class="nav-item">
-                    <span class="nav-emoji">📌</span>
+                    <i class="fas fa-cog nav-icon-i"></i>
+                    <span class="nav-text">obs Settings</span>
+                </div>
+            </a>
+            <a href="shop.html" class="nav-link-item">
+                <div class="nav-item">
+                    <i class="fas fa-tag nav-icon-i"></i>
                     <span class="nav-text">Tegs</span>
                 </div>
             </a>
@@ -189,7 +190,7 @@
 
     </div>
 
-    <!-- ВСПЛЫВАЮЩЕЕ ОКНО (BOTTOM SHEET) ДЛЯ НАСТРОЕК ШРИФТОВ / ГОЛОСОВ / АВАТАРОВ -->
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО (BOTTOM SHEET) -->
     <div class="bottom-sheet" id="shop-inventory-sheet">
         <div class="sheet-overlay" id="sheet-overlay-close"></div>
         <div class="sheet-content">
@@ -199,7 +200,6 @@
                 <button class="sheet-close-btn" id="sheet-close-x">&times;</button>
             </div>
             <div class="sheet-body">
-                <!-- Сюда JS будет динамически рендерить карточки товаров -->
                 <div class="inventory-grid" id="inventory-items-container"></div>
             </div>
         </div>
