@@ -2,26 +2,25 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tag Generator | Gamer Hub</title>
     <link rel="stylesheet" href="shop.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="app-container">
-        
+
         <!-- Шапка -->
         <header class="global-header">
-            <div class="user-badge-box">
-                <div class="user-avatar-glow">⚡</div>
-                <span class="username" id="username-display">filatow</span>
+            <div class="user-box">
+                <span class="user-icon">⚡</span>
+                <span class="username" id="user-greeting">Hello, filatow</span>
             </div>
-            <div class="lang-selector" id="lang-switch-btn">
-                <span class="flag">🇺🇸</span>
-                <span class="lang-text">US</span>
-                <span class="dropdown-arrow">▼</span>
-            </div>
+            <select id="lang-dropdown">
+                <option value="en">🇺🇸 US</option>
+                <option value="ru">🇷🇺 RU</option>
+            </select>
         </header>
 
         <!-- Основной контент (Генератор тегов) -->
@@ -44,38 +43,40 @@
         </main>
 
         <!-- Нижняя панель навигации -->
-        <nav class="bottom-nav">
-            <a href="index.html" class="nav-item-link">
+        <nav class="bottom-navbar">
+            <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
-                    <span class="nav-emoji">🏠</span>
+                    <span class="nav-icon">🏠</span>
                     <span class="nav-text">Home</span>
                 </div>
             </a>
-            
-            <a href="referal.html" class="nav-item-link">
+           
+            <a href="referals.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
-                    <span class="nav-emoji">👥</span>
+                    <span class="nav-icon">👥</span>
                     <span class="nav-text">Referral</span>
                 </div>
             </a>
-            
-            <a href="studio.html" class="nav-item-link studio-btn-wrapper">
-                <div class="nav-item">
-                    <div class="studio-btn">⚡</div>
-                    <span class="nav-text">Studio</span>
+           
+            <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
+                <div class="nav-center-item">
+                    <div class="nav-center-btn">
+                        <span class="center-icon">⚡</span>
+                    </div>
+                    <span class="nav-text center-text">Studio</span>
                 </div>
             </a>
-            
-            <a href="widgets.html" class="nav-item-link">
+           
+            <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
-                    <span class="nav-emoji">⚙️</span>
-                    <span class="nav-text">Widgets</span>
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">obs Settings</span>
                 </div>
             </a>
-            
-            <a href="shop.html" class="nav-item-link">
+           
+            <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item active">
-                    <span class="nav-emoji">📌</span>
+                    <span class="nav-icon">🏷️</span>
                     <span class="nav-text">Tegs</span>
                 </div>
             </a>
