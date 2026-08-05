@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tag Generator | Gamer Hub</title>
     <link rel="stylesheet" href="shop.css">
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-        <!-- Единая шапка -->
-        <header class="global-header">
-            <div class="user-box">
-                <span class="user-icon">⚡</span>
-                <span class="username" id="user-greeting">Hello, filatow</span>
-            </div>
-            <select id="lang-dropdown">
-                <option value="en" selected>🇺🇸 US</option>
-                <option value="ru">🇷🇺 RU</option>
-            </select>
-        </header>
+    <!-- Единая шапка -->
+    <header class="global-header">
+        <div class="user-box">
+            <span class="user-icon">⚡</span>
+            <span class="username" id="user-greeting">Hello, filatow</span>
+        </div>
+        <select id="lang-dropdown">
+            <option value="en" selected>🇺🇸 US</option>
+            <option value="ru">🇷🇺 RU</option>
+        </select>
+    </header>
 
     <!-- Основной контент (Генератор тегов) -->
     <div class="main-container">
@@ -40,45 +40,46 @@
         </div>
     </div>
 
-          <!-- Единая нижняя панель навигации -->
-        <nav class="bottom-navbar">
-            <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
-                <div class="nav-item">
-                    <span class="nav-icon">🏠</span>
-                    <span class="nav-text">Home</span>
+    <!-- Единая нижняя панель навигации -->
+    <nav class="bottom-navbar">
+        <a href="index.html" class="nav-link-item">
+            <div class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+            </div>
+        </a>
+        
+        <a href="referals.html" class="nav-link-item">
+            <div class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Referral</span>
+            </div>
+        </a>
+        
+        <a href="studio.html" class="nav-center-item-link">
+            <div class="nav-center-item">
+                <div class="nav-center-btn">
+                    <span class="center-icon">⚡</span>
                 </div>
-            </a>
-            
-            <a href="referals.html" style="text-decoration: none; display: block; flex: 1;">
-                <div class="nav-item">
-                    <span class="nav-icon">👥</span>
-                    <span class="nav-text">Referral</span>
-                </div>
-            </a>
-            
-            <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
-                <div class="nav-center-item">
-                    <div class="nav-center-btn">
-                        <span class="center-icon">⚡</span>
-                    </div>
-                    <span class="nav-text center-text">Studio</span>
-                </div>
-            </a>
-            
-            <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
-                <div class="nav-item active">
-                    <span class="nav-icon">⚙️</span>
-                    <span class="nav-text">obs Settings</span>
-                </div>
-            </a>
-            
-            <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
-                <div class="nav-item">
-                    <span class="nav-icon">🏷️</span>
-                    <span class="nav-text">Tegs</span>
-                </div>
-            </a>
-        </nav>
+                <span class="nav-text center-text">Studio</span>
+            </div>
+        </a>
+        
+        <a href="obs.html" class="nav-link-item">
+            <div class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">obs Settings</span>
+            </div>
+        </a>
+        
+        <a href="shop.html" class="nav-link-item">
+            <div class="nav-item active">
+                <span class="nav-icon">🏷️</span>
+                <span class="nav-text">Tegs</span>
+            </div>
+        </a>
+    </nav>
+
     <script src="Shop.js"></script>
 </body>
 </html>
