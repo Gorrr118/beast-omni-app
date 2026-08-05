@@ -1,8 +1,9 @@
 /* Импорт шрифтов */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Press+Start+2P&family=Orbitron:wght@700&family=Rubik+Glitch&family=Cinzel:wght@700&family=Bungee+Shade&family=Monoton&family=Creepster&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&display=swap');
+
 :root {
-    --bg-color: #0f1016;
-    --card-bg: #181a26;
+    --bg-color: #08080c;
+    --card-bg: #0f1016;
     --accent-primary: #FF007F;
     --accent-secondary: #7928CA;
     --accent-gradient: linear-gradient(135deg, #FF007F 0%, #7928CA 100%);
@@ -11,7 +12,7 @@
     --active-glow: rgba(168, 85, 247, 0.4);
     --text-main: #ffffff;
     --text-muted: #8c90a2;
-    --border-color: #2b2f45;
+    --border-color: #1f2233;
 }
 
 * {
@@ -68,7 +69,7 @@ body {
 }
 
 #lang-dropdown {
-    background-color: rgba(26, 26, 36, 0.8);
+    background-color: rgba(15, 16, 22, 0.9);
     color: var(--text-main);
     border: 1px solid var(--border-color);
     padding: 6px 12px;
@@ -96,7 +97,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .card-title {
@@ -125,7 +126,7 @@ body {
 textarea {
     width: 100%;
     height: 110px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 12px;
@@ -168,7 +169,7 @@ textarea:focus {
 }
 
 .tags-output {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
     border: 1px dashed var(--border-color);
     border-radius: 12px;
     padding: 14px;
@@ -242,6 +243,7 @@ textarea:focus {
     color: var(--text-muted);
 }
 
+/* Активным делаем только тот пункт, на котором находимся (например, Tegs) */
 .nav-item.active {
     color: transparent;
     background: var(--active-gradient);
@@ -290,6 +292,7 @@ textarea:focus {
     align-items: center;
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 10px rgba(244, 114, 182, 0.6);
 }
+
 .center-icon {
     font-size: 18px;
     color: #ffffff;
