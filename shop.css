@@ -290,9 +290,9 @@ textarea:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 2px solid #08080c; /* Черная обводка в цвет фона */
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 10px rgba(244, 114, 182, 0.6);
 }
-
 .center-icon {
     font-size: 18px;
     color: #ffffff;
