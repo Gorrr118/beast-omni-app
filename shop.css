@@ -7,7 +7,9 @@
     --accent-primary: #FF007F;
     --accent-secondary: #7928CA;
     --accent-gradient: linear-gradient(135deg, #FF007F 0%, #7928CA 100%);
+    --active-gradient: linear-gradient(135deg, #A855F7 0%, #F472B6 100%);
     --accent-glow: rgba(255, 0, 127, 0.4);
+    --active-glow: rgba(168, 85, 247, 0.4);
     --text-main: #ffffff;
     --text-muted: #8c90a2;
     --border-color: #2b2f45;
@@ -137,8 +139,8 @@ textarea {
 }
 
 textarea:focus {
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 8px var(--accent-glow);
+    border-color: #A855F7;
+    box-shadow: 0 0 8px var(--active-glow);
 }
 
 .generate-btn {
@@ -173,8 +175,8 @@ textarea:focus {
     padding: 14px;
     font-size: 14px;
     font-weight: 600;
-    color: #FF66B2;
-    text-shadow: 0 0 8px rgba(255, 0, 127, 0.5);
+    color: #F472B6;
+    text-shadow: 0 0 8px var(--active-glow);
     word-break: break-all;
     min-height: 60px;
     display: flex;
@@ -242,12 +244,24 @@ textarea:focus {
 }
 
 .nav-item.active {
-    color: var(--accent-primary);
-    text-shadow: 0 0 8px var(--accent-glow);
+    color: transparent;
+    background: var(--active-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px var(--active-glow);
+}
+
+.nav-item.active .nav-icon {
+    background: var(--active-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .nav-item.active .nav-text {
-    color: var(--accent-primary);
+    color: transparent;
+    background: var(--active-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .nav-center-item-link {
@@ -270,12 +284,12 @@ textarea:focus {
 .nav-center-btn {
     width: 44px;
     height: 44px;
-    background: var(--accent-gradient);
+    background: var(--active-gradient);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 15px var(--accent-glow);
+    box-shadow: 0 0 15px var(--active-glow);
 }
 
 .center-icon {
@@ -286,6 +300,9 @@ textarea:focus {
 .center-text {
     font-size: 11px;
     font-weight: 800;
-    color: var(--accent-primary) !important;
+    color: transparent !important;
+    background: var(--active-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-top: 2px;
 }
