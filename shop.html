@@ -2,68 +2,86 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tag Generator | Gamer Hub</title>
     <link rel="stylesheet" href="shop.css">
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Шапка -->
-    <header class="global-header">
-        <div class="user-badge-box">
-            <div class="user-avatar-glow">⚡</div>
-            <span class="username" id="username-display">filatow</span>
-        </div>
-        <div class="lang-selector" id="lang-switch-btn">
-            <span class="flag">🇺🇸</span>
-            <span class="lang-text">US</span>
-            <span class="dropdown-arrow">▼</span>
-        </div>
-    </header>
-
-    <!-- Основной контент (Генератор тегов) -->
-    <div class="main-container">
-        <div class="card">
-            <div class="card-title">🚀 AI Tag Generator</div>
-            <div class="card-subtitle">Опиши суть или сюжет стрима/ролика, и система создаст идеальные теги.</div>
-            
-            <div class="input-group">
-                <textarea id="plot-input" placeholder="Например: стримлю как мы с котиками играем в шутер и постоянно проигрываем из-за мемов..."></textarea>
-                <button class="generate-btn" id="generate-btn">Сгенерировать теги ⚡</button>
+    <div class="app-container">
+        
+        <!-- Шапка -->
+        <header class="global-header">
+            <div class="user-badge-box">
+                <div class="user-avatar-glow">⚡</div>
+                <span class="username" id="username-display">filatow</span>
             </div>
-        </div>
+            <div class="lang-selector" id="lang-switch-btn">
+                <span class="flag">🇺🇸</span>
+                <span class="lang-text">US</span>
+                <span class="dropdown-arrow">▼</span>
+            </div>
+        </header>
 
-        <div class="card results-box">
-            <div class="card-title">📌 Результат</div>
-            <div class="tags-output" id="tags-output">#гейминг #стрим #котики #мемы #игры #funny</div>
-            <button class="copy-btn" id="copy-btn">Копировать теги в буфер</button>
-        </div>
+        <!-- Основной контент (Генератор тегов) -->
+        <main class="main-container">
+            <div class="card">
+                <div class="card-title">🚀 AI Tag Generator</div>
+                <div class="card-subtitle">Опиши суть или сюжет стрима/ролика, и система создаст идеальные теги.</div>
+                
+                <div class="input-group">
+                    <textarea id="plot-input" placeholder="Например: стримлю как мы с котиками играем в шутер и постоянно проигрываем из-за мемов..."></textarea>
+                    <button class="generate-btn" id="generate-btn">Сгенерировать теги ⚡</button>
+                </div>
+            </div>
+
+            <div class="card results-box">
+                <div class="card-title">📌 Результат</div>
+                <div class="tags-output" id="tags-output">#гейминг #стрим #котики #мемы #игры #funny</div>
+                <button class="copy-btn" id="copy-btn">Копировать теги в буфер</button>
+            </div>
+        </main>
+
+        <!-- Нижняя панель навигации -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item-link">
+                <div class="nav-item">
+                    <span class="nav-emoji">🏠</span>
+                    <span class="nav-text">Home</span>
+                </div>
+            </a>
+            
+            <a href="referal.html" class="nav-item-link">
+                <div class="nav-item">
+                    <span class="nav-emoji">👥</span>
+                    <span class="nav-text">Referral</span>
+                </div>
+            </a>
+            
+            <a href="studio.html" class="nav-item-link studio-btn-wrapper">
+                <div class="nav-item">
+                    <div class="studio-btn">⚡</div>
+                    <span class="nav-text">Studio</span>
+                </div>
+            </a>
+            
+            <a href="widgets.html" class="nav-item-link">
+                <div class="nav-item">
+                    <span class="nav-emoji">⚙️</span>
+                    <span class="nav-text">Widgets</span>
+                </div>
+            </a>
+            
+            <a href="shop.html" class="nav-item-link">
+                <div class="nav-item active">
+                    <span class="nav-emoji">📌</span>
+                    <span class="nav-text">Tegs</span>
+                </div>
+            </a>
+        </nav>
+
     </div>
-
-    <!-- Нижняя панель навигации -->
-    <nav class="bottom-nav">
-        <div class="nav-item" onclick="window.location.href='index.html'">
-            <span class="nav-emoji">🏠</span>
-            <span class="nav-text">Home</span>
-        </div>
-        <div class="nav-item" onclick="window.location.href='referal.html'">
-            <span class="nav-emoji">👥</span>
-            <span class="nav-text">Referral</span>
-        </div>
-        <div class="nav-item studio-btn-wrapper" onclick="window.location.href='studio.html'">
-            <div class="studio-btn">⚡</div>
-            <span class="nav-text">Studio</span>
-        </div>
-        <div class="nav-item" onclick="window.location.href='widgets.html'">
-            <span class="nav-emoji">⚙️</span>
-            <span class="nav-text">Widgets</span>
-        </div>
-        <div class="nav-item" onclick="window.location.href='shop.html'">
-            <span class="nav-emoji">🛍️</span>
-            <span class="nav-text">Shop</span>
-        </div>
-    </nav>
 
     <script src="shop.js"></script>
 </body>
