@@ -200,7 +200,8 @@ textarea:focus {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Нижняя панель навигации */
+/* --- НИЖНЯЯ ПАНЕЛЬ НАВИГАЦИИ --- */
+
 .bottom-navbar {
     position: fixed;
     bottom: 0;
@@ -216,14 +217,16 @@ textarea:focus {
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-.nav-link-item {
+.nav-link-item,
+.active-center-link,
+.nav-center-item-link {
     text-decoration: none;
     display: block;
     flex: 1;
     height: 100%;
 }
 
-/* Неактивные элементы меню строго серые */
+/* Все неактивные пункты меню — строго приглушенные (серые) без розовины */
 .nav-item {
     display: flex;
     flex-direction: column;
@@ -234,7 +237,7 @@ textarea:focus {
     color: var(--text-muted);
 }
 
-.nav-item .nav-icon,
+.nav-item .nav-icon-i,
 .nav-item .nav-text {
     color: var(--text-muted) !important;
     background: none !important;
@@ -243,26 +246,7 @@ textarea:focus {
     text-shadow: none !important;
 }
 
-/* Активный пункт меню подсвечивается градиентом */
-.nav-item.active {
-    color: transparent !important;
-}
-
-.nav-item.active .nav-icon,
-.nav-item.active .nav-text {
-    background: var(--active-gradient) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    text-shadow: 0 0 8px var(--active-glow) !important;
-}
-
-.nav-center-item-link {
-    text-decoration: none;
-    display: block;
-    flex: 1;
-    height: 100%;
-}
-
+/* Центральная кнопка Studio */
 .nav-center-item {
     position: relative;
     top: -8px;
@@ -285,11 +269,12 @@ textarea:focus {
     box-shadow: 0 0 0 2px #08080c, 0 0 20px rgba(168, 85, 247, 0.8), 0 0 10px rgba(244, 114, 182, 0.6);
 }
 
-.center-icon {
+.center-icon-i {
     font-size: 18px;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
+/* Четкая позиция текста Studio под центральной кнопкой (аккуратный отступ) */
 .center-text {
     font-size: 11px;
     font-weight: 800;
@@ -298,4 +283,13 @@ textarea:focus {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-top: 4px;
+}
+
+/* АКТИВНЫЙ ПУНКТ МЕНЮ (градиент загорится только там, где класс .active) */
+.nav-item.active .nav-icon-i,
+.nav-item.active .nav-text {
+    background: var(--active-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 0 0 8px var(--active-glow) !important;
 }
