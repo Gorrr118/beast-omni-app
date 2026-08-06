@@ -100,7 +100,6 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* Возвращаем крутой жирный шрифт Unbounded для заголовков, как на главном меню */
 .card-title {
     font-family: 'Unbounded', sans-serif;
     font-size: 17px;
@@ -224,7 +223,7 @@ textarea:focus {
     height: 100%;
 }
 
-/* Неактивные пункты меню строго приглушенные (серые), без розовины */
+/* Неактивные элементы меню строго серые */
 .nav-item {
     display: flex;
     flex-direction: column;
@@ -244,7 +243,7 @@ textarea:focus {
     text-shadow: none !important;
 }
 
-/* Активный пункт меню подсвечивается вашим красивым градиентом */
+/* Активный пункт меню подсвечивается градиентом */
 .nav-item.active {
     color: transparent !important;
 }
@@ -291,7 +290,6 @@ textarea:focus {
     color: #ffffff;
 }
 
-/* Опустили текст Studio на нужную позицию вниз */
 .center-text {
     font-size: 11px;
     font-weight: 800;
