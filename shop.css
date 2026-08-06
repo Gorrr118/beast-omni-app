@@ -19,7 +19,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -100,8 +100,10 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
+/* Возвращаем крутой жирный шрифт Unbounded для заголовков, как на главном меню */
 .card-title {
-    font-size: 19px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 17px;
     font-weight: 800;
     margin-bottom: 8px;
     display: flex;
@@ -222,28 +224,7 @@ textarea:focus {
     height: 100%;
 }
 
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    height: 100%;
-    color: var(--text-muted);
-    transition: color 0.2s;
-}
-
-.nav-icon {
-    font-size: 20px;
-}
-
-.nav-text {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-}
-
-/* Обычные неактивные элементы меню всегда приглушенные (серые), без розового */
+/* Неактивные пункты меню строго приглушенные (серые), без розовины */
 .nav-item {
     display: flex;
     flex-direction: column;
@@ -263,7 +244,7 @@ textarea:focus {
     text-shadow: none !important;
 }
 
-/* А здесь цвет загорится градиентом ТОЛЬКО для того пункта, у которого стоит класс .active */
+/* Активный пункт меню подсвечивается вашим красивым градиентом */
 .nav-item.active {
     color: transparent !important;
 }
@@ -301,15 +282,16 @@ textarea:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none; /* Убираем стандартный бордер, чтобы никуда не съезжало */
-    /* Первая тень создает идеальную черную обводку по краю, вторая — неоновое свечение */
+    border: none;
     box-shadow: 0 0 0 2px #08080c, 0 0 20px rgba(168, 85, 247, 0.8), 0 0 10px rgba(244, 114, 182, 0.6);
 }
+
 .center-icon {
     font-size: 18px;
     color: #ffffff;
 }
 
+/* Опустили текст Studio на нужную позицию вниз */
 .center-text {
     font-size: 11px;
     font-weight: 800;
@@ -317,5 +299,5 @@ textarea:focus {
     background: var(--active-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-top: 2px;
+    margin-top: 4px;
 }
