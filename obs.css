@@ -1,5 +1,6 @@
 /* Импорт шрифтов */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Press+Start+2P&family=Orbitron:wght@700&family=Rubik+Glitch&family=Cinzel:wght@700&family=Bungee+Shade&family=Monoton&family=Creepster&family=Permanent+Marker&display=swap');
+
 
 * { 
     box-sizing: border-box; 
@@ -11,23 +12,55 @@
 body {
     background-color: #030305;
     color: #F8FAFC;
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     position: relative;
-    padding-top: 75px;
-    padding-bottom: 95px;
 }
 
-/* Верхний хедер */
+/* Общий контейнер мобильного приложения */
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    background-color: #030305;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Неоновые споты */
+.cyber-bg { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden; 
+    z-index: 0; 
+    pointer-events: none; 
+}
+.glow-spot { 
+    position: absolute; 
+    border-radius: 50%; 
+    filter: blur(90px); 
+    opacity: 0.12; 
+}
+.spot-1 { width: 280px; height: 280px; background: #a855f7; top: -60px; right: -60px; }
+.spot-2 { width: 320px; height: 320px; background: #00F0FF; bottom: 5%; left: -80px; }
+
+/* Верхний хедер (как в главном меню) */
 .global-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 65px;
-    background-color: #0f1016;
+    background-color: var(--bg-header);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     justify-content: space-between;
@@ -52,92 +85,149 @@ body {
     color: #FFFFFF;
 }
 
-/* Основной контейнер страницы OBS */
-.main-container {
-    flex: 1;
-    max-width: 480px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    z-index: 5;
-    position: relative;
-}
-
-/* Карточки для настроек OBS */
-.card {
-    background-color: #0f1016;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-.card-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff;
-}
-
-.card-subtitle {
-    font-size: 12px;
-    color: #94A3B8;
-    margin-bottom: 16px;
-    line-height: 1.4;
-}
-
-/* Элементы формы / настроек OBS */
-.obs-settings-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.obs-input {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 12px;
-    color: #ffffff;
-    font-size: 13px;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.obs-input:focus {
-    border-color: #a855f7;
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
-}
-
-.obs-btn {
-    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%);
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    padding: 14px;
-    font-weight: 800;
-    font-size: 13px;
+#lang-dropdown {
+    background-color: #1E1E24;
+    color: var(--text-white);
+    border: 1px solid #2D2D35;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-    transition: transform 0.1s;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-.obs-btn:active {
-    transform: scale(0.98);
+#lang-dropdown:focus {
+    border-color: var(--color-purple);
+    box-shadow: var(--purple-glow);
 }
+/* Контент скролл */
+.main-content {
+    flex: 1; 
+    overflow-y: auto; 
+    padding: 16px;
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+    z-index: 5;
+}
+.main-content::-webkit-scrollbar { width: 3px; }
+.main-content::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.3); border-radius: 3px; }
+
+/* Баннер */
+.hero-banner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.badge-pill {
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    color: #00F0FF; font-size: 9px; font-weight: 800;
+    padding: 5px 12px; border-radius: 20px; letter-spacing: 0.8px;
+    display: inline-flex; align-items: center; gap: 6px;
+}
+.hero-banner h1 {
+    font-size: 20px; font-weight: 800;
+    background: linear-gradient(135deg, #FFFFFF 20%, #00F0FF 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-banner p { font-size: 11px; color: #94A3B8; max-width: 300px; line-height: 1.4; }
+
+/* Сетка тарифов (30 баксов, 50 баксов, 100 баксов) */
+.pricing-tiers-grid {
+    display: flex; flex-direction: column; gap: 12px;
+}
+
+.tier-card {
+    background: rgba(15, 15, 22, 0.65);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 14px;
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.popular-glow { border-color: rgba(0, 240, 255, 0.3); box-shadow: 0 0 20px rgba(0, 240, 255, 0.1); }
+.beast-glow { border-color: rgba(255, 215, 0, 0.35); box-shadow: 0 0 25px rgba(255, 215, 0, 0.12); }
+
+.pop-badge {
+    position: absolute; top: -10px; right: 16px;
+    background: #00F0FF; color: #030305;
+    font-size: 8.5px; font-weight: 800; padding: 2px 8px; border-radius: 6px;
+    letter-spacing: 0.5px;
+}
+.beast-badge { background: #FFD700 !important; }
+
+.tier-header {
+    display: flex; justify-content: space-between; align-items: center;
+}
+.t-name { font-size: 13px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+.t-price { font-size: 18px; font-weight: 800; color: #00F0FF; }
+.beast-glow .t-price { color: #FFD700; }
+
+.tier-features {
+    display: flex; flex-direction: column; gap: 4px;
+    font-size: 10.5px; color: #94A3B8;
+}
+.tier-features i { color: #10B981; margin-right: 6px; }
+
+.tier-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px; padding: 10px;
+    color: #fff; font-family: inherit; font-size: 11px; font-weight: 800;
+    cursor: pointer; transition: all 0.2s ease;
+}
+.tier-btn:active { transform: scale(0.97); }
+.active-btn { background: #00F0FF; color: #030305; border: none; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
+.beast-action { background: linear-gradient(135deg, #FFD700 0%, #F59E0B 100%); color: #030305; border: none; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+
+/* Матрица персонажей */
+.characters-section-title {
+    margin-top: 6px;
+    display: flex; flex-direction: column; gap: 2px;
+}
+.characters-section-title h3 {
+    font-size: 11px; font-weight: 800; color: #c084fc; letter-spacing: 0.6px;
+    display: flex; align-items: center; gap: 6px;
+}
+.matrix-subtitle { font-size: 9.5px; color: #64748B; }
+
+.characters-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.char-slot {
+    background: rgba(18, 18, 26, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    aspect-ratio: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.char-slot:active { transform: scale(0.94); border-color: #a855f7; }
+
+.char-avatar-preview {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(0,240,255,0.2));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(168,85,247,0.2);
+}
+
+.char-name { font-size: 9px; font-weight: 700; color: #CBD5E1; }
+.lock-icon { position: absolute; top: 8px; right: 8px; font-size: 9px; color: #F59E0B; }
 
 /* ==========================================================================
-   НИЖНИЙ НАВБАР И ЦЕНТРАЛЬНАЯ КНОПКА СТУДИИ
+   ФИКС И СТИЛИЗАЦИЯ НИЖНЕГО НАВБАРА И ЦЕНТРАЛЬНОЙ КНОПКИ СТУДИИ
    ========================================================================== */
 
 .bottom-navbar {
@@ -154,9 +244,10 @@ body {
     z-index: 9999 !important;
     box-sizing: border-box !important;
     padding-bottom: env(safe-area-inset-bottom) !important;
-    overflow: visible !important;
+    overflow: visible !important; /* Важно, чтобы приподнятая кнопка не обрезалась */
 }
 
+/* Обычные элементы меню */
 .bottom-navbar > a {
     text-decoration: none !important;
     display: flex !important;
@@ -188,14 +279,14 @@ body {
     color: #c77dff !important;
 }
 
-/* Центральная кнопка Студия */
+/* === ЦЕНТРАЛЬНАЯ КНОПКА СТУДИЯ (ПРИПОДНЯТАЯ ⚡) === */
 .nav-center-item-link {
     overflow: visible !important;
 }
 
 .nav-center-item {
     position: relative !important;
-    top: -14px !important;
+    top: -14px !important; /* Эффектно задираем кнопку вверх над панелью */
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -213,6 +304,11 @@ body {
     justify-content: center !important;
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.7) !important;
     border: 2px solid #0B0B0C !important;
+    transition: transform 0.3s ease !important;
+}
+
+.nav-center-item:hover .nav-center-btn {
+    transform: scale(1.1) rotate(10deg);
 }
 
 .center-icon {
@@ -229,28 +325,44 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-/* Киберпанк дропдаун */
+/* Отступ для контента, чтоб нижнее меню ничего не перекрывало */
+.main-container {
+    padding-bottom: 90px !important;
+}
+/* ==================== ОБНОВЛЕННЫЙ КИБЕРПАНК ДРОПДАУН ==================== */
 #lang-dropdown {
-    background: rgba(20, 15, 35, 0.7);
+    background: rgba(20, 15, 35, 0.7); /* Чуть плотнее фон */
     color: #fff; 
     border: 2px solid #9d4edd; 
     border-radius: 10px; 
-    padding: 6px 32px 6px 14px; 
+    padding: 6px 10px 6px 14px; /* Увеличили отступ слева, чтобы флаг не лип к рамке */
     font-family: 'Inter', sans-serif;
     font-size: 14px;
-    font-weight: 700; 
+    font-weight: 700; /* Делаем текст в селекте жирным */
     cursor: pointer;
     outline: none;
     backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 0 12px rgba(157, 78, 221, 0.4); 
+    transition: all 0.3s ease;
     appearance: none; 
     -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 32px; 
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239d4edd' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
     background-repeat: no-repeat;
     background-position: right 12px center;
 }
 
+#lang-dropdown:hover {
+    border-color: #c77dff;
+    box-shadow: 0 0 18px rgba(199, 125, 255, 0.7);
+    transform: translateY(-1px);
+}
+
 #lang-dropdown option {
     background: #140f23; 
     color: #fff;
+    font-family: 'Inter', sans-serif;
+    padding: 10px;
 }
