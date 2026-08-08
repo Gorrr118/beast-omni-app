@@ -29,9 +29,7 @@ body {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
 }
 
-/* ==========================================================================
-   2. ВЕРХНИЙ ХЕДЕР И СЕЛЕКТОР ЯЗЫКА
-   ========================================================================== */
+/* ВЕРХНИЙ ХЕДЕР И СЕЛЕКТОР ЯЗЫКА */
 .global-header {
     position: fixed;
     top: 0;
@@ -62,7 +60,6 @@ body {
     font-weight: 600;
 }
 
-/* ==================== ОБНОВЛЕННЫЙ КИБЕРПАНК ДРОПДАУН ==================== */
 #lang-dropdown {
     background: rgba(20, 15, 35, 0.7);
     color: #fff; 
@@ -105,7 +102,7 @@ body {
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    margin-top: 65px; /* Чтобы контент не заходил под хедер */
+    margin-top: 65px;
 }
 
 .preview-window {
@@ -149,11 +146,6 @@ body {
 .player-screen.format-1-1 {
     aspect-ratio: 1 / 1;
     height: auto;
-}
-
-.player-screen:hover {
-    background-color: #0c0c0f;
-    border-color: rgba(168, 85, 247, 0.4);
 }
 
 .upload-zone-wrapper {
@@ -307,18 +299,18 @@ body {
 .timeline-container {
     background-color: #121214;
     border-top: 1px solid #1C1C1E;
-    padding: 12px 16px;
+    padding: 10px 16px;
     flex-shrink: 0;
 }
 
 .timeline-tracks {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
 }
 
 .track {
-    height: 30px;
+    height: 26px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -342,28 +334,28 @@ body {
 }
 
 .track-icon {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .track-label {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     color: #AEAEB2;
 }
 
+/* ДИНАМИЧЕСКАЯ ПАНЕЛЬ (ФОРМАТ / КАСТОМ / ЗВУК / ЭКСПОРТ) */
 .dynamic-panel {
     background-color: #121214;
     border-top: 1px solid #1C1C1E;
-    padding: 16px;
+    padding: 12px 16px;
     flex-shrink: 0;
-    min-height: 140px;
-    padding-bottom: 75px; /* Отступ чтобы контент не перекрывался нижним меню */
+    margin-bottom: 115px; /* Поднимаем над саб-тулзами и нижним навбаром */
 }
 
 .tool-panel-content {
     display: none;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .tool-panel-content.active {
@@ -371,7 +363,7 @@ body {
 }
 
 .panel-header {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: #8E8E93;
     display: flex;
@@ -390,20 +382,20 @@ body {
     background-color: #1C1C1E;
     border: 1px solid #2C2C2E;
     border-radius: 8px;
-    padding: 12px 6px;
+    padding: 10px 4px;
     color: #AEAEB2;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     transition: all 0.2s ease;
 }
 
 .format-btn i {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .format-btn.active {
@@ -417,9 +409,9 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #1C1C1E;
-    padding: 12px;
+    padding: 10px 12px;
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -433,62 +425,50 @@ body {
     background-color: #1C1C1E;
     border: 1px solid #2C2C2E;
     color: #FFFFFF;
-    padding: 10px;
+    padding: 8px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    transition: background-color 0.2s;
-}
-
-.inventory-trigger-btn:hover {
-    background-color: #2C2C2E;
+    gap: 5px;
 }
 
 .volume-control {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
     background-color: #1C1C1E;
-    padding: 10px 12px;
+    padding: 8px 12px;
     border-radius: 8px;
 }
 
 .slider-label-row {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     color: #AEAEB2;
 }
 
 .panel-info-text {
-    font-size: 12px;
+    font-size: 11px;
     color: #8E8E93;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 .main-action-btn {
     background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%);
     color: #ffffff;
     border: none;
-    border-radius: 10px;
-    padding: 14px;
+    border-radius: 8px;
+    padding: 11px;
     font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.5px;
+    font-size: 12px;
     cursor: pointer;
     width: 100%;
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
-    transition: transform 0.1s;
-}
-
-.main-action-btn:active {
-    transform: scale(0.98);
 }
 
 input[type="range"] {
@@ -502,30 +482,35 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background: #a855f7;
-    box-shadow: 0 0 6px rgba(168,85,247,0.4);
     cursor: pointer;
 }
 
+/* СУБ-ТУЛЗЫ (Формат, Кастом, Звук, Экспорт - ПЕРЕД ГЛОБАЛЬНЫМ МЕНЮ) */
 .studio-sub-tools {
-    display: flex;
-    justify-content: space-around;
-    background-color: #121214;
-    border-top: 1px solid #1C1C1E;
-    padding: 6px 4px;
-    flex-shrink: 0;
+    position: fixed !important;
+    bottom: 70px !important; /* Ровно над нижним навбаром */
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 480px;
+    background-color: #121214 !important;
+    border-top: 1px solid #1C1C1E !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    padding: 8px 4px !important;
+    z-index: 9998 !important;
 }
 
 .tool-btn {
     background: transparent;
     border: none;
-    color: #636366;
-    padding: 6px;
+    color: #747d8c;
+    padding: 4px;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     text-align: center;
     width: 22%;
@@ -533,22 +518,21 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .tool-btn i {
-    font-size: 16px;
-    margin-bottom: 4px;
+    font-size: 15px;
+    margin-bottom: 2px;
 }
 
 .tool-btn.active {
-    color: #a855f7;
+    color: #c77dff !important;
 }
 
-/* ==========================================================================
-   ФИКС И СТИЛИЗАЦИЯ НИЖНЕГО НАВБАРА И ЦЕНТРАЛЬНОЙ КНОПКИ СТУДИИ
-   ========================================================================== */
+/* НИЖНЕЕ ГЛОБАЛЬНОЕ МЕНЮ (НАВБАР) */
 .bottom-navbar {
     position: fixed !important;
     bottom: 0 !important;
     left: 0 !important;
     width: 100% !important;
+    max-width: 480px;
     height: 70px !important;
     background-color: #0d0d12 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -556,7 +540,6 @@ input[type="range"]::-webkit-slider-thumb {
     justify-content: space-around !important;
     align-items: center !important;
     z-index: 9999 !important;
-    box-sizing: border-box !important;
     padding-bottom: env(safe-area-inset-bottom) !important;
     overflow: visible !important;
 }
@@ -592,7 +575,7 @@ input[type="range"]::-webkit-slider-thumb {
     color: #c77dff !important;
 }
 
-/* === ЦЕНТРАЛЬНАЯ КНОПКА СТУДИЯ (ПРИПОДНЯТАЯ ⚡) === */
+/* ЦЕНТРАЛЬНАЯ КНОПКА СТУДИИ (⚡ ПРИПОДНЯТАЯ) */
 .nav-center-item-link {
     overflow: visible !important;
 }
@@ -617,11 +600,6 @@ input[type="range"]::-webkit-slider-thumb {
     justify-content: center !important;
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.7) !important;
     border: 2px solid #0B0B0C !important;
-    transition: transform 0.3s ease !important;
-}
-
-.nav-center-item:hover .nav-center-btn {
-    transform: scale(1.1) rotate(10deg);
 }
 
 .center-icon {
