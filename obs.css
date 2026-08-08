@@ -1,5 +1,5 @@
-/* Импорт шрифтов */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Press+Start+2P&family=Orbitron:wght@700&family=Rubik+Glitch&family=Cinzel:wght@700&family=Bungee+Shade&family=Monoton&family=Creepster&family=Permanent+Marker&display=swap');
+/* Импорт фирменных шрифтов главной страницы (Inter + жирный Unbounded) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@700;900&display=swap');
 
 * { 
     box-sizing: border-box; 
