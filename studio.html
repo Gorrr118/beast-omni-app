@@ -10,22 +10,28 @@
 </head>
 <body>
 
-    <div class="studio-container">
-        
-        <!-- HEADER: Точная копия шапки с главного экрана -->
-        <div class="shop-header">
-            <div class="user-welcome-badge">
-                <i class="fas fa-bolt text-gold"></i> Hello, filatow
+   <body translate="no">
+
+    <div id="app-preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-logo">Beast Omni</h1>
+            <div class="progress-bar-container">
+                <div class="progress-bar-line"></div>
             </div>
-            <div class="lang-selector-box">
-                <select id="lang-dropdown">
-                    <option value="en" selected>🇺🇸 US</option>
-                    <option value="ru">🇷🇺 RU</option>
-                    <option value="es">🇪🇸 ES</option>
-                    <option value="hy">🇦🇲 HY</option>
-                </select>
-            </div>
+            <span class="preloader-status">Loading Ecosystem...</span>
         </div>
+    </div>
+
+    <header class="global-header">
+        <div class="user-box">
+            <span class="user-icon">⚡</span>
+            <span class="username" id="user-greeting">Hello, filatow</span>
+        </div>
+        <select id="lang-dropdown">
+            <option value="en">🇺🇸 US</option>
+            <option value="ru">🇷🇺 RU</option>
+        </select>
+    </header>
 
         <!-- WORKSPACE: Плеер + Загрузка + Аватар -->
         <div class="editor-workspace">
@@ -150,45 +156,44 @@
         </div>
 
         <!-- BOTTOM NAVBAR: Точная копия нижнего меню с главного экрана -->
-        <nav class="bottom-navbar">
-            <a href="index.html" class="nav-link-item">
-                <div class="nav-item">
-                    <i class="fas fa-home nav-icon-i"></i>
-                    <span class="nav-text">Home</span>
+          <nav class="bottom-navbar">
+        <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+            </div>
+        </a>
+        
+        <a href="referals.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Referral</span>
+            </div>
+        </a>
+        
+      <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-center-item">
+                <div class="nav-center-btn">
+                    <span class="center-icon">⚡</span>
                 </div>
-            </a>
-            <a href="referals.html" class="nav-link-item">
-                <div class="nav-item">
-                    <i class="fas fa-users nav-icon-i"></i>
-                    <span class="nav-text">Referral</span>
-                </div>
-            </a>
-            
-            <!-- Центральная активная кнопка Studio с фиолетовым свечением -->
-            <a href="studio.html" class="nav-link-item active-center-link">
-                <div class="nav-item nav-center-item active">
-                    <div class="nav-center-btn">
-                        <i class="fas fa-bolt center-icon-i"></i>
-                    </div>
-                    <span class="nav-text center-text">Studio</span>
-                </div>
-            </a>
-
-            <a href="widgets.html" class="nav-link-item">
-                <div class="nav-item">
-                    <i class="fas fa-cog nav-icon-i"></i>
-                    <span class="nav-text">obs Settings</span>
-                </div>
-            </a>
-            <a href="shop.html" class="nav-link-item">
-                <div class="nav-item">
-                    <i class="fas fa-tag nav-icon-i"></i>
-                    <span class="nav-text">Tegs</span>
-                </div>
-            </a>
-        </nav>
-
-    </div>
+                <span class="nav-text center-text">Studio</span>
+            </div>
+        </a>
+        
+        <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">obs Settings</span>
+            </div>
+        </a>
+        
+       <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
+            <div class="nav-item">
+                <span class="nav-icon">🏷️</span>
+                <span class="nav-text">Tegs</span>
+            </div>
+        </a>
+    </nav>
 
     <!-- ВСПЛЫВАЮЩЕЕ ОКНО (BOTTOM SHEET) -->
     <div class="bottom-sheet" id="shop-inventory-sheet">
