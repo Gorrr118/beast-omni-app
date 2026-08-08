@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" translate="no">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="studio.css?v=1.7">
 </head>
 <body>
-    <!-- ВОТ ЭТОТ ТЕГ ОБЯЗАТЕЛЬНО ДОЛЖЕН БЫТЬ ЗДЕСЬ -->
-    <div class="studio-container">
 
+    <div class="studio-container">
+        
+        <!-- ВЕРХНИЙ ХЕДЕР -->
         <header class="global-header">
             <div class="user-box">
                 <span class="user-icon">⚡</span>
@@ -22,7 +23,7 @@
             </select>
         </header>
 
-        <!-- WORKSPACE -->
+        <!-- ЦЕНТРАЛЬНАЯ ЧАСТЬ (WORKSPACE) -->
         <div class="editor-workspace">
             <div class="preview-window">
                 <div class="player-screen" id="player-screen-trigger">
@@ -129,21 +130,47 @@
             <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br>Экспорт</button>
         </div>
 
-        <!-- BOTTOM NAVBAR -->
+        <!-- НИЖНЕЕ МЕНЮ -->
         <nav class="bottom-navbar">
-            <a href="index.html"><div class="nav-item active"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></div></a>
-            <a href="referals.html"><div class="nav-item"><span class="nav-icon">👥</span><span class="nav-text">Referral</span></div></a>
+            <a href="index.html">
+                <div class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </div>
+            </a>
+            
+            <a href="referals.html">
+                <div class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Referral</span>
+                </div>
+            </a>
+            
             <a href="studio.html" class="nav-center-item-link">
                 <div class="nav-center-item">
-                    <div class="nav-center-btn"><span class="center-icon">⚡</span></div>
+                    <div class="nav-center-btn">
+                        <span class="center-icon">⚡</span>
+                    </div>
                     <span class="nav-text center-text">Studio</span>
                 </div>
             </a>
-            <a href="obs.html"><div class="nav-item"><span class="nav-icon">⚙️</span><span class="nav-text">obs Settings</span></div></a>
-            <a href="shop.html"><div class="nav-item"><span class="nav-icon">🏷️</span><span class="nav-text">Tegs</span></div></a>
+            
+            <a href="obs.html">
+                <div class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">obs Settings</span>
+                </div>
+            </a>
+            
+            <a href="shop.html">
+                <div class="nav-item">
+                    <span class="nav-icon">🏷️</span>
+                    <span class="nav-text">Tegs</span>
+                </div>
+            </a>
         </nav>
 
-    </div><!-- КОНЕЦ .studio-container -->
+    </div>
 
     <!-- ВСПЛЫВАЮЩЕЕ ОКНО -->
     <div class="bottom-sheet" id="shop-inventory-sheet">
