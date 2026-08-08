@@ -1,5 +1,5 @@
-/* Импорт фирменных шрифтов главной страницы (Inter + жирный Unbounded) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@700;900&display=swap');
+/* Импорт шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800;900&display=swap');
 
 * { 
     box-sizing: border-box; 
@@ -52,13 +52,13 @@ body {
     color: #FFFFFF;
 }
 
-/* Основной контейнер страницы тегов */
+/* Основной контейнер страницы OBS */
 .main-container {
     flex: 1;
-    max-width: 100%; /* Убираем жесткое ограничение в 480px, либо поставь 540px */
+    max-width: 480px;
     width: 100%;
     margin: 0 auto;
-    padding: 12px; /* Уменьшили отступы экрана с 16px до 12px */
+    padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -66,11 +66,12 @@ body {
     position: relative;
 }
 
+/* Карточки для настроек OBS */
 .card {
     background-color: #0f1016;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
-    padding: 14px; /* Уменьшили с 20px до 14px, чтобы элементы внутри не сжимались */
+    padding: 20px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
@@ -92,15 +93,15 @@ body {
     line-height: 1.4;
 }
 
-.input-group {
+/* Элементы формы / настроек OBS */
+.obs-settings-group {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-textarea {
+.obs-input {
     width: 100%;
-    height: 110px;
     background-color: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -108,17 +109,16 @@ textarea {
     color: #ffffff;
     font-size: 13px;
     font-family: 'Inter', sans-serif;
-    resize: none;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-textarea:focus {
+.obs-input:focus {
     border-color: #a855f7;
     box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
 }
 
-.generate-btn {
+.obs-btn {
     background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%);
     color: #fff;
     border: none;
@@ -132,44 +132,8 @@ textarea:focus {
     transition: transform 0.1s;
 }
 
-.generate-btn:active {
+.obs-btn:active {
     transform: scale(0.98);
-}
-
-.results-box {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.tags-output {
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 1px dashed rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 14px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #F472B6;
-    word-break: break-all;
-    min-height: 50px;
-    display: flex;
-    align-items: center;
-}
-
-.copy-btn {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.copy-btn:hover {
-    background-color: rgba(255, 255, 255, 1);
 }
 
 /* ==========================================================================
