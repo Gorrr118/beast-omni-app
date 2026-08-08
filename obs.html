@@ -6,7 +6,6 @@
     <title>BEAST OMNI | AI Character Matrix</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="obs.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -19,17 +18,17 @@
 
     <div class="app-container">
         
-    <!-- Верхний хедер (идентичен главному меню) -->
-    <header class="global-header">
-        <div class="user-box">
-            <span class="user-icon">⚡</span>
-            <span class="username" id="user-greeting">Hello, filatow</span>
-        </div>
-        <select id="lang-dropdown">
-            <option value="en">🇺🇸 US</option>
-            <option value="ru">🇷🇺 RU</option>
-        </select>
-    </header>
+        <!-- Единая шапка -->
+        <header class="global-header">
+            <div class="user-box">
+                <span class="user-icon">⚡</span>
+                <span class="username" id="user-greeting">Hello, filatow</span>
+            </div>
+            <select id="lang-dropdown">
+                <option value="en" selected>🇺🇸 US</option>
+                <option value="ru">🇷🇺 RU</option>
+            </select>
+        </header>
 
         <!-- Основной контент -->
         <main class="main-content content-area">
