@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Creator Studio PRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="studio.css?v=1.7">
+    <link rel="stylesheet" href="studio.css?v=1.8">
 </head>
 <body>
 
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <!-- DYNAMIC CONTROL PANELS -->
+        <!-- DYNAMIC CONTROL PANELS (ПАНЕЛИ НАСТРОЙКИ) -->
         <div class="dynamic-panel" id="dynamic-panel">
             <div class="tool-panel-content active" id="panel-format">
                 <div class="panel-header"><i class="fas fa-compress-alt"></i> Формат кадра</div>
@@ -122,7 +122,7 @@
             </div>
         </div>
 
-        <!-- SUB-TOOLS BUTTONS -->
+        <!-- ПАНЕЛЬ ВКЛЮЧЕНИЯ ИНСТРУМЕНТОВ (ФОРМАТ / КАСТОМ / ЗВУК / ЭКСПОРТ) -->
         <div class="studio-sub-tools" id="studio-sub-tools">
             <button class="tool-btn active" data-target="panel-format"><i class="fas fa-border-all"></i><br>Формат</button>
             <button class="tool-btn" data-target="panel-text"><i class="fas fa-magic"></i><br>Кастом</button>
@@ -130,10 +130,10 @@
             <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br>Экспорт</button>
         </div>
 
-        <!-- НИЖНЕЕ МЕНЮ -->
+        <!-- НИЖНЕЕ ГЛОБАЛЬНОЕ МЕНЮ (НАВБАР С WIDGETS И SHOP КАК НА СКРИНЕ) -->
         <nav class="bottom-navbar">
             <a href="index.html">
-                <div class="nav-item active">
+                <div class="nav-item">
                     <span class="nav-icon">🏠</span>
                     <span class="nav-text">Home</span>
                 </div>
@@ -155,24 +155,24 @@
                 </div>
             </a>
             
-            <a href="obs.html">
+            <a href="widgets.html">
                 <div class="nav-item">
                     <span class="nav-icon">⚙️</span>
-                    <span class="nav-text">obs Settings</span>
+                    <span class="nav-text">Widgets</span>
                 </div>
             </a>
             
             <a href="shop.html">
                 <div class="nav-item">
-                    <span class="nav-icon">🏷️</span>
-                    <span class="nav-text">Tegs</span>
+                    <span class="nav-icon">🛍️</span>
+                    <span class="nav-text">Shop</span>
                 </div>
             </a>
         </nav>
 
     </div>
 
-    <!-- ВСПЛЫВАЮЩЕЕ ОКНО -->
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО ИНВЕНТАРЯ -->
     <div class="bottom-sheet" id="shop-inventory-sheet">
         <div class="sheet-overlay" id="sheet-overlay-close"></div>
         <div class="sheet-content">
