@@ -1,7 +1,6 @@
 /* Импорт шрифтов */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Press+Start+2P&family=Orbitron:wght@700&family=Rubik+Glitch&family=Cinzel:wght@700&family=Bungee+Shade&family=Monoton&family=Creepster&family=Permanent+Marker&display=swap');
 
-
 * { 
     box-sizing: border-box; 
     margin: 0; 
@@ -13,26 +12,24 @@ body {
     background-color: #030305;
     color: #F8FAFC;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    flex-direction: column;
     position: relative;
+    overflow-x: hidden;
 }
 
-/* Общий контейнер мобильного приложения */
+/* Общий контейнер приложения на всю ширину */
 .app-container {
     width: 100%;
-    max-width: 480px;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #030305;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+    justify-content: flex-start;
     position: relative;
-    overflow: hidden;
+    padding-top: 75px; /* Отступ под фиксированный хедер */
+    padding-bottom: 90px; /* Отступ под нижний навбар */
 }
 
 /* Неоновые споты */
