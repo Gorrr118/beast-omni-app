@@ -12,23 +12,23 @@ body {
     background-color: #000000;
     color: #F5F5F7;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow-x: hidden;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-/* Главный контейнер студии на всю ширину */
 .studio-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
+    max-width: 480px;
     background-color: #0E0E10;
     position: relative;
-    padding-top: 75px; /* Отступ под фиксированный хедер сверху */
-    padding-bottom: 90px; /* Отступ под нижний навбар, чтобы ничего не перекрывало */
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
 }
 /* ==========================================================================
    2. ВЕРХНИЙ ХЕДЕР И СЕЛЕКТОР ЯЗЫКА
