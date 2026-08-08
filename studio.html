@@ -1,42 +1,41 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Creator Studio PRO</title>
-    <!-- Подключаем иконки для красивых кнопок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="studio.css?v=1.7">
 </head>
 <body>
 
-   <body translate="no">
+    <!-- ВСЁ ПРИЛОЖЕНИЕ ТЕПЕРЬ ВНУТРИ ЭТОГО КОНТЕЙНЕРА -->
+    <div class="studio-container">
 
-    <div id="app-preloader">
-        <div class="preloader-content">
-            <h1 class="preloader-logo">Beast Omni</h1>
-            <div class="progress-bar-container">
-                <div class="progress-bar-line"></div>
+        <div id="app-preloader">
+            <div class="preloader-content">
+                <h1 class="preloader-logo">Beast Omni</h1>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-line"></div>
+                </div>
+                <span class="preloader-status">Loading Ecosystem...</span>
             </div>
-            <span class="preloader-status">Loading Ecosystem...</span>
         </div>
-    </div>
 
-    <header class="global-header">
-        <div class="user-box">
-            <span class="user-icon">⚡</span>
-            <span class="username" id="user-greeting">Hello, filatow</span>
-        </div>
-        <select id="lang-dropdown">
-            <option value="en">🇺🇸 US</option>
-            <option value="ru">🇷🇺 RU</option>
-        </select>
-    </header>
+        <header class="global-header">
+            <div class="user-box">
+                <span class="user-icon">⚡</span>
+                <span class="username" id="user-greeting">Hello, filatow</span>
+            </div>
+            <select id="lang-dropdown">
+                <option value="en">🇺🇸 US</option>
+                <option value="ru">🇷🇺 RU</option>
+            </select>
+        </header>
 
-        <!-- WORKSPACE: Плеер + Загрузка + Аватар -->
+        <!-- WORKSPACE -->
         <div class="editor-workspace">
             <div class="preview-window">
-                <!-- Главный черный квадрат загрузки и плеер -->
                 <div class="player-screen" id="player-screen-trigger">
                     <div class="upload-zone-wrapper" id="upload-zone">
                         <i class="fas fa-cloud-upload-alt upload-icon"></i>
@@ -44,16 +43,13 @@
                         <span class="file-info-sm" id="file-info">Поддерживается MP4, MOV до 50 МБ</span>
                     </div>
                     
-                    <!-- Видео-плеер (скрыт по дефолту) -->
                     <video id="main-player" style="display: none; width: 100%; height: 100%; object-fit: contain;" controls playsinline loop></video>
                     
-                    <!-- ИИ АВАТАР: Персонаж, которого можно двигать -->
                     <div class="ai-avatar-overlay" id="ai-avatar" style="display: none;">
                         <img src="https://inside-care.ru/wp-content/uploads/5/0/0/500b5fc912d09dfad789ff4c264a938c.jpeg" alt="AI Avatar" id="avatar-img">
                         <div class="avatar-resize-handle" id="avatar-resizer"></div>
                     </div>
 
-                    <!-- ЭКРАН ПРОГРЕССА ГЕНЕРАЦИИ -->
                     <div class="render-overlay" id="render-status-screen" style="display: none;">
                         <div class="spinner-loader"></div>
                         <div class="render-status-title" id="render-status-text">Загрузка видео на сервер...</div>
@@ -88,8 +84,6 @@
 
         <!-- DYNAMIC CONTROL PANELS -->
         <div class="dynamic-panel" id="dynamic-panel">
-            
-            <!-- Панель: Формат -->
             <div class="tool-panel-content active" id="panel-format">
                 <div class="panel-header"><i class="fas fa-compress-alt"></i> Формат кадра</div>
                 <div class="format-grid">
@@ -99,7 +93,6 @@
                 </div>
             </div>
 
-            <!-- Панель: Субтитры и Кастомизация -->
             <div class="tool-panel-content" id="panel-text">
                 <div class="panel-header"><i class="fas fa-closed-captioning"></i> Текст и Субтитры</div>
                 <div class="switch-row">
@@ -108,19 +101,12 @@
                 </div>
                 
                 <div class="inventory-quick-access">
-                    <button class="inventory-trigger-btn" data-shop-type="fonts">
-                        <i class="fas fa-font"></i> Шрифты
-                    </button>
-                    <button class="inventory-trigger-btn" data-shop-type="voices">
-                        <i class="fas fa-microphone-lines"></i> ИИ Голоса
-                    </button>
-                    <button class="inventory-trigger-btn" data-shop-type="avatars">
-                        <i class="fas fa-user-astronaut"></i> ИИ Аватары
-                    </button>
+                    <button class="inventory-trigger-btn" data-shop-type="fonts"><i class="fas fa-font"></i> Шрифты</button>
+                    <button class="inventory-trigger-btn" data-shop-type="voices"><i class="fas fa-microphone-lines"></i> ИИ Голоса</button>
+                    <button class="inventory-trigger-btn" data-shop-type="avatars"><i class="fas fa-user-astronaut"></i> ИИ Аватары</button>
                 </div>
             </div>
 
-            <!-- Панель: Настройки Звука -->
             <div class="tool-panel-content" id="panel-audio">
                 <div class="panel-header"><i class="fas fa-sliders-h"></i> Аудиомикшер студии</div>
                 <div class="volume-control">
@@ -139,7 +125,6 @@
                 </div>
             </div>
 
-            <!-- Панель: Экспорт -->
             <div class="tool-panel-content" id="panel-export">
                 <div class="panel-header"><i class="fas fa-rocket"></i> Обработка медиафайла</div>
                 <p class="panel-info-text">ИИ автоматически сгенерирует перевод, наложит эффекты, тайминги и отрендерит ролик.</p>
@@ -155,47 +140,23 @@
             <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br>Экспорт</button>
         </div>
 
-        <!-- BOTTOM NAVBAR: Точная копия нижнего меню с главного экрана -->
-          <nav class="bottom-navbar">
-        <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
-            <div class="nav-item active">
-                <span class="nav-icon">🏠</span>
-                <span class="nav-text">Home</span>
-            </div>
-        </a>
-        
-        <a href="referals.html" style="text-decoration: none; display: block; flex: 1;">
-            <div class="nav-item">
-                <span class="nav-icon">👥</span>
-                <span class="nav-text">Referral</span>
-            </div>
-        </a>
-        
-      <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
-            <div class="nav-center-item">
-                <div class="nav-center-btn">
-                    <span class="center-icon">⚡</span>
+        <!-- BOTTOM NAVBAR -->
+        <nav class="bottom-navbar">
+            <a href="index.html"><div class="nav-item active"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></div></a>
+            <a href="referals.html"><div class="nav-item"><span class="nav-icon">👥</span><span class="nav-text">Referral</span></div></a>
+            <a href="studio.html" class="nav-center-item-link">
+                <div class="nav-center-item">
+                    <div class="nav-center-btn"><span class="center-icon">⚡</span></div>
+                    <span class="nav-text center-text">Studio</span>
                 </div>
-                <span class="nav-text center-text">Studio</span>
-            </div>
-        </a>
-        
-        <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
-            <div class="nav-item">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">obs Settings</span>
-            </div>
-        </a>
-        
-       <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
-            <div class="nav-item">
-                <span class="nav-icon">🏷️</span>
-                <span class="nav-text">Tegs</span>
-            </div>
-        </a>
-    </nav>
+            </a>
+            <a href="obs.html"><div class="nav-item"><span class="nav-icon">⚙️</span><span class="nav-text">obs Settings</span></div></a>
+            <a href="shop.html"><div class="nav-item"><span class="nav-icon">🏷️</span><span class="nav-text">Tegs</span></div></a>
+        </nav>
 
-    <!-- ВСПЛЫВАЮЩЕЕ ОКНО (BOTTOM SHEET) -->
+    </div><!-- КОНЕЦ .studio-container -->
+
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО -->
     <div class="bottom-sheet" id="shop-inventory-sheet">
         <div class="sheet-overlay" id="sheet-overlay-close"></div>
         <div class="sheet-content">
