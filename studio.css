@@ -1,3 +1,4 @@
+/* Импорт шрифтов */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Press+Start+2P&family=Orbitron:wght@700&family=Rubik+Glitch&family=Cinzel:wght@700&family=Bungee+Shade&family=Monoton&family=Creepster&family=Permanent+Marker&display=swap');
 
 * {
@@ -11,24 +12,24 @@ body {
     background-color: #000000;
     color: #F5F5F7;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
 }
 
+/* Главный контейнер студии на всю ширину */
 .studio-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
-    max-width: 480px;
     background-color: #0E0E10;
     position: relative;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    padding-top: 75px; /* Отступ под фиксированный хедер сверху */
+    padding-bottom: 90px; /* Отступ под нижний навбар, чтобы ничего не перекрывало */
 }
-
 /* ==========================================================================
    2. ВЕРХНИЙ ХЕДЕР И СЕЛЕКТОР ЯЗЫКА
    ========================================================================== */
