@@ -24,3 +24,24 @@ document.getElementById('copy-btn').addEventListener('click', () => {
         setTimeout(() => btn.innerText = oldText, 2000);
     });
 });
+// Проверка, чтобы JS видел элементы из твоего HTML:
+const plotInput = document.getElementById('plot-input');
+const generateBtn = document.getElementById('generate-btn');
+const tagsOutput = document.getElementById('tags-output');
+const copyBtn = document.getElementById('copy-btn');
+
+// Пример логики копирования по нажатию на кнопку:
+if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+        const textToCopy = tagsOutput.innerText;
+        navigator.clipboard.writeText(textToTest).then(() => {
+            copyBtn.innerText = 'Скопировано! ✅';
+            setTimeout(() => {
+                copyBtn.innerText = 'Копировать теги в буфер';
+            }, 2000);
+        });
+    });
+}   
+
+
+ 
