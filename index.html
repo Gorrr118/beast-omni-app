@@ -24,7 +24,7 @@
             <div class="progress-bar-container">
                 <div class="progress-bar-line"></div>
             </div>
-            <span class="preloader-status">Loading Ecosystem...</span>
+            <span class="preloader-status" data-i18n="preloaderStatus">Loading Ecosystem...</span>
         </div>
     </div>
 
@@ -44,135 +44,142 @@
         <div id="tab-home" class="app-tab active-tab">
             
             <section class="hero-section">
-                <h1 class="neon-text" id="hero-title" data-i18n="homeTitle">BEAST OMNI</h1>
-                <p class="hero-desc" id="hero-desc" data-i18n="homeDesc">An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.</p>
+                <h1 class="neon-text" id="hero-title">TEGS</h1>
+                <p class="hero-desc" id="hero-desc" data-i18n="heroDesc">An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.</p>
             </section>
 
             <section class="section-block">
-                <h2 class="section-title" id="tariffs-title" data-i18n="tariffsHeader">Available Tariffs</h2>
+                <h2 class="section-title" id="tariffs-title" data-i18n="tariffsTitle">Available Tariffs</h2>
                 <div class="tariffs-grid">
                     
                     <div class="tariff-card base">
-                        <div class="tariff-badge green">SHORTS / REELS</div>
-                        <h3 class="tariff-name gradient-text-blue" id="t1-name">SHORTS BASE</h3>
-                        <p class="tariff-desc">Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life with specialized interactive mechanics designed specifically for fast-paced content, helping you stand out in smart algorithms, capture viewer attention from the first second, and boost your organic metric growth effortlessly!</p>
-                        <p class="tariff-price price-blue">$10<span>/mo</span></p>
-                        <ul class="tariff-features">
-                            <li>Ideal solution for TikTok, Shorts & Reels creators looking for steady explosive growth</li>
-                            <li>1 active interactive widget running simultaneously on your account without any delays</li>
-                            <li>Full access to standard system fonts and basic text layouts for clean styling</li>
-                            <li>Strict limit: 500 processing views per month, tailored for starting projects and testing core features</li>
+                        <div class="tariff-badge green" data-i18n="t1Badge">SHORTS / REELS</div>
+                        <h3 class="tariff-name gradient-text-blue" id="t1-name" data-i18n="t1Name">SHORTS BASE</h3>
+                        <p class="tariff-desc" id="t1-desc" data-i18n="t1Desc">Perfect start for vertical content creators. Bring your TikTok, Shorts, and Reels to life with specialized interactive mechanics designed specifically for fast-paced content, helping you stand out in smart algorithms, capture viewer attention from the first second, and boost your organic metric growth effortlessly!</p>
+                        <p class="tariff-price price-blue">$10<span data-i18n="perMo">/mo</span></p>
+                        <ul class="tariff-features" id="t1-features">
+                            <li data-i18n="t1f1">Ideal solution for TikTok, Shorts & Reels creators looking for steady explosive growth</li>
+                            <li data-i18n="t1f2">1 active interactive widget running simultaneously on your account without any delays</li>
+                            <li data-i18n="t1f3">Full access to standard system fonts and basic text layouts for clean styling</li>
+                            <li data-i18n="t1f4">Strict limit: 500 processing views per month, tailored for starting projects and testing core features</li>
                         </ul>
-                        <button class="btn-action btn-blue">Activate</button>
+                        <button class="btn-action btn-blue" id="t1-btn" data-i18n="activateBtn">Activate</button>
                     </div>
 
                     <div class="tariff-card pro">
-                        <div class="tariff-badge purple">POPULAR</div>
-                        <h3 class="tariff-name gradient-text-purple" id="t2-name">MEDIUM PRO</h3>
-                        <p class="tariff-desc">The choice of active streamers. Complete audience immersion without watermarks and with neon fonts! This tier offers deeper customization tools, allowing you to establish a strong visual bond with your chat, launch multi-layered interactive alerts, and elevate your production value to professional streaming standards.</p>
-                        <p class="tariff-price price-purple">$30<span>/mo</span></p>
-                        <ul class="tariff-features">
-                            <li>Up to 10 simultaneously running widgets to handle sub goals, chat alerts, and active alerts at once</li>
-                            <li>Complete removal of TEGS watermark from all overlays to keep your stream brand 100% clean</li>
-                            <li>Unrestricted access to the starter collection of characters, complete with smooth animations</li>
-                            <li>5 premium glowing neon fonts of your choice to perfectly match your channel's unique aesthetic</li>
-                            <li>Extended limit: 15,000 processed views per month, ideal for channels with active, growing communities</li>
+                        <div class="tariff-badge purple" data-i18n="t2Badge">POPULAR</div>
+                        <h3 class="tariff-name gradient-text-purple" id="t2-name" data-i18n="t2Name">MEDIUM PRO</h3>
+                        <p class="tariff-desc" id="t2-desc" data-i18n="t2Desc">The choice of active streamers. Complete audience immersion without watermarks and with neon fonts! This tier offers deeper customization tools, allowing you to establish a strong visual bond with your chat, launch multi-layered interactive alerts, and elevate your production value to professional streaming standards.</p>
+                        <p class="tariff-price price-purple">$30<span data-i18n="perMo">/mo</span></p>
+                        <ul class="tariff-features" id="t2-features">
+                            <li data-i18n="t2f1">Up to 10 simultaneously running widgets to handle sub goals, chat alerts, and active alerts at once</li>
+                            <li data-i18n="t2f2">Complete removal of TEGS watermark from all overlays to keep your stream brand 100% clean</li>
+                            <li data-i18n="t2f3">Unrestricted access to the starter collection of characters, complete with smooth animations</li>
+                            <li data-i18n="t2f4">5 premium glowing neon fonts of your choice to perfectly match your channel's unique aesthetic</li>
+                            <li data-i18n="t2f5">Extended limit: 15,000 processed views per month, ideal for channels with active, growing communities</li>
                         </ul>
-                        <button class="btn-action active-btn">Buy PRO</button>
+                        <button class="btn-action active-btn" id="t2-btn" data-i18n="t2Btn">Buy PRO</button>
                     </div>
 
                     <div class="tariff-card advanced">
-                        <div class="tariff-badge orange">EXTENDED</div>
-                        <h3 class="tariff-name gradient-text-orange" id="t3-name">ADVANCED OMNI</h3>
-                        <p class="tariff-desc">Hardcore creator level. Premium game and anime characters that make your stream unforgettable! Unlock state-of-the-art interactive systems, complex triggering conditions, and elite-tier design features that completely redefine how your live chat influences your stream overlay in real-time broadcasts.</p>
-                        <p class="tariff-price price-orange">$50<span>/mo</span></p>
-                        <ul class="tariff-features">
-                            <li>Extended functionality, higher API priority, and massively increased volume limits for power users</li>
-                            <li>Up to 25 simultaneously running widgets, allowing you to craft a completely unique custom interface</li>
-                            <li>Access to premium game and anime characters with special event triggers and reactive gestures</li>
-                            <li>10 exclusive cyber-fonts to choose from, guaranteeing high-tech look for alerts and overlays</li>
-                            <li>High limit: 50,000 views per month, engineered for established streamers with heavy daily chat interactions</li>
+                        <div class="tariff-badge orange" data-i18n="t3Badge">EXTENDED</div>
+                        <h3 class="tariff-name gradient-text-orange" id="t3-name" data-i18n="t3Name">ADVANCED OMNI</h3>
+                        <p class="tariff-desc" id="t3-desc" data-i18n="t3Desc">Hardcore creator level. Premium game and anime characters that make your stream unforgettable! Unlock state-of-the-art interactive systems, complex triggering conditions, and elite-tier design features that completely redefine how your live chat influences your stream overlay in real-time broadcasts.</p>
+                        <p class="tariff-price price-orange">$50<span data-i18n="perMo">/mo</span></p>
+                        <ul class="tariff-features" id="t3-features">
+                            <li data-i18n="t3f1">Extended functionality, higher API priority, and massively increased volume limits for power users</li>
+                            <li data-i18n="t3f2">Up to 25 simultaneously running widgets, allowing you to craft a completely unique custom interface</li>
+                            <li data-i18n="t3f3">Access to premium game and anime characters with special event triggers and reactive gestures</li>
+                            <li data-i18n="t3f4">10 exclusive cyber-fonts to choose from, guaranteeing high-tech look for alerts and overlays</li>
+                            <li data-i18n="t3f5">High limit: 50,000 views per month, engineered for established streamers with heavy daily chat interactions</li>
                         </ul>
-                        <button class="btn-action btn-orange">Upgrade</button>
+                        <button class="btn-action btn-orange" id="t3-btn" data-i18n="upgradeBtn">Upgrade</button>
                     </div>
 
                     <div class="tariff-card king">
-                        <div class="tariff-badge gold">UNLIMITED</div>
-                        <h3 class="tariff-name gradient-text-gold" id="t4-name">ULTIMATE KING</h3>
-                        <p class="tariff-desc">Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here! This is the ultimate corporate-grade solution for elite content creators and streaming organizations who require maximum performance, unique assets, and absolute creative freedom without boundaries.</p>
-                        <p class="tariff-price price-gold">$100<span>/mo</span></p>
-                        <ul class="tariff-features">
-                            <li>Absolute unlimited widget creation and parallel operations with maximum server response speeds</li>
-                            <li>Full unhindered access to ALL premium characters, special variants, and hidden legendary fonts</li>
-                            <li>Exclusive animated voice packs included completely for free to shock and entertain your audience</li>
-                            <li>Max FPS mode for hyper-smooth web animations and fluid widget rendering directly inside OBS Studio</li>
-                            <li>Priority VIP support 24/7 with a dedicated personal account manager to solve any technical issues instantly</li>
+                        <div class="tariff-badge gold" data-i18n="t4Badge">UNLIMITED</div>
+                        <h3 class="tariff-name gradient-text-gold" id="t4-name" data-i18n="t4Name">ULTIMATE KING</h3>
+                        <p class="tariff-desc" id="t4-desc" data-i18n="t4Desc">Absolute power over the stream. Unlimited widgets, exclusive voice acting, and VIP status. You are the King here! This is the ultimate corporate-grade solution for elite content creators and streaming organizations who require maximum performance, unique assets, and absolute creative freedom without boundaries.</p>
+                        <p class="tariff-price price-gold">$100<span data-i18n="perMo">/mo</span></p>
+                        <ul class="tariff-features" id="t4-features">
+                            <li data-i18n="t4f1">Absolute unlimited widget creation and parallel operations with maximum server response speeds</li>
+                            <li data-i18n="t4f2">Full unhindered access to ALL premium characters, special variants, and hidden legendary fonts</li>
+                            <li data-i18n="t4f3">Exclusive animated voice packs included completely for free to shock and entertain your audience</li>
+                            <li data-i18n="t4f4">Max FPS mode for hyper-smooth web animations and fluid widget rendering directly inside OBS Studio</li>
+                            <li data-i18n="t4f5">Priority VIP support 24/7 with a dedicated personal account manager to solve any technical issues instantly</li>
                         </ul>
-                        <button class="btn-action king-btn">Become KING</button>
+                        <button class="btn-action king-btn" id="t4-btn" data-i18n="kingBtn">Become KING</button>
                     </div>
 
                 </div>
             </section>
 
             <section class="section-block info-card">
-                <h2 class="section-title">In-App Store</h2>
-                <p class="block-text">Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.</p>
+                <h2 class="section-title" id="shop-info-title" data-i18n="shopInfoTitle">In-App Store</h2>
+                <p class="block-text" id="shop-info-desc" data-i18n="shopInfoDesc">Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.</p>
             </section>
 
             <section class="section-block payment-card">
-                <h2 class="section-title">Convenient and Fast Payments</h2>
-                <p class="block-text">We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.</p>
+                <h2 class="section-title" id="payment-title" data-i18n="paymentTitle">Convenient and Fast Payments</h2>
+                <p class="block-text" id="payment-desc" data-i18n="paymentDesc">We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.</p>
                 <div class="payment-icons">
-                    <span class="pay-badge">⭐ Telegram Stars</span>
-                    <span class="pay-badge crypto">💎 TG Wallet / Crypto</span>
+                    <span class="pay-badge" data-i18n="payStars">⭐ Telegram Stars</span>
+                    <span class="pay-badge crypto" data-i18n="payCrypto">💎 TG Wallet / Crypto</span>
                 </div>
             </section>
 
             <div class="referral-promo-block">
                 <div class="ref-promo-content">
                     <div class="ref-icon-glow">🚀</div>
-                    <h3 class="neon-text">Referral System</h3>
-                    <p class="block-text">
+                    <h3 id="ref-promo-title" class="neon-text" data-i18n="refPromoTitle">Referral System</h3>
+                    <p id="ref-promo-desc" class="block-text" data-i18n="refPromoDesc">
                         Invite your friends to the TEGS ecosystem and get exclusive, awesome rewards from every purchase your friends make! Build your own elite network and scale together.
                     </p>
                     <button id="ref-promo-btn" class="btn-primary ref-invite-btn">
-                        <span>👤 Invite Friend</span>
+                        <span data-i18n="refPromoBtn">👤 Invite Friend</span>
                     </button>
                 </div>
             </div>
 
             <section class="section-block security-card">
-                <h2 class="section-title">Enterprise-Grade Security</h2>
-                <div class="security-grid">
+                <h2 class="section-title" id="security-title" data-i18n="securityTitle">Enterprise-Grade Security</h2>
+                <div class="security-grid" id="security-features-container">
+                    
                     <div class="security-item">
-                        <h4>🔒 AES-256 Encryption</h4>
-                        <p>All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side using the military-grade AES-256 protocol. This prevents data leaks and ensures that no malicious third party can ever gain access to your stream keys, sensitive internal configurations, or private user credentials under any circumstances.</p>
+                        <h4 data-i18n="sec1Title">🔒 AES-256 Encryption</h4>
+                        <p data-i18n="sec1Desc">All system tokens and stream integrations (OBS, Streamlabs, Twitch) are encrypted on the server side using the military-grade AES-256 protocol. This prevents data leaks and ensures that no malicious third party can ever gain access to your stream keys, sensitive internal configurations, or private user credentials under any circumstances.</p>
                     </div>
+                    
                     <div class="security-item">
-                        <h4>🛡️ Telegram Sandbox</h4>
-                        <p>Authorization is strictly managed through official Telegram WebApp cryptohash verification structures. Your personal data is fully safe because our system operates in a complete sandbox environment, preventing unauthorized sessions, token spoofing, or credential sniffing, making login attempts 100% ironclad and authenticated.</p>
+                        <h4 data-i18n="sec2Title">🛡️ Telegram Sandbox</h4>
+                        <p data-i18n="sec2Desc">Authorization is strictly managed through official Telegram WebApp cryptohash verification structures. Your personal data is fully safe because our system operates in a complete sandbox environment, preventing unauthorized sessions, token spoofing, or credential sniffing, making login attempts 100% ironclad and authenticated.</p>
                     </div>
+                    
                     <div class="security-item">
-                        <h4>💎 Secure Payments</h4>
-                        <p>We never store credit card numbers, banking details, or sensitive financial logs on our databases. All incoming transactions go through the official Telegram Stars engine or heavily secured non-custodial crypto networks, providing a decentralized, audited, and completely secure processing pipe for absolute peace of mind.</p>
+                        <h4 data-i18n="sec3Title">💎 Secure Payments</h4>
+                        <p data-i18n="sec3Desc">We never store credit card numbers, banking details, or sensitive financial logs on our databases. All incoming transactions go through the official Telegram Stars engine or heavily secured non-custodial crypto networks, providing a decentralized, audited, and completely secure processing pipe for absolute peace of mind.</p>
                     </div>
+                    
                     <div class="security-item">
-                        <h4>⚡ Zero Vulnerability</h4>
-                        <p>Widget source code is completely sandboxed inside the OBS Browser Source architecture. This strict isolation ensures zero performance drops, zero background telemetry tracking, and total protection against malicious cross-site scripting or malware injection, keeping your local gaming computer running at peak FPS capacity.</p>
+                        <h4 data-i18n="sec4Title">⚡ Zero Vulnerability</h4>
+                        <p data-i18n="sec4Desc">Widget source code is completely sandboxed inside the OBS Browser Source architecture. This strict isolation ensures zero performance drops, zero background telemetry tracking, and total protection against malicious cross-site scripting or malware injection, keeping your local gaming computer running at peak FPS capacity.</p>
                     </div>
+
                 </div>
             </section>
 
             <footer class="support-footer">
                 <div class="support-top-bar">
-                    <h3>Have any questions?</h3>
+                    <h3 id="support-title" data-i18n="supportTitle">Have any questions?</h3>
                     <div class="support-status">
                         <span class="pulse-dot"></span>
-                        <span>Online</span>
+                        <span data-i18n="supportOnline">Online</span>
                     </div>
                 </div>
-                <p>Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.</p>
-                <a href="https://t.me/BeastOmniSupport" target="_blank" class="btn-support-cyber">💬 Contact Support</a>
+                
+                <p id="support-desc" data-i18n="supportDesc">Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.</p>
+                
+                <a href="https://t.me/BeastOmniSupport" target="_blank" class="btn-support-cyber" id="support-btn" data-i18n="supportBtn">💬 Contact Support</a>
             </footer>
         </div>
     </main>
@@ -192,7 +199,7 @@
             </div>
         </a>
         
-        <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
+      <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-center-item">
                 <div class="nav-center-btn">
                     <span class="center-icon">⚡</span>
@@ -216,10 +223,6 @@
         </a>
     </nav>
 
-    <!-- Подключаем наш единый файл с переводами и логикой -->
-    <script src="translations.js"></script>
-    <script src="navbar.js"></script>
-    <script src="script.js?v=1.0.6"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const preloader = document.getElementById("app-preloader");
@@ -240,9 +243,8 @@
             }
         });
     </script>
+
+      <script src="script.js"></script>
+    <script src="translations.js"></script>
 </body>
 </html>
-
-
-
-          
