@@ -22,7 +22,7 @@
         <header class="global-header">
             <div class="user-box">
                 <span class="user-icon">⚡</span>
-                <span class="username" id="user-greeting">Hello, filatow</span>
+                <span class="username" id="user-greeting" data-lang="greeting">Hello, filatow</span>
             </div>
             <select id="lang-dropdown">
                 <option value="en" selected>🇺🇸 US</option>
@@ -56,7 +56,7 @@
                         <span><i class="fa-solid fa-check"></i> Базовая анимация рта</span>
                         <span><i class="fa-solid fa-check"></i> 720p / HD Экспорт</span>
                     </div>
-                    <button class="tier-btn" onclick="unlockTier(30, 1)">РАЗБЛОКИРОВАТЬ 10 ПЕРСОВ</button>
+                    <button class="tier-btn" onclick="unlockTier(30, 1)" data-lang="btn_unlock_10">РАЗБЛОКИРОВАТЬ 10 ПЕРСОВ</button>
                 </div>
 
                 <!-- Пак 2: $50 (Хит) -->
@@ -71,7 +71,7 @@
                         <span><i class="fa-solid fa-check"></i> Продвинутая лип-синк анимация</span>
                         <span><i class="fa-solid fa-check"></i> 4K / Stream Widgets</span>
                     </div>
-                    <button class="tier-btn active-btn" onclick="unlockTier(50, 2)">РАЗБЛОКИРОВАТЬ 20 ПЕРСОВ</button>
+                    <button class="tier-btn active-btn" onclick="unlockTier(50, 2)" data-lang="btn_unlock_20">РАЗБЛОКИРОВАТЬ 20 ПЕРСОВ</button>
                 </div>
 
                 <!-- Пак 3: $100 (Империя) -->
@@ -86,7 +86,7 @@
                         <span><i class="fa-solid fa-check"></i> Премиум AI голос + Рот 24/7</span>
                         <span><i class="fa-solid fa-check"></i> Безлимит & API доступ</span>
                     </div>
-                    <button class="tier-btn beast-action" onclick="unlockTier(100, 3)">ВЗЯТЬ ВСЮ БАЗУ (30)</button>
+                    <button class="tier-btn beast-action" onclick="unlockTier(100, 3)" data-lang="btn_unlock_30">ВЗЯТЬ ВСЮ БАЗУ (30)</button>
                 </div>
 
             </div>
@@ -108,44 +108,44 @@
             <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
                     <span class="nav-icon">🏠</span>
-                    <span class="nav-text">Home</span>
+                    <span class="nav-text" data-lang="navHome">Home</span>
                 </div>
             </a>
             
             <a href="referals.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
                     <span class="nav-icon">👥</span>
-                    <span class="nav-text">Referral</span>
+                    <span class="nav-text" data-lang="navReferral">Referral</span>
                 </div>
             </a>
             
             <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-center-item">
-                    <div class="nav-center-btn">
+                    <span class="nav-center-btn">
                         <span class="center-icon">⚡</span>
-                    </div>
-                    <span class="nav-text center-text">Studio</span>
+                    </span>
+                    <span class="nav-text center-text" data-lang="navStudio">Studio</span>
                 </div>
             </a>
             
             <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item active">
                     <span class="nav-icon">⚙️</span>
-                    <span class="nav-text">obs Settings</span>
+                    <span class="nav-text" data-lang="navObs">obs Settings</span>
                 </div>
             </a>
             
             <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
                     <span class="nav-icon">🏷️</span>
-                    <span class="nav-text">Tegs</span>
+                    <span class="nav-text" data-lang="navShop">Tegs</span>
                 </div>
             </a>
         </nav>
 
     </div>
 
-    <script src="obs.js"></script>
     <script src="translations.js"></script>
+    <script src="obs.js"></script>
 </body>
 </html>
