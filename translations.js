@@ -107,7 +107,24 @@ const translations = {
         toolCustom: "Custom",
         toolSound: "Sound",
         toolExport: "Export",
-        inventoryTitle: "Your Inventory"
+        inventoryTitle: "Your Inventory",
+
+        // Страница рефералов (referal.html)
+        badge_text: "PARTNER NETWORK 2.0",
+        ref_title: "Build your media empire!",
+        ref_desc: "Invite friends, earn Generation Coins, and process your videos for free.",
+        your_bonus: "YOUR REWARD",
+        your_bonus_val: "+100 Generation Coins",
+        friend_bonus: "FRIEND START",
+        friend_bonus_val: "Gift: +50 Coins",
+        steps_title: "PROTOCOL WORKFLOW",
+        step_1: "Tap the button below — your personal referral link will be copied to your clipboard.",
+        step_2: "Your friend launches BEAST OMNI via your link and receives 50 bonus coins for their first video.",
+        step_3: "You get 100 Generation Coins for every purchase your friend makes to power up your own video processing!",
+        copy_btn_text: "COPY REFERRAL LINK",
+        hint_sub: "One-tap copy for Telegram chats & creator communities",
+        invited: "NODES LINKED",
+        earned: "TOTAL EARNED"
     },
     ru: {
         // Общие / Навбар / Хедер
@@ -217,7 +234,24 @@ const translations = {
         toolCustom: "Кастом",
         toolSound: "Звук",
         toolExport: "Экспорт",
-        inventoryTitle: "Ваш инвентарь"
+        inventoryTitle: "Ваш инвентарь",
+
+        // Страница рефералов (referal.html)
+        badge_text: "ПАРТНЕРСКАЯ СЕТЬ 2.0",
+        ref_title: "Построй свою медиа-империю!",
+        ref_desc: "Приглашай друзей, получай коины генерации и обрабатывай видео бесплатно.",
+        your_bonus: "ВАША НАГРАДА",
+        your_bonus_val: "+100 Коинов генерации",
+        friend_bonus: "БОНУС ДРУГУ",
+        friend_bonus_val: "Подарок: +50 Коинов",
+        steps_title: "ПРОТОКОЛ РАБОТЫ",
+        step_1: "Нажми на кнопку ниже — твоя личная реферальная ссылка будет скопирована.",
+        step_2: "Друг запускает BEAST OMNI по твоей ссылке и получает 50 подарочных коинов на первое видео.",
+        step_3: "Ты получаешь 100 коинов генерации с каждой покупки друга, чтобы бесплатно обрабатывать свои ролики!",
+        copy_btn_text: "СКОПИРОВАТЬ ССЫЛКУ",
+        hint_sub: "Копируй в один клик и отправляй в чаты стримеров",
+        invited: "ПОДКЛЮЧЕНО УЗЛОВ",
+        earned: "ВСЕГО ЗАРАБОТАНО"
     }
 };
 
