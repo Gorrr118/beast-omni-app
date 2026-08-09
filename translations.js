@@ -8,6 +8,14 @@ const translations = {
         navShop: "Tegs",
         navObs: "obs Settings",
 
+        // Ключи для страницы генератора тегов
+        tagGenTitle: "🚀 AI Tag Generator",
+        tagGenSubtitle: "Describe the essence or plot of your stream/video, and the system will create perfect tags.",
+        tagGenPlaceholder: "Example: streaming how we play a shooter with cats and keep losing because of memes...",
+        tagGenBtn: "Generate Tags ⚡",
+        tagResultTitle: "📌 Result",
+        tagCopyBtn: "Copy tags to clipboard",
+
         preloaderStatus: "Loading Ecosystem...",
         heroDesc: "An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.",
         tariffsTitle: "Available Tariffs",
@@ -122,7 +130,6 @@ const translations = {
         invited: "NODES LINKED",
         earned: "TOTAL EARNED",
 
-        // Новые ключи для страницы Аватаров (obs.html)
         studio_badge: "30 AI AVATARS & SPEAKING MATRIX",
         studio_title: "Choose Your Power Level",
         studio_desc: "Unlock avatar packs with procedural lip-sync for streams, voiceovers, and video content.",
@@ -140,6 +147,14 @@ const translations = {
         navWidgets: "Виджеты",
         navShop: "Теги",
         navObs: "obs Settings",
+
+        // Ключи для страницы генератора тегов
+        tagGenTitle: "🚀 AI Генератор Тегов",
+        tagGenSubtitle: "Опиши суть или сюжет стрима/ролика, и система создаст идеальные теги.",
+        tagGenPlaceholder: "Например: стримлю как мы с котиками играем в шутер и постоянно проигрываем из-за мемов...",
+        tagGenBtn: "Сгенерировать теги ⚡",
+        tagResultTitle: "📌 Результат",
+        tagCopyBtn: "Копировать теги в буфер",
 
         preloaderStatus: "Загрузка экосистемы...",
         heroDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs. Расширяйте границы своего вещания, увеличивайте удержание аудитории в несколько раз и масштабируйте личный бренд с помощью передовых технологий автоматизации, которые работают плавно, бесшовно и без высокой нагрузки на процессор вашей игровой станции.",
@@ -255,7 +270,6 @@ const translations = {
         invited: "ПОДКЛЮЧЕНО УЗЛОВ",
         earned: "ВСЕГО ЗАРАБОТАНО",
 
-        // Новые ключи для страницы Аватаров (obs.html)
         studio_badge: "30 AI АВАТАРОВ И МАТРИЦА РЕЧИ",
         studio_title: "Выбери свой уровень мощи",
         studio_desc: "Разблокируй паки аватаров с процедурной анимацией рта для стримов, озвучки и видео-контента.",
@@ -267,39 +281,32 @@ const translations = {
     }
 };
 
+// ... ваш объект translations ...
+
 function changeLanguage(lang) {
+    const langData = translations[lang];
+    if (!langData) {
+        console.error(`Language '${lang}' not found.`);
+        return;
+    }
+
     localStorage.setItem('selectedLang', lang);
 
-    document.querySelectorAll('[data-i18n], [data-lang]').forEach(element => {
-        const key = element.getAttribute('data-i18n') || element.getAttribute('data-lang');
-        if (translations[lang] && translations[lang][key]) {
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = langData[key];
+
+        if (translation !== undefined) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translations[lang][key];
+                element.placeholder = translation;
             } else {
-                element.innerHTML = translations[lang][key];
+                element.innerHTML = translation;
             }
+        } else {
+            console.warn(`Translation key '${key}' not found for lang '${lang}'`);
         }
     });
 
     const dropdown = document.getElementById('lang-dropdown');
-    if (dropdown) {
-        dropdown.value = lang;
-    }
+    if (dropdown) dropdown.value = lang;
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('selectedLang') || 'en';
-    changeLanguage(savedLang);
-
-    const dropdown = document.getElementById('lang-dropdown');
-    if (dropdown) {
-        dropdown.addEventListener('change', (e) => {
-            changeLanguage(e.target.value);
-        });
-    }
-});
-
-
-
-
-
