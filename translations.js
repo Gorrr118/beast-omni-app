@@ -284,11 +284,8 @@ const translations = {
 // ... ваш объект translations ...
 
 function changeLanguage(lang) {
-    const langData = translations[lang];
-    if (!langData) {
-        console.error(`Language '${lang}' not found.`);
-        return;
-    }
+    const langData = translations[lang] || translations['en']; // Fallback to en
+    if (!translations[lang]) console.warn(`Language '${lang}' not found, falling back to English.`);
 
     localStorage.setItem('selectedLang', lang);
 
@@ -297,16 +294,28 @@ function changeLanguage(lang) {
         const translation = langData[key];
 
         if (translation !== undefined) {
+            // Update value if it's an input/textarea placeholder
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = translation;
-            } else {
-                element.innerHTML = translation;
+            } 
+            // Update text content (safer than innerHTML if you don't have HTML tags inside translations)
+            else {
+                element.textContent = translation; 
             }
-        } else {
-            console.warn(`Translation key '${key}' not found for lang '${lang}'`);
+            
+            // Optional: Update ARIA labels for accessibility
+            if (element.hasAttribute('aria-label')) {
+                element.setAttribute('aria-label', translation);
+            }
         }
     });
 
     const dropdown = document.getElementById('lang-dropdown');
     if (dropdown) dropdown.value = lang;
 }
+
+// Initial call on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLang') || 'en';
+    changeLanguage(savedLang);
+});
