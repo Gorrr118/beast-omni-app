@@ -13,7 +13,7 @@
     <header class="global-header">
         <div class="user-box">
             <span class="user-icon">⚡</span>
-            <span class="username" id="user-greeting" data-lang="greeting">Hello, filatow</span>
+            <span class="username" id="user-greeting" data-i18n="greeting">Hello, filatow</span>
         </div>
         <select id="lang-dropdown">
             <option value="en" selected>🇺🇸 US</option>
@@ -24,19 +24,19 @@
     <!-- Основной контент (Генератор тегов) -->
     <div class="main-container">
         <div class="card">
-            <div class="card-title" data-lang="tagGenTitle">🚀 AI Tag Generator</div>
-            <div class="card-subtitle" data-lang="tagGenSubtitle">Опиши суть или сюжет стрима/ролика, и система создаст идеальные теги.</div>
+            <div class="card-title" data-i18n="tagGenTitle">🚀 AI Tag Generator</div>
+            <div class="card-subtitle" data-i18n="tagGenSubtitle">Опиши суть или сюжет стрима/ролика, и система создаст идеальные теги.</div>
             
             <div class="input-group">
-                <textarea id="plot-input" data-lang="tagGenPlaceholder" placeholder="Например: стримлю как мы с котиками играем в шутер и постоянно проигрываем из-за мемов..."></textarea>
-                <button class="generate-btn" id="generate-btn" data-lang="tagGenBtn">Сгенерировать теги ⚡</button>
+                <textarea id="plot-input" data-i18n="tagGenPlaceholder" placeholder="Например: стримлю как мы с котиками играем в шутер и постоянно проигрываем из-за мемов..."></textarea>
+                <button class="generate-btn" id="generate-btn" data-i18n="tagGenBtn">Сгенерировать теги ⚡</button>
             </div>
         </div>
 
         <div class="card results-box">
-            <div class="card-title" data-lang="tagResultTitle">📌 Результат</div>
+            <div class="card-title" data-i18n="tagResultTitle">📌 Результат</div>
             <div class="tags-output" id="tags-output">#гейминг #стрим #котики #мемы #игры #funny</div>
-            <button class="copy-btn" id="copy-btn" data-lang="tagCopyBtn">Копировать теги в буфер</button>
+            <button class="copy-btn" id="copy-btn" data-i18n="tagCopyBtn">Копировать теги в буфер</button>
         </div>
     </div>
 
@@ -45,14 +45,14 @@
         <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item">
                 <span class="nav-icon">🏠</span>
-                <span class="nav-text" data-lang="navHome">Home</span>
+                <span class="nav-text" data-i18n="navHome">Home</span>
             </div>
         </a>
         
         <a href="referals.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item">
                 <span class="nav-icon">👥</span>
-                <span class="nav-text" data-lang="navReferral">Referral</span>
+                <span class="nav-text" data-i18n="navReferral">Referral</span>
             </div>
         </a>
         
@@ -61,21 +61,21 @@
                 <div class="nav-center-btn">
                     <span class="center-icon">⚡</span>
                 </div>
-                <span class="nav-text center-text" data-lang="navStudio">Studio</span>
+                <span class="nav-text center-text" data-i18n="navStudio">Studio</span>
             </div>
         </a>
         
         <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item">
                 <span class="nav-icon">⚙️</span>
-                <span class="nav-text" data-lang="navObs">obs Settings</span>
+                <span class="nav-text" data-i18n="navObs">obs Settings</span>
             </div>
         </a>
         
         <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item active">
                 <span class="nav-icon">🏷️</span>
-                <span class="nav-text" data-lang="navShop">Tegs</span>
+                <span class="nav-text" data-i18n="navShop">Tegs</span>
             </div>
         </a>
     </nav>
@@ -83,8 +83,4 @@
     <script src="translations.js"></script>
     <script src="shop.js"></script>
 </body>
-</html>  
-
-
-
-    
+</html>
