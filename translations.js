@@ -259,8 +259,9 @@ const translations = {
 function changeLanguage(lang) {
     localStorage.setItem('selectedLang', lang);
 
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
+    // Теперь скрипт ищет и data-i18n, И data-lang
+    document.querySelectorAll('[data-i18n], [data-lang]').forEach(element => {
+        const key = element.getAttribute('data-i18n') || element.getAttribute('data-lang');
         if (translations[lang] && translations[lang][key]) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = translations[lang][key];
@@ -275,16 +276,3 @@ function changeLanguage(lang) {
         dropdown.value = lang;
     }
 }
-
-// Автоматический запуск при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('selectedLang') || 'en';
-    changeLanguage(savedLang);
-
-    const dropdown = document.getElementById('lang-dropdown');
-    if (dropdown) {
-        dropdown.addEventListener('change', (e) => {
-            changeLanguage(e.target.value);
-        });
-    }
-});
