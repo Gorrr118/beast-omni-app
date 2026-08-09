@@ -120,7 +120,17 @@ const translations = {
         copy_btn_text: "COPY REFERRAL LINK",
         hint_sub: "One-tap copy for Telegram chats & creator communities",
         invited: "NODES LINKED",
-        earned: "TOTAL EARNED"
+        earned: "TOTAL EARNED",
+
+        // Новые ключи для страницы Аватаров (obs.html)
+        studio_badge: "30 AI AVATARS & SPEAKING MATRIX",
+        studio_title: "Choose Your Power Level",
+        studio_desc: "Unlock avatar packs with procedural lip-sync for streams, voiceovers, and video content.",
+        btn_unlock_10: "UNLOCK 10 AVATARS",
+        btn_unlock_20: "UNLOCK 20 AVATARS",
+        btn_unlock_30: "GET FULL BASE (30)",
+        matrix_title: "AVATAR CATALOG (30/30)",
+        matrix_sub: "Tap a character to test lip-sync animation"
     },
     ru: {
         greeting: "Привет, filatow",
@@ -243,7 +253,17 @@ const translations = {
         copy_btn_text: "СКОПИРОВАТЬ ССЫЛКУ",
         hint_sub: "Копируй в один клик и отправляй в чаты стримеров",
         invited: "ПОДКЛЮЧЕНО УЗЛОВ",
-        earned: "ВСЕГО ЗАРАБОТАНО"
+        earned: "ВСЕГО ЗАРАБОТАНО",
+
+        // Новые ключи для страницы Аватаров (obs.html)
+        studio_badge: "30 AI АВАТАРОВ И МАТРИЦА РЕЧИ",
+        studio_title: "Выбери свой уровень мощи",
+        studio_desc: "Разблокируй паки аватаров с процедурной анимацией рта для стримов, озвучки и видео-контента.",
+        btn_unlock_10: "РАЗБЛОКИРОВАТЬ 10 ПЕРСОВ",
+        btn_unlock_20: "РАЗБЛОКИРОВАТЬ 20 ПЕРСОВ",
+        btn_unlock_30: "ВЗЯТЬ ВСЮ БАЗУ (30)",
+        matrix_title: "КАТАЛОГ АВАТАРОВ (30/30)",
+        matrix_sub: "Нажми на персонажа, чтобы протестировать анимацию рта"
     }
 };
 
@@ -278,3 +298,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+
