@@ -17,7 +17,7 @@
             <div class="progress-bar-container">
                 <div class="progress-bar-line"></div>
             </div>
-            <span class="preloader-status">Loading Ecosystem...</span>
+            <span class="preloader-status" data-i18n="preloaderStatus">Loading Ecosystem...</span>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
     <header class="global-header">
         <div class="user-box">
             <span class="user-icon">⚡</span>
-            <span class="username" id="user-greeting">Hello, filatow</span>
+            <span class="username" id="user-greeting" data-i18n="greeting">Hello, filatow</span>
         </div>
         <select id="lang-dropdown">
             <option value="en">🇺🇸 US</option>
@@ -39,10 +39,10 @@
         <!-- Баннер -->
         <div class="hero-banner">
             <div class="badge-pill">
-                <i class="fa-solid fa-bolt"></i> <span data-lang="badge_text">PARTNER NETWORK 2.0</span>
+                <i class="fa-solid fa-bolt"></i> <span data-i18n="badge_text">PARTNER NETWORK 2.0</span>
             </div>
-            <h1 data-lang="ref_title">Build your media empire!</h1>
-            <p data-lang="ref_desc">Invite friends, earn Generation Coins, and process your videos for free.</p>
+            <h1 data-i18n="ref_title">Build your media empire!</h1>
+            <p data-i18n="ref_desc">Invite friends, earn Generation Coins, and process your videos for free.</p>
         </div>
 
         <!-- Карточки бонусов -->
@@ -50,33 +50,33 @@
             <div class="reward-card cyan-glow">
                 <div class="icon-wrap"><i class="fa-solid fa-bolt"></i></div>
                 <div class="reward-info">
-                    <span class="r-title" data-lang="your_bonus">YOUR REWARD</span>
-                    <span class="r-val" data-lang="your_bonus_val">+100 Generation Coins</span>
+                    <span class="r-title" data-i18n="your_bonus">YOUR REWARD</span>
+                    <span class="r-val" data-i18n="your_bonus_val">+100 Generation Coins</span>
                 </div>
             </div>
             <div class="reward-card gold-glow">
                 <div class="icon-wrap"><i class="fa-solid fa-gift"></i></div>
                 <div class="reward-info">
-                    <span class="r-title" data-lang="friend_bonus">FRIEND START</span>
-                    <span class="r-val" data-lang="friend_bonus_val">Gift: +50 Coins</span>
+                    <span class="r-title" data-i18n="friend_bonus">FRIEND START</span>
+                    <span class="r-val" data-i18n="friend_bonus_val">Gift: +50 Coins</span>
                 </div>
             </div>
         </div>
 
         <!-- Стеклянный блок шагов -->
         <div class="glass-steps-card">
-            <h3 data-lang="steps_title"><i class="fa-solid fa-shield-halved"></i> PROTOCOL WORKFLOW</h3>
+            <h3 data-i18n="steps_title"><i class="fa-solid fa-shield-halved"></i> PROTOCOL WORKFLOW</h3>
             <div class="step-row">
                 <div class="s-num">01</div>
-                <div class="s-text" data-lang="step_1">Tap the button below — your personal referral link will be copied to your clipboard.</div>
+                <div class="s-text" data-i18n="step_1">Tap the button below — your personal referral link will be copied to your clipboard.</div>
             </div>
             <div class="step-row">
                 <div class="s-num">02</div>
-                <div class="s-text" data-lang="step_2">Your friend launches BEAST OMNI via your link and receives 50 bonus coins for their first video.</div>
+                <div class="s-text" data-i18n="step_2">Your friend launches BEAST OMNI via your link and receives 50 bonus coins for their first video.</div>
             </div>
             <div class="step-row">
                 <div class="s-num">03</div>
-                <div class="s-text" data-lang="step_3">You get 100 Generation Coins for every purchase your friend makes to power up your own video processing!</div>
+                <div class="s-text" data-i18n="step_3">You get 100 Generation Coins for every purchase your friend makes to power up your own video processing!</div>
             </div>
         </div>
 
@@ -85,21 +85,21 @@
             <button class="cyber-action-btn" id="copy-button">
                 <div class="btn-content">
                     <i class="fa-regular fa-copy"></i>
-                    <span id="btn-text-main" data-lang="copy_btn_text">COPY REFERRAL LINK</span>
+                    <span id="btn-text-main" data-i18n="copy_btn_text">COPY REFERRAL LINK</span>
                 </div>
             </button>
-            <div class="sub-hint" data-lang="hint_sub">One-tap copy for Telegram chats & creator communities</div>
+            <div class="sub-hint" data-i18n="hint_sub">One-tap copy for Telegram chats & creator communities</div>
         </div>
 
         <!-- Статистика матрица -->
         <div class="stats-matrix">
             <div class="matrix-cell">
-                <span class="m-label" data-lang="invited">NODES LINKED</span>
+                <span class="m-label" data-i18n="invited">NODES LINKED</span>
                 <span class="m-val" id="friends-count">0</span>
             </div>
             <div class="matrix-divider"></div>
             <div class="matrix-cell">
-                <span class="m-label" data-lang="earned">TOTAL EARNED</span>
+                <span class="m-label" data-i18n="earned">TOTAL EARNED</span>
                 <span class="m-val gold-text" id="earned-count">0 🪙</span>
             </div>
         </div>
@@ -111,42 +111,42 @@
         <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item">
                 <span class="nav-icon">🏠</span>
-                <span class="nav-text" data-lang="navHome">Home</span>
+                <span class="nav-text" data-i18n="navHome">Home</span>
             </div>
         </a>
         
         <a href="referal.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item active">
                 <span class="nav-icon">👥</span>
-                <span class="nav-text" data-lang="navReferral">Referral</span>
+                <span class="nav-text" data-i18n="navReferral">Referral</span>
             </div>
         </a>
         
         <a href="studio.html" class="nav-center-item-link" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-center-item">
-                <div class="nav-center-btn">
+                <span class="nav-center-btn">
                     <span class="center-icon">⚡</span>
-                </div>
-                <span class="nav-text center-text" data-lang="navStudio">Studio</span>
+                </span>
+                <span class="nav-text center-text" data-i18n="navStudio">Studio</span>
             </div>
         </a>
         
         <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item">
                 <span class="nav-icon">⚙️</span>
-                <span class="nav-text" data-lang="navObs">obs Settings</span>
+                <span class="nav-text" data-i18n="navObs">obs Settings</span>
             </div>
         </a>
         
         <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
             <div class="nav-item">
                 <span class="nav-icon">🏷️</span>
-                <span class="nav-text" data-lang="navShop">Tegs</span>
+                <span class="nav-text" data-i18n="navShop">Tegs</span>
             </div>
         </a>
     </nav>
 
     <script src="translations.js"></script>
-<script src="referal.js"></script>
+    <script src="referal.js"></script>
 </body>
 </html>
