@@ -1,67 +1,20 @@
 const translations = {
     en: {
+        // Общие / Навбар / Хедер
         greeting: "Hello, filatow",
-        homeTitle: "BEAST OMNI",
-        homeDesc: "An innovative ecosystem of interactive widgets for streamers and creators...",
-        tariffsHeader: "Available Tariffs",
         navHome: "Home",
         navReferral: "Referral",
         navStudio: "Studio",
         navWidgets: "Widgets",
-        navShop: "Tegs" // или Shop
-    },
-    ru: {
-        greeting: "Привет, filatow",
+        navShop: "Tegs",
+        navObs: "obs Settings",
+
+        // Главная страница (index.html)
         homeTitle: "BEAST OMNI",
-        homeDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов...",
-        tariffsHeader: "Доступные тарифы",
-        navHome: "Главная",
-        navReferral: "Рефералы",
-        navStudio: "Студия",
-        navWidgets: "Виджеты",
-        navShop: "Теги"
-    }
-};
+        homeDesc: "An innovative ecosystem of interactive widgets for streamers and creators...",
+        tariffsHeader: "Available Tariffs",
 
-// Функция смены языка, которая применяется на любой странице
-function changeLanguage(lang) {
-    // Сохраняем выбор пользователя в памяти браузера
-    localStorage.setItem('selectedLang', lang);
-
-    // Находим все элементы с атрибутом data-i18n и меняем текст
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translations[lang][key];
-            } else {
-                element.innerHTML = translations[lang][key];
-            }
-        }
-    });
-
-    // Синхронизируем селект в шапке, если он есть на странице
-    const dropdown = document.getElementById('lang-dropdown');
-    if (dropdown) {
-        dropdown.value = lang;
-    }
-}
-
-// Автоматический запуск при загрузке любой страницы
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('selectedLang') || 'en'; // По умолчанию английский
-    changeLanguage(savedLang);
-
-    const dropdown = document.getElementById('lang-dropdown');
-    if (dropdown) {
-        dropdown.addEventListener('change', (e) => {
-            changeLanguage(e.target.value);
-        });
-    }
-});
-const translations = {
-    en: {
-        greeting: "Hello, filatow",
+        // Страница студии (studio.html)
         uploadPlaceholder: "CLICK TO UPLOAD VIDEO",
         uploadInfo: "Supported MP4, MOV up to 50 MB",
         renderLoading: "Uploading video to server...",
@@ -87,15 +40,24 @@ const translations = {
         toolCustom: "Custom",
         toolSound: "Sound",
         toolExport: "Export",
-        navHome: "Home",
-        navReferral: "Referral",
-        navStudio: "Studio",
-        navObs: "obs Settings",
-        navTegs: "Tegs",
         inventoryTitle: "Your Inventory"
     },
     ru: {
+        // Общие / Навбар / Хедер
         greeting: "Привет, filatow",
+        navHome: "Главная",
+        navReferral: "Рефералы",
+        navStudio: "Студия",
+        navWidgets: "Виджеты",
+        navShop: "Теги",
+        navObs: "obs Settings",
+
+        // Главная страница (index.html)
+        homeTitle: "BEAST OMNI",
+        homeDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов...",
+        tariffsHeader: "Доступные тарифы",
+
+        // Страница студии (studio.html)
         uploadPlaceholder: "КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО",
         uploadInfo: "Поддерживается MP4, MOV до 50 МБ",
         renderLoading: "Загрузка видео на сервер...",
@@ -121,15 +83,11 @@ const translations = {
         toolCustom: "Кастом",
         toolSound: "Звук",
         toolExport: "Экспорт",
-        navHome: "Home",
-        navReferral: "Referral",
-        navStudio: "Studio",
-        navObs: "obs Settings",
-        navTegs: "Tegs",
         inventoryTitle: "Ваш инвентарь"
     }
 };
 
+// Функция смены языка
 function changeLanguage(lang) {
     localStorage.setItem('selectedLang', lang);
 
@@ -150,6 +108,7 @@ function changeLanguage(lang) {
     }
 }
 
+// Автоматический запуск при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('selectedLang') || 'en';
     changeLanguage(savedLang);
