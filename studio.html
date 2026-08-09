@@ -15,7 +15,7 @@
         <header class="global-header">
             <div class="user-box">
                 <span class="user-icon">⚡</span>
-                <span class="username" id="user-greeting">Hello, filatow</span>
+                <span class="username" id="user-greeting" data-i18n="greeting">Hello, filatow</span>
             </div>
             <select id="lang-dropdown">
                 <option value="en">🇺🇸 US</option>
@@ -29,8 +29,8 @@
                 <div class="player-screen" id="player-screen-trigger">
                     <div class="upload-zone-wrapper" id="upload-zone">
                         <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                        <span class="preview-placeholder" id="placeholder-text">КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО</span>
-                        <span class="file-info-sm" id="file-info">Поддерживается MP4, MOV до 50 МБ</span>
+                        <span class="preview-placeholder" id="placeholder-text" data-i18n="uploadPlaceholder">КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО</span>
+                        <span class="file-info-sm" id="file-info" data-i18n="uploadInfo">Поддерживается MP4, MOV до 50 МБ</span>
                     </div>
                     
                     <video id="main-player" style="display: none; width: 100%; height: 100%; object-fit: contain;" controls playsinline loop></video>
@@ -42,7 +42,7 @@
 
                     <div class="render-overlay" id="render-status-screen" style="display: none;">
                         <div class="spinner-loader"></div>
-                        <div class="render-status-title" id="render-status-text">Загрузка видео на сервер...</div>
+                        <div class="render-status-title" id="render-status-text" data-i18n="renderLoading">Загрузка видео на сервер...</div>
                         <div class="progress-bar-container">
                             <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
                         </div>
@@ -58,15 +58,15 @@
                 <div class="timeline-tracks">
                     <div class="track video-track">
                         <span class="track-icon">🎬</span>
-                        <span class="track-label" id="video-track-name">Видеодорожка пуста</span>
+                        <span class="track-label" id="video-track-name" data-i18n="trackVideoEmpty">Видеодорожка пуста</span>
                     </div>
                     <div class="track audio-track">
                         <span class="track-icon">🎵</span>
-                        <span class="track-label">Фоновое аудио (Оригинал)</span>
+                        <span class="track-label" data-i18n="trackAudioOriginal">Фоновое аудио (Оригинал)</span>
                     </div>
                     <div class="track ai-track" id="ai-track-row" style="display: none;">
                         <span class="track-icon">🤖</span>
-                        <span class="track-label">Дубляж ИИ + Аватар</span>
+                        <span class="track-label" data-i18n="trackAiDub">Дубляж ИИ + Аватар</span>
                     </div>
                 </div>
             </div>
@@ -75,40 +75,40 @@
         <!-- DYNAMIC CONTROL PANELS (ПАНЕЛИ НАСТРОЙКИ) -->
         <div class="dynamic-panel" id="dynamic-panel">
             <div class="tool-panel-content active" id="panel-format">
-                <div class="panel-header"><i class="fas fa-compress-alt"></i> Формат кадра</div>
+                <div class="panel-header" data-i18n="panelFormatHeader"><i class="fas fa-compress-alt"></i> Формат кадра</div>
                 <div class="format-grid">
-                    <button class="format-btn active" data-ratio="16:9"><i class="fab fa-youtube"></i> 16:9 YouTube</button>
-                    <button class="format-btn" data-ratio="9:16"><i class="fas fa-mobile-alt"></i> 9:16 Shorts / TikTok</button>
-                    <button class="format-btn" data-ratio="1:1"><i class="fas fa-square"></i> 1:1 Квадрат</button>
+                    <button class="format-btn active" data-ratio="16:9"><i class="fab fa-youtube"></i> <span data-i18n="fmtYoutube">16:9 YouTube</span></button>
+                    <button class="format-btn" data-ratio="9:16"><i class="fas fa-mobile-alt"></i> <span data-i18n="fmtShorts">9:16 Shorts / TikTok</span></button>
+                    <button class="format-btn" data-ratio="1:1"><i class="fas fa-square"></i> <span data-i18n="fmtSquare">1:1 Квадрат</span></button>
                 </div>
             </div>
 
             <div class="tool-panel-content" id="panel-text">
-                <div class="panel-header"><i class="fas fa-closed-captioning"></i> Текст и Субтитры</div>
+                <div class="panel-header" data-i18n="panelTextHeader"><i class="fas fa-closed-captioning"></i> Текст и Субтитры</div>
                 <div class="switch-row">
-                    <label for="subtitles-toggle">Включить «умные» субтитры</label>
+                    <label for="subtitles-toggle" data-i18n="smartSubtitles">Включить «умные» субтитры</label>
                     <input type="checkbox" id="subtitles-toggle" checked>
                 </div>
                 
                 <div class="inventory-quick-access">
-                    <button class="inventory-trigger-btn" data-shop-type="fonts"><i class="fas fa-font"></i> Шрифты</button>
-                    <button class="inventory-trigger-btn" data-shop-type="voices"><i class="fas fa-microphone-lines"></i> ИИ Голоса</button>
-                    <button class="inventory-trigger-btn" data-shop-type="avatars"><i class="fas fa-user-astronaut"></i> ИИ Аватары</button>
+                    <button class="inventory-trigger-btn" data-shop-type="fonts"><i class="fas fa-font"></i> <span data-i18n="btnFonts">Шрифты</span></button>
+                    <button class="inventory-trigger-btn" data-shop-type="voices"><i class="fas fa-microphone-lines"></i> <span data-i18n="btnVoices">ИИ Голоса</span></button>
+                    <button class="inventory-trigger-btn" data-shop-type="avatars"><i class="fas fa-user-astronaut"></i> <span data-i18n="btnAvatars">ИИ Аватары</span></button>
                 </div>
             </div>
 
             <div class="tool-panel-content" id="panel-audio">
-                <div class="panel-header"><i class="fas fa-sliders-h"></i> Аудиомикшер студии</div>
+                <div class="panel-header" data-i18n="panelAudioHeader"><i class="fas fa-sliders-h"></i> Аудиомикшер студии</div>
                 <div class="volume-control">
                     <div class="slider-label-row">
-                        <label><i class="fas fa-music"></i> Оригинальный звук (Фон)</label>
+                        <label><i class="fas fa-music"></i> <span data-i18n="origMusicVol">Оригинальный звук (Фон)</span></label>
                         <span id="vol-music-val">50%</span>
                     </div>
                     <input type="range" id="music-volume" min="0" max="100" value="50">
                 </div>
                 <div class="volume-control">
                     <div class="slider-label-row">
-                        <label><i class="fas fa-robot"></i> Громкость ИИ дубляжа</label>
+                        <label><i class="fas fa-robot"></i> <span data-i18n="aiVoiceVol">Громкость ИИ дубляжа</span></label>
                         <span id="vol-voice-val">100%</span>
                     </div>
                     <input type="range" id="voice-volume" min="0" max="200" value="100">
@@ -116,33 +116,33 @@
             </div>
 
             <div class="tool-panel-content" id="panel-export">
-                <div class="panel-header"><i class="fas fa-rocket"></i> Обработка медиафайла</div>
-                <p class="panel-info-text">ИИ автоматически сгенерирует перевод, наложит эффекты, тайминги и отрендерит ролик.</p>
-                <button id="render-btn" class="main-action-btn">НАЧАТЬ ОБРАБОТКУ РОЛИКА</button>
+                <div class="panel-header" data-i18n="panelExportHeader"><i class="fas fa-rocket"></i> Обработка медиафайла</div>
+                <p class="panel-info-text" data-i18n="exportInfoText">ИИ автоматически сгенерирует перевод, наложит эффекты, тайминги и отрендерит ролик.</p>
+                <button id="render-btn" class="main-action-btn" data-i18n="renderBtnText">НАЧАТЬ ОБРАБОТКУ РОЛИКА</button>
             </div>
         </div>
 
         <!-- ПАНЕЛЬ ВКЛЮЧЕНИЯ ИНСТРУМЕНТОВ (ФОРМАТ / КАСТОМ / ЗВУК / ЭКСПОРТ) -->
         <div class="studio-sub-tools" id="studio-sub-tools">
-            <button class="tool-btn active" data-target="panel-format"><i class="fas fa-border-all"></i><br>Формат</button>
-            <button class="tool-btn" data-target="panel-text"><i class="fas fa-magic"></i><br>Кастом</button>
-            <button class="tool-btn" data-target="panel-audio"><i class="fas fa-volume-up"></i><br>Звук</button>
-            <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br>Экспорт</button>
+            <button class="tool-btn active" data-target="panel-format"><i class="fas fa-border-all"></i><br><span data-i18n="toolFormat">Формат</span></button>
+            <button class="tool-btn" data-target="panel-text"><i class="fas fa-magic"></i><br><span data-i18n="toolCustom">Кастом</span></button>
+            <button class="tool-btn" data-target="panel-audio"><i class="fas fa-volume-up"></i><br><span data-i18n="toolSound">Звук</span></button>
+            <button class="tool-btn" data-target="panel-export"><i class="fas fa-paper-plane"></i><br><span data-i18n="toolExport">Экспорт</span></button>
         </div>
 
-        <!-- НИЖНЕЕ ГЛОБАЛЬНОЕ МЕНЮ (НАВБАР С WIDGETS И SHOP КАК НА СКРИНЕ) -->
+        <!-- НИЖНЕЕ ГЛОБАЛЬНОЕ МЕНЮ (НАВБАР) -->
         <nav class="bottom-navbar">
             <a href="index.html">
                 <div class="nav-item">
                     <span class="nav-icon">🏠</span>
-                    <span class="nav-text">Home</span>
+                    <span class="nav-text" data-i18n="navHome">Home</span>
                 </div>
             </a>
             
             <a href="referals.html">
                 <div class="nav-item">
                     <span class="nav-icon">👥</span>
-                    <span class="nav-text">Referral</span>
+                    <span class="nav-text" data-i18n="navReferral">Referral</span>
                 </div>
             </a>
             
@@ -151,23 +151,23 @@
                     <div class="nav-center-btn">
                         <span class="center-icon">⚡</span>
                     </div>
-                    <span class="nav-text center-text">Studio</span>
+                    <span class="nav-text center-text" data-i18n="navStudio">Studio</span>
                 </div>
             </a>
             
              <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
-            <div class="nav-item">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">obs Settings</span>
-            </div>
-        </a>
+                <div class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text" data-i18n="navObs">obs Settings</span>
+                </div>
+            </a>
             
             <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
-            <div class="nav-item">
-                <span class="nav-icon">🏷️</span>
-                <span class="nav-text">Tegs</span>
-            </div>
-        </a>
+                <div class="nav-item">
+                    <span class="nav-icon">🏷️</span>
+                    <span class="nav-text" data-i18n="navTegs">Tegs</span>
+                </div>
+            </a>
         </nav>
 
     </div>
@@ -178,7 +178,7 @@
         <div class="sheet-content">
             <div class="sheet-drag-handle"></div>
             <div class="sheet-header">
-                <h3 id="sheet-title">Ваш инвентарь</h3>
+                <h3 id="sheet-title" data-i18n="inventoryTitle">Ваш инвентарь</h3>
                 <button class="sheet-close-btn" id="sheet-close-x">&times;</button>
             </div>
             <div class="sheet-body">
