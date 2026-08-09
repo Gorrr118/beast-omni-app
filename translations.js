@@ -8,7 +8,6 @@ const translations = {
         navShop: "Tegs",
         navObs: "obs Settings",
 
-        // Ключи для страницы генератора тегов
         tagGenTitle: "🚀 AI Tag Generator",
         tagGenSubtitle: "Describe the essence or plot of your stream/video, and the system will create perfect tags.",
         tagGenPlaceholder: "Example: streaming how we play a shooter with cats and keep losing because of memes...",
@@ -148,7 +147,6 @@ const translations = {
         navShop: "Теги",
         navObs: "obs Settings",
 
-        // Ключи для страницы генератора тегов
         tagGenTitle: "🚀 AI Генератор Тегов",
         tagGenSubtitle: "Опиши суть или сюжет стрима/ролика, и система создаст идеальные теги.",
         tagGenPlaceholder: "Например: стримлю как мы с котиками играем в шутер и постоянно проигрываем из-за мемов...",
@@ -281,19 +279,39 @@ const translations = {
     }
 };
 
-// ... ваш объект translations ...
+function changeLanguage(lang) {
+    const langData = translations[lang] || translations['en'];
+    
+    // По умолчанию всегда английский, если язык не задан
+    localStorage.setItem('selectedLang', lang || 'en');
+
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = langData[key];
+
+        if (translation !== undefined) {
+            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                element.placeholder = translation;
+            } else {
+                element.textContent = translation;
+            }
+        }
+    });
+
+    const dropdown = document.getElementById('lang-dropdown');
+    if (dropdown) {
+        dropdown.value = lang || 'en';
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ЕСЛИ пользователь еще ничего не выбирал, ставим английский ('en') как язык по умолчанию
+    // Жестко ставим английский ('en') при первом открытии, если ничего не сохранено
     const savedLang = localStorage.getItem('selectedLang') || 'en';
     changeLanguage(savedLang);
 
-    // Привязываем смену языка к выпадающему списку
     const dropdown = document.getElementById('lang-dropdown');
     if (dropdown) {
-        // Устанавливаем правильное значение в селекте при загрузке
         dropdown.value = savedLang;
-        
         dropdown.addEventListener('change', (event) => {
             changeLanguage(event.target.value);
         });
