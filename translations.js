@@ -196,7 +196,7 @@ const translations = {
         t4f3: "Эксклюзивные анимированные войс-паки включены абсолютно бесплатно для шока и развлечения вашей аудитории",
         t4f4: "Режим Max FPS для сверхплавных веб-анимаций и рендеринга виджетов прямо внутри OBS Studio",
         t4f5: "Приоритетная VIP-поддержка 24/7 с выделенным персональным менеджером для мгновенного решения технических проблем",
-        kingBtn: "Стать КОРУНЕМ",
+        kingBtn: "Стать КОРОЛЕМ",
 
         shopInfoTitle: "Магазин внутри приложения",
         shopInfoDesc: "Настраивайте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые реагируют на действия зрителей. Уникальные неоновые и готические шрифты подчеркнут ваши оповещения, а живые голоса персонажей внизу экрана будут стимулировать вашу аудиторию донатить чаще. Расширяйте личную коллекцию асстов, открывайте сезонные дропы и получайте редкие эстетические бандлы, превращающие ваш оверлей в эксклюзивное интерактивное искусство.",
@@ -281,9 +281,7 @@ const translations = {
 
 function changeLanguage(lang) {
     const langData = translations[lang] || translations['en'];
-    
-    // По умолчанию всегда английский, если язык не задан
-    localStorage.setItem('selectedLang', lang || 'en');
+    localStorage.setItem('selectedLang', lang);
 
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
@@ -291,21 +289,21 @@ function changeLanguage(lang) {
 
         if (translation !== undefined) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translation;
+                element.placeholder = translation; // Корректно меняем placeholder
             } else {
-                element.textContent = translation;
+                element.textContent = translation; // Меняем текст обычной разметки
             }
         }
     });
 
     const dropdown = document.getElementById('lang-dropdown');
     if (dropdown) {
-        dropdown.value = lang || 'en';
+        dropdown.value = lang;
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Жестко ставим английский ('en') при первом открытии, если ничего не сохранено
+    // По умолчанию всегда запускаем на английском ('en')
     const savedLang = localStorage.getItem('selectedLang') || 'en';
     changeLanguage(savedLang);
 
