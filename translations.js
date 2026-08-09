@@ -13,6 +13,7 @@ const translations = {
         tagGenPlaceholder: "Example: streaming how we play a shooter with cats and keep losing because of memes...",
         tagGenBtn: "Generate Tags ⚡",
         tagResultTitle: "📌 Result",
+        tagDefaultOutput: "#gaming #stream #cats #memes #games #funny",
         tagCopyBtn: "Copy tags to clipboard",
 
         preloaderStatus: "Loading Ecosystem...",
@@ -136,7 +137,17 @@ const translations = {
         btn_unlock_20: "UNLOCK 20 AVATARS",
         btn_unlock_30: "GET FULL BASE (30)",
         matrix_title: "AVATAR CATALOG (30/30)",
-        matrix_sub: "Tap a character to test lip-sync animation"
+        matrix_sub: "Tap a character to test lip-sync animation",
+
+        tier1_f1: "10 characters",
+        tier1_f2: "Basic lip-sync animation",
+        tier1_f3: "720p / HD Export",
+        tier2_f1: "20 characters",
+        tier2_f2: "Advanced lip-sync animation",
+        tier2_f3: "4K / Stream Widgets",
+        tier3_f1: "All 30 characters",
+        tier3_f2: "Premium AI voice + 24/7 Mouth",
+        tier3_f3: "Unlimited & API access"
     },
     ru: {
         greeting: "Привет, filatow",
@@ -152,6 +163,7 @@ const translations = {
         tagGenPlaceholder: "Например: стримлю как мы с котиками играем в шутер и постоянно проигрываем из-за мемов...",
         tagGenBtn: "Сгенерировать теги ⚡",
         tagResultTitle: "📌 Результат",
+        tagDefaultOutput: "#гейминг #стрим #котики #мемы #игры #funny",
         tagCopyBtn: "Копировать теги в буфер",
 
         preloaderStatus: "Загрузка экосистемы...",
@@ -275,7 +287,17 @@ const translations = {
         btn_unlock_20: "РАЗБЛОКИРОВАТЬ 20 ПЕРСОВ",
         btn_unlock_30: "ВЗЯТЬ ВСЮ БАЗУ (30)",
         matrix_title: "КАТАЛОГ АВАТАРОВ (30/30)",
-        matrix_sub: "Нажми на персонажа, чтобы протестировать анимацию рта"
+        matrix_sub: "Нажми на персонажа, чтобы протестировать анимацию рта",
+
+        tier1_f1: "10 персонажей",
+        tier1_f2: "Базовая анимация рта",
+        tier1_f3: "720p / HD Экспорт",
+        tier2_f1: "20 персонажей",
+        tier2_f2: "Продвинутая лип-синк анимация",
+        tier2_f3: "4K / Stream Widgets",
+        tier3_f1: "Все 30 персонажей",
+        tier3_f2: "Премиум AI голос + Рот 24/7",
+        tier3_f3: "Безлимит & API доступ"
     }
 };
 
@@ -289,9 +311,9 @@ function changeLanguage(lang) {
 
         if (translation !== undefined) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translation; // Корректно меняем placeholder
+                element.placeholder = translation;
             } else {
-                element.textContent = translation; // Меняем текст обычной разметки
+                element.textContent = translation;
             }
         }
     });
@@ -303,7 +325,6 @@ function changeLanguage(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // По умолчанию всегда запускаем на английском ('en')
     const savedLang = localStorage.getItem('selectedLang') || 'en';
     changeLanguage(savedLang);
 
