@@ -283,39 +283,19 @@ const translations = {
 
 // ... ваш объект translations ...
 
-function changeLanguage(lang) {
-    const langData = translations[lang] || translations['en']; // Fallback to en
-    if (!translations[lang]) console.warn(`Language '${lang}' not found, falling back to English.`);
-
-    localStorage.setItem('selectedLang', lang);
-
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        const translation = langData[key];
-
-        if (translation !== undefined) {
-            // Update value if it's an input/textarea placeholder
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translation;
-            } 
-            // Update text content (safer than innerHTML if you don't have HTML tags inside translations)
-            else {
-                element.textContent = translation; 
-            }
-            
-            // Optional: Update ARIA labels for accessibility
-            if (element.hasAttribute('aria-label')) {
-                element.setAttribute('aria-label', translation);
-            }
-        }
-    });
-
-    const dropdown = document.getElementById('lang-dropdown');
-    if (dropdown) dropdown.value = lang;
-}
-
-// Initial call on page load
 document.addEventListener('DOMContentLoaded', () => {
+    // ЕСЛИ пользователь еще ничего не выбирал, ставим английский ('en') как язык по умолчанию
     const savedLang = localStorage.getItem('selectedLang') || 'en';
     changeLanguage(savedLang);
+
+    // Привязываем смену языка к выпадающему списку
+    const dropdown = document.getElementById('lang-dropdown');
+    if (dropdown) {
+        // Устанавливаем правильное значение в селекте при загрузке
+        dropdown.value = savedLang;
+        
+        dropdown.addEventListener('change', (event) => {
+            changeLanguage(event.target.value);
+        });
+    }
 });
