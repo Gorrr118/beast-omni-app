@@ -1,6 +1,5 @@
 const translations = {
     en: {
-        // Общие / Навбар / Хедер
         greeting: "Hello, filatow",
         navHome: "Home",
         navReferral: "Referral",
@@ -9,7 +8,6 @@ const translations = {
         navShop: "Tegs",
         navObs: "obs Settings",
 
-        // Главная страница (index.html)
         preloaderStatus: "Loading Ecosystem...",
         heroDesc: "An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.",
         tariffsTitle: "Available Tariffs",
@@ -81,7 +79,6 @@ const translations = {
         supportDesc: "Our support team is ready to help you with OBS setup or troubleshooting at any time of the day. Whether you encounter a strange rendering bug, need help linking your stream account, or require guidance on custom font integration, our elite technical experts are online 24/7/365 to keep your broadcast running flawlessly without a single hitch.",
         supportBtn: "💬 Contact Support",
 
-        // Страница студии (studio.html)
         uploadPlaceholder: "CLICK TO UPLOAD VIDEO",
         uploadInfo: "Supported MP4, MOV up to 50 MB",
         renderLoading: "Uploading video to server...",
@@ -109,7 +106,6 @@ const translations = {
         toolExport: "Export",
         inventoryTitle: "Your Inventory",
 
-        // Страница рефералов (referal.html)
         badge_text: "PARTNER NETWORK 2.0",
         ref_title: "Build your media empire!",
         ref_desc: "Invite friends, earn Generation Coins, and process your videos for free.",
@@ -127,7 +123,6 @@ const translations = {
         earned: "TOTAL EARNED"
     },
     ru: {
-        // Общие / Навбар / Хедер
         greeting: "Привет, filatow",
         navHome: "Главная",
         navReferral: "Рефералы",
@@ -136,7 +131,6 @@ const translations = {
         navShop: "Теги",
         navObs: "obs Settings",
 
-        // Главная страница (index.html)
         preloaderStatus: "Загрузка экосистемы...",
         heroDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs. Расширяйте границы своего вещания, увеличивайте удержание аудитории в несколько раз и масштабируйте личный бренд с помощью передовых технологий автоматизации, которые работают плавно, бесшовно и без высокой нагрузки на процессор вашей игровой станции.",
         tariffsTitle: "Доступные тарифы",
@@ -179,7 +173,7 @@ const translations = {
         t4f3: "Эксклюзивные анимированные войс-паки включены абсолютно бесплатно для шока и развлечения вашей аудитории",
         t4f4: "Режим Max FPS для сверхплавных веб-анимаций и рендеринга виджетов прямо внутри OBS Studio",
         t4f5: "Приоритетная VIP-поддержка 24/7 с выделенным персональным менеджером для мгновенного решения технических проблем",
-        kingBtn: "Стать КОРУНЕМ", // или "Стать Королем"
+        kingBtn: "Стать КОРУНЕМ",
 
         shopInfoTitle: "Магазин внутри приложения",
         shopInfoDesc: "Настраивайте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые реагируют на действия зрителей. Уникальные неоновые и готические шрифты подчеркнут ваши оповещения, а живые голоса персонажей внизу экрана будут стимулировать вашу аудиторию донатить чаще. Расширяйте личную коллекцию асстов, открывайте сезонные дропы и получайте редкие эстетические бандлы, превращающие ваш оверлей в эксклюзивное интерактивное искусство.",
@@ -208,7 +202,6 @@ const translations = {
         supportDesc: "Наша служба поддержки готова помочь вам с настройкой OBS или устранением неполадок в любое время суток. Если вы столкнулись со странным багом рендеринга, нуждаетесь в помощи с привязкой аккаунта или интеграцией кастомных шрифтов, наши технические эксперты на связи 24/7/365.",
         supportBtn: "💬 Написать в поддержку",
 
-        // Страница студии (studio.html)
         uploadPlaceholder: "КЛИКНИ, ЧТОБЫ ЗАГРУЗИТЬ ВИДЕО",
         uploadInfo: "Поддерживается MP4, MOV до 50 МБ",
         renderLoading: "Загрузка видео на сервер...",
@@ -236,7 +229,6 @@ const translations = {
         toolExport: "Экспорт",
         inventoryTitle: "Ваш инвентарь",
 
-        // Страница рефералов (referal.html)
         badge_text: "ПАРТНЕРСКАЯ СЕТЬ 2.0",
         ref_title: "Построй свою медиа-империю!",
         ref_desc: "Приглашай друзей, получай коины генерации и обрабатывай видео бесплатно.",
@@ -246,7 +238,7 @@ const translations = {
         friend_bonus_val: "Подарок: +50 Коинов",
         steps_title: "ПРОТОКОЛ РАБОТЫ",
         step_1: "Нажми на кнопку ниже — твоя личная реферальная ссылка будет скопирована.",
-        step_2: "Друг запускает BEAST OMNI по твоей ссылке и получает 50 подарочных коинов на первое видео.",
+        step_2: "Друг запускает BEAST OMNI по ссылке и получает 50 подарочных коинов на первое видео.",
         step_3: "Ты получаешь 100 коинов генерации с каждой покупки друга, чтобы бесплатно обрабатывать свои ролики!",
         copy_btn_text: "СКОПИРОВАТЬ ССЫЛКУ",
         hint_sub: "Копируй в один клик и отправляй в чаты стримеров",
@@ -255,11 +247,9 @@ const translations = {
     }
 };
 
-// Функция смены языка
 function changeLanguage(lang) {
     localStorage.setItem('selectedLang', lang);
 
-    // Теперь скрипт ищет и data-i18n, И data-lang
     document.querySelectorAll('[data-i18n], [data-lang]').forEach(element => {
         const key = element.getAttribute('data-i18n') || element.getAttribute('data-lang');
         if (translations[lang] && translations[lang][key]) {
@@ -276,3 +266,15 @@ function changeLanguage(lang) {
         dropdown.value = lang;
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLang') || 'en';
+    changeLanguage(savedLang);
+
+    const dropdown = document.getElementById('lang-dropdown');
+    if (dropdown) {
+        dropdown.addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+    }
+});
