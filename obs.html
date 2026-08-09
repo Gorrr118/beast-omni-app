@@ -22,7 +22,7 @@
         <header class="global-header">
             <div class="user-box">
                 <span class="user-icon">⚡</span>
-                <span class="username" id="user-greeting" data-lang="greeting">Hello, filatow</span>
+                <span class="username" id="user-greeting" data-i18n="greeting">Hello, filatow</span>
             </div>
             <select id="lang-dropdown">
                 <option value="en" selected>🇺🇸 US</option>
@@ -36,13 +36,13 @@
             <!-- Баннер -->
             <div class="hero-banner">
                 <div class="badge-pill">
-                    <i class="fa-solid fa-microchip"></i> <span data-lang="studio_badge">30 AI AVATARS & SPEAKING MATRIX</span>
+                    <i class="fa-solid fa-microchip"></i> <span data-i18n="studio_badge">30 AI AVATARS & SPEAKING MATRIX</span>
                 </div>
-                <h1 class="page-title" data-lang="studio_title">Выбери свой уровень мощи</h1>
-                <p class="page-subtitle" data-lang="studio_desc">Разблокируй паки аватаров с процедурной анимацией рта для стримов, озвучки и видео-контента.</p>
+                <h1 class="page-title" data-i18n="studio_title">Выбери свой уровень мощи</h1>
+                <p class="page-subtitle" data-i18n="studio_desc">Разблокируй паки аватаров с процедурной анимацией рта для стримов, озвучки и видео-контента.</p>
             </div>
 
-            <!-- Выбор пакетов (Таргеты $30, $50, $100) -->
+            <!-- Выбор пакетов -->
             <div class="pricing-tiers-grid">
                 
                 <!-- Пак 1: $30 -->
@@ -56,7 +56,7 @@
                         <span><i class="fa-solid fa-check"></i> Базовая анимация рта</span>
                         <span><i class="fa-solid fa-check"></i> 720p / HD Экспорт</span>
                     </div>
-                    <button class="tier-btn" onclick="unlockTier(30, 1)" data-lang="btn_unlock_10">РАЗБЛОКИРОВАТЬ 10 ПЕРСОВ</button>
+                    <button class="tier-btn" onclick="unlockTier(30, 1)" data-i18n="btn_unlock_10">РАЗБЛОКИРОВАТЬ 10 ПЕРСОВ</button>
                 </div>
 
                 <!-- Пак 2: $50 (Хит) -->
@@ -71,7 +71,7 @@
                         <span><i class="fa-solid fa-check"></i> Продвинутая лип-синк анимация</span>
                         <span><i class="fa-solid fa-check"></i> 4K / Stream Widgets</span>
                     </div>
-                    <button class="tier-btn active-btn" onclick="unlockTier(50, 2)" data-lang="btn_unlock_20">РАЗБЛОКИРОВАТЬ 20 ПЕРСОВ</button>
+                    <button class="tier-btn active-btn" onclick="unlockTier(50, 2)" data-i18n="btn_unlock_20">РАЗБЛОКИРОВАТЬ 20 ПЕРСОВ</button>
                 </div>
 
                 <!-- Пак 3: $100 (Империя) -->
@@ -86,15 +86,15 @@
                         <span><i class="fa-solid fa-check"></i> Премиум AI голос + Рот 24/7</span>
                         <span><i class="fa-solid fa-check"></i> Безлимит & API доступ</span>
                     </div>
-                    <button class="tier-btn beast-action" onclick="unlockTier(100, 3)" data-lang="btn_unlock_30">ВЗЯТЬ ВСЮ БАЗУ (30)</button>
+                    <button class="tier-btn beast-action" onclick="unlockTier(100, 3)" data-i18n="btn_unlock_30">ВЗЯТЬ ВСЮ БАЗУ (30)</button>
                 </div>
 
             </div>
 
-            <!-- Секция предпросмотра персонажей (Матрица 30 слотов) -->
+            <!-- Секция предпросмотра персонажей -->
             <div class="characters-section-title">
-                <h3 data-lang="matrix_title"><i class="fa-solid fa-users-viewfinder"></i> КАТАЛОГ АВАТАРОВ (30/30)</h3>
-                <span class="matrix-subtitle" data-lang="matrix_sub">Нажми на персонажа, чтобы протестировать анимацию рта</span>
+                <h3 data-i18n="matrix_title"><i class="fa-solid fa-users-viewfinder"></i> КАТАЛОГ АВАТАРОВ (30/30)</h3>
+                <span class="matrix-subtitle" data-i18n="matrix_sub">Нажми на персонажа, чтобы протестировать анимацию рта</span>
             </div>
 
             <div class="characters-matrix" id="characters-container">
@@ -108,14 +108,14 @@
             <a href="index.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
                     <span class="nav-icon">🏠</span>
-                    <span class="nav-text" data-lang="navHome">Home</span>
+                    <span class="nav-text" data-i18n="navHome">Home</span>
                 </div>
             </a>
             
-            <a href="referals.html" style="text-decoration: none; display: block; flex: 1;">
+            <a href="referal.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
                     <span class="nav-icon">👥</span>
-                    <span class="nav-text" data-lang="navReferral">Referral</span>
+                    <span class="nav-text" data-i18n="navReferral">Referral</span>
                 </div>
             </a>
             
@@ -124,21 +124,21 @@
                     <span class="nav-center-btn">
                         <span class="center-icon">⚡</span>
                     </span>
-                    <span class="nav-text center-text" data-lang="navStudio">Studio</span>
+                    <span class="nav-text center-text" data-i18n="navStudio">Studio</span>
                 </div>
             </a>
             
             <a href="obs.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item active">
                     <span class="nav-icon">⚙️</span>
-                    <span class="nav-text" data-lang="navObs">obs Settings</span>
+                    <span class="nav-text" data-i18n="navObs">obs Settings</span>
                 </div>
             </a>
             
             <a href="shop.html" style="text-decoration: none; display: block; flex: 1;">
                 <div class="nav-item">
                     <span class="nav-icon">🏷️</span>
-                    <span class="nav-text" data-lang="navShop">Tegs</span>
+                    <span class="nav-text" data-i18n="navShop">Tegs</span>
                 </div>
             </a>
         </nav>
