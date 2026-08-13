@@ -148,5 +148,69 @@
 
     <script src="translations.js"></script>
     <script src="referal.js"></script>
+    <script>
+        const API_URL = "http://127.0.0.1:8000";
+
+        // Функция активации реферала
+        async function activateReferral(newUserId, referrerId) {
+            try {
+                let response = await fetch(`${API_URL}/api/activate_referral?new_user_id=${newUserId}&referrer_id=${referrerId}`, {
+                    method: "POST"
+                });
+                let data = await response.json();
+                
+                if (data.status === "success") {
+                    console.log("Успех: ", data.message);
+                    alert("Бонус 50 баллов успешно зачислен!");
+                } else {
+                    console.log("Ошибка: ", data.message);
+                }
+            } catch (error) {
+                console.error("Ошибка соединения с сервером:", error);
+            }
+        }
+
+        // Функция начисления бонуса за покупку
+        async function triggerPurchaseBonus(referredId) {
+            try {
+                let response = await fetch(`${API_URL}/api/add_purchase_bonus?referred_id=${referredId}`, {
+                    method: "POST"
+                });
+                let data = await response.json();
+                console.log("Результат покупки:", data);
+            } catch (error) {
+                console.error("Ошибка при начислении бонуса за покупку:", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+            
+            // Генерируем ссылку (если не в Telegram, используем тестовый ID 12345)
+            const myUserId = (tgUser && tgUser.id) ? tgUser.id : 12345;
+            const refLink = `https://t.me/YourBotName?start=${myUserId}`;
+
+            // Привязываем копирование к твоей кнопке
+            const copyBtn = document.getElementById("copy-button");
+            if (copyBtn) {
+                copyBtn.addEventListener("click", () => {
+                    navigator.clipboard.writeText(refLink).then(() => {
+                        alert("Реферальная ссылка скопирована: " + refLink);
+                    }).catch(err => {
+                        console.error("Ошибка копирования: ", err);
+                    });
+                });
+            }
+
+            // Проверка перехода по чужой ссылке
+            const startParam = window.Telegram?.WebApp?.initDataUnsafe?.start_param;
+            if (startParam && tgUser && tgUser.id) {
+                const referrerId = parseInt(startParam);
+                if (referrerId && referrerId !== tgUser.id) {
+                    activateReferral(tgUser.id, referrerId);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
