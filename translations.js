@@ -8,14 +8,6 @@ const translations = {
         navShop: "Tegs",
         navObs: "obs Settings",
 
-        tagGenTitle: "🚀 AI Tag Generator",
-        tagGenSubtitle: "Describe the essence or plot of your stream/video, and the system will create perfect tags.",
-        tagGenPlaceholder: "Example: streaming how we play a shooter with cats and keep losing because of memes...",
-        tagGenBtn: "Generate Tags ⚡",
-        tagResultTitle: "📌 Result",
-        tagDefaultOutput: "#gaming #stream #cats #memes #games #funny",
-        tagCopyBtn: "Copy tags to clipboard",
-
         preloaderStatus: "Loading Ecosystem...",
         heroDesc: "An innovative ecosystem of interactive widgets for streamers and creators. Turn your live stream into a full show with custom characters, unique fonts, and exclusive voice acting, running in real-time via OBS / Streamlabs. Expand your broadcasting boundaries, increase audience retention by several times, and scale your personal brand using advanced automation technologies that work smoothly, seamlessly, and without heavy CPU load on your gaming station.",
         tariffsTitle: "Available Tariffs",
@@ -48,7 +40,7 @@ const translations = {
         t3f3: "Access to premium game and anime characters with special event triggers and reactive gestures",
         t3f4: "10 exclusive cyber-fonts to choose from, guaranteeing high-tech look for alerts and overlays",
         t3f5: "High limit: 50,000 views per month, engineered for established streamers with heavy daily chat interactions",
-        upgradeBtn: "Upgrade",
+        t3btn: "Upgrade",
 
         t4Badge: "UNLIMITED",
         t4Name: "ULTIMATE KING",
@@ -60,8 +52,8 @@ const translations = {
         t4f5: "Priority VIP support 24/7 with a dedicated personal account manager to solve any technical issues instantly",
         kingBtn: "Become KING",
 
-        shopInfoTitle: "In-App Store",
-        shopInfoDesc: "Customize your streams down to the smallest detail! In our shop you will find legendary characters from your favorite games, anime, and TV shows that react to viewers' actions. Unique neon and gothic fonts will highlight your alerts, and live character voices at the bottom of the screen will encourage your audience to donate more often. Expand your personal asset collection, unlock seasonal content drops, and acquire rare aesthetic bundles that turn your stream overlay into an exclusive piece of interactive art, ensuring your community stays highly engaged and constantly entertained during long broadcasting marathons.",
+        shopInfoTitle: "Smart Video Tags Generator",
+        shopInfoDesc: "An integrated tool designed to instantly create optimized tags for your videos and streams. Just describe the plot, game session, or main idea of your content, and the algorithm will automatically generate the most effective metadata. Increase your reach, hook new viewers in recommendations, and save time on routine video optimization effortlessly.",
         
         paymentTitle: "Convenient and Fast Payments",
         paymentDesc: "We value your comfort, which is why we integrated the most modern and secure instant payment methods. Top up your balance and activate plans using Telegram Stars inside the app or use Telegram Wallet (Crypto) for fast transactions worldwide. Enjoy flawless billing automation, immediate balance updates, and complete transparency on every single financial operation without hidden conversion fees or unexpected dynamic charges, allowing you to manage your streaming budget efficiently from anywhere on the planet.",
@@ -158,14 +150,6 @@ const translations = {
         navShop: "Теги",
         navObs: "obs Settings",
 
-        tagGenTitle: "🚀 AI Генератор Тегов",
-        tagGenSubtitle: "Опиши суть или сюжет стрима/ролика, и система создаст идеальные теги.",
-        tagGenPlaceholder: "Например: стримлю как мы с котиками играем в шутер и постоянно проигрываем из-за мемов...",
-        tagGenBtn: "Сгенерировать теги ⚡",
-        tagResultTitle: "📌 Результат",
-        tagDefaultOutput: "#гейминг #стрим #котики #мемы #игры #funny",
-        tagCopyBtn: "Копировать теги в буфер",
-
         preloaderStatus: "Загрузка экосистемы...",
         heroDesc: "Инновационная экосистема интерактивных виджетов для стримеров и креаторов. Превратите ваш прямой эфир в полноценное шоу с помощью кастомных персонажей, уникальных шрифтов и эксклюзивной озвучки, работающих в реальном времени через OBS / Streamlabs. Расширяйте границы своего вещания, увеличивайте удержание аудитории в несколько раз и масштабируйте личный бренд с помощью передовых технологий автоматизации, которые работают плавно, бесшовно и без высокой нагрузки на процессор вашей игровой станции.",
         tariffsTitle: "Доступные тарифы",
@@ -210,8 +194,8 @@ const translations = {
         t4f5: "Приоритетная VIP-поддержка 24/7 с выделенным персональным менеджером для мгновенного решения технических проблем",
         kingBtn: "Стать КОРОЛЕМ",
 
-        shopInfoTitle: "Магазин внутри приложения",
-        shopInfoDesc: "Настраивайте свои стримы до мельчайших деталей! В нашем магазине вы найдете легендарных персонажей из ваших любимых игр, аниме и сериалов, которые реагируют на действия зрителей. Уникальные неоновые и готические шрифты подчеркнут ваши оповещения, а живые голоса персонажей внизу экрана будут стимулировать вашу аудиторию донатить чаще. Расширяйте личную коллекцию асстов, открывайте сезонные дропы и получайте редкие эстетические бандлы, превращающие ваш оверлей в эксклюзивное интерактивное искусство.",
+        shopInfoTitle: "Генератор тегов для видео",
+        shopInfoDesc: "Встроенный инструмент для мгновенного создания оптимизированных тегов под ваши ролики и стримы. Опишите сюжет, игровую сессию или основную мысль контента, и система автоматически подберет самые эффективные ключевые слова. Увеличивайте охваты, цепляйте новых зрителей в рекомендациях и экономьте время на рутинной оптимизации видео.",
 
         paymentTitle: "Удобные и быстрые платежи",
         paymentDesc: "Мы ценим ваш комфорт, поэтому интегрировали самые современные и безопасные методы мгновенной оплаты. Пополняйте баланс и активируйте планы с помощью Telegram Stars прямо внутри приложения или используйте Telegram Wallet (Crypto) для быстрых транзакций по всему миру. Наслаждайтесь безупречной автоматизацией биллинга, моментальным обновлением баланса и полной прозрачностью каждой финансовой операции.",
