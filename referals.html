@@ -88,6 +88,15 @@
                     <span id="btn-text-main" data-i18n="copy_btn_text">COPY REFERRAL LINK</span>
                 </div>
             </button>
+            
+            <!-- Тестовая кнопка прямо на экране -->
+            <button class="cyber-action-btn" id="test-button" style="margin-top: 10px; background: rgba(0, 255, 204, 0.1); border: 1px solid #00ffcc;">
+                <div class="btn-content">
+                    <i class="fa-solid fa-rotate"></i>
+                    <span>ПРОВЕРИТЬ СЕРВЕР (ТЕСТ)</span>
+                </div>
+            </button>
+
             <div class="sub-hint" data-i18n="hint_sub">One-tap copy for Telegram chats & creator communities</div>
         </div>
 
@@ -189,7 +198,6 @@
                 let response = await fetch(`${API_URL}/api/user_stats/${userId}`);
                 let data = await response.json();
                 
-                // Находим элементы на странице и подставляем данные
                 const friendsElem = document.getElementById("friends-count");
                 const earnedElem = document.getElementById("earned-count");
                 
@@ -197,7 +205,6 @@
                     friendsElem.textContent = data.friends_count;
                 }
                 if (earnedElem) {
-                    // Выводим баланс с монетой
                     earnedElem.textContent = data.balance + " 🪙";
                 }
             } catch (error) {
@@ -208,14 +215,13 @@
         document.addEventListener("DOMContentLoaded", () => {
             const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
             
-            // Генерируем ссылку (если не в Telegram, используем тестовый ID 12345)
             const myUserId = (tgUser && tgUser.id) ? tgUser.id : 12345;
             const refLink = `https://t.me/ViralVoice_bot?start=${myUserId}`;
 
-            // Загружаем статистику для этого пользователя с бэкенда
+            // Загружаем статистику при старте
             loadUserStats(myUserId);
 
-            // Привязываем копирование к твоей кнопке
+            // Кнопка копирования
             const copyBtn = document.getElementById("copy-button");
             if (copyBtn) {
                 copyBtn.addEventListener("click", () => {
@@ -227,7 +233,23 @@
                 });
             }
 
-            // Проверка перехода по чужой ссылке
+            // Тестовая кнопка на экране
+            const testBtn = document.getElementById("test-button");
+            if (testBtn) {
+                testBtn.addEventListener("click", async () => {
+                    try {
+                        let response = await fetch(`${API_URL}/api/user_stats/${myUserId}`);
+                        let data = await response.json();
+                        alert(`Связь с сервером УСПЕШНА!\nID: ${data.user_id}\nДрузей: ${data.friends_count}\nБаланс: ${data.balance}`);
+                        // Обновляем цифры на экране
+                        loadUserStats(myUserId);
+                    } catch (e) {
+                        alert("ОШИБКА: Сервер не отвечает! Проверь, запущен ли Python в консоли.");
+                    }
+                });
+            }
+
+            // Проверка реферального параметра
             const startParam = window.Telegram?.WebApp?.initDataUnsafe?.start_param;
             if (startParam && tgUser && tgUser.id) {
                 const referrerId = parseInt(startParam);
