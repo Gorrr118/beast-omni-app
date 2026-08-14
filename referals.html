@@ -183,12 +183,37 @@
             }
         }
 
+        // Функция получения статистики пользователя
+        async function loadUserStats(userId) {
+            try {
+                let response = await fetch(`${API_URL}/api/user_stats/${userId}`);
+                let data = await response.json();
+                
+                // Находим элементы на странице и подставляем данные
+                const friendsElem = document.getElementById("friends-count");
+                const earnedElem = document.getElementById("earned-count");
+                
+                if (friendsElem) {
+                    friendsElem.textContent = data.friends_count;
+                }
+                if (earnedElem) {
+                    // Выводим баланс с монетой
+                    earnedElem.textContent = data.balance + " 🪙";
+                }
+            } catch (error) {
+                console.error("Ошибка при загрузке статистики:", error);
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
             
             // Генерируем ссылку (если не в Telegram, используем тестовый ID 12345)
             const myUserId = (tgUser && tgUser.id) ? tgUser.id : 12345;
             const refLink = `https://t.me/ViralVoice_bot?start=${myUserId}`;
+
+            // Загружаем статистику для этого пользователя с бэкенда
+            loadUserStats(myUserId);
 
             // Привязываем копирование к твоей кнопке
             const copyBtn = document.getElementById("copy-button");
