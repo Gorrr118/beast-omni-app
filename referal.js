@@ -8,19 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyButton = document.getElementById('copy-button');
     const langBtn = document.getElementById('lang-switch-btn');
     const usernameDisplay = document.getElementById('username-display');
+    const testButton = document.getElementById('test-button');
     
     const langFlag = langBtn?.querySelector('.flag');
     const langText = langBtn?.querySelector('.lang-text');
 
     const user = tg?.initDataUnsafe?.user;
 
-    if (user?.username) {
-        usernameDisplay.innerText = user.username;
-    } else if (user?.first_name) {
-        usernameDisplay.innerText = user.first_name;
+    if (usernameDisplay) {
+        if (user?.username) {
+            usernameDisplay.innerText = user.username;
+        } else if (user?.first_name) {
+            usernameDisplay.innerText = user.first_name;
+        }
     }
 
-    // Реферальная ссылка с ID пользователя (замени your_bot на юзернейм своего бота)
+    // Реферальная ссылка с ID пользователя
     let userRefUrl = `https://t.me/your_bot?start=test_id`;
     if (user?.id) {
         userRefUrl = `https://t.me/your_bot?start=ref_${user.id}`; 
@@ -140,6 +143,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             } else {
                 fallbackCopyText(textToCopy, proceedAnimation);
+            }
+        });
+    }
+
+    // Логика тестовой кнопки сервера
+    if (testButton) {
+        testButton.addEventListener('click', async () => {
+            const userId = user?.id || 12345; // Берем реальный ID из Телеграма или тестовый
+            try {
+                // Отправляем запрос на наш локальный FastAPI сервер
+                const response = await fetch(`http://127.0.0.1:8000/api/user_stats/${userId}`);
+                const data = await response.json();
+                
+                if (tg?.showPopup) {
+                    tg.showPopup({
+                        title: "Статус сервера",
+                        message: `Успех! Баланс: ${data.balance}, Друзей: ${data.friends_count}`
+                    });
+                } else {
+                    alert(`Сервер отвечает! Баланс: ${data.balance}, Друзей: ${data.friends_count}`);
+                }
+            } catch (error) {
+                if (tg?.showPopup) {
+                    tg.showPopup({
+                        title: "Ошибка",
+                        message: "Сервер не отвечает! Проверь, запущен ли Python (bot_main.py)."
+                    });
+                } else {
+                    alert("Ошибка связи с сервером!");
+                }
             }
         });
     }
