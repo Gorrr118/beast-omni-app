@@ -254,33 +254,37 @@
                 });
             }
 
-            // Проверка уведомлений о рефералах при входе на главный экран
+            // Telegram WebApp проверка и страховочный ID для теста
             const tg = window.Telegram?.WebApp;
             const user = tg?.initDataUnsafe?.user;
 
-            if (user?.id) {
-                fetch(`https://trash-eggnog-sector.ngrok-free.dev/api/check_notifications/${user.id}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.has_notification) {
-                            const modal = document.getElementById('custom-modal');
-                            const titleElem = document.getElementById('modal-title');
-                            const textElem = document.getElementById('modal-text');
-                            const closeBtn = document.getElementById('modal-close-btn');
+            console.log("Telegram WebApp:", tg);
+            console.log("User data:", user);
 
-                            if (modal && titleElem && textElem && closeBtn) {
-                                titleElem.innerText = "🎁 Бонус сети";
-                                textElem.innerText = data.message;
-                                modal.style.display = 'flex';
+            const userId = user?.id || 123456789;
 
-                                closeBtn.onclick = () => {
-                                    modal.style.display = 'none';
-                                };
-                            }
+            fetch(`https://trash-eggnog-sector.ngrok-free.dev/api/check_notifications/${userId}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Server response data:", data);
+                    if (data.has_notification) {
+                        const modal = document.getElementById('custom-modal');
+                        const titleElem = document.getElementById('modal-title');
+                        const textElem = document.getElementById('modal-text');
+                        const closeBtn = document.getElementById('modal-close-btn');
+
+                        if (modal && titleElem && textElem && closeBtn) {
+                            titleElem.innerText = "🎁 Бонус сети";
+                            textElem.innerText = data.message;
+                            modal.style.display = 'flex';
+
+                            closeBtn.onclick = () => {
+                                modal.style.display = 'none';
+                            };
                         }
-                    })
-                    .catch(err => console.log("Notification check error:", err));
-            }
+                    }
+                })
+                .catch(err => console.log("Notification check error:", err));
         });
     </script>
     <script src="translations.js"></script>
