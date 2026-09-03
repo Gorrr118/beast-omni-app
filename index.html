@@ -261,9 +261,21 @@
             console.log("Telegram WebApp:", tg);
             console.log("User data:", user);
 
+            // Если пользователь есть в Telegram, подставим его имя в шапку
+            if (user && user.first_name) {
+                const greetingElem = document.getElementById("user-greeting");
+                if (greetingElem) {
+                    greetingElem.innerText = `Hello, ${user.first_name}`;
+                }
+            }
+
             const userId = user?.id || 123456789;
 
-            fetch(`https://trash-eggnog-sector.ngrok-free.dev/api/check_notifications/${userId}`)
+            // Определяем базовый путь (если открыто в браузере с ngrok или локально)
+            // Относительный путь '/api/...' работает идеально внутри Telegram WebApp и FastAPI
+            const apiUrl = `/api/check_notifications/${userId}`;
+
+            fetch(apiUrl)
                 .then(res => res.json())
                 .then(data => {
                     console.log("Server response data:", data);
