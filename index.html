@@ -259,7 +259,7 @@
             const user = tg?.initDataUnsafe?.user;
 
             if (user?.id) {
-                fetch(`http://127.0.0.1:8000/api/check_notifications/${user.id}`)
+                fetch(`https://trash-eggnog-sector.ngrok-free.dev/api/check_notifications/${user.id}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data.has_notification) {
