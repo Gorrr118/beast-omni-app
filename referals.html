@@ -225,14 +225,16 @@
             const copyBtn = document.getElementById("copy-button");
             if (copyBtn) {
                 copyBtn.addEventListener("click", () => {
-                    navigator.clipboard.writeText(refLink).then(() => {
-                        alert("Реферальная ссылка скопирована: " + refLink);
+                    // Твой красивый текст с правильной ссылкой
+                    const shareText = `Hey! Testing BEAST OMNI bot. Grab 50 free coins & 7 days of Premium using my link: ${refLink}`;
+                    
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        alert("Реферальная ссылка скопирована!\n\n" + shareText);
                     }).catch(err => {
                         console.error("Ошибка копирования: ", err);
                     });
                 });
             }
-
             // Тестовая кнопка на экране
             const testBtn = document.getElementById("test-button");
             if (testBtn) {
