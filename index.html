@@ -256,6 +256,9 @@
 
             // Telegram WebApp проверка и страховочный ID для теста
             const tg = window.Telegram?.WebApp;
+            if (tg) {
+                tg.expand();
+            }
             const user = tg?.initDataUnsafe?.user;
 
             console.log("Telegram WebApp:", tg);
@@ -271,8 +274,7 @@
 
             const userId = user?.id || 123456789;
 
-            // Определяем базовый путь (если открыто в браузере с ngrok или локально)
-            // Относительный путь '/api/...' работает идеально внутри Telegram WebApp и FastAPI
+            // Определяем базовый путь и запрашиваем уведомления с бэкенда FastAPI
             const apiUrl = `/api/check_notifications/${userId}`;
 
             fetch(apiUrl)
