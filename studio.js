@@ -15,19 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderBtn = document.getElementById('render-btn');
 
     // === Новые элементы из обновленного CSS ===
-    const aiAvatar = document.getElementById('ai-avatar'); // Элемент .ai-avatar-overlay
+    const aiAvatar = document.getElementById('ai-avatar');
     const resizeHandle = document.getElementById('avatar-resize-handle');
-    const renderOverlay = document.getElementById('render-overlay');
+    const renderOverlay = document.getElementById('render-status-screen');
     const progressFill = document.getElementById('progress-bar-fill');
-    const progressPercent = document.getElementById('progress-percentage');
+    const progressPercent = document.getElementById('progress-pct');
     
     // Элементы Bottom Sheet (Магазин / Инвентарь)
-    const inventoryBottomSheet = document.getElementById('inventory-bottom-sheet');
-    const closeSheetBtn = document.getElementById('close-sheet-btn');
-    const inventoryCards = document.querySelectorAll('.inventory-card');
-    const openInventoryBtns = document.querySelectorAll('.inventory-trigger-btn'); // Кнопки вызова инвентаря
+    const inventoryBottomSheet = document.getElementById('shop-inventory-sheet');
+    const closeSheetBtn = document.getElementById('sheet-close-x');
+    const sheetOverlayClose = document.getElementById('sheet-overlay-close');
+    const openInventoryBtns = document.querySelectorAll('.inventory-trigger-btn');
+    const inventoryContainer = document.getElementById('inventory-items-container');
+    const sheetTitle = document.getElementById('sheet-title');
 
     let hideControlsTimeout = null;
+    let activePreviewAudio = null;
+    let currentSelectedColor = '#ffffff'; // Переменная для хранения текущего цвета текста
 
     // === 🎥 ЛОГИКА ЗАГРУЗКИ ВИДЕО ИЗ ГАЛЕРЕИ + API БЭКЕНДА ===
     if (playerScreenTrigger && videoUpload && mainPlayer && placeholderText) {
@@ -41,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (file) {
                 const videoURL = URL.createObjectURL(file);
                 
-                // Жестко скрываем плейсхолдер и облачко, чтобы они не перекрывали видео
                 placeholderText.style.setProperty('display', 'none', 'important');
                 
                 const uploadOverlay = placeholderText.parentElement;
@@ -55,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 mainPlayer.src = videoURL;
                 mainPlayer.load();
 
-                // Автоматическое определение формата и подгонка под черный фон
                 mainPlayer.onloadedmetadata = () => {
                     const width = mainPlayer.videoWidth;
                     const height = mainPlayer.videoHeight;
@@ -65,11 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (height > width) {
                         targetFormat = '9:16';
                     } else if (width === height) {
-                        targetFormat = '1-1';
+                        targetFormat = '1:1';
                     }
 
                     formatButtons.forEach(btn => {
-                        const fmt = btn.getAttribute('data-format') || btn.innerText.trim();
+                        const fmt = btn.getAttribute('data-ratio') || btn.innerText.trim();
                         if (fmt.includes(targetFormat)) {
                             btn.click();
                         }
@@ -85,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     videoTrackName.innerText = `🎬 ${shortName}`;
                 }
 
-                // Отправка на Python бэкенд (FastAPI / server.py)
                 const formData = new FormData();
                 formData.append("file", file);
 
@@ -136,18 +137,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-АВАТАР: DRAG & DROP & RESIZE (Mouse + Touch) ===
+    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-АВАТАР: DRAG & RESIZE (Mouse + Touch) ===
     if (aiAvatar) {
         let isDragging = false;
         let isResizing = false;
-        let startX, startY, startLeft, startTop, startWidth, startHeight;
+        let startX, startY, startLeft, startTop, startWidth;
 
-        // --- Функция перемещения (Drag) ---
         aiAvatar.addEventListener('mousedown', startDrag);
         aiAvatar.addEventListener('touchstart', startDrag, { passive: false });
 
         function startDrag(e) {
-            if (e.target === resizeHandle) return; // Если кликнули на ресайзер — не двигаем
+            if (e.target === resizeHandle) return;
             e.preventDefault();
             
             isDragging = true;
@@ -174,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const deltaX = clientX - startX;
             const deltaY = clientY - startY;
 
-            // Ограничиваем перемещение границами плеера (родительского контейнера)
             const parent = aiAvatar.parentElement;
             let newLeft = startLeft + deltaX;
             let newTop = startTop + deltaY;
@@ -192,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('touchmove', doDrag);
         }
 
-        // --- Функция изменения размера (Resize) ---
         if (resizeHandle) {
             resizeHandle.addEventListener('mousedown', startResize);
             resizeHandle.addEventListener('touchstart', startResize, { passive: false });
@@ -200,14 +198,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function startResize(e) {
             e.preventDefault();
-            e.stopPropagation(); // Чтобы не сработало перемещение
+            e.stopPropagation();
             
             isResizing = true;
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             
             startX = clientX;
             startWidth = aiAvatar.clientWidth;
-            startHeight = aiAvatar.clientHeight;
 
             document.addEventListener('mousemove', doResize);
             document.addEventListener('touchmove', doResize, { passive: false });
@@ -221,10 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             
             const deltaX = clientX - startX;
-            // Сохраняем пропорции 1:1, так как аватар круглый
             let newSize = startWidth + deltaX; 
             
-            // Задаем лимиты размера (от 50px до 200px)
             newSize = Math.max(50, Math.min(newSize, 200));
 
             aiAvatar.style.width = `${newSize}px`;
@@ -262,140 +257,225 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetId = button.getAttribute('data-target');
                 const targetPanel = document.getElementById(targetId);
 
-                if (button.classList.contains('active')) {
-                    button.classList.remove('active');
-                    dynamicPanel.classList.remove('active');
-                    if (targetPanel) targetPanel.classList.remove('active');
-                    return;
-                }
-
                 toolButtons.forEach(btn => btn.classList.remove('active'));
                 toolPanels.forEach(panel => panel.classList.remove('active'));
 
                 button.classList.add('active');
                 dynamicPanel.classList.add('active');
-                if (targetPanel) targetPanel.classList.add('active');
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
             });
         });
     }
 
-    // === 🛍️ ЛОГИКА BOTTOM SHEET (ИНВЕНТАРЬ И МАГАЗИН) ===
-    function openBottomSheet() {
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET ===
+    function renderBottomSheetContent(shopType) {
+        if (!inventoryContainer) return;
+
+        if (shopType === 'fonts') {
+            if (sheetTitle) sheetTitle.textContent = 'Выбор шрифта';
+            inventoryContainer.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px;">
+                    
+                    <!-- Верхняя панель в одну линию: Кнопки фильтров (Все, Русский, Классика) + Кнопка цвета -->
+                    <div style="display: flex; gap: 8px; align-items: center; overflow-x: auto; width: 100%; padding-bottom: 4px;">
+                        <button class="font-cat-btn active" data-cat="all" style="background: rgba(52,152,219,0.2); border: 1px solid #3498db; color: #3498db; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🔥 Все</button>
+                        <button class="font-cat-btn" data-cat="ru" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🇷🇺 Русский</button>
+                        <button class="font-cat-btn" data-cat="classic" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">📜 Классика</button>
+                        
+                        <!-- Отдельная кнопка «Цвет», которая перекидывает в окно выбора цвета -->
+                        <button id="goto-color-picker-btn" style="display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0; margin-left: auto;">
+                            <span>🎨 Цвет</span>
+                        </button>
+                    </div>
+
+                    <!-- Чистая сетка только со шрифтами -->
+                    <div class="fonts-grid-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px;">
+                        
+                        <div class="inventory-card font-preview-card trial-font-card" data-font="Roboto, sans-serif" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
+                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Roboto</span>
+                            <div class="preview-text-sample" style="font-family: Roboto, sans-serif; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        </div>
+
+                        <div class="inventory-card font-preview-card trial-font-card" data-font="'Courier New', monospace" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
+                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Code</span>
+                            <div class="preview-text-sample" style="font-family: 'Courier New', monospace; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        </div>
+
+                        <div class="inventory-card font-preview-card trial-font-card" data-font="Georgia, serif" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
+                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Georgia</span>
+                            <div class="preview-text-sample" style="font-family: Georgia, serif; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        </div>
+
+                        <div class="inventory-card font-preview-card trial-font-card" data-font="Impact, sans-serif" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
+                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Impact</span>
+                            <div class="preview-text-sample" style="font-family: Impact, sans-serif; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        </div>
+
+                        <div class="inventory-card font-preview-card trial-font-card" data-font="'Comic Sans MS', cursive" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
+                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Comic</span>
+                            <div class="preview-text-sample" style="font-family: 'Comic Sans MS', cursive; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+
+            // Обработчик нажатия на кнопку «Цвет», чтобы перекинуть на окно выбора цвета
+            const colorBtn = document.getElementById('goto-color-picker-btn');
+            if (colorBtn) {
+                colorBtn.addEventListener('click', () => {
+                    renderBottomSheetContent('color'); 
+                });
+            }
+
+        } else if (shopType === 'color') {
+            if (sheetTitle) sheetTitle.textContent = 'Выбор цвета текста';
+            inventoryContainer.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 100%; justify-content: space-between;">
+                        <span style="font-size: 13px; color: #fff;">Выберите цвет:</span>
+                        <input type="color" id="text-color-picker" value="${currentSelectedColor}" style="width: 40px; height: 40px; border: none; background: none; cursor: pointer; border-radius: 50%;">
+                    </div>
+                    <button id="save-color-btn" style="width: 100%; padding: 12px; background: #3498db; color: #fff; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer;">💾 Применить цвет</button>
+                </div>
+            `;
+
+            const colorPicker = document.getElementById('text-color-picker');
+            if (colorPicker) {
+                colorPicker.addEventListener('input', (e) => {
+                    currentSelectedColor = e.target.value;
+                });
+            }
+
+            const saveColorBtn = document.getElementById('save-color-btn');
+            if (saveColorBtn) {
+                saveColorBtn.addEventListener('click', () => {
+                    if (videoTrackName) {
+                        videoTrackName.style.color = currentSelectedColor;
+                    }
+                    closeBottomSheet();
+                });
+            }
+
+        } else if (shopType === 'voices') {
+            if (sheetTitle) sheetTitle.textContent = 'ИИ Голоса: Пробное прослушивание';
+            inventoryContainer.innerHTML = `
+                <div class="inventory-card voice-preview-card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 15px; margin-bottom: 10px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                    <div style="font-weight: bold; margin-bottom: 8px; color: #fff;">🎙️ Голос: Максим (Энергичный)</div>
+                    <button class="btn-test-preview trial-voice-btn" data-sample="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">▶ Прослушать пробный</button>
+                </div>
+                <div class="inventory-card voice-preview-card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                    <div style="font-weight: bold; margin-bottom: 8px; color: #fff;">🎙️ Голос: София (Мягкий)</div>
+                    <button class="btn-test-preview trial-voice-btn" data-sample="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">▶ Прослушать пробный</button>
+                </div>
+            `;
+        } else {
+            if (sheetTitle) sheetTitle.textContent = 'ИИ Аватары';
+            inventoryContainer.innerHTML = `
+                <div class="inventory-card" style="display: flex; flex-direction: column; align-items: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                    <i class="fas fa-check-circle" style="color: #2ecc71; font-size: 20px; margin-bottom: 5px;"></i>
+                    <div>Стандартный аватар</div>
+                </div>
+            `;
+        }
+    }
+
+    function openBottomSheet(shopType) {
         if (inventoryBottomSheet) inventoryBottomSheet.classList.add('active');
+        renderBottomSheetContent(shopType);
     }
 
     function closeBottomSheet() {
         if (inventoryBottomSheet) inventoryBottomSheet.classList.remove('active');
+        if (activePreviewAudio) {
+            activePreviewAudio.pause();
+            activePreviewAudio = null;
+        }
     }
 
-    if (openInventoryBtns.length > 0) {
-        openInventoryBtns.forEach(btn => btn.addEventListener('click', openBottomSheet));
-    }
+    if (closeSheetBtn) closeSheetBtn.addEventListener('click', closeBottomSheet);
+    if (sheetOverlayClose) sheetOverlayClose.addEventListener('click', closeBottomSheet);
 
-    if (closeSheetBtn) {
-        closeSheetBtn.addEventListener('click', closeBottomSheet);
-    }
-
-    // Клик по оверлею закрывает шторку
-    const sheetOverlay = inventoryBottomSheet?.querySelector('.sheet-overlay');
-    if (sheetOverlay) {
-        sheetOverlay.addEventListener('click', closeBottomSheet);
-    }
-
-    // Выбор элементов внутри инвентаря
-    inventoryCards.forEach(card => {
-        card.addEventListener('click', () => {
-            if (card.classList.contains('locked')) {
-                alert("Этот премиум элемент закрыт. Разблокируйте его в магазине!");
-                return;
-            }
-            // Убираем выделение у остальных карточек в этой же группе
-            const siblings = card.parentElement.querySelectorAll('.inventory-card');
-            siblings.forEach(c => c.classList.remove('selected'));
-            
-            card.classList.add('selected');
-
-            // Пример динамического изменения аватарки на экране, если это блок аватаров
-            const newAvatarSrc = card.querySelector('img')?.getAttribute('src');
-            const targetAvatarImg = aiAvatar?.querySelector('img');
-            if (newAvatarSrc && targetAvatarImg) {
-                targetAvatarImg.src = newAvatarSrc;
-            }
+    openInventoryBtns.forEach(triggerBtn => {
+        triggerBtn.addEventListener('click', () => {
+            const shopType = triggerBtn.getAttribute('data-shop-type') || 'fonts';
+            openBottomSheet(shopType);
         });
     });
 
-    // === 📐 ВЫБОР ФОРМАТА КАДРА (Интерактивные кнопки + Бэкенд + Динамический текст) ===
+    // Делегирование событий для динамически создаваемых карточек шрифтов и голосов
+    if (inventoryContainer) {
+        inventoryContainer.addEventListener('click', (e) => {
+            const fontCard = e.target.closest('.trial-font-card');
+            if (fontCard) {
+                e.stopPropagation();
+                
+                const allCards = inventoryContainer.querySelectorAll('.trial-font-card');
+                allCards.forEach(c => {
+                    c.style.border = '1px solid rgba(255,255,255,0.08)';
+                    c.style.background = 'rgba(255,255,255,0.04)';
+                    c.style.boxShadow = 'none';
+                });
+                
+                fontCard.style.border = '1px solid #3498db';
+                fontCard.style.background = 'rgba(52, 152, 219, 0.12)';
+                fontCard.style.boxShadow = '0 0 15px rgba(52, 152, 219, 0.3)';
+
+                const fontName = fontCard.getAttribute('data-font');
+                if (videoTrackName) {
+                    videoTrackName.style.fontFamily = fontName;
+                }
+
+                console.log("Выбран шрифт:", fontName);
+
+                fetch("http://127.0.0.1:8000/api/preview-font", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ font: fontName })
+                }).catch(err => console.log("Бэкенд превью шрифта недоступен:", err));
+                return;
+            }
+
+            const voiceBtn = e.target.closest('.trial-voice-btn');
+            if (voiceBtn) {
+                e.stopPropagation();
+                const sampleUrl = voiceBtn.getAttribute('data-sample');
+
+                if (activePreviewAudio) {
+                    activePreviewAudio.pause();
+                    activePreviewAudio = null;
+                    voiceBtn.textContent = "▶ Прослушать пробный";
+                } else {
+                    activePreviewAudio = new Audio(sampleUrl);
+                    voiceBtn.textContent = "⏸ Остановить";
+                    
+                    activePreviewAudio.play().catch(err => {
+                        console.error("Ошибка воспроизведения семпла:", err);
+                    });
+
+                    activePreviewAudio.onended = () => {
+                        voiceBtn.textContent = "▶ Прослушать пробный";
+                        activePreviewAudio = null;
+                    };
+                }
+            }
+        });
+    }
+
+    // === 📐 ВЫБОР ФОРМАТА КАДРА ===
     const formatButtons = document.querySelectorAll('.format-btn');
-    const formatDisplaySpan = document.getElementById('current-format-text'); // Сюда выводится текущий выбранный формат
+    const formatDisplaySpan = document.getElementById('current-format-text');
 
     formatButtons.forEach(btn => {
         btn.addEventListener('click', (event) => {
             event.preventDefault();
-
             formatButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            // Безопасно вытаскиваем чистый формат (например, "16:9")
-            const selectedFormat = btn.getAttribute('data-format') || btn.innerText.trim().split(' ')[0];
-            console.log("Выбран формат:", selectedFormat);
-
-            // Выводим текст выбранного формата в плашку/элемент интерфейса, если он есть на странице
             if (formatDisplaySpan) {
-                formatDisplaySpan.innerText = selectedFormat;
+                formatDisplaySpan.textContent = btn.innerText;
             }
-
-            // Динамическое добавление класса формата на главный плеер/контейнер
-            if (mainPlayer) {
-                mainPlayer.classList.remove('format-9-16', 'format-16-9', 'format-1-1', 'format-4-5');
-                mainPlayer.classList.add(`format-${selectedFormat.replace(':', '-')}`);
-            }
-
-            // Отправка выбранного формата на FastAPI бэкенд
-            fetch("http://127.0.0.1:8000/api/set-format", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ format: selectedFormat })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Ответ бэкенда по формату:", data);
-            })
-            .catch(error => {
-                console.error("Не удалось отправить формат на сервер:", error);
-            });
         });
     });
-
-    // === 🚀 ПОЛНОЦЕННЫЙ ЭКРАН РЕНДЕРИНГА С ПРОГРЕСС-БАРОМ ===
-    if (renderBtn && renderOverlay && progressFill && progressPercent) {
-        renderBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            
-            // Показываем красивый оверлей сборки видео
-            renderOverlay.style.display = 'flex';
-            
-            let progress = 0;
-            progressFill.style.width = '0%';
-            progressPercent.innerText = '0%';
-
-            // Симуляция рендеринга (в продакшене тут будет Long Polling или WebSockets к FastAPI)
-            const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 12) + 5; // Случайный шаг
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    
-                    setTimeout(() => {
-                        renderOverlay.style.display = 'none';
-                        alert("🎉 Видео успешно сгенерировано и сохранено в галерею!");
-                    }, 500);
-                }
-                
-                progressFill.style.width = `${progress}%`;
-                progressPercent.innerText = `${progress}%`;
-            }, 300);
-        });
-    }
 });
