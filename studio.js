@@ -356,7 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (shopType === 'voices') {
             if (sheetTitle) sheetTitle.textContent = 'Выбор голосов и звуков';
             
-            // Наборы элементов для каждой категории
             const itemsData = {
                 male: [
                     { name: 'Голос — Мужчина (Бас)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
@@ -379,15 +378,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             inventoryContainer.innerHTML = `
                 <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
-                    <!-- Верхнее меню разделов -->
                     <div style="display: flex; align-items: center; gap: 12px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; width: 100%; box-sizing: border-box;">
-                        <span class="voice-cat-tab ${activeVoiceCategory === 'male' ? 'active-tab' : ''}" data-cat="male" style="color: ${activeVoiceCategory === 'male' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'male' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'male' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👨 Мужские</span>
-                        <span class="voice-cat-tab ${activeVoiceCategory === 'female' ? 'active-tab' : ''}" data-cat="female" style="color: ${activeVoiceCategory === 'female' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'female' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'female' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👩 Женские</span>
-                        <span class="voice-cat-tab ${activeVoiceCategory === 'kids' ? 'active-tab' : ''}" data-cat="kids" style="color: ${activeVoiceCategory === 'kids' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'kids' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'kids' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👶 Детские</span>
-                        <span class="voice-cat-tab ${activeVoiceCategory === 'gta' ? 'active-tab' : ''}" data-cat="gta" style="color: ${activeVoiceCategory === 'gta' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'gta' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'gta' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Игровые звуки (GTA / Зомби)</span>
+                        <span class="voice-cat-tab" data-cat="male" style="color: ${activeVoiceCategory === 'male' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'male' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'male' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👨 Мужские</span>
+                        <span class="voice-cat-tab" data-cat="female" style="color: ${activeVoiceCategory === 'female' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'female' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'female' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👩 Женские</span>
+                        <span class="voice-cat-tab" data-cat="kids" style="color: ${activeVoiceCategory === 'kids' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'kids' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'kids' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👶 Детские</span>
+                        <span class="voice-cat-tab" data-cat="gta" style="color: ${activeVoiceCategory === 'gta' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'gta' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'gta' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Игровые звуки (GTA / Зомби)</span>
                     </div>
 
-                    <!-- Красивые неоновые карточки (без кнопок, кликабельные) -->
                     <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
                         ${currentItems.map(item => `
                             <div class="neon-voice-card" data-name="${item.name}" data-sample="${item.sample}" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 12px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 0 10px rgba(0, 229, 255, 0.15); transition: all 0.3s ease;">
@@ -399,7 +396,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // Обработка кликов по вкладкам категорий
             const tabs = inventoryContainer.querySelectorAll('.voice-cat-tab');
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -408,7 +404,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Обработка кликов по неоновым карточкам (открытие мини-окна прослушивания)
             const cards = inventoryContainer.querySelectorAll('.neon-voice-card');
             cards.forEach(card => {
                 card.addEventListener('click', () => {
@@ -431,7 +426,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === 🎵 МИНИ-ОКНО ДЛЯ ПРОСЛУШИВАНИЯ ГОЛОСА ===
     function openVoicePreviewModal(voiceName, sampleUrl) {
-        // Создаем или находим модальное мини-окно поверх инвентаря
         let modal = document.getElementById('voice-preview-modal');
         if (!modal) {
             modal = document.createElement('div');
@@ -557,6 +551,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    
-    // 🛠️ GIT SYNC MARKER (Версия от 2026.09.21 - Voices & Sounds Update)
 });
