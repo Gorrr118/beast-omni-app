@@ -269,39 +269,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (В стиле CapCut без лишнего второго ряда) ===
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (С распределением по всей ширине) ===
     function renderBottomSheetContent(shopType) {
         if (!inventoryContainer) return;
 
         if (shopType === 'fonts') {
             if (sheetTitle) sheetTitle.textContent = 'Шрифты';
             inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; padding-bottom: 20px;">
+                <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; padding-bottom: 20px; box-sizing: border-box;">
                     
                     <!-- Превью текста сверху -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
                         <div style="background: #222225; border: 1px solid #333; padding: 8px 12px; border-radius: 8px; color: ${currentSelectedColor}; font-size: 14px; width: 100%; box-sizing: border-box;">Введите текст</div>
                     </div>
 
-                    <!-- Главные вкладки + Кнопка «Цвет» прямо наверх -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 6px; font-size: 13px; overflow-x: auto; gap: 12px;">
-                        <span style="color: #777; cursor: pointer; white-space: nowrap;">Шаблоны</span>
-                        <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #fff; padding-bottom: 4px; cursor: pointer; white-space: nowrap;">Шрифты</span>
-                        <span style="color: #777; cursor: pointer; white-space: nowrap;">Стили</span>
-                        <span style="color: #777; cursor: pointer; white-space: nowrap;">Эффекты</span>
-                        <span style="color: #777; cursor: pointer; white-space: nowrap;">Анимации</span>
-                        <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0; margin-left: auto;">🎨 Цвет</button>
+                    <!-- Главные вкладки + Кнопка «Цвет», равномерно распределенные по всей ширине -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 8px; font-size: 13px; width: 100%; box-sizing: border-box;">
+                        <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Шаблоны</span>
+                        <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #fff; padding-bottom: 4px; cursor: pointer; flex: 1; text-align: center;">Шрифты</span>
+                        <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Стили</span>
+                        <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Эффекты</span>
+                        <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Анимации</span>
+                        <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 5px 10px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; margin-left: 8px; flex-shrink: 0;">🎨 Цвет</button>
                     </div>
 
-                    <!-- Подкатегории шрифтов (без строки с лупой) -->
-                    <div style="display: flex; gap: 12px; overflow-x: auto; align-items: center; padding-bottom: 4px;">
-                        <button style="background: transparent; border: none; color: #888; font-size: 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">В тренде</button>
-                        <button style="background: transparent; border: none; color: #fff; font-weight: bold; font-size: 13px; border-bottom: 2px solid #00e5ff; cursor: pointer; white-space: nowrap; flex-shrink: 0;">Русский</button>
-                        <button style="background: transparent; border: none; color: #888; font-size: 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">Классика</button>
+                    <!-- Подкатегории шрифтов -->
+                    <div style="display: flex; gap: 16px; align-items: center; padding-bottom: 4px; width: 100%;">
+                        <button style="background: transparent; border: none; color: #888; font-size: 13px; cursor: pointer; white-space: nowrap;">В тренде</button>
+                        <button style="background: transparent; border: none; color: #fff; font-weight: bold; font-size: 13px; border-bottom: 2px solid #00e5ff; cursor: pointer; white-space: nowrap;">Русский</button>
+                        <button style="background: transparent; border: none; color: #888; font-size: 13px; cursor: pointer; white-space: nowrap;">Классика</button>
                     </div>
 
-                    <!-- Сетка карточек шрифтов -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px;">
+                    <!-- Сетка карточек шрифтов (ровная на 3 колонки) -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; width: 100%; box-sizing: border-box;">
                         
                         <div class="inventory-card trial-font-card active-font-card" data-font="system" style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="font-size: 13px; color: #fff; font-weight: bold;">SYSTEM</span>
@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (shopType === 'color') {
             if (sheetTitle) sheetTitle.textContent = 'Выбор цвета текста';
             inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px; align-items: center;">
+                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px; align-items: center; box-sizing: border-box;">
                     <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 100%; justify-content: space-between; box-sizing: border-box;">
                         <span style="font-size: 13px; color: #fff;">Выберите цвет:</span>
                         <input type="color" id="text-color-picker" value="${currentSelectedColor}" style="width: 40px; height: 40px; border: none; background: none; cursor: pointer; border-radius: 50%;">
@@ -376,11 +376,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (shopType === 'voices') {
             if (sheetTitle) sheetTitle.textContent = 'ИИ Голоса: Пробное прослушивание';
             inventoryContainer.innerHTML = `
-                <div class="inventory-card voice-preview-card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 15px; margin-bottom: 10px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                <div class="inventory-card voice-preview-card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 15px; margin-bottom: 10px; background: rgba(255,255,255,0.03); border-radius: 12px; width: 100%; box-sizing: border-box;">
                     <div style="font-weight: bold; margin-bottom: 8px; color: #fff;">🎙️ Голос: Максим (Энергичный)</div>
                     <button class="btn-test-preview trial-voice-btn" data-sample="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">▶ Прослушать пробный</button>
                 </div>
-                <div class="inventory-card voice-preview-card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                <div class="inventory-card voice-preview-card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; width: 100%; box-sizing: border-box;">
                     <div style="font-weight: bold; margin-bottom: 8px; color: #fff;">🎙️ Голос: София (Мягкий)</div>
                     <button class="btn-test-preview trial-voice-btn" data-sample="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">▶ Прослушать пробный</button>
                 </div>
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             if (sheetTitle) sheetTitle.textContent = 'ИИ Аватары';
             inventoryContainer.innerHTML = `
-                <div class="inventory-card" style="display: flex; flex-direction: column; align-items: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                <div class="inventory-card" style="display: flex; flex-direction: column; align-items: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; width: 100%; box-sizing: border-box;">
                     <i class="fas fa-check-circle" style="color: #2ecc71; font-size: 20px; margin-bottom: 5px;"></i>
                     <div>Стандартный аватар</div>
                 </div>
