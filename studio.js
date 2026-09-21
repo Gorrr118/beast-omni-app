@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.addEventListener('DOMContentLoaded', () => {
     // === Инициализация базовых элементов плеера и загрузки ===
     const playerScreenTrigger = document.getElementById('player-screen-trigger');
     const videoUpload = document.getElementById('video-upload');
@@ -481,5 +480,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
 });
