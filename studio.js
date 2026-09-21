@@ -270,8 +270,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET ===
-    function renderBottomSheetContent(shopType) {
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Голоса и Игровые Звуки) ===
+    function renderBottomSheetContent(shopType, activeVoiceCategory = 'male') {
         if (!inventoryContainer) return;
 
         if (shopType === 'fonts') {
@@ -354,17 +354,70 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } else if (shopType === 'voices') {
-            if (sheetTitle) sheetTitle.textContent = 'ИИ Голоса: Пробное прослушивание';
+            if (sheetTitle) sheetTitle.textContent = 'Выбор голосов и звуков';
+            
+            // Наборы элементов для каждой категории
+            const itemsData = {
+                male: [
+                    { name: 'Голос — Мужчина (Бас)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+                    { name: 'Голос — Мужчина (Энергичный)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' }
+                ],
+                female: [
+                    { name: 'Голос — Женщина (Мягкий)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+                    { name: 'Голос — Женщина (Яркий)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' }
+                ],
+                kids: [
+                    { name: 'Голос — Ребенок (Веселый)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' }
+                ],
+                gta: [
+                    { name: 'Звук — Франклин (GTA Фраза)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
+                    { name: 'Звук — Зомби (Крик)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' }
+                ]
+            };
+
+            const currentItems = itemsData[activeVoiceCategory] || itemsData.male;
+
             inventoryContainer.innerHTML = `
-                <div class="inventory-card voice-preview-card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 15px; margin-bottom: 10px; background: rgba(255,255,255,0.03); border-radius: 12px; width: 100%; box-sizing: border-box;">
-                    <div style="font-weight: bold; margin-bottom: 8px; color: #fff;">🎙️ Голос: Максим (Энергичный)</div>
-                    <button class="btn-test-preview trial-voice-btn" data-sample="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">▶ Прослушать пробный</button>
-                </div>
-                <div class="inventory-card voice-preview-card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; width: 100%; box-sizing: border-box;">
-                    <div style="font-weight: bold; margin-bottom: 8px; color: #fff;">🎙️ Голос: София (Мягкий)</div>
-                    <button class="btn-test-preview trial-voice-btn" data-sample="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">▶ Прослушать пробный</button>
+                <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
+                    <!-- Верхнее меню разделов -->
+                    <div style="display: flex; align-items: center; gap: 12px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; width: 100%; box-sizing: border-box;">
+                        <span class="voice-cat-tab ${activeVoiceCategory === 'male' ? 'active-tab' : ''}" data-cat="male" style="color: ${activeVoiceCategory === 'male' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'male' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'male' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👨 Мужские</span>
+                        <span class="voice-cat-tab ${activeVoiceCategory === 'female' ? 'active-tab' : ''}" data-cat="female" style="color: ${activeVoiceCategory === 'female' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'female' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'female' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👩 Женские</span>
+                        <span class="voice-cat-tab ${activeVoiceCategory === 'kids' ? 'active-tab' : ''}" data-cat="kids" style="color: ${activeVoiceCategory === 'kids' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'kids' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'kids' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👶 Детские</span>
+                        <span class="voice-cat-tab ${activeVoiceCategory === 'gta' ? 'active-tab' : ''}" data-cat="gta" style="color: ${activeVoiceCategory === 'gta' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'gta' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'gta' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Игровые звуки (GTA / Зомби)</span>
+                    </div>
+
+                    <!-- Красивые неоновые карточки (без кнопок, кликабельные) -->
+                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                        ${currentItems.map(item => `
+                            <div class="neon-voice-card" data-name="${item.name}" data-sample="${item.sample}" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 12px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 0 10px rgba(0, 229, 255, 0.15); transition: all 0.3s ease;">
+                                <span style="font-size: 14px; color: #fff; font-weight: 500;">🎙️ ${item.name}</span>
+                                <span style="font-size: 12px; color: #00e5ff; font-weight: bold;">Выбрать ▸</span>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
             `;
+
+            // Обработка кликов по вкладкам категорий
+            const tabs = inventoryContainer.querySelectorAll('.voice-cat-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const cat = tab.getAttribute('data-cat');
+                    renderBottomSheetContent('voices', cat);
+                });
+            });
+
+            // Обработка кликов по неоновым карточкам (открытие мини-окна прослушивания)
+            const cards = inventoryContainer.querySelectorAll('.neon-voice-card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const voiceName = card.getAttribute('data-name');
+                    const sampleUrl = card.getAttribute('data-sample');
+                    openVoicePreviewModal(voiceName, sampleUrl);
+                });
+            });
+
         } else {
             if (sheetTitle) sheetTitle.textContent = 'ИИ Аватары';
             inventoryContainer.innerHTML = `
@@ -374,6 +427,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         }
+    }
+
+    // === 🎵 МИНИ-ОКНО ДЛЯ ПРОСЛУШИВАНИЯ ГОЛОСА ===
+    function openVoicePreviewModal(voiceName, sampleUrl) {
+        // Создаем или находим модальное мини-окно поверх инвентаря
+        let modal = document.getElementById('voice-preview-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'voice-preview-modal';
+            modal.style.cssText = "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 15, 18, 0.95); z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;";
+            inventoryBottomSheet.appendChild(modal);
+        }
+
+        modal.innerHTML = `
+            <div style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 16px; padding: 24px; width: 90%; max-width: 320px; display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">
+                <div style="font-size: 15px; color: #fff; font-weight: bold; text-align: center;">🔊 ${voiceName}</div>
+                <p style="font-size: 12px; color: #aaa; text-align: center; margin: 0;">Нажмите кнопку ниже, чтобы прослушать образец звука или голоса.</p>
+                <button id="modal-play-btn" style="width: 100%; padding: 12px; background: #00e5ff; color: #000; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer; box-shadow: 0 0 10px rgba(0,229,255,0.5);">▶ Воспроизвести</button>
+                <button id="modal-close-btn" style="width: 100%; padding: 10px; background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; font-size: 12px; cursor: pointer;">Назад к списку</button>
+            </div>
+        `;
+
+        const playBtn = modal.querySelector('#modal-play-btn');
+        const closeBtn = modal.querySelector('#modal-close-btn');
+
+        playBtn.addEventListener('click', () => {
+            if (activePreviewAudio) {
+                activePreviewAudio.pause();
+                activePreviewAudio = null;
+                playBtn.textContent = "▶ Воспроизвести";
+            } else {
+                activePreviewAudio = new Audio(sampleUrl);
+                playBtn.textContent = "⏸ Остановить";
+                
+                activePreviewAudio.play().catch(err => {
+                    console.error("Ошибка воспроизведения аудио:", err);
+                });
+
+                activePreviewAudio.onended = () => {
+                    playBtn.textContent = "▶ Воспроизвести";
+                    activePreviewAudio = null;
+                };
+            }
+        });
+
+        closeBtn.addEventListener('click', () => {
+            if (activePreviewAudio) {
+                activePreviewAudio.pause();
+                activePreviewAudio = null;
+            }
+            modal.remove();
+        });
     }
 
     function openBottomSheet(shopType) {
@@ -387,6 +492,8 @@ document.addEventListener('DOMContentLoaded', () => {
             activePreviewAudio.pause();
             activePreviewAudio = null;
         }
+        const modal = document.getElementById('voice-preview-modal');
+        if (modal) modal.remove();
     }
 
     if (closeSheetBtn) closeSheetBtn.addEventListener('click', closeBottomSheet);
@@ -401,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Делегирование событий для карточек шрифтов и голосов
+    // Делегирование событий для карточек шрифтов
     if (inventoryContainer) {
         inventoryContainer.addEventListener('click', (e) => {
             const fontCard = e.target.closest('.trial-font-card');
@@ -431,30 +538,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).catch(err => console.log("Бэкенд превью шрифта недоступен:", err));
                 return;
             }
-
-            const voiceBtn = e.target.closest('.trial-voice-btn');
-            if (voiceBtn) {
-                e.stopPropagation();
-                const sampleUrl = voiceBtn.getAttribute('data-sample');
-
-                if (activePreviewAudio) {
-                    activePreviewAudio.pause();
-                    activePreviewAudio = null;
-                    voiceBtn.textContent = "▶ Прослушать пробный";
-                } else {
-                    activePreviewAudio = new Audio(sampleUrl);
-                    voiceBtn.textContent = "⏸ Остановить";
-                    
-                    activePreviewAudio.play().catch(err => {
-                        console.error("Ошибка воспроизведения семпла:", err);
-                    });
-
-                    activePreviewAudio.onended = () => {
-                        voiceBtn.textContent = "▶ Прослушать пробный";
-                        activePreviewAudio = null;
-                    };
-                }
-            }
         });
     }
 
@@ -475,5 +558,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // 🛠️ GIT SYNC MARKER (Версия от 2026.09.21)
+    // 🛠️ GIT SYNC MARKER (Версия от 2026.09.21 - Voices & Sounds Update)
 });
