@@ -269,64 +269,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET ===
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (В стиле CapCut для шрифтов) ===
     function renderBottomSheetContent(shopType) {
         if (!inventoryContainer) return;
 
         if (shopType === 'fonts') {
-            if (sheetTitle) sheetTitle.textContent = 'Выбор шрифта';
+            if (sheetTitle) sheetTitle.textContent = 'Шрифты';
             inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px;">
+                <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; padding-bottom: 20px;">
                     
-                    <!-- Верхняя панель в одну линию: Кнопки фильтров (Все, Русский, Классика) + Кнопка цвета -->
-                    <div style="display: flex; gap: 8px; align-items: center; overflow-x: auto; width: 100%; padding-bottom: 4px;">
-                        <button class="font-cat-btn active" data-cat="all" style="background: rgba(52,152,219,0.2); border: 1px solid #3498db; color: #3498db; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🔥 Все</button>
-                        <button class="font-cat-btn" data-cat="ru" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🇷🇺 Русский</button>
-                        <button class="font-cat-btn" data-cat="classic" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">📜 Классика</button>
-                        
-                        <!-- Отдельная кнопка «Цвет», которая перекидывает в окно выбора цвета -->
-                        <button id="goto-color-picker-btn" style="display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0; margin-left: auto;">
-                            <span>🎨 Цвет</span>
-                        </button>
+                    <!-- Превью текста (как в CapCut сверху) -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                        <div style="background: #222225; border: 1px solid #333; padding: 8px 12px; border-radius: 8px; color: ${currentSelectedColor}; font-size: 14px; width: 100%; box-sizing: border-box;">Введите текст</div>
                     </div>
 
-                    <!-- Чистая сетка только со шрифтами -->
-                    <div class="fonts-grid-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px;">
+                    <!-- Главные вкладки (Шаблоны, Шрифты, Стили...) -->
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 6px; font-size: 13px;">
+                        <span style="color: #777; cursor: pointer;">Шаблоны</span>
+                        <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #fff; padding-bottom: 4px; cursor: pointer;">Шрифты</span>
+                        <span style="color: #777; cursor: pointer;">Стили</span>
+                        <span style="color: #777; cursor: pointer;">Эффекты</span>
+                        <span style="color: #777; cursor: pointer;">Анимации</span>
+                    </div>
+
+                    <!-- Подкатегории шрифтов + Кнопка цвета -->
+                    <div style="display: flex; gap: 8px; overflow-x: auto; align-items: center; padding-bottom: 4px;">
+                        <button style="background: #222225; border: none; border-radius: 6px; padding: 6px 10px; color: #fff; cursor: pointer; flex-shrink: 0;">🔍</button>
+                        <button style="background: transparent; border: none; color: #888; font-size: 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">В тренде</button>
+                        <button style="background: transparent; border: none; color: #fff; font-weight: bold; font-size: 13px; border-bottom: 2px solid #00e5ff; cursor: pointer; white-space: nowrap; flex-shrink: 0;">Русский</button>
+                        <button style="background: transparent; border: none; color: #888; font-size: 13px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">Классика</button>
                         
-                        <div class="inventory-card font-preview-card trial-font-card" data-font="Roboto, sans-serif" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
-                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Roboto</span>
-                            <div class="preview-text-sample" style="font-family: Roboto, sans-serif; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        <!-- Кнопка перехода к выбору цвета -->
+                        <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0; margin-left: auto;">🎨 Цвет</button>
+                    </div>
+
+                    <!-- Сетка карточек шрифтов в стиле CapCut -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px;">
+                        
+                        <div class="inventory-card trial-font-card active-font-card" data-font="system" style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
+                            <span style="font-size: 13px; color: #fff; font-weight: bold;">SYSTEM</span>
                         </div>
 
-                        <div class="inventory-card font-preview-card trial-font-card" data-font="'Courier New', monospace" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
-                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Code</span>
-                            <div class="preview-text-sample" style="font-family: 'Courier New', monospace; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        <div class="inventory-card trial-font-card" data-font="Roboto, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
+                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
+                            <span style="font-size: 13px; color: #fff; font-family: Roboto, sans-serif;">Roboto</span>
                         </div>
 
-                        <div class="inventory-card font-preview-card trial-font-card" data-font="Georgia, serif" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
-                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Georgia</span>
-                            <div class="preview-text-sample" style="font-family: Georgia, serif; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        <div class="inventory-card trial-font-card" data-font="Georgia, serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
+                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
+                            <span style="font-size: 13px; color: #fff; font-family: Georgia, serif;">Georgia</span>
                         </div>
 
-                        <div class="inventory-card font-preview-card trial-font-card" data-font="Impact, sans-serif" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
-                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Impact</span>
-                            <div class="preview-text-sample" style="font-family: Impact, sans-serif; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        <div class="inventory-card trial-font-card" data-font="Impact, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
+                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
+                            <span style="font-size: 13px; color: #fff; font-family: Impact, sans-serif;">Impact</span>
                         </div>
 
-                        <div class="inventory-card font-preview-card trial-font-card" data-font="'Comic Sans MS', cursive" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 75px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center; transition: all 0.2s;">
-                            <span style="font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Comic</span>
-                            <div class="preview-text-sample" style="font-family: 'Comic Sans MS', cursive; font-size: 18px; color: ${currentSelectedColor}; font-weight: 500; line-height: 1;">Aa</div>
+                        <div class="inventory-card trial-font-card" data-font="'Courier New', monospace" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
+                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
+                            <span style="font-size: 13px; color: #fff; font-family: 'Courier New', monospace;">Code</span>
+                        </div>
+
+                        <div class="inventory-card trial-font-card" data-font="'Comic Sans MS', cursive" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
+                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
+                            <span style="font-size: 13px; color: #fff; font-family: 'Comic Sans MS', cursive;">Comic</span>
                         </div>
 
                     </div>
                 </div>
             `;
 
-            // Обработчик нажатия на кнопку «Цвет», чтобы перекинуть на окно выбора цвета
+            // Обработчик для кнопки перехода к цветам
             const colorBtn = document.getElementById('goto-color-picker-btn');
             if (colorBtn) {
                 colorBtn.addEventListener('click', () => {
-                    renderBottomSheetContent('color'); 
+                    renderBottomSheetContent('color');
                 });
             }
 
@@ -334,11 +351,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sheetTitle) sheetTitle.textContent = 'Выбор цвета текста';
             inventoryContainer.innerHTML = `
                 <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px; align-items: center;">
-                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 100%; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 100%; justify-content: space-between; box-sizing: border-box;">
                         <span style="font-size: 13px; color: #fff;">Выберите цвет:</span>
                         <input type="color" id="text-color-picker" value="${currentSelectedColor}" style="width: 40px; height: 40px; border: none; background: none; cursor: pointer; border-radius: 50%;">
                     </div>
-                    <button id="save-color-btn" style="width: 100%; padding: 12px; background: #3498db; color: #fff; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer;">💾 Применить цвет</button>
+                    <button id="save-color-btn" style="width: 100%; padding: 12px; background: #00e5ff; color: #000; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer;">Применить цвет</button>
                 </div>
             `;
 
@@ -405,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Делегирование событий для динамически создаваемых карточек шрифтов и голосов
+    // Делегирование событий для карточек шрифтов и голосов
     if (inventoryContainer) {
         inventoryContainer.addEventListener('click', (e) => {
             const fontCard = e.target.closest('.trial-font-card');
@@ -414,14 +431,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const allCards = inventoryContainer.querySelectorAll('.trial-font-card');
                 allCards.forEach(c => {
-                    c.style.border = '1px solid rgba(255,255,255,0.08)';
-                    c.style.background = 'rgba(255,255,255,0.04)';
-                    c.style.boxShadow = 'none';
+                    c.style.border = '2px solid transparent';
+                    c.style.background = '#222225';
                 });
                 
-                fontCard.style.border = '1px solid #3498db';
-                fontCard.style.background = 'rgba(52, 152, 219, 0.12)';
-                fontCard.style.boxShadow = '0 0 15px rgba(52, 152, 219, 0.3)';
+                fontCard.style.border = '2px solid #00e5ff';
+                fontCard.style.background = '#1c242c';
 
                 const fontName = fontCard.getAttribute('data-font');
                 if (videoTrackName) {
