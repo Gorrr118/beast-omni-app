@@ -269,23 +269,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Без лишних полей и подкатегорий) ===
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Исправленная шапка и сетка) ===
     function renderBottomSheetContent(shopType) {
         if (!inventoryContainer) return;
 
         if (shopType === 'fonts') {
             if (sheetTitle) sheetTitle.textContent = 'Шрифты';
             inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px; box-sizing: border-box;">
+                <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
                     
-                    <!-- Главные вкладки + Кнопка «Цвет», равномерно распределенные по всей ширине -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 10px; font-size: 13px; width: 100%; box-sizing: border-box;">
-                        <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Шаблоны</span>
-                        <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #fff; padding-bottom: 4px; cursor: pointer; flex: 1; text-align: center;">Шрифты</span>
-                        <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Стили</span>
-                        <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Эффекты</span>
-                        <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Анимации</span>
-                        <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 5px 10px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; margin-left: 8px; flex-shrink: 0;">🎨 Цвет</button>
+                    <!-- Главные вкладки + Кнопка «Цвет» (аккуратный отступ и отсутствие сжатия) -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; font-size: 13px; width: 100%; box-sizing: border-box;">
+                        <div style="display: flex; align-items: center; gap: 16px; overflow-x: auto; scrollbar-width: none; flex-grow: 1; padding-right: 10px;">
+                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Шаблоны</span>
+                            <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #00e5ff; padding-bottom: 4px; cursor: pointer; white-space: nowrap;">Шрифты</span>
+                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Стили</span>
+                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Эффекты</span>
+                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Анимации</span>
+                        </div>
+                        <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🎨 Цвет</button>
                     </div>
 
                     <!-- Сетка карточек шрифтов (ровная на 3 колонки) -->
