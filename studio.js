@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let hideControlsTimeout = null;
     let activePreviewAudio = null;
-    let currentSelectedColor = '#ffffff'; // Переменная для хранения текущего цвета текста
+    let currentSelectedColor = '#ffffff';
 
     // === 🎥 ЛОГИКА ЗАГРУЗКИ ВИДЕО ИЗ ГАЛЕРЕИ + API БЭКЕНДА ===
     if (playerScreenTrigger && videoUpload && mainPlayer && placeholderText) {
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-АВАТАР: DRAG & RESIZE (Mouse + Touch) ===
+    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-АВАТАР: DRAG & RESIZE ===
     if (aiAvatar) {
         let isDragging = false;
         let isResizing = false;
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         aiAvatar.addEventListener('touchstart', startDrag, { passive: false });
 
         function startDrag(e) {
-            if (e.target === resizeHandle) return;
+            if (resizeHandle && e.target === resizeHandle) return;
             e.preventDefault();
             
             isDragging = true;
@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const deltaY = clientY - startY;
 
             const parent = aiAvatar.parentElement;
+            if (!parent) return;
             let newLeft = startLeft + deltaX;
             let newTop = startTop + deltaY;
 
@@ -255,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', (event) => {
                 event.preventDefault();
                 const targetId = button.getAttribute('data-target');
-                const targetPanel = document.getElementById(targetId);
+                const targetPanel = targetId ? document.getElementById(targetId) : null;
 
                 toolButtons.forEach(btn => btn.classList.remove('active'));
                 toolPanels.forEach(panel => panel.classList.remove('active'));
@@ -269,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Исправленная шапка и сетка) ===
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET ===
     function renderBottomSheetContent(shopType) {
         if (!inventoryContainer) return;
 
@@ -277,8 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sheetTitle) sheetTitle.textContent = 'Шрифты';
             inventoryContainer.innerHTML = `
                 <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
-                    
-                    <!-- Главные вкладки + Кнопка «Цвет» (аккуратный отступ и отсутствие сжатия) -->
                     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; font-size: 13px; width: 100%; box-sizing: border-box;">
                         <div style="display: flex; align-items: center; gap: 16px; overflow-x: auto; scrollbar-width: none; flex-grow: 1; padding-right: 10px;">
                             <span style="color: #777; cursor: pointer; white-space: nowrap;">Шаблоны</span>
@@ -290,43 +289,34 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🎨 Цвет</button>
                     </div>
 
-                    <!-- Сетка карточек шрифтов (ровная на 3 колонки) -->
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; box-sizing: border-box;">
-                        
                         <div class="inventory-card trial-font-card active-font-card" data-font="system" style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="font-size: 13px; color: #fff; font-weight: bold;">SYSTEM</span>
                         </div>
-
                         <div class="inventory-card trial-font-card" data-font="Roboto, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: Roboto, sans-serif;">Roboto</span>
                         </div>
-
                         <div class="inventory-card trial-font-card" data-font="Georgia, serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: Georgia, serif;">Georgia</span>
                         </div>
-
                         <div class="inventory-card trial-font-card" data-font="Impact, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: Impact, sans-serif;">Impact</span>
                         </div>
-
                         <div class="inventory-card trial-font-card" data-font="'Courier New', monospace" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: 'Courier New', monospace;">Code</span>
                         </div>
-
                         <div class="inventory-card trial-font-card" data-font="'Comic Sans MS', cursive" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: 'Comic Sans MS', cursive;">Comic</span>
                         </div>
-
                     </div>
                 </div>
             `;
 
-            // Обработчик для кнопки перехода к цветам
             const colorBtn = document.getElementById('goto-color-picker-btn');
             if (colorBtn) {
                 colorBtn.addEventListener('click', () => {
@@ -402,12 +392,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeSheetBtn) closeSheetBtn.addEventListener('click', closeBottomSheet);
     if (sheetOverlayClose) sheetOverlayClose.addEventListener('click', closeBottomSheet);
 
-    openInventoryBtns.forEach(triggerBtn => {
-        triggerBtn.addEventListener('click', () => {
-            const shopType = triggerBtn.getAttribute('data-shop-type') || 'fonts';
-            openBottomSheet(shopType);
+    if (openInventoryBtns.length > 0) {
+        openInventoryBtns.forEach(triggerBtn => {
+            triggerBtn.addEventListener('click', () => {
+                const shopType = triggerBtn.getAttribute('data-shop-type') || 'fonts';
+                openBottomSheet(shopType);
+            });
         });
-    });
+    }
 
     // Делегирование событий для карточек шрифтов и голосов
     if (inventoryContainer) {
@@ -470,14 +462,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const formatButtons = document.querySelectorAll('.format-btn');
     const formatDisplaySpan = document.getElementById('current-format-text');
 
-    formatButtons.forEach(btn => {
-        btn.addEventListener('click', (event) => {
-            event.preventDefault();
-            formatButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (formatDisplaySpan) {
-                formatDisplaySpan.textContent = btn.innerText;
-            }
+    if (formatButtons.length > 0) {
+        formatButtons.forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                formatButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                if (formatDisplaySpan) {
+                    formatDisplaySpan.textContent = btn.innerText;
+                }
+            });
         });
-    });
+    }
 });
