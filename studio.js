@@ -474,4 +474,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    
+    // 🛠️ GIT SYNC MARKER (Версия от 2026.09.21)
 });
