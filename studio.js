@@ -270,8 +270,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Голоса и Игровые Звуки) ===
-    function renderBottomSheetContent(shopType, activeVoiceCategory = 'male') {
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Человеческие голоса и Игры) ===
+    function renderBottomSheetContent(shopType, activeVoiceCategory = 'humans') {
         if (!inventoryContainer) return;
 
         if (shopType === 'fonts') {
@@ -357,32 +357,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sheetTitle) sheetTitle.textContent = 'Выбор голосов и звуков';
             
             const itemsData = {
-                male: [
+                humans: [
                     { name: 'Голос — Мужчина (Бас)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-                    { name: 'Голос — Мужчина (Энергичный)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' }
-                ],
-                female: [
+                    { name: 'Голос — Мужчина (Энергичный)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
                     { name: 'Голос — Женщина (Мягкий)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
-                    { name: 'Голос — Женщина (Яркий)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' }
-                ],
-                kids: [
+                    { name: 'Голос — Женщина (Яркий)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' },
                     { name: 'Голос — Ребенок (Веселый)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' }
                 ],
-                gta: [
+                games: [
                     { name: 'Звук — Франклин (GTA Фраза)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
                     { name: 'Звук — Зомби (Крик)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' }
                 ]
             };
 
-            const currentItems = itemsData[activeVoiceCategory] || itemsData.male;
+            const currentItems = itemsData[activeVoiceCategory] || itemsData.humans;
 
             inventoryContainer.innerHTML = `
                 <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
                     <div style="display: flex; align-items: center; gap: 12px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; width: 100%; box-sizing: border-box;">
-                        <span class="voice-cat-tab" data-cat="male" style="color: ${activeVoiceCategory === 'male' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'male' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'male' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👨 Мужские</span>
-                        <span class="voice-cat-tab" data-cat="female" style="color: ${activeVoiceCategory === 'female' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'female' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'female' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👩 Женские</span>
-                        <span class="voice-cat-tab" data-cat="kids" style="color: ${activeVoiceCategory === 'kids' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'kids' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'kids' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">👶 Детские</span>
-                        <span class="voice-cat-tab" data-cat="gta" style="color: ${activeVoiceCategory === 'gta' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'gta' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'gta' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Игровые звуки (GTA / Зомби)</span>
+                        <span class="voice-cat-tab" data-cat="humans" style="color: ${activeVoiceCategory === 'humans' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'humans' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'humans' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🗣️ Человеческие голоса</span>
+                        <span class="voice-cat-tab" data-cat="games" style="color: ${activeVoiceCategory === 'games' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'games' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'games' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Голоса из игр</span>
                     </div>
 
                     <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
