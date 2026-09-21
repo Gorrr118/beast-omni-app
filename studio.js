@@ -269,22 +269,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (С распределением по всей ширине) ===
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Без лишних полей и подкатегорий) ===
     function renderBottomSheetContent(shopType) {
         if (!inventoryContainer) return;
 
         if (shopType === 'fonts') {
             if (sheetTitle) sheetTitle.textContent = 'Шрифты';
             inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; padding-bottom: 20px; box-sizing: border-box;">
+                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px; box-sizing: border-box;">
                     
-                    <!-- Превью текста сверху -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-                        <div style="background: #222225; border: 1px solid #333; padding: 8px 12px; border-radius: 8px; color: ${currentSelectedColor}; font-size: 14px; width: 100%; box-sizing: border-box;">Введите текст</div>
-                    </div>
-
                     <!-- Главные вкладки + Кнопка «Цвет», равномерно распределенные по всей ширине -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 8px; font-size: 13px; width: 100%; box-sizing: border-box;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 10px; font-size: 13px; width: 100%; box-sizing: border-box;">
                         <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Шаблоны</span>
                         <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #fff; padding-bottom: 4px; cursor: pointer; flex: 1; text-align: center;">Шрифты</span>
                         <span style="color: #777; cursor: pointer; flex: 1; text-align: center;">Стили</span>
@@ -293,15 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 5px 10px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; margin-left: 8px; flex-shrink: 0;">🎨 Цвет</button>
                     </div>
 
-                    <!-- Подкатегории шрифтов -->
-                    <div style="display: flex; gap: 16px; align-items: center; padding-bottom: 4px; width: 100%;">
-                        <button style="background: transparent; border: none; color: #888; font-size: 13px; cursor: pointer; white-space: nowrap;">В тренде</button>
-                        <button style="background: transparent; border: none; color: #fff; font-weight: bold; font-size: 13px; border-bottom: 2px solid #00e5ff; cursor: pointer; white-space: nowrap;">Русский</button>
-                        <button style="background: transparent; border: none; color: #888; font-size: 13px; cursor: pointer; white-space: nowrap;">Классика</button>
-                    </div>
-
                     <!-- Сетка карточек шрифтов (ровная на 3 колонки) -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; width: 100%; box-sizing: border-box;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; box-sizing: border-box;">
                         
                         <div class="inventory-card trial-font-card active-font-card" data-font="system" style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="font-size: 13px; color: #fff; font-weight: bold;">SYSTEM</span>
