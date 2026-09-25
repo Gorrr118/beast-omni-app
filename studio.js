@@ -571,17 +571,4 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('voice-preview-modal');
         if (modal) modal.remove();
     }
-
-    if (closeSheetBtn) closeSheetBtn.addEventListener('click', closeBottomSheet);
-    if (sheetOverlayClose) sheetOverlayClose.addEventListener('click', closeBottomSheet);
-
-    if (openInventoryBtns.length > 0) {
-        openInventoryBtns.forEach(triggerBtn => {
-            triggerBtn.addEventListener('click', () => {
-                const shopType = triggerBtn.getAttribute('data-shop-type') || 'fonts';
-                openBottomSheet(shopType);
-            });
-        });
-    }
-
-}); // Закрывающая скобка DOMContentLoaded
+});
