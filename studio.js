@@ -32,6 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let activePreviewAudio = null;
     let currentSelectedColor = '#ffffff';
 
+    // === Функции управления Bottom Sheet ===
+    function openBottomSheet(shopType) {
+        if (!inventoryBottomSheet) return;
+        renderBottomSheetContent(shopType);
+        inventoryBottomSheet.classList.add('active');
+    }
+
+    function closeBottomSheet() {
+        if (!inventoryBottomSheet) return;
+        inventoryBottomSheet.classList.remove('active');
+        if (activePreviewAudio) {
+            activePreviewAudio.pause();
+            activePreviewAudio = null;
+        }
+        const modal = document.getElementById('voice-preview-modal');
+        if (modal) modal.remove();
+    }
+
     // === 🎥 ЛОГИКА ЗАГРУЗКИ ВИДЕО ИЗ ГАЛЕРЕИ + API БЭКЕНДА ===
     if (playerScreenTrigger && videoUpload && mainPlayer && placeholderText) {
         playerScreenTrigger.addEventListener('click', (event) => {
@@ -140,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-ԱՎԱՏԱՐ: DRAG & RESIZE ===
+    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-АВАТАР: DRAG & RESIZE ===
     if (aiAvatar) {
         let isDragging = false;
         let isResizing = false;
@@ -574,20 +592,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             modal.remove();
         });
-    }
-
-    function openBottomSheet(shopType) {
-        if (inventoryBottomSheet) inventoryBottomSheet.classList.add('active');
-        renderBottomSheetContent(shopType);
-    }
-
-    function closeBottomSheet() {
-        if (inventoryBottomSheet) inventoryBottomSheet.classList.remove('active');
-        if (activePreviewAudio) {
-            activePreviewAudio.pause();
-            activePreviewAudio = null;
-        }
-        const modal = document.getElementById('voice-preview-modal');
-        if (modal) modal.remove();
     }
 });
