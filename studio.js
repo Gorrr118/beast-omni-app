@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formData = new FormData();
                 formData.append("file", file);
 
-                console.log("Отправка видео на бэкенդ...");
+                console.log("Отправка видео на бэкенд...");
                 fetch(`${API_BASE_URL}/api/upload-video`, {
                     method: "POST",
                     body: formData
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-ԱВАТАР: DRAG & RESIZE ===
+    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-ԱՎԱՏԱՐ: DRAG & RESIZE ===
     if (aiAvatar) {
         let isDragging = false;
         let isResizing = false;
@@ -275,8 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === 🏷️ МОДУЛЬ АВТОМАТИЧЕСКОЙ ГЕНЕРАЦИИ ХЭШТЕГОВ (ПЛОТ / ТЕМА) ===
     function initHashtagGenerator() {
-        // Проверяем наличие специальной панели или добавляем логику генерации динамически,
-        // если в разметке присутствует элемент генератора тегов
         const hashtagGenContainer = document.getElementById('hashtag-generator-container');
         if (!hashtagGenContainer) return;
 
@@ -303,7 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 tagsOutput.innerHTML = 'Генерация хэштегов...';
 
-                // Запрос к бэкенду или локальная логика генерации хэштегов на базе сюжета
                 fetch(`${API_BASE_URL}/api/generate-hashtags`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -314,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data.tags && Array.isArray(data.tags)) {
                         tagsOutput.innerHTML = data.tags.map(tag => `<span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#${tag}</span>`).join('');
                     } else {
-                        // Заглушка, если бэкенд не вернул массив тегов напрямую
                         generateFallbackTags(plotSummary, tagsOutput);
                     }
                 })
@@ -339,7 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
         outputContainer.innerHTML = generated.map(w => `<span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#${w}</span>`).join('') + ' <span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#trending</span>';
     }
 
-    // Инициализируем генератор хэштегов при загрузке
     initHashtagGenerator();
 
     // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Голоса и Игры) ===
@@ -395,6 +390,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderBottomSheetContent('color');
                 });
             }
+
+            // Добавлена логика переключения шрифтов при клике на карточку шрифта
+            const fontCards = inventoryContainer.querySelectorAll('.trial-font-card');
+            fontCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    fontCards.forEach(c => {
+                        c.classList.remove('active-font-card');
+                        c.style.background = '#222225';
+                        c.style.border = '2px solid transparent';
+                    });
+
+                    card.classList.add('active-font-card');
+                    card.style.background = '#1c242c';
+                    card.style.border = '2px solid #00e5ff';
+
+                    const selectedFont = card.getAttribute('data-font');
+                    if (videoTrackName) {
+                        videoTrackName.style.fontFamily = selectedFont === 'system' ? 'inherit' : selectedFont;
+                    }
+                });
+            });
 
         } else if (shopType === 'color') {
             if (sheetTitle) sheetTitle.textContent = 'Выбор цвета текста';
@@ -568,53 +584,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Делегирование событий для карточек шрифтов
-    if (inventoryContainer) {
-        inventoryContainer.addEventListener('click', (e) => {
-            const fontCard = e.target.closest('.trial-font-card');
-            if (fontCard) {
-                e.stopPropagation();
-                
-                const allCards = inventoryContainer.querySelectorAll('.trial-font-card');
-                allCards.forEach(c => {
-                    c.style.border = '2px solid transparent';
-                    c.style.background = '#222225';
-                });
-                
-                fontCard.style.border = '2px solid #00e5ff';
-                fontCard.style.background = '#1c242c';
-
-                const fontName = fontCard.getAttribute('data-font');
-                if (videoTrackName) {
-                    videoTrackName.style.fontFamily = fontName;
-                }
-
-                console.log("Выбран шрифт:", fontName);
-
-                fetch(`${API_BASE_URL}/api/preview-font`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ font: fontName })
-                }).catch(err => console.log("Бэкенд превью шрифта недоступен:", err));
-                return;
-            }
-        });
-    }
-
-    // === 📐 ВЫБОР ФОРМАТА КАДРА ===
-    const formatButtons = document.querySelectorAll('.format-btn');
-    const formatDisplaySpan = document.getElementById('current-format-text');
-
-    if (formatButtons.length > 0) {
-        formatButtons.forEach(btn => {
-            btn.addEventListener('click', (event) => {
-                event.preventDefault();
-                formatButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                if (formatDisplaySpan) {
-                    formatDisplaySpan.textContent = btn.innerText;
-                }
-            });
-        });
-    }
-});
+}); // Закрывающая скобка DOMContentLoaded
