@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formData = new FormData();
                 formData.append("file", file);
 
-                console.log("Отправка видео на бэкенд...");
+                console.log("Отправка видео на бэкенդ...");
                 fetch(`${API_BASE_URL}/api/upload-video`, {
                     method: "POST",
                     body: formData
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-АВАТАР: DRAG & RESIZE ===
+    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-ԱВАТАР: DRAG & RESIZE ===
     if (aiAvatar) {
         let isDragging = false;
         let isResizing = false;
@@ -273,6 +273,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // === 🏷️ МОДУЛЬ АВТОМАТИЧЕСКОЙ ГЕНЕРАЦИИ ХЭШТЕГОВ (ПЛОТ / ТЕМА) ===
+    function initHashtagGenerator() {
+        // Проверяем наличие специальной панели или добавляем логику генерации динамически,
+        // если в разметке присутствует элемент генератора тегов
+        const hashtagGenContainer = document.getElementById('hashtag-generator-container');
+        if (!hashtagGenContainer) return;
+
+        hashtagGenContainer.innerHTML = `
+            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; padding: 10px;">
+                <h3 style="color: #00e5ff; font-size: 14px; margin: 0;">🤖 Генератор хэштегов по сюжету</h3>
+                <textarea id="plot-input" placeholder="Введите краткое описание сюжета или темы видео..." style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 10px; font-size: 12px; resize: none; height: 70px; outline: none;"></textarea>
+                <button id="generate-tags-btn" style="background: #00e5ff; color: #000; border: none; border-radius: 8px; padding: 10px; font-weight: bold; font-size: 12px; cursor: pointer;">Сгенерировать хэштеги</button>
+                <div id="tags-output-area" style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px; min-height: 40px; color: #ddd; font-size: 12px; word-break: break-all;"></div>
+            </div>
+        `;
+
+        const generateBtn = document.getElementById('generate-tags-btn');
+        const plotInput = document.getElementById('plot-input');
+        const tagsOutput = document.getElementById('tags-output-area');
+
+        if (generateBtn && plotInput && tagsOutput) {
+            generateBtn.addEventListener('click', () => {
+                const plotSummary = plotInput.value.trim();
+                if (!plotSummary) {
+                    tagsOutput.innerHTML = '<span style="color: #ff5252;">Пожалуйста, введите сюжет или тему!</span>';
+                    return;
+                }
+
+                tagsOutput.innerHTML = 'Генерация хэштегов...';
+
+                // Запрос к бэкенду или локальная логика генерации хэштегов на базе сюжета
+                fetch(`${API_BASE_URL}/api/generate-hashtags`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ summary: plotSummary })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.tags && Array.isArray(data.tags)) {
+                        tagsOutput.innerHTML = data.tags.map(tag => `<span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#${tag}</span>`).join('');
+                    } else {
+                        // Заглушка, если бэкенд не вернул массив тегов напрямую
+                        generateFallbackTags(plotSummary, tagsOutput);
+                    }
+                })
+                .catch(err => {
+                    console.warn("Бэкенд недоступен, используем локальный генератор хэштегов:", err);
+                    generateFallbackTags(plotSummary, tagsOutput);
+                });
+            });
+        }
+    }
+
+    function generateFallbackTags(summary, outputContainer) {
+        const words = summary.toLowerCase().replace(/[^\w\sа-яё]/gi, '').split(/\s+/);
+        const uniqueWords = [...new Set(words)].filter(w => w.length > 3);
+        const generated = uniqueWords.slice(0, 6);
+        
+        if (generated.length === 0) {
+            outputContainer.innerHTML = '<span style="color: #aaa;">#видео #тренд #рекомендации #content</span>';
+            return;
+        }
+
+        outputContainer.innerHTML = generated.map(w => `<span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#${w}</span>`).join('') + ' <span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#trending</span>';
+    }
+
+    // Инициализируем генератор хэштегов при загрузке
+    initHashtagGenerator();
+
     // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Голоса и Игры) ===
     function renderBottomSheetContent(shopType, activeVoiceCategory = 'humans') {
         if (!inventoryContainer) return;
@@ -281,7 +350,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sheetTitle) sheetTitle.textContent = 'Шрифты';
             inventoryContainer.innerHTML = `
                 <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
-                    <!-- КНОПКА «АНИМАЦИИ» УДАЛЕНА СВЕРХУ -->
                     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; font-size: 13px; width: 100%; box-sizing: border-box;">
                         <div style="display: flex; align-items: center; gap: 16px; overflow-x: auto; scrollbar-width: none; flex-grow: 1; padding-right: 10px;">
                             <span style="color: #777; cursor: pointer; white-space: nowrap;">Шаблоны</span>
