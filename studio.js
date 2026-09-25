@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // === Константы ===
+    const API_BASE_URL = 'http://127.0.0.1:8000';
+
     // === Инициализация базовых элементов плеера и загрузки ===
     const playerScreenTrigger = document.getElementById('player-screen-trigger');
     const videoUpload = document.getElementById('video-upload');
@@ -43,6 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
         videoUpload.addEventListener('change', (event) => {
             const file = event.target.files[0];
             if (file) {
+                // Очищаем старый Blob URL для экономии памяти
+                if (mainPlayer.src && mainPlayer.src.startsWith('blob:')) {
+                    URL.revokeObjectURL(mainPlayer.src);
+                }
+
                 const videoURL = URL.createObjectURL(file);
                 
                 placeholderText.style.setProperty('display', 'none', 'important');
@@ -91,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.append("file", file);
 
                 console.log("Отправка видео на бэкенд...");
-                fetch("http://127.0.0.1:8000/api/upload-video", {
+                fetch(`${API_BASE_URL}/api/upload-video`, {
                     method: "POST",
                     body: formData
                 })
@@ -270,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Человеческие голоса и Игры) ===
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Голоса и Игры) ===
     function renderBottomSheetContent(shopType, activeVoiceCategory = 'humans') {
         if (!inventoryContainer) return;
 
@@ -289,7 +297,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🎨 Цвет</button>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; box-sizing: border-box;">
+                    <!-- Сетка шрифтов исправлена на 2 колонки (repeat(2, 1fr)) без кнопки анимации сверху -->
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; box-sizing: border-box;">
                         <div class="inventory-card trial-font-card active-font-card" data-font="system" style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="font-size: 13px; color: #fff; font-weight: bold;">SYSTEM</span>
                         </div>
@@ -519,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 console.log("Выбран шрифт:", fontName);
 
-                fetch("http://127.0.0.1:8000/api/preview-font", {
+                fetch(`${API_BASE_URL}/api/preview-font`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ font: fontName })
