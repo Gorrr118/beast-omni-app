@@ -250,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (dynamicPanel) dynamicPanel.classList.remove('active');
                 studioTrigger.classList.remove('active');
                 toolButtons.forEach(btn => btn.classList.remove('active'));
+                toolPanels.forEach(panel => panel.classList.remove('active'));
             }
         });
     }
@@ -271,6 +272,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    }
+
+    // === 🛍️ ПРИВЯЗКА КНОПОК ОТКРЫТИЯ BOTTOM SHEET (МАГАЗИН / ИНВЕНТАРЬ) ===
+    if (openInventoryBtns.length > 0) {
+        openInventoryBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const shopType = btn.getAttribute('data-shop-type') || 'fonts';
+                openBottomSheet(shopType);
+            });
+        });
+    }
+
+    if (closeSheetBtn) {
+        closeSheetBtn.addEventListener('click', closeBottomSheet);
+    }
+
+    if (sheetOverlayClose) {
+        sheetOverlayClose.addEventListener('click', closeBottomSheet);
     }
 
     // === 🏷️ МОДУЛЬ АВТОМАТИЧЕСКОЙ ГЕНЕРАЦИИ ХЭШТЕГОВ (ПЛОТ / ТЕМА) ===
@@ -391,7 +411,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // Добавлена логика переключения шрифтов при клике на карточку шрифта
             const fontCards = inventoryContainer.querySelectorAll('.trial-font-card');
             fontCards.forEach(card => {
                 card.addEventListener('click', () => {
