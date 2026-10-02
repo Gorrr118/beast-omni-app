@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dynamicPanel = document.getElementById('dynamic-panel');
     const toolPanels = document.querySelectorAll('.tool-panel-content');
 
-    // === Элементы ИИ-аватара ===
+    // === Новые элементы из обновленного CSS ===
     const aiAvatar = document.getElementById('ai-avatar');
     const resizeHandle = document.getElementById('avatar-resize-handle');
     
@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formData = new FormData();
                 formData.append("file", file);
 
+                console.log("Отправка видео на бэкенд...");
                 fetch(`${API_BASE_URL}/api/upload-video`, {
                     method: "POST",
                     body: formData
@@ -121,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     else console.error("Бэкенд вернул ошибку:", data.message);
                 })
                 .catch(error => {
-                    console.error("Не удалось связаться с сервером:", error);
+                    console.error("Не удалось связаться с сервером. Проверь server.py:", error);
                 });
             }
         });
@@ -258,9 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (studioTrigger && subToolsContainer) {
         studioTrigger.addEventListener('click', (event) => {
             event.preventDefault(); 
-            const computedDisplay = window.getComputedStyle(subToolsContainer).display;
-
-            if (computedDisplay === 'none') {
+            
+            if (subToolsContainer.style.display === 'none' || subToolsContainer.style.display === '') {
                 subToolsContainer.style.display = 'flex';
                 studioTrigger.classList.add('active');
             } else {
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 🛍️ ПРИВЯЗКА КНОПОК ОТКРЫТИЯ BOTTOM SHEET ===
+    // === 🛍️ ПРИВЯЗКА КНОПОК ОТКРЫТИЯ BOTTOM SHEET (МАГАЗИН / ИНВЕНТАРЬ) ===
     if (openInventoryBtns.length > 0) {
         openInventoryBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -303,10 +303,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (closeSheetBtn) closeSheetBtn.addEventListener('click', closeBottomSheet);
-    if (sheetOverlayClose) sheetOverlayClose.addEventListener('click', closeBottomSheet);
+    if (closeSheetBtn) {
+        closeSheetBtn.addEventListener('click', closeBottomSheet);
+    }
 
-    // === 🏷️️ МОДУЛЬ АВТОМАТИЧЕСКОЙ ГЕНЕРАЦИИ ХЭШТЕГОВ ===
+    if (sheetOverlayClose) {
+        sheetOverlayClose.addEventListener('click', closeBottomSheet);
+    }
+
+    // === 🏷️ МОДУЛЬ АВТОМАТИЧЕСКОЙ ГЕНЕРАЦИИ ХЭШТЕГОВ (ПЛОТ / ТЕМА) ===
     function initHashtagGenerator() {
         const hashtagGenContainer = document.getElementById('hashtag-generator-container');
         if (!hashtagGenContainer) return;
@@ -314,9 +319,9 @@ document.addEventListener('DOMContentLoaded', () => {
         hashtagGenContainer.innerHTML = `
             <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; padding: 10px;">
                 <h3 style="color: #00e5ff; font-size: 14px; margin: 0;">🤖 Генератор хэштегов по сюжету</h3>
-                <textarea id="plot-input" placeholder="Введите краткое описание сюжета или темы видео..." style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 10px; font-size: 12px; resize: none; height: 70px; outline: none; width: 100%; box-sizing: border-box;"></textarea>
-                <button id="generate-tags-btn" style="background: #00e5ff; color: #000; border: none; border-radius: 8px; padding: 10px; font-weight: bold; font-size: 12px; cursor: pointer; width: 100%;">Сгенерировать хэштеги</button>
-                <div id="tags-output-area" style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px; min-height: 40px; color: #ddd; font-size: 12px; word-break: break-all; width: 100%; box-sizing: border-box;"></div>
+                <textarea id="plot-input" placeholder="Введите краткое описание сюжета или темы видео..." style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 10px; font-size: 12px; resize: none; height: 70px; outline: none;"></textarea>
+                <button id="generate-tags-btn" style="background: #00e5ff; color: #000; border: none; border-radius: 8px; padding: 10px; font-weight: bold; font-size: 12px; cursor: pointer;">Сгенерировать хэштеги</button>
+                <div id="tags-output-area" style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px; min-height: 40px; color: #ddd; font-size: 12px; word-break: break-all;"></div>
             </div>
         `;
 
@@ -348,6 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 })
                 .catch(err => {
+                    console.warn("Бэкенд недоступен, используем локальный генератор хэштегов:", err);
                     generateFallbackTags(plotSummary, tagsOutput);
                 });
             });
@@ -369,45 +375,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initHashtagGenerator();
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты + Цвета + Голоса) ===
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Голоса и Игры) ===
     function renderBottomSheetContent(shopType, activeVoiceCategory = 'humans') {
         if (!inventoryContainer) return;
 
         if (shopType === 'fonts') {
             if (sheetTitle) sheetTitle.textContent = 'Шрифты';
             inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 10px 20px 10px; box-sizing: border-box;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; width: 100%; box-sizing: border-box;">
-                        <div style="display: flex; align-items: center; gap: 16px; overflow-x: auto; scrollbar-width: none; flex-grow: 1;">
-                            <span style="color: #777; cursor: pointer; white-space: nowrap; font-size: 13px;">Шаблоны</span>
-                            <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #00e5ff; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">Шрифты</span>
-                            <span style="color: #777; cursor: pointer; white-space: nowrap; font-size: 13px;">Стили</span>
-                            <span style="color: #777; cursor: pointer; white-space: nowrap; font-size: 13px;">Эффекты</span>
+                <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; font-size: 13px; width: 100%; box-sizing: border-box;">
+                        <div style="display: flex; align-items: center; gap: 16px; overflow-x: auto; scrollbar-width: none; flex-grow: 1; padding-right: 10px;">
+                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Шаблоны</span>
+                            <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #00e5ff; padding-bottom: 4px; cursor: pointer; white-space: nowrap;">Шрифты</span>
+                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Стили</span>
+                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Эффекты</span>
                         </div>
                         <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🎨 Цвет</button>
                     </div>
 
+                    <!-- Сетка шрифтов строго в 2 колонки -->
                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; box-sizing: border-box;">
-                        <div class="inventory-card trial-font-card active-font-card" data-font="system" style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; box-sizing: border-box;">
+                        <div class="inventory-card trial-font-card active-font-card" data-font="system" style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="font-size: 13px; color: #fff; font-weight: bold;">SYSTEM</span>
                         </div>
-                        <div class="inventory-card trial-font-card" data-font="Roboto, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; box-sizing: border-box;">
+                        <div class="inventory-card trial-font-card" data-font="Roboto, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: Roboto, sans-serif;">Roboto</span>
                         </div>
-                        <div class="inventory-card trial-font-card" data-font="Georgia, serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; box-sizing: border-box;">
+                        <div class="inventory-card trial-font-card" data-font="Georgia, serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: Georgia, serif;">Georgia</span>
                         </div>
-                        <div class="inventory-card trial-font-card" data-font="Impact, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; box-sizing: border-box;">
+                        <div class="inventory-card trial-font-card" data-font="Impact, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: Impact, sans-serif;">Impact</span>
                         </div>
-                        <div class="inventory-card trial-font-card" data-font="'Courier New', monospace" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; box-sizing: border-box;">
+                        <div class="inventory-card trial-font-card" data-font="'Courier New', monospace" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: 'Courier New', monospace;">Code</span>
                         </div>
-                        <div class="inventory-card trial-font-card" data-font="'Comic Sans MS', cursive" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; box-sizing: border-box;">
+                        <div class="inventory-card trial-font-card" data-font="'Comic Sans MS', cursive" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
                             <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
                             <span style="font-size: 13px; color: #fff; font-family: 'Comic Sans MS', cursive;">Comic</span>
                         </div>
@@ -445,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (shopType === 'color') {
             if (sheetTitle) sheetTitle.textContent = 'Выбор цвета текста';
             inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding: 0 10px 20px 10px; align-items: center; box-sizing: border-box;">
+                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px; align-items: center; box-sizing: border-box;">
                     <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 100%; justify-content: space-between; box-sizing: border-box;">
                         <span style="font-size: 13px; color: #fff;">Выберите цвет:</span>
                         <input type="color" id="text-color-picker" value="${currentSelectedColor}" style="width: 40px; height: 40px; border: none; background: none; cursor: pointer; border-radius: 50%;">
@@ -491,15 +498,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentItems = itemsData[activeVoiceCategory] || itemsData.humans;
 
             inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 10px 20px 10px; box-sizing: border-box;">
-                    <div style="display: flex; align-items: center; gap: 16px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; width: 100%; box-sizing: border-box;">
+                <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
+                    <div style="display: flex; align-items: center; gap: 12px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; width: 100%; box-sizing: border-box;">
                         <span class="voice-cat-tab" data-cat="humans" style="color: ${activeVoiceCategory === 'humans' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'humans' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'humans' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🗣️ Человеческие голоса</span>
                         <span class="voice-cat-tab" data-cat="games" style="color: ${activeVoiceCategory === 'games' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'games' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'games' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Голоса из игр</span>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; box-sizing: border-box;">
+                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
                         ${currentItems.map(item => `
-                            <div class="neon-voice-card" data-name="${item.name}" data-sample="${item.sample}" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 0 10px rgba(0, 229, 255, 0.15); width: 100%; box-sizing: border-box;">
+                            <div class="neon-voice-card" data-name="${item.name}" data-sample="${item.sample}" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 12px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 0 10px rgba(0, 229, 255, 0.15); transition: all 0.3s ease;">
                                 <span style="font-size: 14px; color: #fff; font-weight: 500;">🎙️ ${item.name}</span>
                                 <span style="font-size: 12px; color: #00e5ff; font-weight: bold;">Выбрать ▸</span>
                             </div>
@@ -530,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
             inventoryContainer.innerHTML = `
                 <div class="inventory-card" style="display: flex; flex-direction: column; align-items: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; width: 100%; box-sizing: border-box;">
                     <i class="fas fa-check-circle" style="color: #2ecc71; font-size: 20px; margin-bottom: 5px;"></i>
-                    <div style="color: #fff; font-size: 13px;">Стандартный аватар</div>
+                    <div>Стандартный аватар</div>
                 </div>
             `;
         }
@@ -547,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         modal.innerHTML = `
-            <div style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 16px; padding: 24px; width: 90%; max-width: 320px; display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); box-sizing: border-box;">
+            <div style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 16px; padding: 24px; width: 90%; max-width: 320px; display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">
                 <div style="font-size: 15px; color: #fff; font-weight: bold; text-align: center;">🔊 ${voiceName}</div>
                 <p style="font-size: 12px; color: #aaa; text-align: center; margin: 0;">Нажмите кнопку ниже, чтобы прослушать образец звука или голоса.</p>
                 <button id="modal-play-btn" style="width: 100%; padding: 12px; background: #00e5ff; color: #000; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer; box-shadow: 0 0 10px rgba(0,229,255,0.5);">▶ Воспроизвести</button>
@@ -558,26 +565,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const playBtn = modal.querySelector('#modal-play-btn');
         const closeBtn = modal.querySelector('#modal-close-btn');
 
-        if (playBtn) {
-            playBtn.addEventListener('click', () => {
-                if (activePreviewAudio) {
-                    activePreviewAudio.pause();
-                }
+        playBtn.addEventListener('click', () => {
+            if (activePreviewAudio) {
+                activePreviewAudio.pause();
+                activePreviewAudio = null;
+                playBtn.textContent = "▶ Воспроизвести";
+            } else {
                 activePreviewAudio = new Audio(sampleUrl);
+                playBtn.textContent = "⏸ Остановить";
+                
                 activePreviewAudio.play().catch(err => {
-                    console.log("Ошибка воспроизведения аудио превью:", err);
+                    console.error("Ошибка воспроизведения аудио:", err);
                 });
-            });
-        }
 
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                if (activePreviewAudio) {
-                    activePreviewAudio.pause();
+                activePreviewAudio.onended = () => {
+                    playBtn.textContent = "▶ Воспроизвести";
                     activePreviewAudio = null;
-                }
-                modal.remove();
-            });
-        }
+                };
+            }
+        });
+
+        closeBtn.addEventListener('click', () => {
+            if (activePreviewAudio) {
+                activePreviewAudio.pause();
+                activePreviewAudio = null;
+            }
+            modal.remove();
+        });
     }
 });
