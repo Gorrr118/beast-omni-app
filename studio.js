@@ -572,9 +572,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 playBtn.textContent = '▶ Воспроизвести';
             } else {
                 activePreviewAudio = new Audio(sampleUrl);
-                activePreviewAudio.play().catch(e => console.log("Ошибка воспроизведения аудио:", e));
-                playBtn.textContent = '⏸ Пауза';
-                
+                activePreviewAudio.play().then(() => {
+                    playBtn.textContent = '⏸ Пауза';
+                }).catch(err => {
+                    console.error("Ошибка воспроизведения аудио:", err);
+                    playBtn.textContent = '❌ Ошибка';
+                });
+
                 activePreviewAudio.onended = () => {
                     playBtn.textContent = '▶ Воспроизвести';
                     activePreviewAudio = null;
