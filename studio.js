@@ -255,12 +255,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // === ⚡ УПРАВЛЕНИЕ МЕНЮ STUDIO И ИНСТРУМЕНТАМИ (ИСПРАВЛЕНО) ===
+    // === ⚡ УПРАВЛЕНИЕ МЕНЮ STUDIO И ИНСТРУМЕНТАМИ ===
     if (studioTrigger && subToolsContainer) {
         studioTrigger.addEventListener('click', (event) => {
             event.preventDefault(); 
             
-            // Используем computedStyle, чтобы корректно определять видимость независимо от CSS классов
             const computedDisplay = window.getComputedStyle(subToolsContainer).display;
 
             if (computedDisplay === 'none') {
@@ -314,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sheetOverlayClose.addEventListener('click', closeBottomSheet);
     }
 
-    // === 🏷️ МОДУЛЬ АВТОМАТИЧЕСКОЙ ГЕНЕРАЦИИ ХЭШТЕГОВ (ПЛОТ / ТЕМА) ===
+    // === 🏷️ МОДУЛЬ АВТОМАТИЧЕСКОЙ ГЕНЕРАЦИИ ХЭШТЕГОВ ===
     function initHashtagGenerator() {
         const hashtagGenContainer = document.getElementById('hashtag-generator-container');
         if (!hashtagGenContainer) return;
@@ -378,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initHashtagGenerator();
 
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Голоса и Игры) ===
+    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET ===
     function renderBottomSheetContent(shopType, activeVoiceCategory = 'humans') {
         if (!inventoryContainer) return;
 
@@ -571,17 +570,11 @@ document.addEventListener('DOMContentLoaded', () => {
             playBtn.addEventListener('click', () => {
                 if (activePreviewAudio) {
                     activePreviewAudio.pause();
-                    activePreviewAudio = null;
-                    playBtn.textContent = '▶ Воспроизвести';
-                } else {
-                    activePreviewAudio = new Audio(sampleUrl);
-                    activePreviewAudio.play().catch(e => console.log("Ошибка воспроизведения аудио:", e));
-                    playBtn.textContent = '⏸ Пауза';
-                    activePreviewAudio.onended = () => {
-                        playBtn.textContent = '▶ Воспроизвести';
-                        activePreviewAudio = null;
-                    };
                 }
+                activePreviewAudio = new Audio(sampleUrl);
+                activePreviewAudio.play().catch(err => {
+                    console.log("Ошибка воспроизведения аудио превью:", err);
+                });
             });
         }
 
@@ -595,4 +588,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-}); // <--- Закрыли DOMContentLoaded, теперь скрипт работает корректно!
+});
