@@ -1,597 +1,1010 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // === Константы ===
-    const API_BASE_URL = 'http://127.0.0.1:8000';
-
-    // === Инициализация базовых элементов плеера и загрузки ===
-    const playerScreenTrigger = document.getElementById('player-screen-trigger');
-    const videoUpload = document.getElementById('video-upload');
-    const mainPlayer = document.getElementById('main-player');
-    const placeholderText = document.getElementById('placeholder-text');
-    const videoTrackName = document.getElementById('video-track-name');
-
-    // === Элементы меню, инструментов и панелей ===
-    const studioTrigger = document.getElementById('studio-trigger');
-    const subToolsContainer = document.getElementById('studio-sub-tools');
-    const toolButtons = document.querySelectorAll('.tool-btn');
-    const dynamicPanel = document.getElementById('dynamic-panel');
-    const toolPanels = document.querySelectorAll('.tool-panel-content');
-
-    // === Новые элементы из обновленного CSS ===
-    const aiAvatar = document.getElementById('ai-avatar');
-    const resizeHandle = document.getElementById('avatar-resize-handle');
-    
-    // Элементы Bottom Sheet (Магазин / Инвентарь)
-    const inventoryBottomSheet = document.getElementById('shop-inventory-sheet');
-    const closeSheetBtn = document.getElementById('sheet-close-x');
-    const sheetOverlayClose = document.getElementById('sheet-overlay-close');
-    const openInventoryBtns = document.querySelectorAll('.inventory-trigger-btn');
-    const inventoryContainer = document.getElementById('inventory-items-container');
-    const sheetTitle = document.getElementById('sheet-title');
-
-    let hideControlsTimeout = null;
-    let activePreviewAudio = null;
-    let currentSelectedColor = '#ffffff';
-
-    // === Функции управления Bottom Sheet ===
-    function openBottomSheet(shopType) {
-        if (!inventoryBottomSheet) return;
-        renderBottomSheetContent(shopType);
-        inventoryBottomSheet.classList.add('active');
-    }
-
-    function closeBottomSheet() {
-        if (!inventoryBottomSheet) return;
-        inventoryBottomSheet.classList.remove('active');
-        if (activePreviewAudio) {
-            activePreviewAudio.pause();
-            activePreviewAudio = null;
-        }
-        const modal = document.getElementById('voice-preview-modal');
-        if (modal) modal.remove();
-    }
-
-    // === 🎥 ЛОГИКА ЗАГРУЗКИ ВИДЕО ИЗ ГАЛЕРЕИ + API БЭКЕНДА ===
-    if (playerScreenTrigger && videoUpload && mainPlayer && placeholderText) {
-        playerScreenTrigger.addEventListener('click', (event) => {
-            if (event.target === mainPlayer || event.target.closest('.ai-avatar-overlay')) return;
-            videoUpload.click();
-        });
-
-        videoUpload.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                if (mainPlayer.src && mainPlayer.src.startsWith('blob:')) {
-                    URL.revokeObjectURL(mainPlayer.src);
-                }
-
-                const videoURL = URL.createObjectURL(file);
-                
-                placeholderText.style.setProperty('display', 'none', 'important');
-                
-                const uploadOverlay = placeholderText.parentElement;
-                if (uploadOverlay && uploadOverlay !== mainPlayer) {
-                    uploadOverlay.style.setProperty('display', 'none', 'important');
-                }
-
-                mainPlayer.style.setProperty('display', 'block', 'important');
-                mainPlayer.style.setProperty('z-index', '5', 'important');
-                
-                mainPlayer.src = videoURL;
-                mainPlayer.load();
-
-                mainPlayer.onloadedmetadata = () => {
-                    const width = mainPlayer.videoWidth;
-                    const height = mainPlayer.videoHeight;
-                    const formatButtons = document.querySelectorAll('.format-btn');
-                    
-                    let targetFormat = '16:9';
-                    if (height > width) {
-                        targetFormat = '9:16';
-                    } else if (width === height) {
-                        targetFormat = '1:1';
-                    }
-
-                    formatButtons.forEach(btn => {
-                        const fmt = btn.getAttribute('data-ratio') || btn.innerText.trim();
-                        if (fmt.includes(targetFormat)) {
-                            btn.click();
-                        }
-                    });
-                };
-
-                mainPlayer.play().catch(err => {
-                    console.log("Автовоспроизведение заблокировано браузером:", err);
-                });
-
-                if (videoTrackName) {
-                    const shortName = file.name.length > 20 ? file.name.substring(0, 17) + "..." : file.name;
-                    videoTrackName.innerText = `🎬 ${shortName}`;
-                }
-
-                const formData = new FormData();
-                formData.append("file", file);
-
-                console.log("Отправка видео на бэкенд...");
-                fetch(`${API_BASE_URL}/api/upload-video`, {
-                    method: "POST",
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) console.log("Ответ от Python сервера:", data.message);
-                    else console.error("Бэкенд вернул ошибку:", data.message);
-                })
-                .catch(error => {
-                    console.error("Не удалось связаться с сервером. Проверь server.py:", error);
-                });
-            }
-        });
-    }
-
-    // === ⏱️ СКРЫТИЕ КНОПОК ПЛЕЕРА ЧЕРЕЗ 3 СЕКУНДЫ НА ПАУЗЕ ===
-    if (mainPlayer) {
-        mainPlayer.addEventListener('pause', () => {
-            clearTimeout(hideControlsTimeout);
-            hideControlsTimeout = setTimeout(() => {
-                if (mainPlayer.paused) {
-                    mainPlayer.classList.add('paused-hidden');
-                }
-            }, 3000);
-        });
-
-        mainPlayer.addEventListener('play', () => {
-            clearTimeout(hideControlsTimeout);
-            mainPlayer.classList.remove('paused-hidden');
-        });
-
-        mainPlayer.addEventListener('click', () => {
-            if (mainPlayer.paused) {
-                clearTimeout(hideControlsTimeout);
-                mainPlayer.classList.remove('paused-hidden');
-                
-                hideControlsTimeout = setTimeout(() => {
-                    if (mainPlayer.paused) {
-                        mainPlayer.classList.add('paused-hidden');
-                    }
-                }, 3000);
-            }
-        });
-    }
-
-    // === 🤖 ИНТЕРАКТИВНЫЙ ИИ-АВАТАР: DRAG & RESIZE ===
-    if (aiAvatar) {
-        let isDragging = false;
-        let isResizing = false;
-        let startX, startY, startLeft, startTop, startWidth;
-
-        aiAvatar.addEventListener('mousedown', startDrag);
-        aiAvatar.addEventListener('touchstart', startDrag, { passive: false });
-
-        function startDrag(e) {
-            if (resizeHandle && e.target === resizeHandle) return;
-            e.preventDefault();
-            
-            isDragging = true;
-            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-            
-            startX = clientX;
-            startY = clientY;
-            startLeft = aiAvatar.offsetLeft;
-            startTop = aiAvatar.offsetTop;
-
-            document.addEventListener('mousemove', doDrag);
-            document.addEventListener('touchmove', doDrag, { passive: false });
-            document.addEventListener('mouseup', stopDrag);
-            document.addEventListener('touchend', stopDrag);
-        }
-
-        function doDrag(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-
-            const deltaX = clientX - startX;
-            const deltaY = clientY - startY;
-
-            const parent = aiAvatar.parentElement;
-            if (!parent) return;
-            let newLeft = startLeft + deltaX;
-            let newTop = startTop + deltaY;
-
-            newLeft = Math.max(0, Math.min(newLeft, parent.clientWidth - aiAvatar.clientWidth));
-            newTop = Math.max(0, Math.min(newTop, parent.clientHeight - aiAvatar.clientHeight));
-
-            aiAvatar.style.left = `${newLeft}px`;
-            aiAvatar.style.top = `${newTop}px`;
-        }
-
-        function stopDrag() {
-            isDragging = false;
-            document.removeEventListener('mousemove', doDrag);
-            document.removeEventListener('touchmove', doDrag);
-        }
-
-        if (resizeHandle) {
-            resizeHandle.addEventListener('mousedown', startResize);
-            resizeHandle.addEventListener('touchstart', startResize, { passive: false });
-        }
-
-        function startResize(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            isResizing = true;
-            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-            
-            startX = clientX;
-            startWidth = aiAvatar.clientWidth;
-
-            document.addEventListener('mousemove', doResize);
-            document.addEventListener('touchmove', doResize, { passive: false });
-            document.addEventListener('mouseup', stopResize);
-            document.addEventListener('touchend', stopResize);
-        }
-
-        function doResize(e) {
-            if (!isResizing) return;
-            e.preventDefault();
-            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-            
-            const deltaX = clientX - startX;
-            let newSize = startWidth + deltaX; 
-            
-            newSize = Math.max(50, Math.min(newSize, 200));
-
-            aiAvatar.style.width = `${newSize}px`;
-            aiAvatar.style.height = `${newSize}px`;
-        }
-
-        function stopResize() {
-            isResizing = false;
-            document.removeEventListener('mousemove', doResize);
-            document.removeEventListener('touchmove', doResize);
-        }
-    }
-
-    // === ⚡ УПРАВЛЕНИЕ МЕНЮ STUDIO И ИНСТРУМЕНТАМИ ===
-    if (studioTrigger && subToolsContainer) {
-        studioTrigger.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            
-            if (subToolsContainer.style.display === 'none' || subToolsContainer.style.display === '') {
-                subToolsContainer.style.display = 'flex';
-                studioTrigger.classList.add('active');
-            } else {
-                subToolsContainer.style.display = 'none';
-                if (dynamicPanel) dynamicPanel.classList.remove('active');
-                studioTrigger.classList.remove('active');
-                toolButtons.forEach(btn => btn.classList.remove('active'));
-                toolPanels.forEach(panel => panel.classList.remove('active'));
-            }
-        });
-    }
-
-    if (toolButtons.length > 0 && dynamicPanel) {
-        toolButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.preventDefault();
-                const targetId = button.getAttribute('data-target');
-                const targetPanel = targetId ? document.getElementById(targetId) : null;
-
-                toolButtons.forEach(btn => btn.classList.remove('active'));
-                toolPanels.forEach(panel => panel.classList.remove('active'));
-
-                button.classList.add('active');
-                dynamicPanel.classList.add('active');
-                if (targetPanel) {
-                    targetPanel.classList.add('active');
-                }
-            });
-        });
-    }
-
-    // === 🛍️ ПРИВЯЗКА КНОПОК ОТКРЫТИЯ BOTTOM SHEET (МАГАЗИН / ИНВЕНТАРЬ) ===
-    if (openInventoryBtns.length > 0) {
-        openInventoryBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const shopType = btn.getAttribute('data-shop-type') || 'fonts';
-                openBottomSheet(shopType);
-            });
-        });
-    }
-
-    if (closeSheetBtn) {
-        closeSheetBtn.addEventListener('click', closeBottomSheet);
-    }
-
-    if (sheetOverlayClose) {
-        sheetOverlayClose.addEventListener('click', closeBottomSheet);
-    }
-
-    // === 🏷️ МОДУЛЬ АВТОМАТИЧЕСКОЙ ГЕНЕРАЦИИ ХЭШТЕГОВ (ПЛОТ / ТЕМА) ===
-    function initHashtagGenerator() {
-        const hashtagGenContainer = document.getElementById('hashtag-generator-container');
-        if (!hashtagGenContainer) return;
-
-        hashtagGenContainer.innerHTML = `
-            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; padding: 10px;">
-                <h3 style="color: #00e5ff; font-size: 14px; margin: 0;">🤖 Генератор хэштегов по сюжету</h3>
-                <textarea id="plot-input" placeholder="Введите краткое описание сюжета или темы видео..." style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 10px; font-size: 12px; resize: none; height: 70px; outline: none;"></textarea>
-                <button id="generate-tags-btn" style="background: #00e5ff; color: #000; border: none; border-radius: 8px; padding: 10px; font-weight: bold; font-size: 12px; cursor: pointer;">Сгенерировать хэштеги</button>
-                <div id="tags-output-area" style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px; min-height: 40px; color: #ddd; font-size: 12px; word-break: break-all;"></div>
-            </div>
-        `;
-
-        const generateBtn = document.getElementById('generate-tags-btn');
-        const plotInput = document.getElementById('plot-input');
-        const tagsOutput = document.getElementById('tags-output-area');
-
-        if (generateBtn && plotInput && tagsOutput) {
-            generateBtn.addEventListener('click', () => {
-                const plotSummary = plotInput.value.trim();
-                if (!plotSummary) {
-                    tagsOutput.innerHTML = '<span style="color: #ff5252;">Пожалуйста, введите сюжет или тему!</span>';
-                    return;
-                }
-
-                tagsOutput.innerHTML = 'Генерация хэштегов...';
-
-                fetch(`${API_BASE_URL}/api/generate-hashtags`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ summary: plotSummary })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.tags && Array.isArray(data.tags)) {
-                        tagsOutput.innerHTML = data.tags.map(tag => `<span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#${tag}</span>`).join('');
-                    } else {
-                        generateFallbackTags(plotSummary, tagsOutput);
-                    }
-                })
-                .catch(err => {
-                    console.warn("Бэкенд недоступен, используем локальный генератор хэштегов:", err);
-                    generateFallbackTags(plotSummary, tagsOutput);
-                });
-            });
-        }
-    }
-
-    function generateFallbackTags(summary, outputContainer) {
-        const words = summary.toLowerCase().replace(/[^\w\sа-яё]/gi, '').split(/\s+/);
-        const uniqueWords = [...new Set(words)].filter(w => w.length > 3);
-        const generated = uniqueWords.slice(0, 6);
-        
-        if (generated.length === 0) {
-            outputContainer.innerHTML = '<span style="color: #aaa;">#видео #тренд #рекомендации #content</span>';
-            return;
-        }
-
-        outputContainer.innerHTML = generated.map(w => `<span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#${w}</span>`).join('') + ' <span style="display: inline-block; background: rgba(0,229,255,0.15); color: #00e5ff; padding: 3px 8px; border-radius: 6px; margin: 2px; font-size: 11px;">#trending</span>';
-    }
-
-    initHashtagGenerator();
-
-    // === 🛍️ РЕНДЕР КОНТЕНТА BOTTOM SHEET (Шрифты, Цвета, Голоса и Игры) ===
-    function renderBottomSheetContent(shopType, activeVoiceCategory = 'humans') {
-        if (!inventoryContainer) return;
-
-        if (shopType === 'fonts') {
-            if (sheetTitle) sheetTitle.textContent = 'Шрифты';
-            inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; font-size: 13px; width: 100%; box-sizing: border-box;">
-                        <div style="display: flex; align-items: center; gap: 16px; overflow-x: auto; scrollbar-width: none; flex-grow: 1; padding-right: 10px;">
-                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Шаблоны</span>
-                            <span style="color: #fff; font-weight: bold; border-bottom: 2px solid #00e5ff; padding-bottom: 4px; cursor: pointer; white-space: nowrap;">Шрифты</span>
-                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Стили</span>
-                            <span style="color: #777; cursor: pointer; white-space: nowrap;">Эффекты</span>
-                        </div>
-                        <button id="goto-color-picker-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 6px 12px; border-radius: 12px; font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0;">🎨 Цвет</button>
-                    </div>
-
-                    <!-- Сетка шрифтов строго в 2 колонки -->
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; box-sizing: border-box;">
-                        <div class="inventory-card trial-font-card active-font-card" data-font="system" style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
-                            <span style="font-size: 13px; color: #fff; font-weight: bold;">SYSTEM</span>
-                        </div>
-                        <div class="inventory-card trial-font-card" data-font="Roboto, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
-                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
-                            <span style="font-size: 13px; color: #fff; font-family: Roboto, sans-serif;">Roboto</span>
-                        </div>
-                        <div class="inventory-card trial-font-card" data-font="Georgia, serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
-                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
-                            <span style="font-size: 13px; color: #fff; font-family: Georgia, serif;">Georgia</span>
-                        </div>
-                        <div class="inventory-card trial-font-card" data-font="Impact, sans-serif" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
-                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
-                            <span style="font-size: 13px; color: #fff; font-family: Impact, sans-serif;">Impact</span>
-                        </div>
-                        <div class="inventory-card trial-font-card" data-font="'Courier New', monospace" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
-                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
-                            <span style="font-size: 13px; color: #fff; font-family: 'Courier New', monospace;">Code</span>
-                        </div>
-                        <div class="inventory-card trial-font-card" data-font="'Comic Sans MS', cursive" style="background: #222225; border: 2px solid transparent; border-radius: 10px; height: 56px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;">
-                            <span style="position: absolute; top: 4px; right: 6px; background: #00bcd4; color: #000; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px;">PRO</span>
-                            <span style="font-size: 13px; color: #fff; font-family: 'Comic Sans MS', cursive;">Comic</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            const colorBtn = document.getElementById('goto-color-picker-btn');
-            if (colorBtn) {
-                colorBtn.addEventListener('click', () => {
-                    renderBottomSheetContent('color');
-                });
-            }
-
-            const fontCards = inventoryContainer.querySelectorAll('.trial-font-card');
-            fontCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    fontCards.forEach(c => {
-                        c.classList.remove('active-font-card');
-                        c.style.background = '#222225';
-                        c.style.border = '2px solid transparent';
-                    });
-
-                    card.classList.add('active-font-card');
-                    card.style.background = '#1c242c';
-                    card.style.border = '2px solid #00e5ff';
-
-                    const selectedFont = card.getAttribute('data-font');
-                    if (videoTrackName) {
-                        videoTrackName.style.fontFamily = selectedFont === 'system' ? 'inherit' : selectedFont;
-                    }
-                });
-            });
-
-        } else if (shopType === 'color') {
-            if (sheetTitle) sheetTitle.textContent = 'Выбор цвета текста';
-            inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; padding-bottom: 20px; align-items: center; box-sizing: border-box;">
-                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 100%; justify-content: space-between; box-sizing: border-box;">
-                        <span style="font-size: 13px; color: #fff;">Выберите цвет:</span>
-                        <input type="color" id="text-color-picker" value="${currentSelectedColor}" style="width: 40px; height: 40px; border: none; background: none; cursor: pointer; border-radius: 50%;">
-                    </div>
-                    <button id="save-color-btn" style="width: 100%; padding: 12px; background: #00e5ff; color: #000; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer;">Применить цвет</button>
-                </div>
-            `;
-
-            const colorPicker = document.getElementById('text-color-picker');
-            if (colorPicker) {
-                colorPicker.addEventListener('input', (e) => {
-                    currentSelectedColor = e.target.value;
-                });
-            }
-
-            const saveColorBtn = document.getElementById('save-color-btn');
-            if (saveColorBtn) {
-                saveColorBtn.addEventListener('click', () => {
-                    if (videoTrackName) {
-                        videoTrackName.style.color = currentSelectedColor;
-                    }
-                    closeBottomSheet();
-                });
-            }
-
-        } else if (shopType === 'voices') {
-            if (sheetTitle) sheetTitle.textContent = 'Выбор голосов и звуков';
-            
-            const itemsData = {
-                humans: [
-                    { name: 'Голос — Мужчина (Бас)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-                    { name: 'Голос — Мужчина (Энергичный)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-                    { name: 'Голос — Женщина (Мягкий)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
-                    { name: 'Голос — Женщина (Яркий)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' },
-                    { name: 'Голос — Ребенок (Веселый)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' }
-                ],
-                games: [
-                    { name: 'Звук — Франклин (GTA Фраза)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
-                    { name: 'Звук — Зомби (Крик)', sample: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' }
-                ]
-            };
-
-            const currentItems = itemsData[activeVoiceCategory] || itemsData.humans;
-
-            inventoryContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
-                    <div style="display: flex; align-items: center; gap: 12px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; width: 100%; box-sizing: border-box;">
-                        <span class="voice-cat-tab" data-cat="humans" style="color: ${activeVoiceCategory === 'humans' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'humans' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'humans' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🗣️ Человеческие голоса</span>
-                        <span class="voice-cat-tab" data-cat="games" style="color: ${activeVoiceCategory === 'games' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'games' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'games' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Голоса из игр</span>
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                        ${currentItems.map(item => `
-                            <div class="neon-voice-card" data-name="${item.name}" data-sample="${item.sample}" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 12px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 0 10px rgba(0, 229, 255, 0.15); transition: all 0.3s ease;">
-                                <span style="font-size: 14px; color: #fff; font-weight: 500;">🎙️ ${item.name}</span>
-                                <span style="font-size: 12px; color: #00e5ff; font-weight: bold;">Выбрать ▸</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-
-            const tabs = inventoryContainer.querySelectorAll('.voice-cat-tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const cat = tab.getAttribute('data-cat');
-                    renderBottomSheetContent('voices', cat);
-                });
-            });
-
-            const cards = inventoryContainer.querySelectorAll('.neon-voice-card');
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const voiceName = card.getAttribute('data-name');
-                    const sampleUrl = card.getAttribute('data-sample');
-                    openVoicePreviewModal(voiceName, sampleUrl);
-                });
-            });
-
-        } else {
-            if (sheetTitle) sheetTitle.textContent = 'ИИ Аватары';
-            inventoryContainer.innerHTML = `
-                <div class="inventory-card" style="display: flex; flex-direction: column; align-items: center; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; width: 100%; box-sizing: border-box;">
-                    <i class="fas fa-check-circle" style="color: #2ecc71; font-size: 20px; margin-bottom: 5px;"></i>
-                    <div>Стандартный аватар</div>
-                </div>
-            `;
-        }
-    }
-
-    // === 🎵 МИНИ-ОКНО ДЛЯ ПРОСЛУШИВАНИЯ ГОЛОСА ===
-    function openVoicePreviewModal(voiceName, sampleUrl) {
-        let modal = document.getElementById('voice-preview-modal');
-        if (!modal) {
-            modal = document.createElement('div');
-            modal.id = 'voice-preview-modal';
-            modal.style.cssText = "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 15, 18, 0.95); z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;";
-            inventoryBottomSheet.appendChild(modal);
-        }
-
-        modal.innerHTML = `
-            <div style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 16px; padding: 24px; width: 90%; max-width: 320px; display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">
-                <div style="font-size: 15px; color: #fff; font-weight: bold; text-align: center;">🔊 ${voiceName}</div>
-                <p style="font-size: 12px; color: #aaa; text-align: center; margin: 0;">Нажмите кнопку ниже, чтобы прослушать образец звука или голоса.</p>
-                <button id="modal-play-btn" style="width: 100%; padding: 12px; background: #00e5ff; color: #000; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer; box-shadow: 0 0 10px rgba(0,229,255,0.5);">▶ Воспроизвести</button>
-                <button id="modal-close-btn" style="width: 100%; padding: 10px; background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; font-size: 12px; cursor: pointer;">Назад к списку</button>
-            </div>
-        `;
-
-        const playBtn = modal.querySelector('#modal-play-btn');
-        const closeBtn = modal.querySelector('#modal-close-btn');
-
-        playBtn.addEventListener('click', () => {
-            if (activePreviewAudio) {
-                activePreviewAudio.pause();
-                activePreviewAudio = null;
-                playBtn.textContent = '▶ Воспроизвести';
-            } else {
-                activePreviewAudio = new Audio(sampleUrl);
-                activePreviewAudio.play().then(() => {
-                    playBtn.textContent = '⏸ Пауза';
-                }).catch(err => {
-                    console.error("Ошибка воспроизведения аудио:", err);
-                    playBtn.textContent = '❌ Ошибка';
-                });
-
-                activePreviewAudio.onended = () => {
-                    playBtn.textContent = '▶ Воспроизвести';
-                    activePreviewAudio = null;
-                };
-            }
-        });
-
-        closeBtn.addEventListener('click', () => {
-            if (activePreviewAudio) {
-                activePreviewAudio.pause();
-                activePreviewAudio = null;
-            }
-            modal.remove();
-        });
-    }
-});
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Press+Start+2P&family=Orbitron:wght@700&family=Rubik+Glitch&family=Cinzel:wght@700&family=Bungee+Shade&family=Monoton&family=Creepster&family=Permanent+Marker&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    color: #F5F5F7;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.studio-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100vh;
+    width: 100%;
+    max-width: 480px;
+    background-color: #0E0E10;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+/* ВЕРХНИЙ ХЕДЕР И СЕЛЕКТОР ЯЗЫКА */
+.global-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background-color: #121214;
+    border-bottom: 1px solid #1C1C1E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.user-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #1E1E24;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #2D2D35;
+}
+
+.username {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#lang-dropdown {
+    background: rgba(20, 15, 35, 0.7);
+    color: #fff; 
+    border: 2px solid #9d4edd; 
+    border-radius: 10px; 
+    padding: 6px 32px 6px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 0 12px rgba(157, 78, 221, 0.4); 
+    transition: all 0.3s ease;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239d4edd' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+#lang-dropdown:hover {
+    border-color: #c77dff;
+    box-shadow: 0 0 18px rgba(199, 125, 255, 0.7);
+    transform: translateY(-1px);
+}
+
+#lang-dropdown option {
+    background: #140f23; 
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    padding: 10px;
+}
+
+.editor-workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    margin-top: 65px;
+    margin-bottom: 125px; /* Оставляем место под нижние панели */
+}
+
+.preview-window {
+    flex: 1;
+    min-height: 0;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    width: 100%;
+}
+
+.player-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background-color: #000000 !important;
+    border: 1px solid #1C1C1E;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.2s, border-color 0.2s, aspect-ratio 0.3s ease;
+}
+
+.player-screen.format-16-9 {
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+
+.player-screen.format-9-16 {
+    aspect-ratio: 9 / 16;
+    max-height: 100%;
+    width: auto;
+}
+
+.player-screen.format-1-1 {
+    aspect-ratio: 1 / 1;
+    height: auto;
+}
+
+.upload-zone-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    z-index: 2;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(8, 8, 10, 0.95);
+    transition: opacity 0.3s ease;
+}
+
+.upload-icon {
+    font-size: 40px;
+    color: #3A3A3C;
+    margin-bottom: 12px;
+}
+
+.player-screen:hover .upload-icon {
+    color: #a855f7;
+}
+
+.preview-placeholder {
+    color: #E5E5EA;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    user-select: none;
+}
+
+.file-info-sm {
+    font-size: 11px;
+    color: #636366;
+}
+
+.player-screen video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background-color: #000000 !important;
+    z-index: 1;
+}
+
+.ai-avatar-overlay {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #a855f7;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), 0 4px 10px rgba(0,0,0,0.5);
+    cursor: move;
+    z-index: 10;
+    top: 20px;
+    left: 20px;
+    user-select: none;
+    touch-action: none;
+}
+
+.ai-avatar-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.avatar-resize-handle {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    border: 2px solid #a855f7;
+    border-radius: 50%;
+    right: -2px;
+    bottom: -2px;
+    cursor: se-resize;
+    z-index: 11;
+    touch-action: none;
+}
+
+.render-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 20;
+    backdrop-filter: blur(4px);
+}
+
+.spinner-loader {
+    width: 44px;
+    height: 44px;
+    border: 4px solid rgba(168, 85, 247, 0.1);
+    border-left-color: #a855f7;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.render-status-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.progress-bar-container {
+    width: 80%;
+    height: 6px;
+    background-color: #2C2C2E;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #c084fc 0%, #a855f7 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-percentage {
+    font-size: 12px;
+    font-weight: 700;
+    color: #a855f7;
+}
+
+.timeline-container {
+    background-color: #121214;
+    border-top: 1px solid #1C1C1E;
+    padding: 8px 16px;
+    flex-shrink: 0;
+}
+
+.timeline-tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.track {
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 8px;
+}
+
+.video-track {
+    background: linear-gradient(90deg, rgba(26, 34, 56, 0.6) 0%, rgba(21, 27, 43, 0.6) 100%);
+    border: 1px solid #1E2D4A;
+}
+
+.audio-track {
+    background: linear-gradient(90deg, rgba(18, 35, 28, 0.6) 0%, rgba(14, 27, 21, 0.6) 100%);
+    border: 1px solid #163023;
+}
+
+.ai-track {
+    background: linear-gradient(90deg, rgba(50, 20, 70, 0.4) 0%, rgba(35, 15, 50, 0.4) 100%);
+    border: 1px solid #4A1E6D;
+}
+
+.track-icon {
+    font-size: 11px;
+}
+
+.track-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #AEAEB2;
+}
+
+/* ДИНАМИЧЕСКАЯ ПАНЕЛЬ */
+.dynamic-panel {
+    position: absolute;
+    bottom: 115px;
+    left: 0;
+    width: 100%;
+    background-color: #121214;
+    border-top: 1px solid #1C1C1E;
+    padding: 10px 16px;
+    z-index: 997;
+}
+
+.tool-panel-content {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tool-panel-content.active {
+    display: flex;
+}
+
+.panel-header {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8E8E93;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.format-grid {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.format-btn {
+    flex: 1;
+    background-color: #1C1C1E;
+    border: 1px solid #2C2C2E;
+    border-radius: 8px;
+    padding: 8px 4px;
+    color: #AEAEB2;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.format-btn i {
+    font-size: 13px;
+}
+
+.format-btn.active {
+    background-color: rgba(168, 85, 247, 0.05);
+    border-color: #a855f7;
+    color: #a855f7;
+}
+
+.switch-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1C1C1E;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.inventory-quick-access {
+    display: flex;
+    gap: 8px;
+}
+
+.inventory-trigger-btn {
+    flex: 1;
+    background-color: #1C1C1E;
+    border: 1px solid #2C2C2E;
+    color: #FFFFFF;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.volume-control {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background-color: #1C1C1E;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 500;
+    color: #AEAEB2;
+}
+
+.panel-info-text {
+    font-size: 11px;
+    color: #8E8E93;
+    line-height: 1.3;
+}
+
+.main-action-btn {
+    background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #2C2C2E;
+    border-radius: 2px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #a855f7;
+    cursor: pointer;
+}
+
+/* СУБ-ТУЛЗЫ */
+.studio-sub-tools {
+    position: absolute !important;
+    bottom: 70px !important;
+    left: 0 !important;
+    width: 100% !important;
+    background-color: #121214 !important;
+    border-top: 1px solid #1C1C1E !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    padding: 6px 4px !important;
+    z-index: 998 !important;
+}
+
+.tool-btn {
+    background: transparent;
+    border: none;
+    color: #747d8c;
+    padding: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    width: 22%;
+    transition: color 0.2s;
+}
+
+.tool-btn i {
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.tool-btn.active {
+    color: #c77dff !important;
+}
+
+/* НИЖНЕЕ ГЛОБАЛЬНОЕ МЕНЮ */
+.bottom-navbar {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 70px !important;
+    background-color: #0d0d12 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    z-index: 999 !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+}
+
+.bottom-navbar > a {
+    text-decoration: none !important;
+    display: flex !important;
+    flex: 1 !important;
+    height: 100% !important;
+    justify-content: center !important;
+}
+
+.nav-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    color: #747d8c !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.nav-item .nav-icon {
+    font-size: 20px !important;
+    margin-bottom: 3px !important;
+}
+
+.nav-item.active {
+    color: #c77dff !important;
+}
+
+/* ЦЕНТРАЛЬНАЯ КНОПКА СТУДИИ */
+.nav-center-item-link {
+    overflow: visible !important;
+}
+
+.nav-center-item {
+    position: relative !important;
+    top: -14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    width: 100% !important;
+}
+
+.nav-center-btn {
+    width: 50px !important;
+    height: 50px !important;
+    background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.7) !important;
+    border: 2px solid #0B0B0C !important;
+}
+
+.center-icon {
+    font-size: 22px !important;
+    color: #FFFFFF !important;
+}
+
+.nav-center-item .center-text {
+    margin-top: 4px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    background: linear-gradient(90deg, #A855F7, #F472B6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Bottom Sheet */
+.bottom-sheet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: none;
+}
+
+.bottom-sheet.active {
+    display: flex;
+    align-items: flex-end;
+}
+
+.sheet-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bottom-sheet.active .sheet-overlay {
+    opacity: 1;
+}
+
+.sheet-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-height: 75%;
+    background-color: #121216;
+    border-radius: 20px 20px 0 0;
+    border-top: 1px solid #2C2C2E;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.3, 1);
+}
+
+.bottom-sheet.active .sheet-content {
+    transform: translateY(0);
+}
+
+.sheet-drag-handle {
+    width: 36px;
+    height: 4px;
+    background-color: #3A3A3C;
+    border-radius: 2px;
+    margin: 8px auto 0 auto;
+    flex-shrink: 0;
+}
+
+.sheet-header {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1C1C1E;
+}
+
+.sheet-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.sheet-close-btn {
+    background: transparent;
+    border: none;
+    color: #8E8E93;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.sheet-body {
+    overflow-y: auto;
+    padding: 16px;
+    flex: 1;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+#translation-lang-select {
+    background: #1e1e1e;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+#translation-lang-select:focus {
+    border-color: #a855f7;
+}
+
+#translation-lang-select option {
+    background: #140f23; 
+    color: #fff;
+    padding: 8px;
+}
+/* Стили для переключения панелей редактора */
+.tool-panel-content {
+    display: none !important;
+}
+
+.tool-panel-content.active {
+    display: block !important;
+}
+
+/* Стилизация кнопок быстрого доступа к инвентарю */
+.inventory-quick-access {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.inventory-trigger-btn {
+    flex: 1;
+    background: #252525;
+    border: 1px solid #3d3d3d;
+    color: #fff;
+    padding: 10px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.inventory-trigger-btn:hover {
+    background: #333;
+    border-color: #f39c12;
+}
+
+.inventory-trigger-btn i {
+    font-size: 16px;
+    color: #f39c12;
+}
+
+/* Всплывающее окно инвентаря (Bottom Sheet) */
+.bottom-sheet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.bottom-sheet.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.bottom-sheet .sheet-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.bottom-sheet .sheet-content {
+    position: relative;
+    background: #181818;
+    width: 100%;
+    max-width: 600px;
+    max-height: 75vh;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    border-top: 1px solid #333;
+    z-index: 1001;
+}
+
+.bottom-sheet.active .sheet-content {
+    transform: translateY(0);
+}
+
+.sheet-drag-handle {
+    width: 40px;
+    height: 4px;
+    background: #444;
+    border-radius: 2px;
+    align-self: center;
+    margin-bottom: 15px;
+}
+
+.sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 10px;
+}
+
+.sheet-header h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 16px;
+}
+
+.sheet-close-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.sheet-close-btn:hover {
+    color: #fff;
+}
+
+.sheet-body {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+}
+
+.inventory-card {
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+}
+/* --- СТИЛЬНЫЙ ДЕКТОПНЫЙ МОДАЛЬНЫЙ БЛОК (ВМЕСТО МОБИЛЬНОЙ ШТОРКИ) --- */
+
+.bottom-sheet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 10, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Класс, когда окно открывается через JS */
+.bottom-sheet.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Оверфон (клик вне окна закрывает его) */
+.sheet-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Само модальное окно (по центру, в киберпанк/студио стиле) */
+.sheet-content {
+    position: relative;
+    background: #12131c;
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 242, 254, 0.15);
+    width: 90%;
+    max-width: 550px;
+    max-height: 80vh;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+
+.bottom-sheet.active .sheet-content {
+    transform: translateY(0) scale(1);
+}
+
+/* Убираем мобильную ручку сверху, так как это теперь десктопный поп-ап */
+.sheet-drag-handle {
+    display: none; 
+}
+
+/* Шапка модального окна */
+.sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.sheet-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+/* Кнопка закрытия (крестик) */
+.sheet-close-btn {
+    background: none;
+    border: none;
+    color: #a0aec0;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+    line-height: 1;
+}
+
+.sheet-close-btn:hover {
+    color: #00f2fe;
+}
+
+/* Тело модального окна со списком голосов */
+.sheet-body {
+    padding: 20px 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Стилизация карточек внутри инвентаря/выбора голосов */
+.inventory-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Каждая карточка голоса/элемента */
+.inventory-item, .voice-card-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.inventory-item:hover, .voice-card-item:hover {
+    border-color: rgba(0, 242, 254, 0.5);
+    background: rgba(0, 242, 254, 0.04);
+}
