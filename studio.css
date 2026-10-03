@@ -776,50 +776,61 @@ input[type="range"]::-webkit-slider-thumb {
     color: #f39c12;
 }
 
-/* Всплывающее окно инвентаря (Bottom Sheet) */
+/* === Всплывающее окно инвентаря (Bottom Sheet) === */
 .bottom-sheet {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 10, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
+    align-items: flex-end; /* Выравниваем шторку по низу экрана */
     justify-content: center;
-    align-items: flex-end;
+    z-index: 9999;
     opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
     pointer-events: none;
-    transition: opacity 0.3s ease;
 }
 
 .bottom-sheet.active {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
 }
 
-.bottom-sheet .sheet-overlay {
+/* Оверфон для закрытия кликом */
+.sheet-overlay {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    z-index: 1;
 }
 
+/* Контейнер самой шторки */
 .bottom-sheet .sheet-content {
     position: relative;
-    background: #181818;
+    background: #12131c;
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 242, 254, 0.15);
     width: 100%;
-    max-width: 600px;
-    max-height: 75vh;
+    max-width: 500px;
+    max-height: 80vh;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     padding: 20px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     transform: translateY(100%);
-    transition: transform 0.3s ease;
-    border-top: 1px solid #333;
-    z-index: 1001;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
 }
 
 .bottom-sheet.active .sheet-content {
@@ -865,71 +876,41 @@ input[type="range"]::-webkit-slider-thumb {
 .sheet-body {
     overflow-y: auto;
     flex: 1;
-}
-
-.inventory-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 10px;
-}
-
-.inventory-card {
-    background: #222;
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 12px;
-    text-align: center;
-    color: #fff;
-    font-size: 13px;
-}
-.bottom-sheet {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(5, 5, 10, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    pointer-events: none; /* ЧТОБЫ СКРЫТОЕ ОКОНО НЕ ПЕРЕХВАТЫВАЛО КЛИКИ ПО САЙТУ */
-}
-
-.bottom-sheet.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto; /* ВКЛЮЧАЕМ КЛИКИ, КОГДА ОКНО ОТКРЫТО */
-}
-
-/* Оверфон — пусть клики по нему закрывают окно, но сами дочерние элементы работают */
-.sheet-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    z-index: 1;
+    box-sizing: border-box;
 }
 
-.sheet-content {
-    position: relative;
-    background: #12131c;
-    border: 1px solid rgba(0, 242, 254, 0.3);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 242, 254, 0.15);
-    width: 90%;
-    max-width: 550px;
-    max-height: 80vh;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform: translateY(20px) scale(0.98);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 2; /* ВЫШЕ ОВЕРЛЕЯ */
+/* === Сетка карточек (Шрифты / Голоса) строго по 2 в ряд и по центру === */
+.inventory-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 5px 2px 20px 2px !important;
+    margin: 0 auto !important;
+}
+
+/* === Крупные и красивые карточки === */
+.inventory-card, .trial-font-card, .neon-voice-card {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)) !important;
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    border-radius: 12px !important;
+    min-height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    cursor: pointer !important;
+    padding: 12px !important;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15) !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+}
+
+.inventory-card span, .trial-font-card span, .neon-voice-card span {
+    font-size: 13px !important;
+    color: #fff !important;
+    font-weight: 500 !important;
 }
