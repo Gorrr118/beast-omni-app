@@ -569,21 +569,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (activePreviewAudio) {
                 activePreviewAudio.pause();
                 activePreviewAudio = null;
-                playBtn.textContent = '▶ Воспроизвести';
-            } else {
-                activePreviewAudio = new Audio(sampleUrl);
-                activePreviewAudio.play().then(() => {
-                    playBtn.textContent = '⏸ Пауза';
-                }).catch(err => {
-                    console.error("Ошибка воспроизведения аудио:", err);
-                    playBtn.textContent = '❌ Ошибка';
-                });
-
-                activePreviewAudio.onended = () => {
-                    playBtn.textContent = '▶ Воспроизвести';
-                    activePreviewAudio = null;
-                };
+                playBtn.textContent = "▶ Воспроизвести";
+                return;
             }
+
+            activePreviewAudio = new Audio(sampleUrl);
+            playBtn.textContent = "⏸ Остановить";
+            
+            activePreviewAudio.play().catch(e => {
+                console.warn("Не удалось воспроизвести аудио образца:", e);
+                playBtn.textContent = "▶ Воспроизвести";
+            });
+
+            activePreviewAudio.onended = () => {
+                playBtn.textContent = "▶ Воспроизвести";
+                activePreviewAudio = null;
+            };
         });
 
         closeBtn.addEventListener('click', () => {
