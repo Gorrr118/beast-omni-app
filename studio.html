@@ -6,6 +6,38 @@
     <title>Creator Studio PRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="studio.css?v=1.8">
+    <style>
+        /* Стиль для красивого и правильного отображения сетки карточек без смещения влево */
+        .inventory-grid, #inventory-items-container {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 14px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 10px 4px 24px 4px !important;
+            justify-content: center !important;
+        }
+        .inventory-card, .trial-font-card, .neon-voice-card {
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)) !important;
+            border: 1px solid rgba(0, 229, 255, 0.3) !important;
+            border-radius: 12px !important;
+            min-height: 64px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            position: relative !important;
+            cursor: pointer !important;
+            padding: 12px !important;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.15) !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+        }
+        .inventory-card span, .trial-font-card span, .neon-voice-card span {
+            font-size: 13px !important;
+            color: #fff !important;
+            font-weight: 500 !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -147,7 +179,7 @@
             </a>
             
             <a href="studio.html" class="nav-center-item-link">
-                <div class="nav-center-item">
+                <div class="nav-item nav-center-item">
                     <div class="nav-center-btn">
                         <span class="center-icon">⚡</span>
                     </div>
@@ -172,17 +204,34 @@
 
     </div>
 
-    <!-- ВСПЛЫВАЮЩЕЕ ОКНО ИНВЕНТАРЯ -->
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО ИНВЕНТАРЯ (Красивые крупные карточки по 2 в ряд) -->
     <div class="bottom-sheet" id="shop-inventory-sheet">
         <div class="sheet-overlay" id="sheet-overlay-close"></div>
         <div class="sheet-content">
             <div class="sheet-drag-handle"></div>
             <div class="sheet-header">
-                <h3 id="sheet-title" data-i18n="inventoryTitle">Ваш инвентарь</h3>
+                <h3 id="sheet-title" data-i18n="inventoryTitle">Шрифты и Голоса</h3>
                 <button class="sheet-close-btn" id="sheet-close-x">&times;</button>
             </div>
             <div class="sheet-body">
-                <div class="inventory-grid" id="inventory-items-container"></div>
+                <div class="inventory-grid" id="inventory-items-container">
+                    <!-- Карточка 1 -->
+                    <div class="inventory-card trial-font-card" data-font="system">
+                        <span>SYSTEM (Default)</span>
+                    </div>
+                    <!-- Карточка 2 -->
+                    <div class="inventory-card trial-font-card" data-font="Roboto, sans-serif">
+                        <span>Roboto PRO</span>
+                    </div>
+                    <!-- Карточка 3 -->
+                    <div class="inventory-card neon-voice-card" data-name="Голос — Мужчина (Бас)">
+                        <span>🎙️ Мужчина (Бас)</span>
+                    </div>
+                    <!-- Карточка 4 -->
+                    <div class="inventory-card neon-voice-card" data-name="Голос — Женщина (Мягкий)">
+                        <span>🎙️ Женщина (Мягкий)</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
