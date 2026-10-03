@@ -106,7 +106,7 @@ html, body {
     overflow: hidden;
     position: relative;
     margin-top: 65px;
-    margin-bottom: 125px; /* Оставляем место под нижние панели */
+    margin-bottom: 125px;
 }
 
 .preview-window {
@@ -642,7 +642,7 @@ input[type="range"]::-webkit-slider-thumb {
     padding: 8px;
 }
 
-/* ИСПРАВЛЕННЫЙ БЛОК ШТОРКИ И СЕТКИ (БЕЗ МУТИ) */
+/* ИСПРАВЛЕННАЯ ШТОРКА И КАРТОЧКИ (ФИОЛЕТОВЫЙ НЕОН + НОРМАЛЬНЫЙ РАЗМЕР) */
 .bottom-sheet {
     position: fixed !important;
     top: 0 !important;
@@ -674,14 +674,14 @@ input[type="range"]::-webkit-slider-thumb {
 
 .sheet-content {
     position: relative !important;
-    background: #12131c !important;
-    border: 1px solid rgba(0, 242, 254, 0.3) !important;
+    background: #121216 !important;
+    border: 1px solid rgba(168, 85, 247, 0.4) !important;
     width: 100% !important;
     max-width: 500px !important;
-    max-height: 80vh !important;
-    border-top-left-radius: 20px !important;
-    border-top-right-radius: 20px !important;
-    padding: 20px !important;
+    max-height: 85vh !important;
+    border-top-left-radius: 24px !important;
+    border-top-right-radius: 24px !important;
+    padding: 20px 16px 24px 16px !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
@@ -699,12 +699,12 @@ input[type="range"]::-webkit-slider-thumb {
     height: 4px;
     background-color: #3A3A3C;
     border-radius: 2px;
-    margin: 0 auto 10px auto;
+    margin: 0 auto 14px auto;
     flex-shrink: 0;
 }
 
 .sheet-header {
-    padding: 0 0 12px 0;
+    padding: 0 0 14px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -712,7 +712,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .sheet-header h3 {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     color: #ffffff;
 }
@@ -730,7 +730,7 @@ input[type="range"]::-webkit-slider-thumb {
     width: 100% !important;
     box-sizing: border-box !important;
     overflow-y: auto !important;
-    padding: 10px 0 !important;
+    padding: 14px 0 10px 0 !important;
     flex: 1 !important;
 }
 
@@ -740,27 +740,34 @@ input[type="range"]::-webkit-slider-thumb {
     gap: 12px !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    padding: 10px 0 20px 0 !important;
+    padding: 4px 0 10px 0 !important;
     margin: 0 auto !important;
 }
 
 .inventory-card, .trial-font-card, .neon-voice-card {
-    background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)) !important;
-    border: 1px solid rgba(0, 229, 255, 0.3) !important;
-    border-radius: 12px !important;
-    min-height: 64px !important;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(20, 20, 30, 0.95)) !important;
+    border: 1px solid rgba(168, 85, 247, 0.4) !important;
+    border-radius: 14px !important;
+    min-height: 76px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
-    padding: 12px !important;
+    padding: 14px !important;
     text-align: center !important;
     box-sizing: border-box !important;
     width: 100% !important;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.1) !important;
+    transition: all 0.2s ease !important;
+}
+
+.inventory-card:active, .trial-font-card:active, .neon-voice-card:active {
+    border-color: #a855f7 !important;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(25, 20, 40, 0.95)) !important;
 }
 
 .inventory-card span, .trial-font-card span, .neon-voice-card span {
-    font-size: 13px !important;
+    font-size: 14px !important;
     color: #fff !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
 }
