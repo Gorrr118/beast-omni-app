@@ -775,142 +775,65 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 16px;
     color: #f39c12;
 }
-
-/* === Всплывающее окно инвентаря (Bottom Sheet) === */
-.bottom-sheet {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(5, 5, 10, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    align-items: flex-end; /* Выравниваем шторку по низу экрана */
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.bottom-sheet.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-/* Оверфон для закрытия кликом */
-.sheet-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-/* Контейнер самой шторки */
-.bottom-sheet .sheet-content {
-    position: relative;
-    background: #12131c;
-    border: 1px solid rgba(0, 242, 254, 0.3);
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 242, 254, 0.15);
-    width: 100%;
-    max-width: 500px;
-    max-height: 80vh;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 2;
-}
-
-.bottom-sheet.active .sheet-content {
-    transform: translateY(0);
-}
-
-.sheet-drag-handle {
-    width: 40px;
-    height: 4px;
-    background: #444;
-    border-radius: 2px;
-    align-self: center;
-    margin-bottom: 15px;
-}
-
-.sheet-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #2a2a2a;
-    padding-bottom: 10px;
-}
-
-.sheet-header h3 {
-    margin: 0;
-    color: #fff;
-    font-size: 16px;
-}
-
-.sheet-close-btn {
-    background: none;
-    border: none;
-    color: #aaa;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.sheet-close-btn:hover {
-    color: #fff;
-}
-
-.sheet-body {
-    overflow-y: auto;
-    flex: 1;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* === Сетка карточек (Шрифты / Голоса) строго по 2 в ряд и по центру === */
-.inventory-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding: 5px 2px 20px 2px !important;
-    margin: 0 auto !important;
-}
-
-/* === Крупные и красивые карточки === */
-.inventory-card, .trial-font-card, .neon-voice-card {
-    background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)) !important;
-    border: 1px solid rgba(0, 229, 255, 0.3) !important;
-    border-radius: 12px !important;
-    min-height: 64px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: relative !important;
-    cursor: pointer !important;
-    padding: 12px !important;
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15) !important;
-    text-align: center !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-}
-
-.inventory-card span, .trial-font-card span, .neon-voice-card span {
-    font-size: 13px !important;
-    color: #fff !important;
-    font-weight: 500 !important;
-}
+ /* Полное исправление шторки и сетки прямо в HTML */
+    .bottom-sheet {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(5, 5, 10, 0.75) !important;
+        backdrop-filter: blur(8px) !important;
+        display: flex !important;
+        align-items: flex-end !important;
+        justify-content: center !important;
+        z-index: 9999 !important;
+    }
+    .bottom-sheet .sheet-content {
+        position: relative !important;
+        background: #12131c !important;
+        border: 1px solid rgba(0, 242, 254, 0.3) !important;
+        width: 100% !important;
+        max-width: 500px !important;
+        max-height: 80vh !important;
+        border-top-left-radius: 20px !important;
+        border-top-right-radius: 20px !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        margin: 0 auto !important;
+    }
+    .sheet-body {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-y: auto !important;
+    }
+    .inventory-grid, #inventory-items-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 10px 0 20px 0 !important;
+        margin: 0 auto !important;
+    }
+    .inventory-card, .trial-font-card, .neon-voice-card {
+        background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)) !important;
+        border: 1px solid rgba(0, 229, 255, 0.3) !important;
+        border-radius: 12px !important;
+        min-height: 64px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        padding: 12px !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+    }
+    .inventory-card span, .trial-font-card span, .neon-voice-card span {
+        font-size: 13px !important;
+        color: #fff !important;
+        font-weight: 500 !important;
+    }
