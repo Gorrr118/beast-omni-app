@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="studio.css?v=1.8">
     <style>
-        /* Исправление шторки инвентаря: жесткое ограничение высоты и внутренний скролл */
+        /* Фикс шторки: центрирование, жесткое ограничение высоты и внутренний скролл без горизонтального сдвига */
         .bottom-sheet {
             display: none;
             position: fixed;
@@ -43,11 +43,13 @@
             box-sizing: border-box;
             z-index: 10;
             border-top: 1px solid rgba(0, 229, 255, 0.2);
+            overflow: hidden;
         }
         .bottom-sheet .sheet-body {
             max-height: calc(80vh - 70px) !important;
             overflow-y: auto !important;
-            padding: 10px 16px 30px 16px !important;
+            overflow-x: hidden !important;
+            padding: 12px 16px 30px 16px !important;
             box-sizing: border-box;
             scrollbar-width: thin;
         }
@@ -57,6 +59,7 @@
             justify-content: space-between;
             padding: 16px 20px 10px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-sizing: border-box;
         }
         .sheet-header h3 {
             color: #fff;
@@ -78,12 +81,14 @@
             margin: 8px auto 0 auto;
         }
 
-        /* Сетка карточек строго по 2 в ряд без смещений */
+        /* Центрированная сетка карточек строго по 2 в ряд без вылетов вправо */
         .inventory-grid, #inventory-items-container {
             display: grid !important;
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 14px !important;
+            gap: 12px !important;
             width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 auto !important;
             box-sizing: border-box !important;
             padding: 10px 0 20px 0 !important;
         }
