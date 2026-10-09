@@ -500,8 +500,8 @@ document.addEventListener('DOMContentLoaded', () => {
             inventoryContainer.innerHTML = `
                 <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 4px 20px 4px; box-sizing: border-box;">
                     <div style="display: flex; align-items: center; gap: 12px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid #2a2a2e; padding-bottom: 12px; width: 100%; box-sizing: border-box;">
-                        <span class="voice-cat-tab" data-cat="humans" style="color: ${activeVoiceCategory === 'humans' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'humans' ? 'bold' : 'normal'}; border-bottom:${activeVoiceCategory === 'humans' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🗣️ Человеческие голоса</span>
-                        <span class="voice-cat-tab" data-cat="games" style="color: ${activeVoiceCategory === 'games' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'games' ? 'bold' : 'normal'}; border-bottom:${activeVoiceCategory === 'games' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Голоса из игр</span>
+                        <span class="voice-cat-tab" data-cat="humans" style="color: ${activeVoiceCategory === 'humans' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'humans' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'humans' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🗣️ Человеческие голоса</span>
+                        <span class="voice-cat-tab" data-cat="games" style="color: ${activeVoiceCategory === 'games' ? '#00e5ff' : '#777'}; font-weight: ${activeVoiceCategory === 'games' ? 'bold' : 'normal'}; border-bottom: ${activeVoiceCategory === 'games' ? '2px solid #00e5ff' : 'none'}; padding-bottom: 4px; cursor: pointer; white-space: nowrap; font-size: 13px;">🎮 Голоса из игр</span>
                     </div>
 
                     <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
@@ -555,4 +555,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.innerHTML = `
             <div style="background: #1c242c; border: 2px solid #00e5ff; border-radius: 16px; padding: 24px; width: 90%; max-width: 320px; display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);">
-                <div style="font-size: 15px; color: #fff; font-weight: bold; text-
+                <div style="font-size: 15px; color: #fff; font-weight: bold; text-align: center;">🔊 ${voiceName}</div>
+                <p style="font-size: 12px; color: #aaa; text-align: center; margin: 0;">Нажмите кнопку ниже, чтобы прослушать образец звука или голоса.</p>
+                <button id="modal-play-btn" style="width: 100%; padding: 12px; background: #00e5ff; color: #000; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer; box-shadow: 0 0 10px rgba(0,229,255,0.5);">▶ Воспроизвести</button>
+                <button id="modal-close-btn" style="width: 100%; padding: 10px; background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; font-size: 12px; cursor: pointer;">Назад к списку</button>
+            </div>
+        `;
+
+        const playBtn = modal.querySelector('#modal-play-btn');
+        const closeBtn = modal.querySelector('#modal-close-btn');
+
+        playBtn.addEventListener('click', () => {
+            if (activePreviewAudio) {
+                activePreviewAudio.pause();
+                activePreviewAudio = null;
+                playBtn.innerText = '▶ Воспроизвести';
+                return;
+            }
+
+            activePreviewAudio = new Audio(sampleUrl);
+            activePreviewAudio.play().then(() => {
+                playBtn.innerText = '⏸ Пауза';
+            }).catch(err => {
+                console.log("Ошибка воспроизведения аудио:", err);
+            });
+
+            activePreviewAudio.onended = () => {
+                playBtn.innerText = '▶ Воспроизвести';
+                activePreviewAudio = null;
+            };
+        });
+
+        closeBtn.addEventListener('click', () => {
+            if (activePreviewAudio) {
+                activePreviewAudio.pause();
+                activePreviewAudio = null;
+            }
+            modal.remove();
+        });
+    }
+});
