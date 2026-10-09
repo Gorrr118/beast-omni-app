@@ -7,15 +7,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="studio.css?v=1.8">
     <style>
-        /* Стиль для красивого и правильного отображения сетки карточек без смещения влево */
+        /* Исправление шторки инвентаря: скролл и ограничение высоты, чтобы карточки не уходили за экран */
+        .bottom-sheet .sheet-content {
+            max-height: 80vh !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        .bottom-sheet .sheet-body {
+            max-height: calc(80vh - 70px) !important;
+            overflow-y: auto !important;
+            padding-bottom: 20px !important;
+            scrollbar-width: thin;
+        }
+        /* Сетка карточек строго по 2 в ряд без смещений */
         .inventory-grid, #inventory-items-container {
             display: grid !important;
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 14px !important;
             width: 100% !important;
             box-sizing: border-box !important;
-            padding: 10px 4px 24px 4px !important;
-            justify-content: center !important;
+            padding: 10px 4px 20px 4px !important;
         }
         .inventory-card, .trial-font-card, .neon-voice-card {
             background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(28, 36, 44, 0.9)) !important;
@@ -204,7 +215,7 @@
 
     </div>
 
-    <!-- ВСПЛЫВАЮЩЕЕ ОКНО ИНВЕНТАРЯ (Красивые крупные карточки по 2 в ряд) -->
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО ИНВЕНТАРЯ -->
     <div class="bottom-sheet" id="shop-inventory-sheet">
         <div class="sheet-overlay" id="sheet-overlay-close"></div>
         <div class="sheet-content">
@@ -215,22 +226,7 @@
             </div>
             <div class="sheet-body">
                 <div class="inventory-grid" id="inventory-items-container">
-                    <!-- Карточка 1 -->
-                    <div class="inventory-card trial-font-card" data-font="system">
-                        <span>SYSTEM (Default)</span>
-                    </div>
-                    <!-- Карточка 2 -->
-                    <div class="inventory-card trial-font-card" data-font="Roboto, sans-serif">
-                        <span>Roboto PRO</span>
-                    </div>
-                    <!-- Карточка 3 -->
-                    <div class="inventory-card neon-voice-card" data-name="Голос — Мужчина (Бас)">
-                        <span>🎙️ Мужчина (Бас)</span>
-                    </div>
-                    <!-- Карточка 4 -->
-                    <div class="inventory-card neon-voice-card" data-name="Голос — Женщина (Мягкий)">
-                        <span>🎙️ Женщина (Мягкий)</span>
-                    </div>
+                    <!-- Карточки генерируются динамически через JS -->
                 </div>
             </div>
         </div>
